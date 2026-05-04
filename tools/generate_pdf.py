@@ -11,10 +11,12 @@ Features:
 - Charts via matplotlib
 """
 
+import html
+import io
 import json
 import os
+import re
 import sys
-import io
 from datetime import datetime, timezone
 
 from fpdf import FPDF
@@ -218,8 +220,23 @@ def generate_topic_chart(sections_data):
     return buf
 
 
+_HTML_TAG_RE = re.compile(r"<[^>]+>")
+_TRUNCATED_TAG_RE = re.compile(r"<[^>]*$")  # opens but never closes (e.g. truncated RSS)
+_WHITESPACE_RE = re.compile(r"\s+")
+
+
 def sanitize_text(text):
-    """Replace Unicode characters that Helvetica can't render."""
+    """Strip HTML, decode entities, normalise whitespace, and downcast to latin-1."""
+    if not text:
+        return ""
+    if not isinstance(text, str):
+        text = str(text)
+    # Strip HTML tags and decode entities (raw RSS often leaks <p>, <a>, &amp;, etc.)
+    text = _HTML_TAG_RE.sub(" ", text)
+    text = _TRUNCATED_TAG_RE.sub("", text)  # cut dangling unclosed tags
+    text = html.unescape(text)
+    # Collapse whitespace
+    text = _WHITESPACE_RE.sub(" ", text).strip()
     replacements = {
         "\u2014": "-",   # em-dash
         "\u2013": "-",   # en-dash
@@ -234,7 +251,6 @@ def sanitize_text(text):
     }
     for char, repl in replacements.items():
         text = text.replace(char, repl)
-    # Strip any remaining non-latin-1 characters
     return text.encode("latin-1", errors="replace").decode("latin-1")
 
 
@@ -385,7 +401,8 @@ def build_section(pdf, section_key, stories):
         pdf.set_text_color(120, 120, 120)
         pdf.set_xy(14, y + 6)
 
-        source = sanitize_text(story.get("source", "Unknown"))
+        source = story.get("source") or story.get("channel") or "Unknown"
+        source = sanitize_text(source)
         meta_parts = [f"Source: {source}"]
 
         # Section-specific metadata

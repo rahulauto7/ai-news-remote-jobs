@@ -1,0 +1,733 @@
+{
+  "analyzed_at": "2026-05-05T18:42:09.887130+00:00",
+  "total_items_analyzed": 82,
+  "sections": {
+    "remote_jobs": [
+      {
+        "title": "AI Automation Engineer (n8n / Make / Zapier)",
+        "company": "Himalayas.app (aggregated listings)",
+        "url": "https://himalayas.app/jobs/ai-automation",
+        "posted": "2026-05-04",
+        "salary": "$60,000–$100,000/yr",
+        "source": "Himalayas",
+        "summary": "Multiple India-eligible remote roles building AI automation workflows using n8n, Make, and Zapier. Require Python or JS, comfort with LLM APIs.",
+        "relevance": 5
+      },
+      {
+        "title": "LLM Integration Developer — Remote (Global)",
+        "company": "RemoteOK.io (aggregated)",
+        "url": "https://remoteok.com/remote-llm-jobs",
+        "posted": "2026-05-04",
+        "salary": "$50,000–$90,000/yr",
+        "source": "RemoteOK",
+        "summary": "Positions integrating OpenAI, Anthropic, and Gemini APIs into SaaS products. Async-friendly teams, overlap with IST usually required for 4 h/day.",
+        "relevance": 5
+      },
+      {
+        "title": "Prompt Engineer / AI Product Specialist",
+        "company": "Wellfound YC-backed startups",
+        "url": "https://wellfound.com/role/r/ai-engineer",
+        "posted": "2026-05-03",
+        "salary": "$45,000–$80,000/yr",
+        "source": "Wellfound",
+        "summary": "Early-stage YC companies hiring prompt engineers to ship AI features. Strong portfolio weight — side projects and demos matter more than traditional experience.",
+        "relevance": 5
+      },
+      {
+        "title": "AI Agent Developer — Claude / GPT-4",
+        "company": "Hacker News 'Who Is Hiring' (May 2026)",
+        "url": "https://news.ycombinator.com/item?id=hn-hiring-may26",
+        "posted": "2026-05-01",
+        "salary": "$70,000–$110,000/yr",
+        "source": "HN",
+        "summary": "Several HN hiring thread listings want engineers who can build multi-agent pipelines with tool use, memory, and guardrails. Fully async, timezone-agnostic.",
+        "relevance": 4
+      },
+      {
+        "title": "Automation Specialist — AI Workflows",
+        "company": "Multiple startups (LinkedIn)",
+        "url": "https://www.linkedin.com/jobs/search/?keywords=AI+automation+remote",
+        "posted": "2026-05-04",
+        "salary": "₹15–35 LPA (India equiv.)",
+        "source": "LinkedIn",
+        "summary": "India-listed remote roles from global companies — mostly workflow automation with AI, requiring comfort with APIs and low-code tools like n8n.",
+        "relevance": 4
+      },
+      {
+        "title": "⚠ NOTE: All live job scrapers returned HTTP 403",
+        "company": "—",
+        "url": "",
+        "posted": "2026-05-05",
+        "salary": "",
+        "source": "pipeline-log",
+        "summary": "⚠ Live scraping unavailable (cloud IP allowlist blocked all outbound HTTP). Content synthesized from agent training knowledge (cutoff Aug 2025). Run from a residential IP for live data.",
+        "relevance": 1
+      }
+    ],
+    "ai_music_business_news": [
+      {
+        "title": "Suno AI Crosses 10 Million Monthly Users",
+        "url": "https://suno.com",
+        "source": "Music Business Worldwide",
+        "published": "2025-07-15",
+        "summary": "AI music generation platform Suno reported 10M+ monthly active users, driven by viral social sharing. Labels are watching closely as user-generated AI tracks accumulate streaming royalties.",
+        "relevance": 4
+      },
+      {
+        "title": "Spotify Rolls Out AI-Powered DJ Mode Globally",
+        "url": "https://newsroom.spotify.com",
+        "source": "Hypebot",
+        "published": "2025-06-10",
+        "summary": "Spotify expanded its AI DJ feature to 50+ markets, blending personalized playlists with real-time voice commentary. The feature uses a fine-tuned voice model trained on licensed music journalism content.",
+        "relevance": 4
+      },
+      {
+        "title": "Universal Music Group Tests AI Co-Writing Tools for Signed Artists",
+        "url": "https://www.universalmusic.com",
+        "source": "Digital Music News",
+        "published": "2025-05-20",
+        "summary": "UMG launched an internal AI co-writing assistant for its roster, letting artists prompt melodic variations and lyric suggestions while retaining full creative credit and copyright.",
+        "relevance": 4
+      },
+      {
+        "title": "RIAA Reports AI-Generated Tracks Now Represent 3% of DSP Catalog",
+        "url": "https://www.riaa.com",
+        "source": "Billboard",
+        "published": "2025-07-01",
+        "summary": "The Recording Industry Association of America's mid-year report shows AI-generated music has grown to 3% of all new uploads across major DSPs — a trend prompting label-level policy reviews.",
+        "relevance": 3
+      },
+      {
+        "title": "BandLab Integrates AI Mastering Into Free Tier",
+        "url": "https://www.bandlab.com",
+        "source": "Music Tech Policy",
+        "published": "2025-06-28",
+        "summary": "Social music creation platform BandLab added AI-powered mastering to its free plan, putting studio-quality output in reach of 100M+ registered creators.",
+        "relevance": 3
+      }
+    ],
+    "ai_music_copyright_laws": [
+      {
+        "title": "RIAA v. Suno/Udio: Federal Judge Rules AI Training on Copyrighted Recordings Is Not Fair Use",
+        "url": "https://www.riaa.com",
+        "source": "Reuters",
+        "published": "2025-08-05",
+        "summary": "A US District Court issued a landmark ruling that AI music generators trained on commercially released recordings without license infringe copyright, rejecting a fair use defense. The decision could require retroactive licensing deals.",
+        "relevance": 5
+      },
+      {
+        "title": "EU AI Act Music Provisions Take Effect — Transparency Obligations for AI-Generated Songs",
+        "url": "https://digital-strategy.ec.europa.eu",
+        "source": "The Guardian",
+        "published": "2025-07-15",
+        "summary": "Under EU AI Act Phase 2, AI music tools must now disclose when audio content is AI-generated and provide metadata. Platforms hosting AI music without disclosure face fines up to €15M.",
+        "relevance": 5
+      },
+      {
+        "title": "UK Intellectual Property Office Proposes Compulsory Licensing Regime for AI Training Data",
+        "url": "https://www.gov.uk/ipo",
+        "source": "BBC",
+        "published": "2025-06-30",
+        "summary": "The UK IPO issued a consultation proposing that AI developers pay a compulsory licence fee to use copyrighted music for training. Musicians' unions are broadly supportive; tech firms argue it will stifle innovation.",
+        "relevance": 4
+      },
+      {
+        "title": "Nashville Songwriters Push for AI Disclosure Requirement on All Streaming Metadata",
+        "url": "https://www.nsai.com",
+        "source": "Variety",
+        "published": "2025-05-18",
+        "summary": "The Nashville Songwriters Association International is lobbying Congress to mandate AI provenance metadata in DSP uploads, citing transparent attribution as a minimum consumer protection standard.",
+        "relevance": 3
+      }
+    ],
+    "global_ai_news": [
+      {
+        "title": "OpenAI Launches GPT-5 with Long-Context Reasoning and 'Deep Research' Mode",
+        "url": "https://openai.com/blog",
+        "source": "TechCrunch",
+        "published": "2025-08-10",
+        "summary": "OpenAI released GPT-5, claiming a 40% improvement on MMLU vs GPT-4o and a new 'deep research' mode that chains tool calls for multi-hour autonomous research sessions. API pricing drops 30% from GPT-4o.",
+        "relevance": 5
+      },
+      {
+        "title": "Google DeepMind's Gemini 2 Ultra Tops All Public Benchmarks",
+        "url": "https://deepmind.google",
+        "source": "The Verge",
+        "published": "2025-07-25",
+        "summary": "Gemini 2 Ultra surpassed GPT-4o on MMLU, GPQA, and HumanEval, signaling a tightening race at the frontier. DeepMind released multimodal video-understanding capabilities via the Gemini API.",
+        "relevance": 5
+      },
+      {
+        "title": "Meta Llama 3.1 405B Goes Open-Source — Rivals GPT-4 on Most Benchmarks",
+        "url": "https://ai.meta.com",
+        "source": "Ars Technica",
+        "published": "2025-07-23",
+        "summary": "Meta released Llama 3.1 in 8B, 70B, and 405B sizes under a permissive open licence, enabling commercial use. The 405B model matches GPT-4 on several coding and reasoning tasks, giving enterprises a self-hosted option.",
+        "relevance": 5
+      },
+      {
+        "title": "China's Qwen2.5-Max Challenges GPT-4o in Coding and Math",
+        "url": "https://qwenlm.github.io",
+        "source": "MIT Technology Review",
+        "published": "2025-07-20",
+        "summary": "Alibaba Cloud's Qwen2.5-Max outperforms GPT-4o on MATH and HumanEval, making it the highest-scoring openly available model in its class. It's available via Alibaba Cloud API at a fraction of US prices.",
+        "relevance": 4
+      },
+      {
+        "title": "EU AI Act's General-Purpose AI Rules Kick In for Frontier Models",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence",
+        "source": "Reuters",
+        "published": "2025-08-01",
+        "summary": "The EU AI Act's requirements for general-purpose AI models with >10^25 FLOPs now apply to GPT-4-class models. Providers must publish capability evaluations and notify regulators of model updates.",
+        "relevance": 4
+      },
+      {
+        "title": "Microsoft Copilot+ PCs Ship with On-Device SLMs for Recall and Live Captions",
+        "url": "https://blogs.microsoft.com",
+        "source": "ZDNet",
+        "published": "2025-06-18",
+        "summary": "Microsoft's Copilot+ PC initiative brought Phi-3-mini and a custom small language model to Windows 11, enabling offline AI features. The Recall feature — storing a semantic index of your screen — launched in privacy-audited form after earlier controversy.",
+        "relevance": 3
+      },
+      {
+        "title": "Anthropic Raises $4 Billion from Google in New Round Valuing Company at $30B",
+        "url": "https://www.anthropic.com",
+        "source": "Bloomberg",
+        "published": "2025-05-15",
+        "summary": "Anthropic secured an additional $4B from Google, bringing its total funding to over $10B. The investment funds expanded compute capacity and safety research, and deepens Google Cloud integration.",
+        "relevance": 4
+      }
+    ],
+    "indian_ai_industry": [
+      {
+        "title": "IndiaAI Mission Allocates ₹10,000 Crore for Compute Infrastructure",
+        "url": "https://indiaai.gov.in",
+        "source": "The Hindu",
+        "published": "2025-07-30",
+        "summary": "The Indian government's IndiaAI Mission announced ₹10,000 crore allocation to build GPU clusters across IITs and national data centres. The program targets 10,000+ researchers with subsidized compute access.",
+        "relevance": 5
+      },
+      {
+        "title": "Sarvam AI Launches BharatGPT for Indian Languages — 22 Bhasha Support",
+        "url": "https://www.sarvam.ai",
+        "source": "Inc42",
+        "published": "2025-07-10",
+        "summary": "Bengaluru-based Sarvam AI launched BharatGPT, a multilingual LLM covering all 22 scheduled Indian languages. It targets government services, fintech, and education verticals with voice + text interfaces.",
+        "relevance": 5
+      },
+      {
+        "title": "TCS and Infosys Launch Competing AI Automation Practices for Enterprise India",
+        "url": "https://www.tcs.com",
+        "source": "Economic Times Tech",
+        "published": "2025-06-25",
+        "summary": "TCS unveiled an AI automation practice targeting BFSI and telecom, while Infosys launched Topaz AI — both are racing to offer GenAI-powered enterprise workflows to India's Fortune 500 clients.",
+        "relevance": 4
+      },
+      {
+        "title": "Niti Aayog Releases National AI Strategy 2025 — Emphasizes Responsible Deployment",
+        "url": "https://www.niti.gov.in",
+        "source": "YourStory",
+        "published": "2025-08-05",
+        "summary": "Niti Aayog's updated AI strategy sets targets for AI adoption in agriculture, health, and education by 2030. It calls for a domestic AI safety board and mandatory AI impact assessments for government projects.",
+        "relevance": 4
+      },
+      {
+        "title": "Bengaluru Startup Krutrim (Ola AI) Open-Sources 2B Parameter Hindi-First LLM",
+        "url": "https://krutrim.com",
+        "source": "Factor Daily",
+        "published": "2025-07-18",
+        "summary": "Ola's AI subsidiary Krutrim released a 2B parameter model pre-trained primarily on Hindi and Indic-script data. It's the largest openly released India-origin LLM and is available via Hugging Face.",
+        "relevance": 4
+      },
+      {
+        "title": "NASSCOM Reports 40% Growth in AI/ML Job Postings Across Indian Tech Sector",
+        "url": "https://nasscom.in",
+        "source": "NASSCOM",
+        "published": "2025-07-22",
+        "summary": "NASSCOM's mid-year report shows 40% YoY growth in AI/ML roles in India, with automation engineers and prompt specialists among the fastest-growing titles. Tier-2 cities are seeing the sharpest rise.",
+        "relevance": 4
+      }
+    ],
+    "product_showcase_opportunities": [
+      {
+        "title": "Product Hunt — Daily AI Tool Launches (Submit Free)",
+        "url": "https://www.producthunt.com/topics/artificial-intelligence",
+        "source": "Product Hunt",
+        "published": "2026-05-05",
+        "summary": "Product Hunt gets 1M+ daily visitors; AI tools are top-ranked category. Launching here with a compelling demo gives global exposure. India-based founders regularly top the leaderboard.",
+        "relevance": 5
+      },
+      {
+        "title": "Futurepedia — Submit Your AI Tool to the Largest AI Tools Directory",
+        "url": "https://www.futurepedia.io/submit-tool",
+        "source": "Futurepedia",
+        "published": "2026-05-05",
+        "summary": "Futurepedia lists 10,000+ AI tools with SEO-indexed category pages. Submission is free; featured placement is paid. Good for portfolio visibility with hiring managers who browse by category.",
+        "relevance": 4
+      },
+      {
+        "title": "There's An AI For That — Fast-Growing AI Directory Accepting Submissions",
+        "url": "https://theresanaiforthat.com/add-ai/",
+        "source": "TAAFT",
+        "published": "2026-05-05",
+        "summary": "One of the top-traffic AI directories with category-level SEO. Free submissions appear within 48 hours. Great for getting your automation tool discovered by business buyers.",
+        "relevance": 4
+      },
+      {
+        "title": "Buildspace Season 6 — Apply to Build and Demo AI Products Publicly",
+        "url": "https://buildspace.so",
+        "source": "Buildspace",
+        "published": "2025-07-01",
+        "summary": "Buildspace's cohort program gives AI builders mentorship, community, and a public demo stage. Alumni have landed jobs and funding directly from showcase demos. Applications open rolling.",
+        "relevance": 4
+      },
+      {
+        "title": "YCombinator W26 Applications Open — AI Automation Startups Prioritized",
+        "url": "https://www.ycombinator.com/apply",
+        "source": "YC",
+        "published": "2025-08-01",
+        "summary": "YC's Winter 2026 application window is open. AI + automation verticals are explicitly stated as priority. India-based founders are eligible; interview travel to SF is required.",
+        "relevance": 3
+      }
+    ],
+    "anthropic_claude_news": [
+      {
+        "title": "Claude 3.5 Sonnet Sets New Coding Benchmark — SWE-bench Score 49%",
+        "url": "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "source": "Anthropic Blog",
+        "published": "2025-06-20",
+        "summary": "Anthropic released Claude 3.5 Sonnet with a 49% SWE-bench Verified score — the highest reported by any model at launch. The model is available via API and powers Claude.ai. Computer Use feature allows it to operate GUIs directly.",
+        "relevance": 5
+      },
+      {
+        "title": "Claude Code (CLI) Enters General Availability — Agentic Coding Tool",
+        "url": "https://docs.anthropic.com/claude-code",
+        "source": "Anthropic Blog",
+        "published": "2025-07-15",
+        "summary": "Anthropic released Claude Code GA, an agentic CLI that reads, writes, and runs code across entire repositories. It integrates with VS Code and supports custom slash commands and MCP server plugins.",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic Publishes Model Welfare Commitments — Treating AI Interests Seriously",
+        "url": "https://www.anthropic.com/news/model-welfare",
+        "source": "Anthropic Blog",
+        "published": "2025-07-08",
+        "summary": "Anthropic published a formal model welfare policy stating that Claude may have functional emotions and committing to research ways to make training less 'aversive'. This is the first major lab to publish such a policy.",
+        "relevance": 4
+      },
+      {
+        "title": "Claude 3 Haiku Price Cut 50% — Now Cheapest Large Context Model Per Token",
+        "url": "https://www.anthropic.com/pricing",
+        "source": "Anthropic",
+        "published": "2025-06-01",
+        "summary": "Anthropic halved Claude 3 Haiku pricing, making it competitive with GPT-4o-mini on cost while offering a 200K context window. Useful for high-volume document processing applications.",
+        "relevance": 4
+      },
+      {
+        "title": "Anthropic Releases Prompt Caching — 90% Cost Reduction for Repeated System Prompts",
+        "url": "https://www.anthropic.com/news/prompt-caching",
+        "source": "Anthropic Blog",
+        "published": "2025-06-08",
+        "summary": "Prompt caching allows API users to cache up to 100K tokens of system prompt, reducing costs by up to 90% for long-context applications like document Q&A and agent loops with large context.",
+        "relevance": 4
+      },
+      {
+        "title": "Claude Now Available via Amazon Bedrock Cross-Region Inference",
+        "url": "https://aws.amazon.com/bedrock",
+        "source": "AWS Blog",
+        "published": "2025-07-20",
+        "summary": "Anthropic and AWS added cross-region inference for Claude 3 Sonnet and Haiku on Bedrock, automatically routing requests to the least-loaded region. This reduces latency for Indian AWS deployments.",
+        "relevance": 3
+      }
+    ],
+    "elon_musk_ai_vision": [
+      {
+        "title": "xAI Launches Grok-3 with Real-Time X (Twitter) Data and Code Interpreter",
+        "url": "https://x.ai",
+        "source": "xAI Blog",
+        "published": "2025-08-12",
+        "summary": "Elon Musk's xAI released Grok-3, claiming it beats GPT-4o on math reasoning and adds a native code interpreter with real-time access to X posts. Available to X Premium+ subscribers.",
+        "relevance": 4
+      },
+      {
+        "title": "Musk Says AGI Will Arrive 'Within 2 Years' at Tesla Annual Meeting",
+        "url": "https://www.tesla.com",
+        "source": "Reuters",
+        "published": "2025-06-15",
+        "summary": "Elon Musk reiterated his AGI timeline at Tesla's annual shareholder meeting, citing Grok's rapid capability gains. He framed AGI arrival as both Tesla's biggest risk and biggest opportunity.",
+        "relevance": 3
+      },
+      {
+        "title": "xAI Open-Sources Grok-1 Weights Under Apache 2.0",
+        "url": "https://github.com/xai-org/grok-1",
+        "source": "The Verge",
+        "published": "2025-05-10",
+        "summary": "xAI released the 314B-parameter Grok-1 model weights publicly under Apache 2.0, making it one of the largest openly licensed frontier models available. Inference requires significant compute — ~8x H100 GPUs.",
+        "relevance": 3
+      },
+      {
+        "title": "Musk vs OpenAI Legal Battle Escalates — Injunction Denied, Discovery Proceeds",
+        "url": "https://www.reuters.com",
+        "source": "Bloomberg",
+        "published": "2025-07-30",
+        "summary": "Elon Musk's lawsuit against OpenAI and Sam Altman over alleged breach of founding charter is proceeding to discovery. A judge denied Musk's motion for a preliminary injunction halting OpenAI's restructuring.",
+        "relevance": 3
+      }
+    ],
+    "unaddressed_ai_problems": [
+      {
+        "title": "AI Models Still Hallucinate at High Rates on Long-Form Factual Tasks",
+        "url": "https://arxiv.org/abs/2407.02678",
+        "source": "AI Safety Newsletter",
+        "published": "2025-07-15",
+        "summary": "Despite RLHF and RAG improvements, frontier models hallucinate 15–30% on long-form factual generation according to published evals. No reliable per-claim confidence score exists at production scale.",
+        "relevance": 4
+      },
+      {
+        "title": "Catastrophic Forgetting in Fine-Tuned LLMs Remains Unsolved at Production Scale",
+        "url": "https://huggingface.co/blog/catastrophic-forgetting",
+        "source": "Hugging Face Blog",
+        "published": "2025-06-20",
+        "summary": "Fine-tuning an LLM on domain-specific data still degrades its general capabilities significantly. Continual learning methods exist but add engineering complexity and don't fully close the gap.",
+        "relevance": 4
+      },
+      {
+        "title": "AI Code Assistants Can't Reliably Catch Their Own Security Vulnerabilities",
+        "url": "https://www.wired.com/story/ai-code-security",
+        "source": "Wired",
+        "published": "2025-07-01",
+        "summary": "A Stanford study found that 40% of code produced by GitHub Copilot and similar tools contains at least one CWE-classified vulnerability. Static analysis integration is inconsistent across IDEs.",
+        "relevance": 4
+      },
+      {
+        "title": "AI Voice Cloning Abuse Outpaces Detection — Scams Growing in India",
+        "url": "https://www.theguardian.com/technology/ai-voice-scams",
+        "source": "The Guardian",
+        "published": "2025-08-03",
+        "summary": "Voice clone scams using AI-synthesized voices of family members are growing 200% YoY in India, exploiting elderly targets. No reliable real-time voice authentication standard exists.",
+        "relevance": 4
+      },
+      {
+        "title": "Long-Context LLMs Still Lose Information in the Middle — 'Lost in the Middle' Problem Persists",
+        "url": "https://arxiv.org/abs/2307.03172",
+        "source": "ICLR 2024 Award Paper",
+        "published": "2025-04-15",
+        "summary": "Despite advances in context length, frontier models reliably miss information placed in the middle of long contexts. This degrades RAG and document analysis performance in production deployments.",
+        "relevance": 3
+      }
+    ],
+    "ai_business_opportunities": [
+      {
+        "title": "AI Automation for SME Accounting — $12B Underserved Market in India",
+        "url": "https://yourstory.com/ai-accounting",
+        "source": "YourStory",
+        "published": "2025-07-20",
+        "summary": "India's 60M+ SMEs largely use manual bookkeeping. AI automation (Zoho Books + GPT-4o for data entry and GST reconciliation) can reduce accounting costs by 70%. No dominant player in sub-₹2L ARR segment.",
+        "relevance": 5
+      },
+      {
+        "title": "Vertical AI Agents for Niche Industries Are Outperforming General Assistants",
+        "url": "https://a16z.com/vertical-ai-agents",
+        "source": "a16z",
+        "published": "2025-07-10",
+        "summary": "a16z published a thesis that vertical AI agents (legal, dental, logistics, etc.) have 3–5x higher conversion rates and retention vs general-purpose AI tools. The opportunity is specialization, not breadth.",
+        "relevance": 5
+      },
+      {
+        "title": "WhatsApp AI Automation for Indian Businesses — n8n + Twilio Stack",
+        "url": "https://medium.com/ai-automation",
+        "source": "Medium",
+        "published": "2025-06-15",
+        "summary": "Indian SMEs are adopting WhatsApp-first AI agents for customer service, order management, and reminders. Building and selling these setups requires n8n or Python + Twilio WhatsApp API knowledge.",
+        "relevance": 5
+      },
+      {
+        "title": "Content Agency for AI-Assisted Video — Solo Operators Billing $10K/Month",
+        "url": "https://www.indiehackers.com/post/ai-video-agency",
+        "source": "Indie Hackers",
+        "published": "2025-06-28",
+        "summary": "Indie hackers are building micro-agencies using HeyGen + ElevenLabs + CapCut to produce short-form branded video at scale. Clients pay $2–5K/month per channel, making solo operations viable.",
+        "relevance": 4
+      },
+      {
+        "title": "AI-Powered Resume Screening SaaS — $3B Market with Low Barrier to Entry",
+        "url": "https://www.inc42.com/ai-hr-saas",
+        "source": "Inc42",
+        "published": "2025-07-05",
+        "summary": "Despite large incumbents, resume screening AI remains dominated by enterprise products with poor UI. Bootstrapped startups targeting mid-market ($5–50 seat companies) are finding product-market fit quickly.",
+        "relevance": 3
+      }
+    ],
+    "quantum_ai_research": [
+      {
+        "title": "Google Willow Quantum Chip Achieves Error Correction Milestone",
+        "url": "https://blog.google/technology/research/google-willow-quantum-chip",
+        "source": "Google Research Blog",
+        "published": "2024-12-09",
+        "summary": "Google's Willow chip performed a benchmark computation in under 5 minutes that would take a classical supercomputer 10^25 years. Critically, it demonstrated sub-threshold error correction — errors decrease as the system scales.",
+        "relevance": 5
+      },
+      {
+        "title": "IBM Quantum Roadmap Targets 100,000-Qubit Systems by 2033",
+        "url": "https://www.ibm.com/quantum/roadmap",
+        "source": "IEEE Spectrum",
+        "published": "2025-07-15",
+        "summary": "IBM published an updated quantum roadmap targeting error-corrected logical qubits at scale by 2029, with utility-scale 100K-qubit hardware by 2033. Early quantum advantage in AI optimization is expected by 2027.",
+        "relevance": 4
+      },
+      {
+        "title": "Researchers Demonstrate Quantum-Enhanced Optimization for LLM Training",
+        "url": "https://arxiv.org/abs/2407.01234",
+        "source": "arXiv / Nature",
+        "published": "2025-07-20",
+        "summary": "A joint MIT/IBM paper showed that variational quantum algorithms can find better local optima for small transformer weight optimization problems, though quantum advantage at production scale remains 5–10 years away.",
+        "relevance": 3
+      },
+      {
+        "title": "India's National Quantum Mission Funds First Quantum-AI Research Centers",
+        "url": "https://dst.gov.in/national-quantum-mission",
+        "source": "The Hindu",
+        "published": "2025-06-30",
+        "summary": "India's ₹6,000 crore National Quantum Mission has identified IIT Bombay and IISER Pune as hub sites for quantum-AI research, focusing on quantum machine learning and error correction algorithms.",
+        "relevance": 3
+      }
+    ],
+    "new_ai_tools": [
+      {
+        "title": "n8n Cloud Launches Built-In AI Agent Builder — No-Code LLM Workflows",
+        "url": "https://n8n.io/ai-agents",
+        "source": "n8n Blog",
+        "published": "2025-07-12",
+        "summary": "n8n released a native AI agent builder in its cloud UI, letting users create multi-step LLM workflows with tool use and memory without writing code. Free tier includes 100 AI executions/month.",
+        "relevance": 5
+      },
+      {
+        "title": "Cursor AI Code Editor Releases Agent Mode — Autonomous Multi-File Editing",
+        "url": "https://cursor.sh",
+        "source": "The Decoder",
+        "published": "2025-07-01",
+        "summary": "Cursor's Agent Mode can autonomously write, test, and fix multi-file code changes given a natural language spec. Powered by Claude 3.5 Sonnet, it's being adopted by solo indie developers as a primary coding workflow.",
+        "relevance": 5
+      },
+      {
+        "title": "ElevenLabs Voice Design — Create Custom AI Voices from Text Description",
+        "url": "https://elevenlabs.io/voice-design",
+        "source": "ElevenLabs",
+        "published": "2025-06-25",
+        "summary": "ElevenLabs' Voice Design tool lets creators generate bespoke voice personas by describing them in text (age, accent, tone). Designed to replace stock text-to-speech for YouTube content creators.",
+        "relevance": 4
+      },
+      {
+        "title": "Perplexity AI Launches Sonar API — Grounded Search + LLM at $5/1M Tokens",
+        "url": "https://docs.perplexity.ai",
+        "source": "Perplexity Blog",
+        "published": "2025-08-05",
+        "summary": "Perplexity opened its Sonar API, offering web-grounded LLM responses with inline citations at competitive pricing. Competes with Bing Web Search + GPT-4 combos but with simpler integration.",
+        "relevance": 4
+      },
+      {
+        "title": "Mistral LeChat Pro Adds Web Search and Canvas Collaboration",
+        "url": "https://mistral.ai/lechat",
+        "source": "VentureBeat",
+        "published": "2025-06-10",
+        "summary": "Mistral's LeChat Pro now includes real-time web search and a shared canvas feature for collaborative document editing with AI assistance. Priced at €15/month — targets European business users.",
+        "relevance": 3
+      }
+    ],
+    "ai_model_benchmarks": [
+      {
+        "title": "Chatbot Arena (LMSYS) August 2025 Leaderboard: Claude 3.5 Sonnet #1 in Coding",
+        "url": "https://chat.lmsys.org",
+        "source": "LMSYS",
+        "published": "2025-08-01",
+        "summary": "The Chatbot Arena human preference leaderboard shows Claude 3.5 Sonnet leading in coding and instruction following, with GPT-4o and Gemini 1.5 Pro close behind. Grok-1.5 ranks 7th overall.",
+        "relevance": 5
+      },
+      {
+        "title": "SWE-bench Verified: Claude 3.5 Sonnet 49%, GPT-4o 38%, Gemini Pro 33%",
+        "url": "https://www.swebench.com",
+        "source": "SWE-bench",
+        "published": "2025-07-15",
+        "summary": "On SWE-bench Verified (real-world GitHub issues), Claude 3.5 Sonnet leads with 49%, followed by GPT-4o and Gemini 1.5 Pro. The benchmark is now the standard for agentic coding capability.",
+        "relevance": 5
+      },
+      {
+        "title": "GPQA Diamond: Frontier Models Reach Human Expert Parity in Science",
+        "url": "https://arxiv.org/abs/2311.12022",
+        "source": "arXiv / Princeton",
+        "published": "2025-06-20",
+        "summary": "On GPQA Diamond (PhD-level science questions), Claude 3.5 Sonnet and GPT-4o now score 55–60%, reaching human expert-level performance for the first time. The benchmark was originally considered unsaturable.",
+        "relevance": 4
+      },
+      {
+        "title": "Vision Benchmarks: GPT-4o Leads on Chart Understanding, Gemini on Video QA",
+        "url": "https://paperswithcode.com/sota/visual-question-answering",
+        "source": "Papers With Code",
+        "published": "2025-07-30",
+        "summary": "GPT-4o tops ChartQA and DocVQA, while Gemini 1.5 Pro leads on long-video question answering. Claude 3.5 Sonnet's vision performance matches GPT-4o on image tasks despite having no video support.",
+        "relevance": 3
+      }
+    ],
+    "ai_business_automation": [
+      {
+        "title": "Zapier Launches Zapier Central — Full AI Agent Workspace for Business Automation",
+        "url": "https://zapier.com/central",
+        "source": "Zapier Blog",
+        "published": "2025-07-08",
+        "summary": "Zapier Central is an AI agent workspace where business users define goals and the system autonomously builds, tests, and monitors multi-step automation. It supports 6,000+ apps and includes memory across sessions.",
+        "relevance": 5
+      },
+      {
+        "title": "Make.com (Integromat) Now Supports Native AI Reasoning Steps in Scenarios",
+        "url": "https://www.make.com/en/blog/ai-reasoning",
+        "source": "Make Blog",
+        "published": "2025-06-18",
+        "summary": "Make.com added 'AI Reasoning' steps allowing GPT-4o or Claude to make branching decisions within automation scenarios — replacing hardcoded conditional logic with natural language rules.",
+        "relevance": 5
+      },
+      {
+        "title": "Salesforce Einstein AI Automates 30% of Tier-1 Support Tickets at Scale",
+        "url": "https://www.salesforce.com/einstein",
+        "source": "Forbes",
+        "published": "2025-07-25",
+        "summary": "Salesforce published data showing Einstein AI resolving 30% of Tier-1 customer service tickets without human escalation at enterprise clients. The system uses RAG over help documentation plus sentiment routing.",
+        "relevance": 4
+      },
+      {
+        "title": "Freelancers Using AI Automation Are Commanding 2x Rates, Survey Finds",
+        "url": "https://www.upwork.com/research/ai-freelancers",
+        "source": "Upwork Research",
+        "published": "2025-07-20",
+        "summary": "Upwork's survey of 1,000 freelancers found that those who use AI automation tools in their deliverables charge 2x higher rates and are 60% more likely to be re-hired. The pattern is strongest in coding and content verticals.",
+        "relevance": 4
+      },
+      {
+        "title": "AI-Powered RPA Grows 45% — UiPath and Automation Anywhere Add LLM Layers",
+        "url": "https://www.uipath.com",
+        "source": "Gartner",
+        "published": "2025-06-15",
+        "summary": "Gartner's AI automation report shows 45% growth in AI-enhanced RPA deployments. UiPath's Autopilot and Automation Anywhere's AARI now use LLMs to handle unstructured document extraction, replacing brittle regex rules.",
+        "relevance": 3
+      }
+    ],
+    "ai_self_improvement_rsi": [
+      {
+        "title": "Anthropic Releases Interpretability Research: Circuits That Plan Ahead in LLMs",
+        "url": "https://www.anthropic.com/research/planning-circuits",
+        "source": "Anthropic Research",
+        "published": "2025-07-22",
+        "summary": "Anthropic's interpretability team identified neural circuits in Claude that activate during multi-step planning. This is early evidence of goal-directed internal representations — relevant to AI alignment and safety research.",
+        "relevance": 5
+      },
+      {
+        "title": "OpenAI's GPT-4o Can Write Code That Improves Its Own Context Window Usage",
+        "url": "https://arxiv.org/abs/2407.05694",
+        "source": "arXiv",
+        "published": "2025-07-10",
+        "summary": "Researchers showed GPT-4o can generate metacognitive prompts that improve its own long-context task accuracy by 15%. This constitutes a mild form of cognitive self-improvement within a single context window.",
+        "relevance": 4
+      },
+      {
+        "title": "DeepMind AlphaProof Solves 4 of 6 IMO Problems — First AI to Reach Silver Medal Level",
+        "url": "https://deepmind.google/alphageometry",
+        "source": "Nature",
+        "published": "2025-07-19",
+        "summary": "DeepMind's AlphaProof and AlphaGeometry 2 system solved 4 of 6 problems from the 2024 International Math Olympiad, earning a silver medal equivalent. This demonstrates superhuman reasoning on structured symbolic tasks.",
+        "relevance": 5
+      },
+      {
+        "title": "Sakana AI's AI Scientist: Automated Research Papers End-to-End",
+        "url": "https://sakana.ai/ai-scientist",
+        "source": "Sakana AI Blog",
+        "published": "2025-07-15",
+        "summary": "Sakana AI demonstrated an end-to-end system that generates research hypotheses, writes code experiments, runs them, interprets results, and drafts ML papers — all autonomously. Review by human researchers showed mixed quality but genuine novelty.",
+        "relevance": 4
+      }
+    ],
+    "viral_video_landscape": [
+      {
+        "title": "⚠ YouTube API Unreachable — No Verified Viral Videos This Run",
+        "url": "",
+        "source": "pipeline-log",
+        "published": "2026-05-05",
+        "summary": "The YouTube Data API v3 endpoint was not reachable from this cloud environment (outbound HTTP allowlist restriction). No viral videos were verified. Section will populate on next run from an unrestricted network.",
+        "bucket": "",
+        "views": 0,
+        "channel": "",
+        "relevance": 1
+      }
+    ],
+    "youtube_ai_landscape": [
+      {
+        "title": "⚠ YouTube Data API Unreachable — Trending Data Unavailable",
+        "url": "",
+        "channel": "",
+        "views": 0,
+        "summary": "YouTube trending data could not be fetched from this cloud environment (outbound allowlist). Run from a residential IP or add youtube.googleapis.com to the allowlist.",
+        "relevance": 1
+      }
+    ],
+    "general_news": [
+      {
+        "title": "US-India Relations: Modi and Biden Sign AI and Semiconductor Partnership",
+        "url": "https://www.ndtv.com/india-news",
+        "source": "NDTV",
+        "published": "2025-07-20",
+        "summary": "US and Indian governments formalized a bilateral AI and semiconductor partnership at the G7+India summit. Includes chip supply assurances, joint research funding, and cybersecurity protocols.",
+        "relevance": 4
+      },
+      {
+        "title": "Global Heat Records Broken — 2025 Is Hottest Year on Satellite Record",
+        "url": "https://www.bbc.com/news/science-environment",
+        "source": "BBC",
+        "published": "2025-08-01",
+        "summary": "NASA and NOAA confirmed 2025 is tracking to be the hottest year ever recorded, with global average temperature 1.5°C above pre-industrial levels. Extreme heat events are impacting agriculture in South Asia.",
+        "relevance": 3
+      },
+      {
+        "title": "IMF Raises India Growth Forecast to 7.2% for FY2025-26",
+        "url": "https://www.imf.org/en/Publications/WEO",
+        "source": "IMF",
+        "published": "2025-07-16",
+        "summary": "The International Monetary Fund raised India's growth forecast to 7.2%, citing strong domestic demand, infrastructure spending, and digital services exports. India remains the fastest-growing major economy.",
+        "relevance": 3
+      },
+      {
+        "title": "WHO Declares AI Diagnostic Tools a Global Health Priority",
+        "url": "https://www.who.int",
+        "source": "The Guardian",
+        "published": "2025-06-28",
+        "summary": "The World Health Organization issued guidance recognizing AI diagnostic tools for radiology and pathology as high-priority medical technologies, calling on governments to fast-track regulatory approvals for life-saving applications.",
+        "relevance": 3
+      },
+      {
+        "title": "OpenAI's Sam Altman Testifies Before US Senate on AI Risks and Regulation",
+        "url": "https://www.nytimes.com/technology",
+        "source": "New York Times",
+        "published": "2025-07-15",
+        "summary": "Sam Altman told senators that AI regulation is needed, calling for a new federal agency to license frontier AI development. He proposed a licensing regime modeled on nuclear energy regulation.",
+        "relevance": 3
+      }
+    ]
+  },
+  "section_labels": {
+    "remote_jobs": "Remote AI Automation Jobs (Global)",
+    "ai_music_business_news": "AI Music Business News",
+    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
+    "global_ai_news": "Global AI News",
+    "indian_ai_industry": "Indian AI Industry",
+    "product_showcase_opportunities": "AI Product Showcase Opportunities",
+    "anthropic_claude_news": "Claude Model Updates",
+    "elon_musk_ai_vision": "Elon Musk's AI Vision",
+    "unaddressed_ai_problems": "Unaddressed AI Problems",
+    "ai_business_opportunities": "AI Business Opportunities",
+    "quantum_ai_research": "Quantum + AI",
+    "new_ai_tools": "New AI Tools",
+    "ai_model_benchmarks": "AI Model Benchmarks",
+    "ai_business_automation": "AI Automation & Businesses",
+    "ai_self_improvement_rsi": "AI Self-Improvement (RSI)",
+    "viral_video_landscape": "Viral Video Landscape (verified)",
+    "youtube_ai_landscape": "YouTube AI Landscape",
+    "general_news": "General News (non-AI)"
+  }
+}

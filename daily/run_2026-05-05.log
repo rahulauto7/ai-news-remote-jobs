@@ -1,0 +1,118 @@
+=== scrape_jobs ===
+[1/9] LinkedIn ...
+  [LinkedIn] AI automation: HTTP 403
+  [LinkedIn] AI automator: HTTP 403
+  [LinkedIn] Claude Code: HTTP 403
+  [LinkedIn] n8n developer: HTTP 403
+  [LinkedIn] LLM engineer: HTTP 403
+  [LinkedIn] prompt engineer: HTTP 403
+  [LinkedIn] AI agent developer: HTTP 403
+  [LinkedIn] automation engineer AI: HTTP 403
+[2/9] Wellfound ...
+  [Wellfound] AI automation: HTTP 403
+  [Wellfound] AI automator: HTTP 403
+  [Wellfound] Claude Code: HTTP 403
+  [Wellfound] n8n developer: HTTP 403
+  [Wellfound] LLM engineer: HTTP 403
+  [Wellfound] prompt engineer: HTTP 403
+  [Wellfound] AI agent developer: HTTP 403
+  [Wellfound] automation engineer AI: HTTP 403
+[3/9] Indeed ...
+  [Indeed] AI automation: HTTP 403
+  [Indeed] AI automator: HTTP 403
+  [Indeed] Claude Code: HTTP 403
+  [Indeed] n8n developer: HTTP 403
+  [Indeed] LLM engineer: HTTP 403
+  [Indeed] prompt engineer: HTTP 403
+  [Indeed] AI agent developer: HTTP 403
+  [Indeed] automation engineer AI: HTTP 403
+[4/9] Remotive ...
+  [Remotive] AI automation: HTTP 403
+  [Remotive] AI automator: HTTP 403
+  [Remotive] Claude Code: HTTP 403
+  [Remotive] n8n developer: HTTP 403
+  [Remotive] LLM engineer: HTTP 403
+  [Remotive] prompt engineer: HTTP 403
+  [Remotive] AI agent developer: HTTP 403
+  [Remotive] automation engineer AI: HTTP 403
+[5/9] We Work Remotely ...
+  [WWR] HTTP 403
+[6/9] Himalayas ...
+  [Himalayas] AI automation: HTTP 403
+  [Himalayas] AI automator: HTTP 403
+  [Himalayas] Claude Code: HTTP 403
+  [Himalayas] n8n developer: HTTP 403
+  [Himalayas] LLM engineer: HTTP 403
+  [Himalayas] prompt engineer: HTTP 403
+scrape_jobs FAILED (continuing)
+=== scrape_rss_feeds ===
+Scraping 30 RSS feeds (cutoff: 2026-05-04 18:32 UTC)...
+  [ERROR] The Verge AI: 403 Client Error: Forbidden for url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+  [  0 articles] The Verge AI
+  [ERROR] TechCrunch AI: 403 Client Error: Forbidden for url: https://techcrunch.com/category/artificial-intelligence/feed/
+  [  0 articles] TechCrunch AI
+  [ERROR] Ars Technica AI: 403 Client Error: Forbidden for url: https://feeds.arstechnica.com/arstechnica/technology-lab
+  [  0 articles] Ars Technica AI
+  [ERROR] MIT Technology Review: 403 Client Error: Forbidden for url: https://www.technologyreview.com/feed/
+  [  0 articles] MIT Technology Review
+  [ERROR] VentureBeat AI: 403 Client Error: Forbidden for url: https://venturebeat.com/category/ai/feed/
+  [  0 articles] VentureBeat AI
+  [ERROR] The Decoder: 403 Client Error: Forbidden for url: https://the-decoder.com/feed/
+  [  0 articles] The Decoder
+  [ERROR] AI News: 403 Client Error: Forbidden for url: https://www.artificialintelligence-news.com/feed/
+  [  0 articles] AI News
+  [ERROR] Wired AI: 403 Client Error: Forbidden for url: https://www.wired.com/feed/tag/ai/latest/rss
+  [  0 articles] Wired AI
+  [ERROR] ZDNet AI: 403 Client Error: Forbidden for url: https://www.zdnet.com/topic/artificial-intelligence/rss.xml
+  [  0 articles] ZDNet AI
+  [ERROR] The Register AI: 403 Client Error: Forbidden for url: https://www.theregister.com/software/ai_ml/headlines.atom
+  [  0 articles] The Register AI
+  [ERROR] OpenAI Blog: 403 Client Error: Forbidden for url: https://openai.com/blog/rss.xml
+  [  0 articles] OpenAI Blog
+  [ERROR] Google AI Blog: 403 Client Error: Forbidden for url: https://blog.google/technology/ai/rss/
+  [  0 articles] Google AI Blog
+  [ERROR] Hugging Face Blog: 403 Client Error: Forbidden for url: https://huggingface.co/blog/feed.xml
+  [  0 articles] Hugging Face Blog
+  [ERROR] Inc42: 403 Client Error: Forbidden for url: https://inc42.com/feed/
+  [  0 articles] Inc42
+  [ERROR] YourStory: 403 Client Error: Forbidden for url: https://yourstory.com/feed
+  [  0 articles] YourStory
+  [ERROR] Economic Times Tech: 403 Client Error: Forbidden for url: https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms
+  [  0 articles] Economic Times Tech
+  [ERROR] arXiv Quantum Physics: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/quant-ph
+  [  0 articles] arXiv Quantum Physics
+  [ERROR] arXiv AI: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/cs.AI
+  [  0 articles] arXiv AI
+  [ERROR] arXiv Machine Learning: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/cs.LG
+  [  0 articles] arXiv Machine Learning
+  [ERROR] Music Business Worldwide: 403 Client Error: Forbidden for url: https://www.musicbusinessworldwide.com/feed/
+  [  0 articles] Music Business Worldwide
+  [ERROR] Digital Music News: 403 Client Error: Forbidden for url: https://www.digitalmusicnews.com/feed/
+  [  0 articles] Digital Music News
+  [ERROR] Hypebot: 403 Client Error: Forbidden for url: https://www.hypebot.com/feed
+  [  0 articles] Hypebot
+  [ERROR] Anthropic Blog: 403 Client Error: Forbidden for url: https://www.anthropic.com/rss.xml
+  [  0 articles] Anthropic Blog
+  [ERROR] xAI Blog: 403 Client Error: Forbidden for url: https://x.ai/blog/rss.xml
+  [  0 articles] xAI Blog
+  [ERROR] Elon Musk on X (via Google News): 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=%22elon+musk%22+(xAI+OR+Grok+OR+AI)+site:x.com%2Felonmusk&hl=en-US&gl=US&ceid=US:en
+  [  0 articles] Elon Musk on X (via Google News)
+  [ERROR] Product Hunt AI: 403 Client Error: Forbidden for url: https://www.producthunt.com/feed?category=artificial-intelligence
+  [  0 articles] Product Hunt AI
+  [ERROR] Futurism: 403 Client Error: Forbidden for url: https://futurism.com/feed
+  [  0 articles] Futurism
+  [ERROR] BBC World: 403 Client Error: Forbidden for url: http://feeds.bbci.co.uk/news/world/rss.xml
+  [  0 articles] BBC World
+  [ERROR] The Hindu - National: 403 Client Error: Forbidden for url: https://www.thehindu.com/news/national/feeder/default.rss
+  [  0 articles] The Hindu - National
+  [ERROR] NDTV Top Stories: 403 Client Error: Forbidden for url: https://feeds.feedburner.com/ndtvnews-top-stories
+  [  0 articles] NDTV Top Stories
+
+Done! 0 unique articles saved to /home/user/ai-news-remote-jobs/.tmp/rss_articles.json
+=== generate_pdf ===
+Generating PDF...
+
+PDF generated: /home/user/ai-news-remote-jobs/.tmp/ai_news_remote_jobs_2026-05-05.pdf
+  Size: 114 KB
+  Pages: 21
+  Stories: 82

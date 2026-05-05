@@ -16,11 +16,12 @@ Use --no-agent to force the deterministic categorizer.
 """
 
 import argparse
+import json
 import os
 import sys
 import time
 import traceback
-from datetime import datetime
+from datetime import datetime, timezone
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
@@ -38,20 +39,79 @@ def log(msg):
         f.write(line + "\n")
 
 
-def step(name, fn):
+def step(name, fn, telemetry=None):
     log(f"START: {name}")
     t0 = time.time()
     try:
         result = fn()
-        log(f"OK   : {name} ({time.time() - t0:.1f}s)")
+        elapsed = time.time() - t0
+        log(f"OK   : {name} ({elapsed:.1f}s)")
+        if telemetry is not None:
+            telemetry[name] = {"ok": True, "elapsed_s": round(elapsed, 2)}
         return True, result
     except SystemExit as e:
-        log(f"FAIL : {name} (exit {e.code}, {time.time() - t0:.1f}s)")
+        elapsed = time.time() - t0
+        log(f"FAIL : {name} (exit {e.code}, {elapsed:.1f}s)")
+        if telemetry is not None:
+            telemetry[name] = {"ok": False, "elapsed_s": round(elapsed, 2), "error": f"exit {e.code}"}
         return False, None
     except Exception as e:
-        log(f"FAIL : {name}: {e} ({time.time() - t0:.1f}s)")
+        elapsed = time.time() - t0
+        log(f"FAIL : {name}: {e} ({elapsed:.1f}s)")
         traceback.print_exc()
+        if telemetry is not None:
+            telemetry[name] = {"ok": False, "elapsed_s": round(elapsed, 2), "error": str(e)[:200]}
         return False, None
+
+
+def _scraper_count(filename, key):
+    """Read a .tmp scraper output file and return number of items under `key`."""
+    p = os.path.join(TMP_DIR, filename)
+    if not os.path.exists(p):
+        return None
+    try:
+        with open(p, "r", encoding="utf-8") as f:
+            d = json.load(f)
+        v = d.get(key)
+        return len(v) if isinstance(v, list) else None
+    except Exception:
+        return None
+
+
+def _write_telemetry(telemetry_steps, started_iso, pipeline_t0):
+    """Merge agent_tokens.json + scraper counts and write run_telemetry.json."""
+    # Attach item counts to scraper steps
+    counts = {
+        "Scrape Jobs": _scraper_count("jobs.json", "jobs"),
+        "Scrape RSS Feeds": _scraper_count("rss_articles.json", "articles"),
+        "YouTube Viral Verify": _scraper_count("youtube_verified.json", "videos"),
+        "Scrape YouTube Trending": _scraper_count("youtube_trending.json", "videos"),
+    }
+    for name, n in counts.items():
+        if name in telemetry_steps and n is not None:
+            telemetry_steps[name]["items"] = n
+
+    # Agent tokens
+    agent_path = os.path.join(TMP_DIR, "agent_tokens.json")
+    agent_tokens = {"available": False, "reason": "agent did not write .tmp/agent_tokens.json"}
+    if os.path.exists(agent_path):
+        try:
+            with open(agent_path, "r", encoding="utf-8") as f:
+                agent_tokens = json.load(f)
+        except Exception as e:
+            agent_tokens = {"available": False, "reason": f"failed to parse agent_tokens.json: {e}"}
+
+    payload = {
+        "started_at": started_iso,
+        "finished_at": datetime.now(timezone.utc).isoformat(),
+        "total_elapsed_s": round(time.time() - pipeline_t0, 2),
+        "steps": telemetry_steps,
+        "agent_tokens": agent_tokens,
+    }
+    out = os.path.join(TMP_DIR, "run_telemetry.json")
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+    log(f"Telemetry written → {out}")
 
 
 def run(dry_run=False, force_fallback=False):
@@ -60,22 +120,24 @@ def run(dry_run=False, force_fallback=False):
     log(f"DAILY PIPELINE START   dry_run={dry_run}  force_fallback={force_fallback}")
     log("=" * 60)
     pipeline_t0 = time.time()
+    started_iso = datetime.now(timezone.utc).isoformat()
     results = {}
+    telemetry_steps = {}
 
     from tools.scrape_jobs import scrape_all_jobs
-    ok, _ = step("Scrape Jobs", scrape_all_jobs)
+    ok, _ = step("Scrape Jobs", scrape_all_jobs, telemetry_steps)
     results["jobs"] = ok
 
     from tools.scrape_rss_feeds import scrape_all_feeds
-    ok, _ = step("Scrape RSS Feeds", scrape_all_feeds)
+    ok, _ = step("Scrape RSS Feeds", scrape_all_feeds, telemetry_steps)
     results["rss"] = ok
 
     from tools.youtube_viral_verify import run as run_viral
-    ok, _ = step("YouTube Viral Verify", run_viral)
+    ok, _ = step("YouTube Viral Verify", run_viral, telemetry_steps)
     results["viral"] = ok
 
     from tools.scrape_youtube_trending import scrape_youtube
-    ok, _ = step("Scrape YouTube Trending", scrape_youtube)
+    ok, _ = step("Scrape YouTube Trending", scrape_youtube, telemetry_steps)
     results["yt_trending"] = ok
 
     if not any([results["jobs"], results["rss"], results["viral"], results["yt_trending"]]):
@@ -107,8 +169,11 @@ def run(dry_run=False, force_fallback=False):
             notify("Categorizer", str(e), tail_log(LOG_FILE))
             return False
 
+    # Write telemetry BEFORE PDF generation so the PDF can render it.
+    _write_telemetry(telemetry_steps, started_iso, pipeline_t0)
+
     from tools.generate_pdf import generate_pdf
-    ok, _ = step("Generate PDF", generate_pdf)
+    ok, _ = step("Generate PDF", generate_pdf, telemetry_steps)
     results["pdf"] = ok
     if not ok:
         log("ABORT: PDF generation failed")
@@ -125,7 +190,7 @@ def run(dry_run=False, force_fallback=False):
         today = _dt.now().strftime("%Y-%m-%d")
         pdf_path = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{today}.pdf")
         csv_path = os.path.join(TMP_DIR, "jobs.csv")
-        ok, res = step("Send PDF to Slack", lambda: send_pdf(pdf_path, csv_path))
+        ok, res = step("Send PDF to Slack", lambda: send_pdf(pdf_path, csv_path), telemetry_steps)
         results["upload"] = ok and res is not None
         if not results["upload"]:
             from tools.notify_slack import notify, tail_log

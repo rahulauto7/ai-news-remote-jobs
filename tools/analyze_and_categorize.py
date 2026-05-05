@@ -46,7 +46,7 @@ SECTIONS = [
 ]
 
 SECTION_LABELS = {
-    "remote_jobs": "Remote AI Automation Jobs (India-eligible)",
+    "remote_jobs": "Remote AI Automation Jobs (Global)",
     "ai_music_business_news": "AI Music Business News",
     "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
     "global_ai_news": "Global AI News",

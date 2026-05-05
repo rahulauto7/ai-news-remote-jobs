@@ -1,37 +1,46 @@
 # Setup — Required GitHub Secrets
 
-The pipeline now runs on **GitHub Actions** (`.github/workflows/daily.yml`) at 01:30 UTC = 07:00 IST daily, plus manual `workflow_dispatch`. GitHub runners have unrestricted network so the scrapers don't get blocked.
+The pipeline runs on **GitHub Actions** (`.github/workflows/daily.yml`) at 01:30 UTC = 07:00 IST daily, plus manual `workflow_dispatch`. GitHub runners have unrestricted network so scrapers don't get blocked.
 
-Add these in **Settings → Secrets and variables → Actions → New repository secret**:
+The PDF is sent to your Slack DM. **Drive is not used.**
 
-| Secret | What |
+## Three secrets to add
+
+GitHub repo → **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret | Value |
 |---|---|
 | `YOUTUBE_API_KEY` | YouTube Data API v3 key (sections 15, 16) |
-| `GOOGLE_SERVICE_ACCOUNT_JSON_CONTENT` | Full JSON contents of the service-account key (paste the whole file) |
-| `DRIVE_FOLDER_ID` | ID of the "AI News Daily" folder in Drive (the bit after `/folders/` in the URL) |
-| `SLACK_WEBHOOK_URL` | Slack incoming-webhook URL — failures DM here |
+| `SLACK_BOT_TOKEN` | Bot User OAuth Token from your Slack app, starts with `xoxb-` |
+| `SLACK_USER_ID` | Your Slack member ID, starts with `U` (e.g. `U01ABCDEFGH`) |
 
-## Drive setup
+## Slack app setup
 
-1. Google Cloud Console → IAM & Admin → Service Accounts → create one.
-2. Generate a JSON key, paste full contents into `GOOGLE_SERVICE_ACCOUNT_JSON_CONTENT`.
-3. In Drive, **share** your "AI News Daily" folder with the service-account email (`...@...iam.gserviceaccount.com`) as **Editor**. Service accounts have no quota of their own — uploads must go into a folder shared with them, otherwise they vanish.
-4. Copy the folder ID from the URL → `DRIVE_FOLDER_ID`.
+1. https://api.slack.com/apps → **Create New App → From scratch** → name "AI News Bot" → pick your workspace.
+2. Sidebar → **OAuth & Permissions** → **Bot Token Scopes** → add:
+   - `chat:write` — post failure messages
+   - `files:write` — upload the PDF
+   - `im:write` — open the DM with you
+3. Top of same page → **Install to Workspace** → Allow.
+4. Copy the **Bot User OAuth Token** (starts `xoxb-`) → that's `SLACK_BOT_TOKEN`.
 
-## Slack setup
+## Your Slack user ID
 
-1. https://api.slack.com/messaging/webhooks → create incoming webhook for the channel/DM you want.
-2. Paste URL into `SLACK_WEBHOOK_URL`.
+In Slack desktop → click your name/avatar → **Profile** → **More (⋯)** → **Copy member ID**. Looks like `U01ABCDEFGH`. That's `SLACK_USER_ID`.
 
-Failure cases that send Slack:
-- All scrapers fail
-- Categorizer fails
-- PDF generation fails
-- Drive upload fails
-- The Actions job exits non-zero for any other reason
-
-Silence = success.
+The bot will DM you directly — no channel needed.
 
 ## Trigger now
 
-After secrets are set: **Actions → Daily AI News + Remote Jobs → Run workflow**.
+After secrets are in place: **Actions → Daily AI News + Remote Jobs → Run workflow**.
+
+## Failure behavior
+
+The bot DMs you on:
+- All scrapers fail
+- Categorizer fails
+- PDF generation fails
+- Slack PDF send fails (then it falls through to the GH Actions-level catch)
+- The job exits non-zero for any other reason
+
+Silence = success.

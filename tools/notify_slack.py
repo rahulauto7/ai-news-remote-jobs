@@ -1,20 +1,18 @@
-"""Post a failure notification to Slack via incoming webhook.
+"""Post a failure notification to the user's Slack DM via Bot Token.
 
-Reads SLACK_WEBHOOK_URL from env. Silent no-op if unset so local dev
-doesn't blow up. Designed to be called from run_daily_pipeline.py at any
-terminal failure point (matches the rule in workflows/daily_ai_news_remote.md).
+Reuses SLACK_BOT_TOKEN + SLACK_USER_ID (same secrets used by send_to_slack.py).
+Silent no-op if either is unset so local dev doesn't blow up.
 """
-import json
 import os
 import sys
-import urllib.request
 from datetime import datetime
 
 
 def notify(step: str, error: str, log_tail: str = "") -> bool:
-    url = os.environ.get("SLACK_WEBHOOK_URL", "").strip()
-    if not url:
-        print("[slack] SLACK_WEBHOOK_URL not set; skipping notification")
+    token = os.environ.get("SLACK_BOT_TOKEN", "").strip()
+    user_id = os.environ.get("SLACK_USER_ID", "").strip()
+    if not token or not user_id:
+        print("[slack] SLACK_BOT_TOKEN or SLACK_USER_ID not set; skipping notification")
         return False
 
     today = datetime.now().strftime("%Y-%m-%d")
@@ -26,17 +24,14 @@ def notify(step: str, error: str, log_tail: str = "") -> bool:
     if log_tail:
         text += f"*Last log lines:*\n```\n{log_tail.strip()}\n```"
 
-    payload = json.dumps({"text": text}).encode("utf-8")
-    req = urllib.request.Request(
-        url, data=payload, headers={"Content-Type": "application/json"}
-    )
     try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            ok = 200 <= resp.status < 300
-            print(f"[slack] posted ({resp.status})" if ok else f"[slack] http {resp.status}")
-            return ok
+        from slack_sdk import WebClient
+        client = WebClient(token=token)
+        resp = client.chat_postMessage(channel=user_id, text=text)
+        print(f"[slack] posted ({resp.get('ok')})")
+        return bool(resp.get("ok"))
     except Exception as e:
-        print(f"[slack] post failed: {e}")
+        print(f"[slack] notify failed: {e}")
         return False
 
 

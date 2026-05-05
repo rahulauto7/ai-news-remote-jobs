@@ -117,15 +117,19 @@ def run(dry_run=False, force_fallback=False):
         return False
 
     if dry_run:
-        log("DRY RUN: skipping Drive upload")
+        log("DRY RUN: skipping Slack send")
         results["upload"] = "skipped"
     else:
-        from tools.upload_to_drive import upload_daily_outputs
-        ok, res = step("Upload to Drive", upload_daily_outputs)
-        results["upload"] = ok
-        if not ok or res is None:
+        from tools.send_to_slack import send_pdf
+        from datetime import datetime as _dt
+        today = _dt.now().strftime("%Y-%m-%d")
+        pdf_path = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{today}.pdf")
+        csv_path = os.path.join(TMP_DIR, "jobs.csv")
+        ok, res = step("Send PDF to Slack", lambda: send_pdf(pdf_path, csv_path))
+        results["upload"] = ok and res is not None
+        if not results["upload"]:
             from tools.notify_slack import notify, tail_log
-            notify("Drive upload", "Upload returned no link — check service-account / folder ID", tail_log(LOG_FILE))
+            notify("Slack PDF send", "files_upload_v2 failed — check SLACK_BOT_TOKEN / SLACK_USER_ID / scopes", tail_log(LOG_FILE))
 
     elapsed = time.time() - pipeline_t0
     log("-" * 60)

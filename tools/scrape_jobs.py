@@ -34,8 +34,65 @@ KEYWORDS = [
     "automation engineer AI",
 ]
 
-UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
-HEADERS = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"}
+import random
+
+# Rotate through several recent desktop browsers — single thin UA gets 403'd
+# from datacenter IPs (cloud routine). These mirror Chrome 130 / Firefox 131 /
+# Safari 17 fingerprints exactly enough to pass simple WAF rules.
+UA_POOL = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15",
+]
+UA = UA_POOL[0]
+
+
+def _browser_headers(ua=None, accept_json=False, referer=None):
+    h = {
+        "User-Agent": ua or random.choice(UA_POOL),
+        "Accept": "application/json, text/plain, */*" if accept_json else
+                  "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Sec-Fetch-Dest": "empty" if accept_json else "document",
+        "Sec-Fetch-Mode": "cors" if accept_json else "navigate",
+        "Sec-Fetch-Site": "same-origin",
+        "Upgrade-Insecure-Requests": "1",
+    }
+    if referer:
+        h["Referer"] = referer
+    return h
+
+
+HEADERS = _browser_headers()
+
+
+def fetch(url, *, accept_json=False, referer=None, timeout=20, retries=2):
+    """GET with rotating UA + retry on 403/429/5xx. Returns Response or None."""
+    last = None
+    for attempt in range(retries + 1):
+        ua = random.choice(UA_POOL)
+        try:
+            r = requests.get(
+                url,
+                headers=_browser_headers(ua=ua, accept_json=accept_json, referer=referer),
+                timeout=timeout,
+            )
+            last = r
+            if r.status_code in (403, 429) or r.status_code >= 500:
+                # Backoff with jitter, then retry with different UA
+                time.sleep(1.5 + random.random() * 2.0)
+                continue
+            return r
+        except requests.RequestException as e:
+            print(f"  [fetch retry {attempt}] {url[:80]}: {e}")
+            time.sleep(1.0 + random.random())
+    return last
 
 
 # ── LinkedIn (guest jobs API, no auth) ────────────────────────────────────────
@@ -52,9 +109,11 @@ def scrape_linkedin(keywords=KEYWORDS, max_per_keyword=10):
                 "f_TPR": "r86400",  # last 24 hours
                 "start": 0,
             }
-            r = requests.get(base, params=params, headers=HEADERS, timeout=20)
-            if r.status_code != 200:
-                print(f"  [LinkedIn] {kw}: HTTP {r.status_code}")
+            qs = "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items())
+            r = fetch(f"{base}?{qs}", referer="https://www.linkedin.com/jobs/")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [LinkedIn] {kw}: HTTP {code}")
                 continue
             soup = BeautifulSoup(r.text, "html.parser")
             cards = soup.select("li, div.base-card")
@@ -95,9 +154,10 @@ def scrape_wellfound(keywords=KEYWORDS, max_per_keyword=8):
     for kw in keywords:
         try:
             url = f"https://wellfound.com/role/r/{quote_plus(kw.lower().replace(' ', '-'))}?remote=true"
-            r = requests.get(url, headers=HEADERS, timeout=20)
-            if r.status_code != 200:
-                print(f"  [Wellfound] {kw}: HTTP {r.status_code}")
+            r = fetch(url, referer="https://wellfound.com/")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Wellfound] {kw}: HTTP {code}")
                 continue
             soup = BeautifulSoup(r.text, "html.parser")
             count = 0
@@ -132,9 +192,10 @@ def scrape_indeed(keywords=KEYWORDS, max_per_keyword=8):
     for kw in keywords:
         try:
             url = f"https://www.indeed.com/jobs?q={quote_plus(kw)}&l=Remote&fromage=1&sc=0kf%3Aattr%28DSQF7%29%3B"
-            r = requests.get(url, headers=HEADERS, timeout=20)
-            if r.status_code != 200:
-                print(f"  [Indeed] {kw}: HTTP {r.status_code}")
+            r = fetch(url, referer="https://www.indeed.com/")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Indeed] {kw}: HTTP {code}")
                 continue
             soup = BeautifulSoup(r.text, "html.parser")
             count = 0
@@ -172,9 +233,10 @@ def scrape_remotive(keywords=KEYWORDS, max_per_keyword=8):
     for kw in keywords:
         try:
             url = f"https://remotive.com/api/remote-jobs?search={quote_plus(kw)}&limit=20"
-            r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
-            if r.status_code != 200:
-                print(f"  [Remotive] {kw}: HTTP {r.status_code}")
+            r = fetch(url, accept_json=True, referer="https://remotive.com/")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Remotive] {kw}: HTTP {code}")
                 continue
             data = r.json()
             count = 0
@@ -205,9 +267,10 @@ def scrape_weworkremotely(keywords=KEYWORDS, max_total=25):
     try:
         import xml.etree.ElementTree as ET
         url = "https://weworkremotely.com/categories/remote-programming-jobs.rss"
-        r = requests.get(url, headers=HEADERS, timeout=20)
-        if r.status_code != 200:
-            print(f"  [WWR] HTTP {r.status_code}")
+        r = fetch(url, referer="https://weworkremotely.com/")
+        if r is None or r.status_code != 200:
+            code = r.status_code if r is not None else "ERR"
+            print(f"  [WWR] HTTP {code}")
             return jobs
         root = ET.fromstring(r.content)
         kw_lower = [k.lower() for k in keywords] + ["ai", "llm", "automation", "agent"]
@@ -247,9 +310,10 @@ def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=6):
     for kw in keywords:
         try:
             url = f"https://himalayas.app/jobs/api?title={quote_plus(kw)}&limit=20"
-            r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
-            if r.status_code != 200:
-                print(f"  [Himalayas] {kw}: HTTP {r.status_code}")
+            r = fetch(url, accept_json=True, referer="https://himalayas.app/jobs")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Himalayas] {kw}: HTTP {code}")
                 continue
             try:
                 data = r.json()
@@ -295,8 +359,8 @@ def scrape_twitter(keywords=KEYWORDS, max_per_keyword=5):
         for mirror in mirrors:
             try:
                 url = f"{mirror}/search?f=tweets&q={quote_plus(q)}"
-                r = requests.get(url, headers=HEADERS, timeout=15)
-                if r.status_code != 200:
+                r = fetch(url, referer=mirror, timeout=15, retries=1)
+                if r is None or r.status_code != 200:
                     continue
                 soup = BeautifulSoup(r.text, "html.parser")
                 count = 0
@@ -335,9 +399,10 @@ def scrape_remoteok(keywords=KEYWORDS, max_total=40):
     jobs = []
     try:
         url = "https://remoteok.com/api"
-        r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
-        if r.status_code != 200:
-            print(f"  [RemoteOK] HTTP {r.status_code}")
+        r = fetch(url, accept_json=True, referer="https://remoteok.com/")
+        if r is None or r.status_code != 200:
+            code = r.status_code if r is not None else "ERR"
+            print(f"  [RemoteOK] HTTP {code}")
             return jobs
         data = r.json()
         # First entry is metadata
@@ -380,9 +445,10 @@ def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
             "https://hn.algolia.com/api/v1/search_by_date"
             f"?query={terms}&tags=comment&hitsPerPage=80"
         )
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if r.status_code != 200:
-            print(f"  [HN] HTTP {r.status_code}")
+        r = fetch(url, accept_json=True, referer="https://hn.algolia.com/")
+        if r is None or r.status_code != 200:
+            code = r.status_code if r is not None else "ERR"
+            print(f"  [HN] HTTP {code}")
             return jobs
         for h in r.json().get("hits", []):
             text = (h.get("comment_text") or "")

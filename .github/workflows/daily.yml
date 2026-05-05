@@ -1,0 +1,51 @@
+name: Daily AI News + Remote Jobs
+
+on:
+  schedule:
+    - cron: '30 1 * * *'  # 01:30 UTC = 07:00 IST
+  workflow_dispatch:
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+        run: python tools/run_daily_pipeline.py
+
+      - name: Upload artifacts (kept 7 days)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-pdf
+          path: |
+            .tmp/ai_news_remote_jobs_*.pdf
+            .tmp/jobs.csv
+            .tmp/pipeline.log
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Notify Slack on workflow failure
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+        run: |
+          python - <<'PY'
+          import sys; sys.path.insert(0, ".")
+          from tools.notify_slack import notify, tail_log
+          notify("GitHub Actions job", "Workflow exited non-zero", tail_log(".tmp/pipeline.log"))
+          PY

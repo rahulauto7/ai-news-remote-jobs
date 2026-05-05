@@ -9,7 +9,13 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
-import feedparser
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+try:
+    import feedparser
+    feedparser.parse  # quick smoke-test
+except Exception:
+    from tools import feedparser_shim as feedparser  # type: ignore
 import requests
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

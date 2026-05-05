@@ -32,24 +32,46 @@ def send_pdf(pdf_path: str, csv_path: str | None = None):
         print(f"[slack] PDF missing: {pdf_path}")
         return None
 
-    try:
-        pdf_resp = client.files_upload_v2(
-            channel=user_id,
-            file=pdf_path,
-            filename=os.path.basename(pdf_path),
-            title=f"AI News + Remote Jobs — {today}",
-            initial_comment=f":newspaper: Daily AI News digest for {today}",
-        )
-        pdf_link = (pdf_resp.get("file") or {}).get("permalink", "")
-        print(f"[slack] uploaded PDF: {pdf_link}")
-    except SlackApiError as e:
-        print(f"[slack] PDF upload failed: {e.response.get('error')}")
+    # Resolve channel: if SLACK_USER_ID looks like a user (U…), open a DM and
+    # use that channel id. files_upload_v2 with channel=U… mostly works but
+    # some workspaces require an explicit conversations.open first.
+    channel_id = user_id
+    if user_id.startswith("U"):
+        try:
+            conv = client.conversations_open(users=user_id)
+            channel_id = conv["channel"]["id"]
+        except SlackApiError as e:
+            print(f"[slack] conversations.open failed: {e.response.get('error')} — falling back to user_id")
+
+    pdf_link = ""
+    last_err = None
+    for attempt in (1, 2):
+        try:
+            pdf_resp = client.files_upload_v2(
+                channel=channel_id,
+                file=pdf_path,
+                filename=os.path.basename(pdf_path),
+                title=f"AI News + Remote Jobs — {today}",
+                initial_comment=f":newspaper: Daily AI News digest for {today}",
+            )
+            pdf_link = (pdf_resp.get("file") or {}).get("permalink", "")
+            print(f"[slack] uploaded PDF (attempt {attempt}): {pdf_link}")
+            break
+        except SlackApiError as e:
+            last_err = e.response.get("error")
+            print(f"[slack] PDF upload attempt {attempt} failed: {last_err}")
+            if attempt == 1:
+                import time as _t
+                _t.sleep(3)
+    else:
+        print(f"[slack] giving up — last error: {last_err}. "
+              f"Check bot scopes (files:write, chat:write, im:write) and that the bot is in the DM.")
         return None
 
     if csv_path and os.path.exists(csv_path) and os.path.getsize(csv_path) > 0:
         try:
             client.files_upload_v2(
-                channel=user_id,
+                channel=channel_id,
                 file=csv_path,
                 filename=os.path.basename(csv_path),
                 title=f"Remote AI jobs — {today}",

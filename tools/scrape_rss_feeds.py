@@ -74,14 +74,28 @@ FEEDS = {
 # arXiv feeds return hundreds of papers — limit to most relevant
 ARXIV_MAX_PER_FEED = 15
 
-def fetch_feed(name, url, cutoff_time, timeout=15):
+BROWSER_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+)
+RSS_HEADERS = {
+    "User-Agent": BROWSER_UA,
+    "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Cache-Control": "no-cache",
+}
+
+
+def fetch_feed(name, url, cutoff_time, timeout=20):
     """Fetch and parse a single RSS feed. Returns list of articles."""
     is_arxiv = name.startswith("arXiv")
     articles = []
     try:
-        response = requests.get(url, timeout=timeout, headers={
-            "User-Agent": "GlobalAINews/1.0 (RSS Reader)"
-        })
+        response = requests.get(url, timeout=timeout, headers=RSS_HEADERS)
+        if response.status_code == 403:
+            # Some hosts (Cloudflare) block plain GET; retry once with a longer pause
+            time.sleep(1.5)
+            response = requests.get(url, timeout=timeout, headers=RSS_HEADERS)
         response.raise_for_status()
         feed = feedparser.parse(response.content)
 

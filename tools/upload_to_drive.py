@@ -34,10 +34,16 @@ def _build_service():
 
     from googleapiclient.discovery import build
 
-    if sa_path and os.path.exists(sa_path):
+    sa_inline = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON_CONTENT", "")
+    if sa_inline:
+        from google.oauth2 import service_account
+        info = json.loads(sa_inline)
+        creds = service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
+        print("[drive] auth: service account (inline JSON)")
+    elif sa_path and os.path.exists(sa_path):
         from google.oauth2 import service_account
         creds = service_account.Credentials.from_service_account_file(sa_path, scopes=SCOPES)
-        print("[drive] auth: service account")
+        print("[drive] auth: service account (file)")
     elif os.path.exists(token_path):
         from google.oauth2.credentials import Credentials
         creds = Credentials.from_authorized_user_file(token_path, SCOPES)
@@ -69,14 +75,17 @@ def _ensure_folder(service, name=DRIVE_FOLDER_NAME):
     if DRIVE_FOLDER_ID:
         return DRIVE_FOLDER_ID
     q = f"name='{name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
-    res = service.files().list(q=q, fields="files(id,name)").execute()
+    res = service.files().list(
+        q=q, fields="files(id,name)",
+        supportsAllDrives=True, includeItemsFromAllDrives=True,
+    ).execute()
     files = res.get("files", [])
     if files:
         return files[0]["id"]
-    folder = service.files().create(body={
-        "name": name,
-        "mimeType": "application/vnd.google-apps.folder",
-    }, fields="id").execute()
+    folder = service.files().create(
+        body={"name": name, "mimeType": "application/vnd.google-apps.folder"},
+        fields="id", supportsAllDrives=True,
+    ).execute()
     return folder["id"]
 
 
@@ -84,11 +93,20 @@ def upload(file_path, folder_id, service):
     from googleapiclient.http import MediaFileUpload
     name = os.path.basename(file_path)
     media = MediaFileUpload(file_path, resumable=True)
-    f = service.files().create(body={
-        "name": name,
-        "parents": [folder_id],
-    }, media_body=media, fields="id,webViewLink").execute()
-    return f
+    q = f"name='{name}' and '{folder_id}' in parents and trashed=false"
+    existing = service.files().list(
+        q=q, fields="files(id)",
+        supportsAllDrives=True, includeItemsFromAllDrives=True,
+    ).execute().get("files", [])
+    if existing:
+        return service.files().update(
+            fileId=existing[0]["id"], media_body=media,
+            fields="id,webViewLink", supportsAllDrives=True,
+        ).execute()
+    return service.files().create(
+        body={"name": name, "parents": [folder_id]},
+        media_body=media, fields="id,webViewLink", supportsAllDrives=True,
+    ).execute()
 
 
 def upload_daily_outputs():

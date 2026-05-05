@@ -80,6 +80,8 @@ def run(dry_run=False, force_fallback=False):
 
     if not any([results["jobs"], results["rss"], results["viral"], results["yt_trending"]]):
         log("ABORT: every scraper failed")
+        from tools.notify_slack import notify, tail_log
+        notify("All scrapers", "Every scraper returned 0 results / errored", tail_log(LOG_FILE))
         return False
 
     analyzed_file = os.path.join(TMP_DIR, "analyzed_content.json")
@@ -101,6 +103,8 @@ def run(dry_run=False, force_fallback=False):
             log(f"FAIL: fallback categorizer: {e}")
             traceback.print_exc()
             results["analyze"] = False
+            from tools.notify_slack import notify, tail_log
+            notify("Categorizer", str(e), tail_log(LOG_FILE))
             return False
 
     from tools.generate_pdf import generate_pdf
@@ -108,6 +112,8 @@ def run(dry_run=False, force_fallback=False):
     results["pdf"] = ok
     if not ok:
         log("ABORT: PDF generation failed")
+        from tools.notify_slack import notify, tail_log
+        notify("Generate PDF", "PDF generation failed — see logs", tail_log(LOG_FILE))
         return False
 
     if dry_run:
@@ -115,8 +121,11 @@ def run(dry_run=False, force_fallback=False):
         results["upload"] = "skipped"
     else:
         from tools.upload_to_drive import upload_daily_outputs
-        ok, _ = step("Upload to Drive", upload_daily_outputs)
+        ok, res = step("Upload to Drive", upload_daily_outputs)
         results["upload"] = ok
+        if not ok or res is None:
+            from tools.notify_slack import notify, tail_log
+            notify("Drive upload", "Upload returned no link — check service-account / folder ID", tail_log(LOG_FILE))
 
     elapsed = time.time() - pipeline_t0
     log("-" * 60)

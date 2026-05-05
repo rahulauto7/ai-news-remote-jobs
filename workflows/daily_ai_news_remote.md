@@ -2,15 +2,17 @@
 
 ## Objective
 
-Every day at **07:00 IST** (laptop off OK — runs as a claude.ai cloud scheduled agent), produce an 18-section PDF summarizing the last 24 hours of AI news + currently-open global remote AI Automation jobs, and upload it to Google Drive.
+Every day at **00:00 IST** (laptop off OK — runs as a claude.ai cloud scheduled agent), produce an 18-section PDF summarizing the last 24 hours of AI news + currently-open global remote AI Automation jobs, **push it to a dated GitHub branch** (`daily/YYYY-MM-DD`) and **DM it to the user on Slack**.
 
-> Schedule: configured in **claude.ai → Schedules** (cloud-side, independent of laptop). Trigger time: 07:00 IST = 01:30 UTC. The schedule prompt instructs the agent to execute this workflow end-to-end.
+> Schedule: configured in **claude.ai → Routines** (cloud-side, independent of laptop). Trigger time: 00:00 IST = 18:30 UTC. The schedule prompt instructs the agent to execute this workflow end-to-end. The same time is mirrored in `.github/workflows/daily.yml` (cron `30 18 * * *`) as a backup runner.
 
 ## Inputs
 
 - Cloned repo at agent's `cwd`
-- Env: `YOUTUBE_API_KEY` (passed via routine prompt or env_file)
-- Google Drive MCP connector attached to the routine (for upload)
+- Routine env / GitHub Actions secrets:
+  - `YOUTUBE_API_KEY` — YouTube Data API v3
+  - `SLACK_BOT_TOKEN`, `SLACK_USER_ID` — Slack DM delivery + failure alerts
+  - `GH_TOKEN` — GitHub PAT (repo scope) for routine `git push`
 
 ## The 18 Sections
 
@@ -56,6 +58,7 @@ Every day at **07:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
    - **1** = filler that only made it in because the section was thin
 
    Drop arXiv abstracts and pure academic papers from sections 8 (Unaddressed Problems), 11 (New AI Tools), 12 (Benchmarks), 13 (Automation), 14 (RSI) unless they propose a working product/benchmark — these sections are for industry news, not raw research dumps.
+
 6.5. **Write `.tmp/agent_tokens.json`** with the agent's own session token usage so the PDF can render a "Run Telemetry" section. Schema:
    ```json
    {
@@ -68,9 +71,16 @@ Every day at **07:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
    }
    ```
    If the runtime does not expose session usage, write `{ "available": false, "reason": "<why>" }` instead. The `run_daily_pipeline.py` orchestrator merges this file into `.tmp/run_telemetry.json` before PDF generation; if the file is missing, the PDF will note that token usage was unavailable.
+
 7. Run `python tools/generate_pdf.py` → `.tmp/ai_news_remote_jobs_YYYY-MM-DD.pdf`
-8. Upload PDF + `jobs.csv` to Google Drive via the Drive MCP, into folder "AI News Daily"
-9. Report Drive link in the routine output
+8. **Push to dated GitHub branch** `daily/YYYY-MM-DD`:
+   - Copy PDF + `jobs.csv` + `analyzed_content.json` + `pipeline.log` into `daily/`
+   - `git checkout -B daily/<DATE>` → `git add daily/` → `git commit` → `git push -f origin daily/<DATE>`
+   - Routine uses `GH_TOKEN` injected into the remote URL
+9. **DM the PDF to user on Slack** via `tools/send_to_slack.py`
+10. Print both URLs in the routine output:
+    - Branch: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/tree/daily/<DATE>`
+    - Raw PDF: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/raw/daily/<DATE>/daily/ai_news_remote_jobs_<DATE>.pdf`
 
 ## Section 15 verification rules (critical)
 
@@ -88,15 +98,15 @@ Every day at **07:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
 - One scraper failing must not abort the run — `run_daily_pipeline.py` continues
 - If all scrapers fail, abort with non-zero exit and notify (see Slack rule below)
 - If YouTube API quota is exhausted, sections 15 & 16 are emitted empty with a note
-- If Drive upload fails, the PDF stays in `.tmp/`; agent must report failure (see Slack rule below)
+- If `git push` fails, the PDF is still on the agent's disk — agent reports the local path in the Slack failure DM
 
 ## Slack failure rule (cloud schedule)
 
-The user has connected **Slack** in claude.ai connectors. Whenever a scheduled run hits any of these terminal failures, the agent **must** send a Slack DM to the user (or post to the agreed default channel) before exiting:
+The user has connected **Slack** in claude.ai connectors and via `SLACK_BOT_TOKEN`. Whenever a scheduled run hits any of these terminal failures, the agent **must** send a Slack DM to the user before exiting:
 
 - `run_daily_pipeline.py` exits non-zero
 - PDF generation step fails / no PDF written under `.tmp/`
-- Google Drive upload step fails
+- `git push` fails (auth, network, or branch protection)
 - All scrapers in a single run fail
 
 Slack message format (keep short, link the run):
@@ -108,17 +118,19 @@ Error: <one-line error>
 Last log lines: <tail of .tmp/pipeline.log>
 ```
 
-A successful run does **not** need a Slack message — silence = success. Only send on failure.
+A successful run does **not** need a Slack message — silence = success. Only send on failure. The successful PDF DM is separate (sent by `tools/send_to_slack.py` in step 9).
 
-## Manual trigger
+## Manual trigger (laptop)
 
 ```bash
-# Full pipeline with Drive upload
+# Full pipeline including Slack DM
 python tools/run_daily_pipeline.py
 
-# Local test, no Drive upload, force keyword categorization
+# Local test, skip Slack send, force keyword categorization
 python tools/run_daily_pipeline.py --dry-run --no-agent
 ```
+
+The laptop manual run does **not** push to GitHub — that step is routine-only (the routine has `GH_TOKEN`).
 
 ## Update procedure
 

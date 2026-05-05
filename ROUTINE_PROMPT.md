@@ -72,6 +72,24 @@ from tools.analyze_and_categorize import save_analyzed_content, SECTIONS
 save_analyzed_content(sections_dict, total_items)
 ```
 
+### 3.5. Write your own token telemetry
+
+Before generating the PDF, write `.tmp/agent_tokens.json` with your session token usage so the PDF renders a "Run Telemetry" section:
+
+```python
+import json
+json.dump({
+  "model": "claude-opus-4-7",          # or whatever model you are
+  "input_tokens": <int>,
+  "output_tokens": <int>,
+  "cache_read_tokens": <int>,
+  "cache_creation_tokens": <int>,
+  "notes": ""
+}, open(".tmp/agent_tokens.json","w"))
+```
+
+If your runtime doesn't expose usage counters, write `{"available": false, "reason": "<why>"}` instead.
+
 ### 4. Generate PDF
 
 ```bash

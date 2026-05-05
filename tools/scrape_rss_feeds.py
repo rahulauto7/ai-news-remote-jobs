@@ -74,16 +74,37 @@ FEEDS = {
 # arXiv feeds return hundreds of papers — limit to most relevant
 ARXIV_MAX_PER_FEED = 15
 
-BROWSER_UA = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-)
-RSS_HEADERS = {
-    "User-Agent": BROWSER_UA,
-    "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Cache-Control": "no-cache",
-}
+import random as _random
+
+UA_POOL = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+]
+BROWSER_UA = UA_POOL[0]
+
+
+def _rss_headers(referer=None):
+    h = {
+        "User-Agent": _random.choice(UA_POOL),
+        "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Upgrade-Insecure-Requests": "1",
+    }
+    if referer:
+        h["Referer"] = referer
+    return h
+
+
+RSS_HEADERS = _rss_headers()
 
 
 def fetch_feed(name, url, cutoff_time, timeout=20):
@@ -91,11 +112,14 @@ def fetch_feed(name, url, cutoff_time, timeout=20):
     is_arxiv = name.startswith("arXiv")
     articles = []
     try:
-        response = requests.get(url, timeout=timeout, headers=RSS_HEADERS)
-        if response.status_code == 403:
-            # Some hosts (Cloudflare) block plain GET; retry once with a longer pause
-            time.sleep(1.5)
-            response = requests.get(url, timeout=timeout, headers=RSS_HEADERS)
+        # Retry up to 3x with rotating UA on 403/429/5xx (datacenter IPs hit WAFs).
+        response = None
+        for attempt in range(3):
+            response = requests.get(url, timeout=timeout, headers=_rss_headers())
+            if response.status_code in (403, 429) or response.status_code >= 500:
+                time.sleep(1.5 + _random.random() * 2.0)
+                continue
+            break
         response.raise_for_status()
         feed = feedparser.parse(response.content)
 

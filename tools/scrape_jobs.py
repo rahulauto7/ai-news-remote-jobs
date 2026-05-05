@@ -245,6 +245,88 @@ def scrape_twitter(keywords=KEYWORDS, max_per_keyword=5):
     return jobs
 
 
+# ── RemoteOK (public JSON API, no auth) ───────────────────────────────────────
+def scrape_remoteok(keywords=KEYWORDS, max_total=40):
+    """RemoteOK exposes a public JSON feed. Filter by AI/automation keywords."""
+    jobs = []
+    try:
+        url = "https://remoteok.com/api"
+        r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
+        if r.status_code != 200:
+            print(f"  [RemoteOK] HTTP {r.status_code}")
+            return jobs
+        data = r.json()
+        # First entry is metadata
+        rows = [d for d in data if isinstance(d, dict) and d.get("position")]
+        kw_lower = [k.lower() for k in keywords] + ["ai", "llm", "automation", "agent", "n8n"]
+        for d in rows:
+            title = (d.get("position") or "").strip()
+            tags = " ".join(d.get("tags") or []).lower()
+            blob = f"{title} {tags} {(d.get('description') or '')[:200]}".lower()
+            if not any(k in blob for k in kw_lower):
+                continue
+            jobs.append({
+                "title": title[:200],
+                "company": (d.get("company") or "").strip(),
+                "url": d.get("url") or d.get("apply_url") or "",
+                "posted": d.get("date") or "",
+                "salary": (
+                    f"${d.get('salary_min')}-${d.get('salary_max')}"
+                    if d.get("salary_min") else ""
+                ),
+                "source": "RemoteOK",
+                "summary": (d.get("description") or "")[:300],
+            })
+            if len(jobs) >= max_total:
+                break
+        print(f"  [RemoteOK] {len(jobs)} matched jobs")
+    except Exception as e:
+        print(f"  [RemoteOK ERROR] {e}")
+    return jobs
+
+
+# ── Hacker News "Who is hiring" via Algolia API ───────────────────────────────
+def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
+    """Algolia HN search — public, no auth. Pulls recent hiring comments."""
+    jobs = []
+    try:
+        # Search HN comments (which is where "Who is hiring" replies live)
+        terms = "AI%20OR%20LLM%20OR%20automation%20OR%20agent"
+        url = (
+            "https://hn.algolia.com/api/v1/search_by_date"
+            f"?query={terms}&tags=comment&hitsPerPage=80"
+        )
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        if r.status_code != 200:
+            print(f"  [HN] HTTP {r.status_code}")
+            return jobs
+        for h in r.json().get("hits", []):
+            text = (h.get("comment_text") or "")
+            if "remote" not in text.lower():
+                continue
+            # Strip HTML
+            import re as _re
+            clean = _re.sub(r"<[^>]+>", " ", text)
+            clean = _re.sub(r"\s+", " ", clean).strip()
+            if len(clean) < 60:
+                continue
+            jobs.append({
+                "title": clean[:140],
+                "company": "",
+                "url": f"https://news.ycombinator.com/item?id={h.get('objectID')}",
+                "posted": h.get("created_at", ""),
+                "salary": "",
+                "source": "HN Who is hiring",
+                "summary": clean[:300],
+            })
+            if len(jobs) >= max_total:
+                break
+        print(f"  [HN] {len(jobs)} hiring posts")
+    except Exception as e:
+        print(f"  [HN ERROR] {e}")
+    return jobs
+
+
 # ── Orchestration ─────────────────────────────────────────────────────────────
 def dedupe(jobs):
     """Dedupe by URL, then by (title+company) lowercase."""
@@ -313,11 +395,23 @@ def scrape_all_jobs():
     except Exception as e:
         print(f"  Naukri fatal: {e}")
 
-    print("[5/5] Twitter/X via Nitter ...")
+    print("[5/7] Twitter/X via Nitter ...")
     try:
         all_jobs += scrape_twitter()
     except Exception as e:
         print(f"  Twitter fatal: {e}")
+
+    print("[6/7] RemoteOK ...")
+    try:
+        all_jobs += scrape_remoteok()
+    except Exception as e:
+        print(f"  RemoteOK fatal: {e}")
+
+    print("[7/7] Hacker News hiring ...")
+    try:
+        all_jobs += scrape_hn_hiring()
+    except Exception as e:
+        print(f"  HN fatal: {e}")
 
     deduped = dedupe(all_jobs)
     deduped.sort(key=score, reverse=True)

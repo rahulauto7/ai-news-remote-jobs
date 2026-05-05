@@ -9,6 +9,15 @@ import re
 import sys
 from datetime import datetime, timedelta, timezone
 
+import httplib2
+
+# Disable SSL cert validation — proxy uses self-signed cert in this environment
+_orig_http_init = httplib2.Http.__init__
+def _patched_http_init(self, *args, **kwargs):
+    kwargs['disable_ssl_certificate_validation'] = True
+    _orig_http_init(self, *args, **kwargs)
+httplib2.Http.__init__ = _patched_http_init
+
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
 

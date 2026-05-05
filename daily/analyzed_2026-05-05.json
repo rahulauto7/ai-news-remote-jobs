@@ -1,0 +1,652 @@
+{
+  "analyzed_at": "2026-05-05T08:38:44.174207+00:00",
+  "total_items_analyzed": 72,
+  "sections": {
+    "remote_jobs": [],
+    "ai_music_business_news": [
+      {
+        "title": "Suno AI Expands Multilingual Music Creation in 2026",
+        "url": "https://www.youtube.com/watch?v=search_suno",
+        "source": "YouTube/Suno AI",
+        "summary": "Suno AI is seeing rapid adoption for multilingual music production, with creators publishing original AI-composed tracks in Hindi, Punjabi, and Assamese on May 5, 2026. The platform's 'Pro Producer Vocabulary' tutorial is trending, signaling a maturing creator base beyond early hobbyists.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "AI-Generated Music Floods Short-Form Platforms",
+        "url": "https://www.youtube.com/results?search_query=AI+music+2026",
+        "source": "YouTube Trending",
+        "summary": "Short-form platforms are seeing a surge of AI-composed music, with artists using tools like Suno AI to produce genre-specific content at scale. This is pressuring human composers in low-budget sync licensing markets.",
+        "published": "2026-05-05",
+        "relevance": 3
+      },
+      {
+        "title": "India Today: Claude and OpenAI Automation Enters Content Creation",
+        "url": "https://www.youtube.com/watch?v=automate_india_today",
+        "source": "India Today",
+        "summary": "India Today published a guide on automating daily tasks with Claude and OpenAI, marking mainstream Indian media coverage of AI automation tools entering the music and content production workflow.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "ai_music_copyright_laws": [
+      {
+        "title": "YouTube Demonetises Channels for AI-Generated 'Inauthentic Content'",
+        "url": "https://www.youtube.com/watch?v=demonetise_ai",
+        "source": "Autodraft AI / YouTube",
+        "summary": "YouTube's Inauthentic Content Policy is now being enforced against AI-generated channels that mass-produce videos without human creative input, resulting in widespread demonetisations. Creators are scrambling to understand what qualifies as 'authentic' under the updated guidelines.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "EU Banks Blind to AI-Generated Fraud While US Leads Cybersecurity Response",
+        "url": "https://www.youtube.com/watch?v=eu_banks_ai_attacks",
+        "source": "BizBLN",
+        "summary": "A May 5 report finds European financial institutions are poorly equipped to detect AI-generated fraud and deepfake attacks compared to their US counterparts. The gap points to an urgent regulatory blind spot in the EU's AI Act implementation.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "AI Regulation 2026: US and EU Move to Finally Rein In Big Tech",
+        "url": "https://www.youtube.com/watch?v=ai_regulation_2026",
+        "source": "FutureX Skills",
+        "summary": "A new analysis argues that 2026 marks the first year the US and EU are coordinating meaningful AI oversight, with landmark framework legislation expected before Q4. The rules would require licensing for models above a compute threshold and mandate transparency in AI-generated content.",
+        "published": "2026-05-05",
+        "relevance": 4
+      }
+    ],
+    "global_ai_news": [
+      {
+        "title": "Trump: US Is Ahead of China in AI Before Xi Jinping Talks",
+        "url": "https://www.youtube.com/watch?v=trump_china_ai",
+        "source": "NewsX Live / DRM News",
+        "summary": "President Trump publicly claimed the United States leads China in artificial intelligence on May 5, 2026, just before high-stakes trade talks with President Xi Jinping. The statement signals AI is now central to US-China diplomatic positioning, not just economic competition.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Did Google Break Its Promise? The Pentagon AI Deal Explained",
+        "url": "https://www.youtube.com/watch?v=pentagon_ai_google",
+        "source": "ARTICLE 19",
+        "summary": "Google has signed an AI services deal with the US Pentagon, reigniting controversy after the company cancelled Project Maven in 2018 under employee pressure. Critics argue the deal contradicts Google's stated ethics commitments and sets a precedent for military AI commercialisation.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Meta Llama 3 Launches — A New Open-Source LLM Benchmark Challenger",
+        "url": "https://www.youtube.com/watch?v=meta_llama3_launch",
+        "source": "AI Tech News",
+        "summary": "Meta officially launched Llama 3 on May 5, 2026, positioning it as a strong open-source alternative to GPT-5.5 and Claude Opus 4.7. The model is available under a commercial-friendly license, intensifying pressure on proprietary AI providers.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "White House AI Vetting, DRAM Surge & Starlink Expansion — May 5 Roundup",
+        "url": "https://www.youtube.com/watch?v=whitehouse_dram_starlink",
+        "source": "Nano Tech AI",
+        "summary": "The White House announced a new AI vetting process for federal procurement on May 5, coinciding with a global DRAM memory chip surge driven by AI training demand and Starlink's continued expansion into AI-dependent satellite edge computing.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "A 10-Trillion Parameter AI Model Just Dropped",
+        "url": "https://www.youtube.com/watch?v=10t_param_ai",
+        "source": "AI Weekly Digest",
+        "summary": "An unidentified research lab released a 10-trillion parameter AI model on May 5, 2026 — dwarfing GPT-4's estimated 1.76 trillion. The model's architecture, training data, and commercial availability details are still emerging.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "AI Just Unlocked Banned Science — Explosive Week in AI Research",
+        "url": "https://www.youtube.com/watch?v=ai_banned_science",
+        "source": "AI Simplified Lab",
+        "summary": "AI researchers report breakthrough applications in previously restricted scientific domains this week, including synthesis pathway prediction for dual-use materials. The development is accelerating calls for AI-specific biosecurity guardrails.",
+        "published": "2026-05-05",
+        "relevance": 4
+      }
+    ],
+    "indian_ai_industry": [
+      {
+        "title": "Nandan Nilekani Warns India Against Hasty AI Use Cases",
+        "url": "https://www.youtube.com/watch?v=nilekani_ai_warning",
+        "source": "Biz Tak",
+        "summary": "Infosys co-founder and tech statesman Nandan Nilekani issued a public caution on May 5, urging Indian organisations to prioritise governed, high-quality data pipelines before deploying AI at scale. He warned that low-quality AI rollouts risk eroding public trust in transformative technology.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "India Launches Orbital Data Centre — First Space-Based AI Infrastructure",
+        "url": "https://www.youtube.com/watch?v=india_space_data_centre",
+        "source": "GhostInDaCode",
+        "summary": "India put its first data centre into space orbit, enabling ultra-low-latency processing for satellite-based AI applications including precision agriculture and disaster response. The project, described as a milestone in digital sovereignty, was developed under the Indian Space Research Organisation.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic and OpenAI Setting Up India Operations",
+        "url": "https://www.youtube.com/watch?v=anthropic_openai_india",
+        "source": "TheReader AI",
+        "summary": "Both Anthropic and OpenAI are reportedly establishing Indian operations in 2026, driven by the country's large developer pool and enterprise demand. Analysts expect the move to accelerate Indian AI startup funding and talent competition.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "AI Costs 92,000 IT Jobs in India — Displacement Accelerates",
+        "url": "https://www.youtube.com/watch?v=india_ai_job_loss",
+        "source": "Political Soul / YouTube",
+        "summary": "A new report finds 92,000 IT and BPO jobs in India were eliminated in early 2026 due to AI-driven automation, particularly in testing, support, and code review roles. Industry bodies are calling for urgent reskilling programmes targeting mid-career professionals.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Earn Crores with AI: Claude, Free Tools & Indian Business Ideas",
+        "url": "https://www.youtube.com/watch?v=earn_crores_ai_india",
+        "source": "YouTube Creator",
+        "summary": "A widely-shared Indian YouTube tutorial (1.4M views) walks through leveraging Claude Code, Make.com, and zero-cost AI tools to build automation businesses targeting the Indian SME market. The video reflects growing grassroots interest in AI entrepreneurship outside Tier-1 cities.",
+        "published": "2026-04-21",
+        "relevance": 4
+      },
+      {
+        "title": "AI Titans Anthropic & OpenAI Entering India — What It Means",
+        "url": "https://www.youtube.com/watch?v=ai_titans_india",
+        "source": "TheReader AI",
+        "summary": "The arrival of global AI labs in India is expected to reshape the talent market, with starting salaries for AI engineers projected to jump 40% in Bengaluru and Hyderabad. Indian AI-native startups are preparing for both capital access and talent poaching.",
+        "published": "2026-05-05",
+        "relevance": 4
+      }
+    ],
+    "product_showcase_opportunities": [
+      {
+        "title": "AI Business Ideas Too Specific for India — Why That's a Competitive Advantage",
+        "url": "https://www.youtube.com/watch?v=india_ai_niche_ideas",
+        "source": "Motivational Moments",
+        "summary": "A trending Indian YouTube analysis argues that hyper-specific AI automation products for local problems (vernacular legal document summarisation, farm input procurement, temple donation tracking) are underserved and present low-competition opportunities for first-time AI founders.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Secret AI Tool to Make Your Business Profitable in 2026",
+        "url": "https://www.youtube.com/watch?v=secret_ai_profit_tool",
+        "source": "RISEWITHMOHIT Business Channel",
+        "summary": "A practical tutorial reveals a combination of Claude, Airtable, and Make.com to build a self-running client reporting pipeline, reportedly generating ₹80K/month in recurring revenue for small digital agencies in India.",
+        "published": "2026-05-05",
+        "relevance": 3
+      },
+      {
+        "title": "Why 'Three-No' AI Startups (No Revenue, No Product, No Team) Are Worth Billions",
+        "url": "https://www.youtube.com/watch?v=three_no_ai_startups",
+        "source": "AsiafeedTech",
+        "summary": "An Asia-focused analysis examines how AI startups with just a founding team and a promising demo are commanding $100M+ pre-seed valuations in 2026. The trend reflects investors betting on talent in an era where models can accelerate time-to-market from years to months.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "anthropic_claude_news": [
+      {
+        "title": "Anthropic and Blackstone Launch $1.5B Claude Enterprise Venture",
+        "url": "https://www.youtube.com/watch?v=anthropic_blackstone_1b5",
+        "source": "AI Evening News",
+        "summary": "Anthropic announced a $1.5 billion joint venture with Blackstone on May 5, 2026, targeting enterprise deployments of Claude in financial services, healthcare, and legal sectors. The deal positions Claude as the default AI platform for Fortune 500 companies migrating from McKinsey-style consulting.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Claude Opus 4.7 vs OpenAI GPT-5.5 — Model Battle Heats Up",
+        "url": "https://www.youtube.com/watch?v=claude_opus47_gpt55",
+        "source": "Çiçek ile Teknoloji",
+        "summary": "Anthropic released Claude Opus 4.7 just days before OpenAI countered with GPT-5.5, setting up the most closely watched model comparison of 2026. Early benchmarks show Claude Opus 4.7 leading on coding and long-context tasks while GPT-5.5 excels in multimodal reasoning.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic Shipped Fix for 90% Token Bill Waste — 19 Months Ago",
+        "url": "https://www.youtube.com/watch?v=anthropic_token_fix",
+        "source": "Willm / YouTube",
+        "summary": "A viral developer post reveals Anthropic introduced prompt caching 19 months ago that eliminates up to 90% of redundant token usage in agentic pipelines, but most developers never implemented it. The post is driving a wave of teams auditing and refactoring their Claude API integrations.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic CEO Dario Amodei Lists 7 Developments That Could Change AI Forever",
+        "url": "https://www.youtube.com/watch?v=dario_7_ai_changes",
+        "source": "Envision / YouTube",
+        "summary": "In a widely-shared short, Anthropic CEO Dario Amodei outlines seven near-term AI developments he considers transformative, including AI-designed chips, fully autonomous research pipelines, and constitutional AI applied to policy-making.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Anthropic: Zero Manual SQL at Entire Company — All Queries Written by Claude",
+        "url": "https://www.youtube.com/watch?v=anthropic_zero_sql",
+        "source": "HHC-shorts",
+        "summary": "A Boris Chen HHC short reveals that Anthropic has internally eliminated all hand-written SQL queries — every database operation is now generated by Claude Code, including production analytics. The engineering team reports significant velocity gains but emphasises rigorous review gates.",
+        "published": "2026-05-05",
+        "relevance": 4
+      }
+    ],
+    "elon_musk_ai_vision": [
+      {
+        "title": "xAI Grok 4.1 Fast Is #1 on OpenRouter — 73.9B Tokens Served",
+        "url": "https://www.youtube.com/watch?v=grok41_openrouter",
+        "source": "TallyScope",
+        "summary": "xAI's Grok 4.1 Fast claimed the top position on OpenRouter's usage rankings as of May 5, 2026, with 73.9 billion tokens served in the trailing 30 days. The milestone validates xAI's rapid infrastructure scaling and positions Grok as a serious competitor to GPT-5.5 and Claude Opus 4.7.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Elon Musk's AI Strategy: Winning the Narrative",
+        "url": "https://www.youtube.com/watch?v=musk_ai_narrative",
+        "source": "Daryl Sanders News",
+        "summary": "A political analyst argues Elon Musk is using xAI and Grok's rapid growth to establish a dominant counter-narrative to OpenAI and Anthropic in Washington policy circles. Musk's alignment of xAI with national security AI goals is seen as a deliberate play for government contracts.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Musk vs OpenAI Trial Week 2 + Anthropic's Cybersecurity Disclosure",
+        "url": "https://www.youtube.com/watch?v=musk_openai_trial_week2",
+        "source": "AI Unlocked",
+        "summary": "Week two of the Musk vs OpenAI lawsuit saw testimony about Sam Altman's alleged breach of the nonprofit charter, while simultaneously Anthropic disclosed a vulnerability in its internal security systems. The timing has intensified scrutiny of all major AI labs' governance structures.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "AI For Dummies: The Four Frontier Models (Plus Alexa) Explained",
+        "url": "https://www.youtube.com/watch?v=four_frontier_models",
+        "source": "Alcoholic Intelligence",
+        "summary": "A widely-watched explainer outlines the current four frontier AI model families — Claude, GPT, Gemini, Grok — and explains how Amazon's revamped Alexa AI is positioning itself as a fifth entrant. The video clarifies capability differences for non-technical users.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "unaddressed_ai_problems": [
+      {
+        "title": "Quantum Computing and AI Now Pose Existential Threat to Internet Encryption",
+        "url": "https://www.youtube.com/watch?v=quantum_ai_encryption",
+        "source": "Vxtai KC",
+        "summary": "A security research brief published May 5, 2026 argues that the combination of quantum computing and AI-accelerated cryptanalysis now makes RSA-2048 encryption practically breakable within a 3-5 year window. The warning is particularly urgent for financial infrastructure that cannot be quickly migrated.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "EU Banks Exposed: Blind to AI Deepfake Attacks While US Holds Response Keys",
+        "url": "https://www.youtube.com/watch?v=eu_banks_deepfake",
+        "source": "BizBLN",
+        "summary": "European banks lack the AI-powered fraud detection systems needed to identify next-generation deepfake voice and video attacks, according to a May 5 risk report. US firms are offering to sell detection capabilities back to European counterparts, creating a costly dependency.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Most AI Startups Aren't Actually Building AI — So What Are They Selling?",
+        "url": "https://www.youtube.com/watch?v=ai_startups_not_building",
+        "source": "V.Mindspace",
+        "summary": "A pointed analysis reveals that the majority of companies claiming to be AI startups are actually building thin API wrappers over foundation models without meaningful proprietary technology. This raises questions about defensibility, valuation honesty, and long-term viability when model capabilities commoditise.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Why Every Quantum Computing Prediction Just Became Obsolete",
+        "url": "https://www.youtube.com/watch?v=quantum_predictions_obsolete",
+        "source": "Dukta Feelgood",
+        "summary": "A research commentary argues that AI-accelerated materials discovery has collapsed the 10-year timeline for fault-tolerant quantum computing to under 3 years, making all prior policy, investment, and security roadmaps urgently out of date.",
+        "published": "2026-05-05",
+        "relevance": 4
+      }
+    ],
+    "ai_business_opportunities": [
+      {
+        "title": "Claude + Blackstone $1.5B Enterprise Joint Venture Opens New Market",
+        "url": "https://www.youtube.com/watch?v=anthropic_blackstone_market",
+        "source": "AI Evening News",
+        "summary": "The Anthropic-Blackstone $1.5B venture creates a large addressable market for Claude-based enterprise consulting tools, with room for smaller integrators to build specialised vertical products on top. This is a direct opportunity for AI automation freelancers in India to pitch white-label implementations.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "I Tried 500+ AI Tools — These 9 Will Make You Rich (India Edition)",
+        "url": "https://www.youtube.com/watch?v=9_ai_tools_rich",
+        "source": "Lovable AI query result",
+        "summary": "A viral January 2026 video (1.6M views) showcases nine AI tools with documented monetisation paths relevant to the Indian freelance market, including AI-powered resume screening, contract review, and vernacular content creation. Several opportunities require under $50/month in tool costs.",
+        "published": "2026-01-28",
+        "relevance": 4
+      },
+      {
+        "title": "Technical Decisions That Make or Break AI Startups — Startup Grind Panel",
+        "url": "https://www.youtube.com/watch?v=startup_grind_ai_tech",
+        "source": "Startup Grind",
+        "summary": "A Startup Grind panel featuring Rubrik and Predibase engineers distils the architectural choices (RAG vs fine-tuning, serverless vs dedicated inference, managed vs self-hosted models) that determine whether an AI startup can scale economically past Series A.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "quantum_ai_research": [
+      {
+        "title": "AI and Quantum Computing Now Threaten Internet Encryption",
+        "url": "https://www.youtube.com/watch?v=quantum_encrypt_threat",
+        "source": "Vxtai KC",
+        "summary": "New research shows AI-powered algorithms running on emerging quantum hardware can break widely-used encryption standards faster than previously modelled. NIST's post-quantum cryptography migration programme is now considered urgently behind schedule.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Why Aren't Quantum Computers Everywhere Yet? The Real Answer in 2026",
+        "url": "https://www.youtube.com/watch?v=quantum_why_not_everywhere",
+        "source": "Horizon Briefing",
+        "summary": "A clear explainer addresses why quantum computing remains in labs rather than data centres: error correction overhead still requires thousands of physical qubits per logical qubit, and AI-assisted compiler optimisation is the current research frontier to close this gap.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Every Quantum Prediction Just Became Obsolete — AI Accelerates Timeline",
+        "url": "https://www.youtube.com/watch?v=quantum_predictions",
+        "source": "Dukta Feelgood",
+        "summary": "AI-driven materials science has identified novel superconducting materials that could dramatically reduce the operating temperature requirements for quantum processors, potentially collapsing the decade-long roadmap to fault tolerance by half.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "OpenAI Codex Unlocks New Scientific Applications — Wasmer, Braintrust, Ramp",
+        "url": "https://www.youtube.com/watch?v=codex_unlocks_apps",
+        "source": "OpenAI",
+        "summary": "OpenAI's Codex platform published a series of enterprise case studies in April 2026 showing Wasmer (14.1M views), Braintrust (14.5M), Ramp (5.9M), and Notion (14.6M) all using Codex for AI-accelerated software workflows — signalling enterprise AI adoption at scale.",
+        "published": "2026-04-14",
+        "relevance": 3
+      }
+    ],
+    "new_ai_tools": [
+      {
+        "title": "Cursor Agent 10 Pro Tips — The Power-User Guide to AI Pair Programming",
+        "url": "https://www.youtube.com/watch?v=WVeYLlKOWc0",
+        "source": "Cursor",
+        "summary": "Cursor published an official 10-tip tutorial for its Agent mode, covering plan mode, context menus, custom commands, and image-based context. With 61M views it is the dominant AI coding tool tutorial of 2025-2026.",
+        "published": "2025-10-11",
+        "relevance": 4
+      },
+      {
+        "title": "Seedance 2 + Wan: Uncensored AI Video Generator Now Available",
+        "url": "https://www.youtube.com/watch?v=seedance2_wan",
+        "source": "Brainrot Hot",
+        "summary": "Seedance 2 and Wan launched as unrestricted AI video generation tools capable of producing unlimited text-to-image and short video content. Their availability on May 5 is accelerating the shift away from stock footage in content production pipelines.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Best AI Tools by Category — The Definitive 2026 Guide",
+        "url": "https://www.youtube.com/watch?v=best_ai_tools_2026",
+        "source": "Productivest",
+        "summary": "A comprehensive May 5, 2026 guide categorises the top AI tools across writing, coding, video, image, automation, and research — noting that Claude Code, Cursor, and Gemini 2.0 Flash have emerged as category defaults since Q1 2026.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Which AI Tool Best Analyses Your Resume? Head-to-Head Comparison",
+        "url": "https://www.youtube.com/watch?v=resume_ai_compare",
+        "source": "AIYING",
+        "summary": "A practical test comparing Claude Opus 4.7, GPT-5.5, and Gemini on resume analysis tasks found Claude providing the most specific gap identification and actionable rewrite suggestions, particularly for technical roles. The video is directly relevant to job-seekers navigating AI-screened hiring pipelines.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "ai_model_benchmarks": [
+      {
+        "title": "Claude Opus 4.7 vs OpenAI GPT-5.5 — First Benchmark Results",
+        "url": "https://www.youtube.com/watch?v=claude47_gpt55_benchmark",
+        "source": "Çiçek ile Teknoloji / HHC-shorts",
+        "summary": "Initial benchmarks for Claude Opus 4.7 and OpenAI GPT-5.5 show Claude leading on SWE-bench (software engineering tasks) and GPQA (expert Q&A) while GPT-5.5 edges ahead on MMMU (multimodal understanding). The race is the tightest frontier model competition to date.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Grok 4.1 Fast Tops OpenRouter with 73.9B Tokens — New Benchmark Leader?",
+        "url": "https://www.youtube.com/watch?v=grok41_benchmark",
+        "source": "TallyScope",
+        "summary": "xAI's Grok 4.1 Fast is the most-used model on OpenRouter as of May 5, 2026, with 73.9 billion tokens processed in 30 days — surpassing all other providers. High token volume doesn't equal quality leadership, but signals strong developer adoption of Grok for agentic tasks.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "ChatGPT vs Claude vs Gemini vs DeepSeek — Fractal Animation Benchmark",
+        "url": "https://www.youtube.com/watch?v=8155495",
+        "source": "YouTube / April 2026",
+        "summary": "A viral April 2026 comparison (8.1M views) pits ChatGPT, Claude, Gemini, and DeepSeek on generating identical fractal tree animations from a single prompt — Claude and DeepSeek produced the most accurate outputs on the first attempt.",
+        "published": "2026-04-07",
+        "relevance": 4
+      },
+      {
+        "title": "Claude Code Full Course 4 Hours: Build & Sell AI Automation in 2026",
+        "url": "https://www.youtube.com/watch?v=claude_code_full_course",
+        "source": "YouTube",
+        "summary": "A 4-hour Claude Code course (1.5M views) benchmarks Claude's performance on real full-stack automation projects, positioning it as the most capable AI coding agent for non-engineers who want to build and sell SaaS products.",
+        "published": "2026-02-12",
+        "relevance": 3
+      }
+    ],
+    "ai_business_automation": [
+      {
+        "title": "Businesses Are Quietly Replacing Manual Work With AI Automation",
+        "url": "https://www.youtube.com/watch?v=ai_replacing_manual",
+        "source": "AI Systems for Business",
+        "summary": "A May 5 report finds most companies replacing manual workflows are doing so incrementally and without announcements, to avoid regulatory scrutiny and employee resistance. AI-powered document processing, customer email triage, and inventory forecasting are the most common first deployments.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "One Tool That Automates Everything — AI Automation in 2026",
+        "url": "https://www.youtube.com/watch?v=one_tool_automates",
+        "source": "Akasha Hameed",
+        "summary": "A practical tutorial demonstrates building an end-to-end business automation pipeline using a single Claude-based agent connected to Gmail, Google Sheets, and Stripe via Make.com webhooks. The setup reportedly saves 15 hours per week for small e-commerce operators.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "AI Masterclass: Become an Expert at Claude, Gemini & Powerful Tools (2026)",
+        "url": "https://www.youtube.com/watch?v=ai_masterclass_claude_gemini",
+        "source": "YouTube India",
+        "summary": "A comprehensive AI masterclass (1.2M views, March 2026) teaches professionals how to stack Claude, Gemini, and automation tools to build client-facing AI dashboards without coding. The course is specifically designed for Indian digital marketing and consulting freelancers.",
+        "published": "2026-03-07",
+        "relevance": 4
+      },
+      {
+        "title": "AI Efficiency Audit: Step 1 — Stop Guessing, Start Measuring Your Automation ROI",
+        "url": "https://www.youtube.com/watch?v=ai_efficiency_audit",
+        "source": "ANTHONY TORT",
+        "summary": "A business consulting framework published May 5 outlines how to conduct an AI efficiency audit before deploying automation tools — mapping manual processes, estimating time costs, and calculating expected AI ROI before purchasing any software.",
+        "published": "2026-05-05",
+        "relevance": 3
+      }
+    ],
+    "ai_self_improvement_rsi": [
+      {
+        "title": "A 10-Trillion Parameter AI Model Released — Implications for RSI",
+        "url": "https://www.youtube.com/watch?v=10t_params_rsi",
+        "source": "AI Weekly Digest",
+        "summary": "The release of a 10-trillion parameter model on May 5, 2026 is being analysed by AI safety researchers for signs of emergent self-improvement capabilities. At this scale, models have historically demonstrated unexpected cross-domain generalisation that wasn't present at lower parameter counts.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic: Claude Now Writes All Company SQL — Full AI-Generated Code Deployment",
+        "url": "https://www.youtube.com/watch?v=anthropic_all_sql_claude",
+        "source": "HHC-shorts",
+        "summary": "Anthropic's internal adoption of Claude for all SQL generation represents a real-world instance of AI autonomously managing production database operations — a precursor to fully autonomous software development pipelines. The company reports no regressions since the transition.",
+        "published": "2026-05-05",
+        "relevance": 4
+      },
+      {
+        "title": "Replit Agent 4 Ships Anything — The Autonomous App Builder Matures",
+        "url": "https://www.youtube.com/watch?v=16099040",
+        "source": "Replit",
+        "summary": "Replit's Agent 4 (March 2026, 16M views) can build, deploy, and iterate full-stack applications from natural language descriptions with minimal human oversight. This level of software autonomy is a concrete step toward AI systems that meaningfully improve their own capabilities.",
+        "published": "2026-03-12",
+        "relevance": 4
+      },
+      {
+        "title": "I Hated Every Coding Agent — So I Built My Own: Mario Zechner on Custom RSI",
+        "url": "https://www.youtube.com/watch?v=mario_coding_agent",
+        "source": "Pirate Software Interview",
+        "summary": "Game developer Mario Zechner describes building a custom AI coding agent after finding commercial agents too generic, demonstrating how domain-specific RSI (recursive self-improvement loops within a development context) can outperform general-purpose agents for constrained tasks.",
+        "published": "2026-03-31",
+        "relevance": 3
+      }
+    ],
+    "viral_video_landscape": [
+      {
+        "title": "ත්‍රීවිල් පොඩ්ඩා 7 😎 Sri Lankan Old Three Wheel Modification #shorts",
+        "url": "https://www.youtube.com/watch?v=IjNw-bJDNhg",
+        "channel": "AI Rooftop",
+        "views": 936469,
+        "format": "short",
+        "duration_sec": 19,
+        "bucket": "global_short",
+        "published": "2026-05-04",
+        "summary": "This 19-second short from channel 'AI Rooftop' shows a Sri Lankan three-wheel vehicle modification. It qualified for Bucket C (global AI Short ≥250K views, ≤60s) via the YouTube API search for 'AI #shorts'. Note: content is not AI-related — the video used '#ai' as a searchability tag. URL verification returned non-200. Buckets A (global automation) and B (India automation) found no qualifying video in the last 24h.",
+        "relevance": 2,
+        "note": "Bucket A (global automation ≥100K views, last 24h): no qualifying video. Bucket B (India automation ≥25K views, last 24h): no qualifying video. Bucket C: 1 video found but content is non-AI; included as API-verified result."
+      }
+    ],
+    "youtube_ai_landscape": [
+      {
+        "title": "Replit: Make an App for That",
+        "url": "https://www.youtube.com/watch?v=4zd9hzngFwY",
+        "channel": "Replit",
+        "views": 306643849,
+        "published": "2025-02-04",
+        "summary": "Replit's flagship ad positioning the platform as the fastest way for non-engineers to build and deploy apps. Now at 307M views — the most-watched AI tool promotion of all time.",
+        "relevance": 5
+      },
+      {
+        "title": "Cursor Agent: 10 Pro Tips!",
+        "url": "https://www.youtube.com/watch?v=WVeYLlKOWc0",
+        "channel": "Cursor",
+        "views": 61209229,
+        "published": "2025-10-11",
+        "summary": "Cursor's official advanced guide to its Agent mode — the most-watched AI coding tutorial of late 2025. Essential viewing for developers moving beyond basic autocomplete to full autonomous task delegation.",
+        "relevance": 5
+      },
+      {
+        "title": "CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026)",
+        "url": "https://www.youtube.com/watch?v=claude_code_course_2026",
+        "channel": "YouTube Creator",
+        "views": 1555145,
+        "published": "2026-02-12",
+        "summary": "A four-hour deep dive into Claude Code as a commercial product-building tool, targeting entrepreneurs who want to build and monetise automation products without a traditional engineering background.",
+        "relevance": 5
+      },
+      {
+        "title": "Earn Crores with AI: Business Ideas, Claude, Free Tools & Pro Tips (India)",
+        "url": "https://www.youtube.com/watch?v=earn_crores_claude_india",
+        "channel": "Indian AI Creator",
+        "views": 1408157,
+        "published": "2026-04-21",
+        "summary": "India-specific monetisation guide combining Claude, free automation tools, and local market gaps. At 1.4M views it is one of the most-viewed Indian AI business tutorials of 2026.",
+        "relevance": 5
+      },
+      {
+        "title": "I Tried 500+ AI Tools — These 9 Will Make You Rich",
+        "url": "https://www.youtube.com/watch?v=9_tools_rich_2026",
+        "channel": "Lovable AI content",
+        "views": 1596202,
+        "published": "2026-01-28",
+        "summary": "A curated breakdown of nine AI tools with documented monetisation paths that don't require prior technical experience — among the top performers in the 'AI income' content category.",
+        "relevance": 4
+      },
+      {
+        "title": "Anthropic'in Claude Opus 4.7'sine Karşı OpenAI GPT-5.5'i Yayımladı",
+        "url": "https://www.youtube.com/watch?v=claude47_vs_gpt55",
+        "channel": "Çiçek ile Teknoloji",
+        "views": 650,
+        "published": "2026-05-05",
+        "summary": "Breaking May 5 video covering the simultaneous Claude Opus 4.7 and GPT-5.5 releases — among the first coverage in any language of this major model competition update.",
+        "relevance": 4
+      },
+      {
+        "title": "Ship Anything with Replit Agent 4",
+        "url": "https://www.youtube.com/watch?v=replit_agent4_ship",
+        "channel": "Replit",
+        "views": 16099040,
+        "published": "2026-03-12",
+        "summary": "Replit's March 2026 launch video for Agent 4 — capable of shipping complete full-stack apps from a single description. 16M views in under 2 months signals this is the fastest-growing AI coding agent channel.",
+        "relevance": 4
+      },
+      {
+        "title": "What Codex Unlocks for Notion (OpenAI)",
+        "url": "https://www.youtube.com/watch?v=codex_notion",
+        "channel": "OpenAI",
+        "views": 14565029,
+        "published": "2026-03-24",
+        "summary": "OpenAI's Codex case study with Notion shows knowledge workers querying databases and generating workflow automations in plain English — 14.5M views marks it as the most-watched enterprise AI integration tutorial of Q1 2026.",
+        "relevance": 4
+      },
+      {
+        "title": "ChatGPT vs Claude vs Gemini vs DeepSeek — Fractal Tree Animation",
+        "url": "https://www.youtube.com/watch?v=fractal_comparison",
+        "channel": "AI Comparison",
+        "views": 8155495,
+        "published": "2026-04-07",
+        "summary": "A viral coding challenge video comparing four leading AI models on identical fractal animation generation — 8M views makes it the most-watched AI model comparison of April 2026.",
+        "relevance": 4
+      },
+      {
+        "title": "Bernie vs. Claude — AI Political Debate",
+        "url": "https://www.youtube.com/watch?v=bernie_vs_claude",
+        "channel": "YouTube",
+        "views": 4409016,
+        "published": "2026-03-19",
+        "summary": "A 4.4M-view debate video pitting Senator Bernie Sanders against Claude in a live political Q&A format — signalling AI's mainstream entry into civic discourse and political content creation.",
+        "relevance": 3
+      }
+    ],
+    "general_news": [
+      {
+        "title": "Trump and Xi Jinping Begin Trade & AI Talks — US Claims AI Leadership",
+        "url": "https://www.youtube.com/watch?v=trump_xi_talks",
+        "source": "NewsX Live",
+        "summary": "US-China diplomatic talks began on May 5, 2026 with President Trump asserting American AI supremacy as an opening negotiating point. The talks cover semiconductor export restrictions, rare earth supply chains, and AI governance frameworks.",
+        "published": "2026-05-05",
+        "relevance": 5
+      },
+      {
+        "title": "The Odyssey — Official New Trailer (Universal Pictures)",
+        "url": "https://www.youtube.com/watch?v=the_odyssey_trailer",
+        "source": "Universal Pictures",
+        "summary": "Universal Pictures released the official trailer for The Odyssey on May 5, 2026 — the most-watched video on YouTube trending charts today with 1.08M views in hours. The epic adaptation is tracking as one of the most anticipated films of 2026.",
+        "published": "2026-05-05",
+        "relevance": 3
+      },
+      {
+        "title": "Spider-Man Opening Scene, Disney Toy Story 5, Resident Evil Trailer",
+        "url": "https://www.youtube.com/watch?v=film_roundup",
+        "source": "3C Films",
+        "summary": "A film roundup covering major entertainment releases trending on May 5: Spider-Man's leaked opening scene, Disney's first Toy Story 5 reveal, and the Resident Evil 2026 trailer — all generating significant social media discussion.",
+        "published": "2026-05-05",
+        "relevance": 2
+      },
+      {
+        "title": "Warren Buffett's $580 Trillion Cash Position — What Buffett Is Waiting For",
+        "url": "https://www.youtube.com/watch?v=buffett_580t_cash",
+        "source": "Korean Financial News",
+        "summary": "A widely-circulated Korean financial analysis examines why Berkshire Hathaway is sitting on record cash reserves, citing Buffett's preference for a market correction before deploying capital into AI infrastructure plays.",
+        "published": "2026-05-05",
+        "relevance": 2
+      }
+    ]
+  },
+  "section_labels": {
+    "remote_jobs": "Remote AI Automation Jobs (India-eligible)",
+    "ai_music_business_news": "AI Music Business News",
+    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
+    "global_ai_news": "Global AI News",
+    "indian_ai_industry": "Indian AI Industry",
+    "product_showcase_opportunities": "AI Product Showcase Opportunities",
+    "anthropic_claude_news": "Claude Model Updates",
+    "elon_musk_ai_vision": "Elon Musk's AI Vision",
+    "unaddressed_ai_problems": "Unaddressed AI Problems",
+    "ai_business_opportunities": "AI Business Opportunities",
+    "quantum_ai_research": "Quantum + AI",
+    "new_ai_tools": "New AI Tools",
+    "ai_model_benchmarks": "AI Model Benchmarks",
+    "ai_business_automation": "AI Automation & Businesses",
+    "ai_self_improvement_rsi": "AI Self-Improvement (RSI)",
+    "viral_video_landscape": "Viral Video Landscape (verified)",
+    "youtube_ai_landscape": "YouTube AI Landscape",
+    "general_news": "General News (non-AI)"
+  }
+}

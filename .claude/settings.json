@@ -28,7 +28,8 @@
       "WebFetch(domain:ndtv.com)",
       "WebFetch(domain:googleapis.com)",
       "WebFetch(domain:youtube.com)",
-      "WebFetch(domain:hooks.slack.com)"
+      "WebFetch(domain:slack.com)",
+      "WebFetch(domain:files.slack.com)"
     ]
   },
   "sandbox": {
@@ -78,7 +79,9 @@
         "*.youtube.com",
         "youtube.com",
         "*.ytimg.com",
-        "hooks.slack.com",
+        "slack.com",
+        "*.slack.com",
+        "files.slack.com",
         "pypi.org",
         "files.pythonhosted.org"
       ]

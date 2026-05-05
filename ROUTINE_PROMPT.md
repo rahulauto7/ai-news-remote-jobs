@@ -2,16 +2,12 @@
 
 Paste the block below into the claude.ai routine UI. Schedule it for **00:00 IST (18:30 UTC)** daily.
 
-Required routine env vars / secrets (set these in the routine UI, not in the prompt):
-- `YOUTUBE_API_KEY` — YouTube Data API v3 key
-- `GH_TOKEN` — GitHub PAT with `repo` scope (for `git push`)
-- `SLACK_BOT_TOKEN` — Slack bot token (xoxb-…) for failure + PDF DM
-- `SLACK_USER_ID` — your Slack user ID (Uxxxxxxxx) for DMs
+claude.ai routines have no separate secrets panel, so secrets are inlined into the prompt. The prompt is private to your account — do not share it, screenshot it, or paste it into chats. Replace each `<<...>>` placeholder with the real value once.
 
-GitHub repo secrets (Settings → Secrets and variables → Actions) — same key, in case the GitHub Actions cron is also active:
+GitHub repo secrets (still set these for the GitHub Actions backup cron — Settings → Secrets and variables → Actions):
 - `YOUTUBE_API_KEY`, `SLACK_BOT_TOKEN`, `SLACK_USER_ID`
 
-Local `.env` — same `YOUTUBE_API_KEY` for manual runs.
+Local `.env` — same `YOUTUBE_API_KEY` for manual laptop runs.
 
 ---
 
@@ -25,9 +21,16 @@ EXECUTE IN ORDER. On scraper failure, log and continue. On fatal failure (no PDF
 
 ### 1. Bootstrap
 
+Replace the four `<<...>>` values once before pasting into the routine UI. Everything else stays as-is.
+
 ```bash
 set +e
 export TZ=Asia/Kolkata
+export YOUTUBE_API_KEY="<<PASTE_YOUTUBE_API_KEY>>"
+export SLACK_BOT_TOKEN="<<PASTE_SLACK_BOT_TOKEN>>"
+export SLACK_USER_ID="<<PASTE_SLACK_USER_ID>>"
+export GH_TOKEN="<<PASTE_GITHUB_PAT_REPO_SCOPE>>"
+
 DATE=$(date +%Y-%m-%d)
 mkdir -p .tmp daily
 LOG=.tmp/pipeline.log
@@ -46,7 +49,7 @@ USER_EMAIL=rahulmeenaailead@gmail.com
 EOF
 ```
 
-If `YOUTUBE_API_KEY` is empty, abort with Slack alert.
+If `YOUTUBE_API_KEY` is empty (placeholder not replaced), abort with Slack alert.
 
 ### 2. Run scrapers (each capped at 5 min, failures non-fatal)
 

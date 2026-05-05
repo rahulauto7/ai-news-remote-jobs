@@ -1,6 +1,7 @@
 """
-Scrape remote AI Automation jobs (India-eligible) from multiple sources.
-Sources: LinkedIn (guest API), Wellfound, Indeed, Naukri, X/Twitter.
+Scrape global remote AI Automation jobs from multiple sources.
+Sources: LinkedIn (guest API), Wellfound, Indeed, Remotive, We Work Remotely,
+Himalayas, RemoteOK, Hacker News "Who is hiring", X/Twitter.
 
 Outputs: .tmp/jobs.json + .tmp/jobs.csv
 
@@ -39,14 +40,14 @@ HEADERS = {"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"}
 
 # ── LinkedIn (guest jobs API, no auth) ────────────────────────────────────────
 def scrape_linkedin(keywords=KEYWORDS, max_per_keyword=10):
-    """Use LinkedIn's public guest jobs endpoint. Filter remote + India."""
+    """Use LinkedIn's public guest jobs endpoint. Global remote roles."""
     jobs = []
     base = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
     for kw in keywords:
         try:
             params = {
                 "keywords": kw,
-                "location": "India",
+                "location": "United States",
                 "f_WT": "2",  # remote
                 "f_TPR": "r86400",  # last 24 hours
                 "start": 0,
@@ -125,12 +126,12 @@ def scrape_wellfound(keywords=KEYWORDS, max_per_keyword=8):
     return jobs
 
 
-# ── Indeed (India remote) ─────────────────────────────────────────────────────
+# ── Indeed (global remote) ────────────────────────────────────────────────────
 def scrape_indeed(keywords=KEYWORDS, max_per_keyword=8):
     jobs = []
     for kw in keywords:
         try:
-            url = f"https://in.indeed.com/jobs?q={quote_plus(kw)}&l=Remote&fromage=1&sc=0kf%3Aattr%28DSQF7%29%3B"
+            url = f"https://www.indeed.com/jobs?q={quote_plus(kw)}&l=Remote&fromage=1&sc=0kf%3Aattr%28DSQF7%29%3B"
             r = requests.get(url, headers=HEADERS, timeout=20)
             if r.status_code != 200:
                 print(f"  [Indeed] {kw}: HTTP {r.status_code}")
@@ -143,7 +144,7 @@ def scrape_indeed(keywords=KEYWORDS, max_per_keyword=8):
                     continue
                 jk = card.get("data-jk") or ""
                 href = card.get("href", "")
-                full = f"https://in.indeed.com/viewjob?jk={jk}" if jk else (href if href.startswith("http") else f"https://in.indeed.com{href}")
+                full = f"https://www.indeed.com/viewjob?jk={jk}" if jk else (href if href.startswith("http") else f"https://www.indeed.com{href}")
                 comp_el = card.select_one("span.companyName, [data-testid='company-name']")
                 jobs.append({
                     "title": title_el.get_text(strip=True),
@@ -164,40 +165,123 @@ def scrape_indeed(keywords=KEYWORDS, max_per_keyword=8):
     return jobs
 
 
-# ── Naukri (India) — remote filter via location=remote ───────────────────────
-def scrape_naukri(keywords=KEYWORDS, max_per_keyword=8):
+# ── Remotive (public JSON API, no auth) ───────────────────────────────────────
+def scrape_remotive(keywords=KEYWORDS, max_per_keyword=8):
+    """Remotive's public API: https://remotive.com/api/remote-jobs?search=<kw>"""
     jobs = []
     for kw in keywords:
         try:
-            slug = kw.lower().replace(" ", "-")
-            url = f"https://www.naukri.com/{quote_plus(slug)}-jobs-in-remote?wfhType=1&jobAge=1"
-            r = requests.get(url, headers=HEADERS, timeout=20)
+            url = f"https://remotive.com/api/remote-jobs?search={quote_plus(kw)}&limit=20"
+            r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
             if r.status_code != 200:
-                print(f"  [Naukri] {kw}: HTTP {r.status_code}")
+                print(f"  [Remotive] {kw}: HTTP {r.status_code}")
                 continue
-            soup = BeautifulSoup(r.text, "html.parser")
+            data = r.json()
             count = 0
-            for card in soup.select("article.jobTuple, div.srp-jobtuple-wrapper"):
-                title_el = card.select_one("a.title, a.title-line")
-                comp_el = card.select_one("a.subTitle, a.comp-name")
-                if not title_el:
-                    continue
+            for d in data.get("jobs", []):
                 jobs.append({
-                    "title": title_el.get_text(strip=True),
-                    "company": comp_el.get_text(strip=True) if comp_el else "",
-                    "url": title_el.get("href", ""),
-                    "posted": "",
-                    "salary": "",
-                    "source": "Naukri",
-                    "summary": f"Search: {kw}",
+                    "title": (d.get("title") or "")[:200],
+                    "company": d.get("company_name") or "",
+                    "url": d.get("url") or "",
+                    "posted": d.get("publication_date") or "",
+                    "salary": d.get("salary") or "",
+                    "source": "Remotive",
+                    "summary": (d.get("description") or "")[:300],
                 })
                 count += 1
                 if count >= max_per_keyword:
                     break
-            print(f"  [Naukri] {kw}: {count} jobs")
-            time.sleep(1.5)
+            print(f"  [Remotive] {kw}: {count} jobs")
+            time.sleep(0.6)
         except Exception as e:
-            print(f"  [Naukri ERROR] {kw}: {e}")
+            print(f"  [Remotive ERROR] {kw}: {e}")
+    return jobs
+
+
+# ── We Work Remotely (RSS feed for remote programming) ───────────────────────
+def scrape_weworkremotely(keywords=KEYWORDS, max_total=25):
+    """RSS feed; filter titles by AI/automation keywords."""
+    jobs = []
+    try:
+        import xml.etree.ElementTree as ET
+        url = "https://weworkremotely.com/categories/remote-programming-jobs.rss"
+        r = requests.get(url, headers=HEADERS, timeout=20)
+        if r.status_code != 200:
+            print(f"  [WWR] HTTP {r.status_code}")
+            return jobs
+        root = ET.fromstring(r.content)
+        kw_lower = [k.lower() for k in keywords] + ["ai", "llm", "automation", "agent"]
+        for item in root.iter("item"):
+            title = (item.findtext("title") or "").strip()
+            link = (item.findtext("link") or "").strip()
+            pub = (item.findtext("pubDate") or "").strip()
+            desc = (item.findtext("description") or "").strip()
+            blob = f"{title} {desc}".lower()
+            if not any(k in blob for k in kw_lower):
+                continue
+            company = ""
+            if ":" in title:
+                company = title.split(":", 1)[0].strip()
+                title = title.split(":", 1)[1].strip()
+            jobs.append({
+                "title": title[:200],
+                "company": company,
+                "url": link,
+                "posted": pub,
+                "salary": "",
+                "source": "We Work Remotely",
+                "summary": desc[:300],
+            })
+            if len(jobs) >= max_total:
+                break
+        print(f"  [WWR] {len(jobs)} matched jobs")
+    except Exception as e:
+        print(f"  [WWR ERROR] {e}")
+    return jobs
+
+
+# ── Himalayas (public JSON listings) ──────────────────────────────────────────
+def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=6):
+    """Himalayas public job listings JSON."""
+    jobs = []
+    for kw in keywords:
+        try:
+            url = f"https://himalayas.app/jobs/api?title={quote_plus(kw)}&limit=20"
+            r = requests.get(url, headers={"User-Agent": UA, "Accept": "application/json"}, timeout=20)
+            if r.status_code != 200:
+                print(f"  [Himalayas] {kw}: HTTP {r.status_code}")
+                continue
+            try:
+                data = r.json()
+            except Exception:
+                print(f"  [Himalayas] {kw}: non-JSON response")
+                continue
+            rows = data.get("jobs") or data.get("results") or []
+            count = 0
+            for d in rows:
+                title = (d.get("title") or "").strip()
+                slug = d.get("slug") or ""
+                company = (d.get("companyName") or (d.get("company") or {}).get("name") or "")
+                href = d.get("applicationLink") or (f"https://himalayas.app/companies/{(d.get('company') or {}).get('slug','')}/jobs/{slug}" if slug else "")
+                jobs.append({
+                    "title": title[:200],
+                    "company": company,
+                    "url": href,
+                    "posted": d.get("pubDate") or d.get("publishedAt") or "",
+                    "salary": (
+                        f"${d.get('minSalary')}-${d.get('maxSalary')}"
+                        if d.get("minSalary") else ""
+                    ),
+                    "source": "Himalayas",
+                    "summary": (d.get("excerpt") or d.get("description") or "")[:300],
+                })
+                count += 1
+                if count >= max_per_keyword:
+                    break
+            print(f"  [Himalayas] {kw}: {count} jobs")
+            time.sleep(0.6)
+        except Exception as e:
+            print(f"  [Himalayas ERROR] {kw}: {e}")
     return jobs
 
 
@@ -371,43 +455,55 @@ def scrape_all_jobs():
     os.makedirs(TMP_DIR, exist_ok=True)
     all_jobs = []
 
-    print("[1/5] LinkedIn ...")
+    print("[1/9] LinkedIn ...")
     try:
         all_jobs += scrape_linkedin()
     except Exception as e:
         print(f"  LinkedIn fatal: {e}")
 
-    print("[2/5] Wellfound ...")
+    print("[2/9] Wellfound ...")
     try:
         all_jobs += scrape_wellfound()
     except Exception as e:
         print(f"  Wellfound fatal: {e}")
 
-    print("[3/5] Indeed ...")
+    print("[3/9] Indeed ...")
     try:
         all_jobs += scrape_indeed()
     except Exception as e:
         print(f"  Indeed fatal: {e}")
 
-    print("[4/5] Naukri ...")
+    print("[4/9] Remotive ...")
     try:
-        all_jobs += scrape_naukri()
+        all_jobs += scrape_remotive()
     except Exception as e:
-        print(f"  Naukri fatal: {e}")
+        print(f"  Remotive fatal: {e}")
 
-    print("[5/7] Twitter/X via Nitter ...")
+    print("[5/9] We Work Remotely ...")
+    try:
+        all_jobs += scrape_weworkremotely()
+    except Exception as e:
+        print(f"  WWR fatal: {e}")
+
+    print("[6/9] Himalayas ...")
+    try:
+        all_jobs += scrape_himalayas()
+    except Exception as e:
+        print(f"  Himalayas fatal: {e}")
+
+    print("[7/9] Twitter/X via Nitter ...")
     try:
         all_jobs += scrape_twitter()
     except Exception as e:
         print(f"  Twitter fatal: {e}")
 
-    print("[6/7] RemoteOK ...")
+    print("[8/9] RemoteOK ...")
     try:
         all_jobs += scrape_remoteok()
     except Exception as e:
         print(f"  RemoteOK fatal: {e}")
 
-    print("[7/7] Hacker News hiring ...")
+    print("[9/9] Hacker News hiring ...")
     try:
         all_jobs += scrape_hn_hiring()
     except Exception as e:

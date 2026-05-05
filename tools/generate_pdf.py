@@ -33,10 +33,10 @@ OUTPUT_FILE = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{TODAY}.pdf")
 # ── Section Config ────────────────────────────────────────────────────────────
 SECTION_CONFIG = {
     "remote_jobs": {
-        "label": "Remote AI Automation Jobs (India-eligible)",
+        "label": "Remote AI Automation Jobs (Global)",
         "icon": "✎",      # ✎
         "color": (39, 174, 96),  # Emerald green
-        "desc": "Remote roles in AI automation hiring right now — LinkedIn, Wellfound, Indeed, Naukri, X",
+        "desc": "Global remote roles in AI automation hiring right now — LinkedIn, Wellfound, Indeed, RemoteOK, Remotive, We Work Remotely, Himalayas, HN, X",
     },
     "global_ai_news": {
         "label": "Global AI News",
@@ -140,6 +140,19 @@ SECTION_CONFIG = {
         "color": (108, 122, 137),  # Slate gray
         "desc": "Top world & India headlines outside of AI",
     },
+    "run_telemetry": {
+        "label": "Run Telemetry",
+        "icon": "⚙",      # gear
+        "color": (90, 90, 90),
+        "desc": "What this scheduler run cost: per-step timings, scrape counts, agent token usage.",
+    },
+}
+
+# Published per-million-token rates (USD). Update when models change.
+MODEL_PRICING = {
+    "claude-opus-4-7": {"input": 15.0, "output": 75.0, "cache_read": 1.5, "cache_creation": 18.75},
+    "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_creation": 3.75},
+    "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_read": 0.10, "cache_creation": 1.25},
 }
 
 SECTION_ORDER = [
@@ -652,6 +665,145 @@ def build_viral_video_section(pdf, section_key, stories):
     pdf.set_y(y)
 
 
+def build_telemetry_section(pdf, telemetry):
+    """Render the run_telemetry section: per-step timings + agent token usage."""
+    config = SECTION_CONFIG["run_telemetry"]
+    r, g, b = config["color"]
+
+    if pdf.get_y() > 220:
+        pdf.add_page()
+    y = pdf.get_y() + 5
+
+    pdf.set_fill_color(r, g, b)
+    pdf.rect(10, y, 190, 12, "F")
+    pdf.set_font("Helvetica", "B", 13)
+    pdf.set_text_color(255, 255, 255)
+    pdf.set_xy(15, y + 1)
+    pdf.cell(180, 10, f"  {config['label'].upper()}")
+    y += 14
+
+    pdf.set_font("Helvetica", "I", 8)
+    pdf.set_text_color(100, 100, 100)
+    pdf.set_xy(12, y)
+    pdf.cell(186, 5, sanitize_text(config["desc"]))
+    y += 7
+
+    pdf.set_draw_color(r, g, b)
+    pdf.set_line_width(0.5)
+    pdf.line(12, y, 198, y)
+    y += 4
+
+    # Run summary
+    pdf.set_font("Helvetica", "B", 10)
+    pdf.set_text_color(40, 40, 40)
+    pdf.set_xy(14, y)
+    pdf.cell(180, 5, "Pipeline Run")
+    y += 6
+
+    pdf.set_font("Helvetica", "", 9)
+    pdf.set_text_color(60, 60, 60)
+    started = telemetry.get("started_at", "?")
+    finished = telemetry.get("finished_at", "?")
+    total = telemetry.get("total_elapsed_s", 0)
+    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Started:  {started}")); y += 5
+    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Finished: {finished}")); y += 5
+    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Total:    {total:.1f}s")); y += 8
+
+    # Per-step timings table
+    pdf.set_font("Helvetica", "B", 10)
+    pdf.set_text_color(40, 40, 40)
+    pdf.set_xy(14, y); pdf.cell(180, 5, "Per-Step Timings"); y += 6
+
+    pdf.set_font("Helvetica", "B", 8)
+    pdf.set_fill_color(230, 230, 230)
+    pdf.set_text_color(40, 40, 40)
+    pdf.set_xy(14, y)
+    pdf.cell(90, 6, "  Step", border=0, fill=True)
+    pdf.cell(30, 6, "Status", border=0, fill=True, align="C")
+    pdf.cell(30, 6, "Elapsed (s)", border=0, fill=True, align="R")
+    pdf.cell(30, 6, "Items", border=0, fill=True, align="R")
+    y += 7
+
+    pdf.set_font("Helvetica", "", 8)
+    pdf.set_text_color(60, 60, 60)
+    for step_name, info in (telemetry.get("steps") or {}).items():
+        if y > 270:
+            pdf.add_page(); y = pdf.get_y() + 2
+        ok = info.get("ok")
+        status = "OK" if ok else ("SKIP" if ok is None else "FAIL")
+        elapsed_s = info.get("elapsed_s", 0) or 0
+        items = info.get("items")
+        items_s = str(items) if items is not None else "-"
+        pdf.set_xy(14, y)
+        pdf.cell(90, 5, sanitize_text(f"  {step_name}"))
+        pdf.cell(30, 5, status, align="C")
+        pdf.cell(30, 5, f"{elapsed_s:.1f}", align="R")
+        pdf.cell(30, 5, items_s, align="R")
+        y += 5
+    y += 3
+
+    # Agent token usage
+    if y > 250:
+        pdf.add_page(); y = pdf.get_y() + 2
+
+    pdf.set_font("Helvetica", "B", 10)
+    pdf.set_text_color(40, 40, 40)
+    pdf.set_xy(14, y); pdf.cell(180, 5, "Agent Token Usage"); y += 6
+
+    tok = telemetry.get("agent_tokens") or {}
+    pdf.set_font("Helvetica", "", 9)
+    pdf.set_text_color(60, 60, 60)
+
+    if not tok or tok.get("available") is False:
+        reason = tok.get("reason", "agent did not write .tmp/agent_tokens.json")
+        pdf.set_xy(14, y)
+        pdf.multi_cell(180, 5, sanitize_text(f"Token usage unavailable. Reason: {reason}"))
+        y = pdf.get_y() + 2
+    else:
+        model = tok.get("model", "unknown")
+        in_tok = int(tok.get("input_tokens", 0) or 0)
+        out_tok = int(tok.get("output_tokens", 0) or 0)
+        cr_tok = int(tok.get("cache_read_tokens", 0) or 0)
+        cc_tok = int(tok.get("cache_creation_tokens", 0) or 0)
+        total_tok = in_tok + out_tok + cr_tok + cc_tok
+
+        rates = MODEL_PRICING.get(model)
+        cost = None
+        if rates:
+            cost = (
+                in_tok / 1e6 * rates["input"]
+                + out_tok / 1e6 * rates["output"]
+                + cr_tok / 1e6 * rates["cache_read"]
+                + cc_tok / 1e6 * rates["cache_creation"]
+            )
+
+        rows = [
+            ("Model", model),
+            ("Input tokens", f"{in_tok:,}"),
+            ("Output tokens", f"{out_tok:,}"),
+            ("Cache read", f"{cr_tok:,}"),
+            ("Cache creation", f"{cc_tok:,}"),
+            ("Total tokens", f"{total_tok:,}"),
+            ("Estimated cost (USD)", f"${cost:.4f}" if cost is not None else "n/a (unknown model rates)"),
+        ]
+        for label, val in rows:
+            pdf.set_xy(14, y)
+            pdf.cell(60, 5, sanitize_text(label))
+            pdf.cell(120, 5, sanitize_text(val))
+            y += 5
+
+        notes = tok.get("notes")
+        if notes:
+            y += 2
+            pdf.set_font("Helvetica", "I", 8)
+            pdf.set_text_color(100, 100, 100)
+            pdf.set_xy(14, y)
+            pdf.multi_cell(180, 4, sanitize_text(f"Notes: {notes}"))
+            y = pdf.get_y() + 2
+
+    pdf.set_y(y + 3)
+
+
 def generate_pdf():
     """Main function: load analyzed content and generate PDF."""
     input_file = os.path.join(TMP_DIR, "analyzed_content.json")
@@ -684,6 +836,18 @@ def generate_pdf():
             build_viral_video_section(pdf, section_key, stories)
         else:
             build_section(pdf, section_key, stories)
+
+    # Run telemetry section (appended; not part of canonical 18)
+    telemetry_file = os.path.join(TMP_DIR, "run_telemetry.json")
+    telemetry = {}
+    if os.path.exists(telemetry_file):
+        try:
+            with open(telemetry_file, "r", encoding="utf-8") as f:
+                telemetry = json.load(f)
+        except Exception as e:
+            print(f"  [telemetry] failed to load: {e}")
+    pdf.add_page()
+    build_telemetry_section(pdf, telemetry)
 
     # Save
     os.makedirs(TMP_DIR, exist_ok=True)

@@ -8,10 +8,10 @@ Runs in sequence:
   4. scrape YouTube trending (section 16)
   5. analyze + categorize (agent does this; fallback = keyword rules)
   6. generate PDF
-  7. upload to Drive
+  7. send PDF to Slack DM
 
 Each step is wrapped in try/except — failures don't kill the run.
-Use --dry-run to skip the Drive upload step.
+Use --dry-run to skip the Slack send step.
 Use --no-agent to force the deterministic categorizer.
 """
 
@@ -208,7 +208,7 @@ def run(dry_run=False, force_fallback=False):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("--dry-run", action="store_true", help="Skip Drive upload")
+    p.add_argument("--dry-run", action="store_true", help="Skip Slack send")
     p.add_argument("--no-agent", dest="force_fallback", action="store_true", help="Force deterministic categorizer")
     args = p.parse_args()
     success = run(dry_run=args.dry_run, force_fallback=args.force_fallback)

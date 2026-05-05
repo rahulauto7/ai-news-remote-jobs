@@ -84,7 +84,7 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 - **Primary**: land a remote AI Automation job from India (no prior experience, portfolio-based). Built with Claude Code.
 - **Secondary**: launch a YouTube channel teaching AI automation methods.
-- **Daily ritual**: 18-section AI news + remote jobs PDF delivered to Google Drive at **07:00 IST** every day, running in the cloud via a **claude.ai scheduled agent** — independent of laptop state.
+- **Daily ritual**: 18-section AI news + remote jobs PDF delivered (Slack DM + GitHub dated branch) at **00:00 IST** every day, running in the cloud via a **claude.ai scheduled agent** — independent of laptop state.
 
 ## Cloud schedule failure rule (always-on)
 

@@ -33,10 +33,10 @@ OUTPUT_FILE = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{TODAY}.pdf")
 # ── Section Config ────────────────────────────────────────────────────────────
 SECTION_CONFIG = {
     "remote_jobs": {
-        "label": "Remote AI Automation Jobs (Global)",
-        "icon": "✎",      # ✎
+        "label": "Remote AI Automation Jobs (USA / Global)",
+        "icon": "✎",      # pencil
         "color": (39, 174, 96),  # Emerald green
-        "desc": "Global remote roles in AI automation hiring right now — LinkedIn, Wellfound, Indeed, RemoteOK, Remotive, We Work Remotely, Himalayas, HN, X",
+        "desc": "USA/global remote AI-automation roles - Greenhouse + Lever direct-apply links, Remotive, RemoteOK, We Work Remotely, Himalayas, HN.",
     },
     "global_ai_news": {
         "label": "Global AI News",
@@ -57,10 +57,10 @@ SECTION_CONFIG = {
         "desc": "Platforms, directories & competitions to submit your AI product — India & worldwide",
     },
     "anthropic_claude_news": {
-        "label": "Claude Model Updates",
+        "label": "Anthropic & Claude Code Updates",
         "icon": "\u25C8",      # ◈
         "color": (204, 121, 67),  # Warm amber
-        "desc": "Claude model updates, Anthropic company news, safety research & partnerships",
+        "desc": "Anthropic company news + Claude Code feature updates (new commands, hooks, MCP, slash commands, agents, model rollouts).",
     },
     "elon_musk_ai_vision": {
         "label": "Elon Musk's AI Vision",
@@ -126,7 +126,7 @@ SECTION_CONFIG = {
         "label": "Viral Video Landscape",
         "icon": "\u25bc",      # ▼
         "color": (255, 69, 0),  # Red-orange
-        "desc": "Top AI video (Global automation), top AI video (India automation), top AI Short — max views in last 24h",
+        "desc": "Top AI-Automation video (Global), top AI Short (Global), top AI-Automation video (India) - max views in last 24h, YouTube API verified + URL HEAD-checked.",
     },
     "youtube_ai_landscape": {
         "label": "YouTube AI Landscape",
@@ -156,16 +156,110 @@ MODEL_PRICING = {
 }
 
 SECTION_ORDER = [
-    "remote_jobs",
-    "ai_music_business_news", "ai_music_copyright_laws",
-    "global_ai_news", "indian_ai_industry", "product_showcase_opportunities",
-    "anthropic_claude_news", "elon_musk_ai_vision", "unaddressed_ai_problems",
-    "ai_business_opportunities", "quantum_ai_research",
-    "new_ai_tools", "ai_model_benchmarks",
-    "ai_business_automation", "ai_self_improvement_rsi",
-    "viral_video_landscape", "youtube_ai_landscape",
-    "general_news",
+    "remote_jobs",                      # 0
+    "anthropic_claude_news",            # 1
+    "ai_business_automation",           # 2
+    "quantum_ai_research",              # 3
+    "product_showcase_opportunities",   # 4
+    "viral_video_landscape",            # 5
+    "youtube_ai_landscape",             # 6
+    "ai_music_copyright_laws",          # 7
+    "elon_musk_ai_vision",              # 8
+    "unaddressed_ai_problems",          # 9
+    "ai_business_opportunities",        # 10
+    "ai_music_business_news",           # 11
+    "global_ai_news",                   # 12
+    "indian_ai_industry",               # 13
+    "ai_self_improvement_rsi",          # 14
+    "ai_model_benchmarks",              # 15
+    "new_ai_tools",                     # 16
+    "general_news",                     # 17
 ]
+
+# Per-section reading cadence + "why this matters to me" line.
+# Tied to user goals: (1) remote AI-automation job, (2) YouTube channel teaching AI automation.
+SECTION_META = {
+    "remote_jobs": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Primary goal. Apply to 3+ roles every day; 'Greenhouse:' / 'Lever:' tagged listings are direct-apply links - paste resume + Claude Code portfolio same day.",
+    },
+    "anthropic_claude_news": {
+        "cadence": "DAILY",
+        "relevance_to_me": "You build with Claude Code daily. New hooks / commands / MCP changes = same-day skill upgrade; mentioning these in interviews proves you live on the edge of the tool.",
+    },
+    "ai_business_automation": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Core income skill. Each story = a workflow you can rebuild in n8n / Claude Code, ship a portfolio repo, and link in your next job application.",
+    },
+    "quantum_ai_research": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Long-tail. Not hiring on quantum, but a one-line take in a cover letter or tweet signals depth beyond surface-level AI hype.",
+    },
+    "product_showcase_opportunities": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Submit something every week. Each accepted submission = a public link you paste into your resume / next application - beats the 'no experience' objection.",
+    },
+    "viral_video_landscape": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Reverse-engineer what AI content blew up in the last 24h. Each entry = a candidate hook for your YouTube channel teaching AI automation.",
+    },
+    "youtube_ai_landscape": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Trending = demand. Pick the topic gap closest to AI automation and ship a 60-90s explainer the same week - earliest path to channel growth.",
+    },
+    "ai_music_copyright_laws": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Personal interest niche. Skim weekly headlines; deep-read only if a ruling directly affects a tool (Suno / Udio) you use or might build on.",
+    },
+    "elon_musk_ai_vision": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Competitive context only. xAI ships fast; useful for benchmark conversations - don't optimize portfolio around Grok unless a job spec asks.",
+    },
+    "unaddressed_ai_problems": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Each unsolved problem is a possible portfolio project. Pick one per month, build a Claude Code demo, post it as 'I solved X with AI automation' tweet/video.",
+    },
+    "ai_business_opportunities": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Who just got funded = who'll be hiring in 60-90 days. Track Series A/B announcements, then check their careers page next week.",
+    },
+    "ai_music_business_news": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Personal interest. Scan weekly for crossover with automation tooling - workflows on Suno/Udio could become a niche YouTube series.",
+    },
+    "global_ai_news": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Macro signal. Skim headlines only; deep-read only if a regulation (EU AI Act, US executive orders) affects a tool or model you use.",
+    },
+    "indian_ai_industry": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Even though you apply USA / global, Indian AI talent is your referral network. Track founder/exec moves at India-HQ AI startups for warm-intro paths.",
+    },
+    "ai_self_improvement_rsi": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Long-horizon. Read for vocabulary you can drop in interviews - alignment, RSI, scaling laws - to sound senior even with zero years on resume.",
+    },
+    "ai_model_benchmarks": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Job filtering signal. Pick the model with best price/perf for portfolio demos. Re-rank weekly; switch demos to whatever ranks best on coding/agent benchmarks.",
+    },
+    "new_ai_tools": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Two uses: (1) integrate the best one into a portfolio demo this week, (2) make a 'Tool Tested in 60 Seconds' YouTube short the same day.",
+    },
+    "general_news": {
+        "cadence": "WEEKLY",
+        "relevance_to_me": "Awareness only. Don't read in-depth - interview small-talk fuel and one-line context for cover-letter intros, nothing more.",
+    },
+    "run_telemetry": {
+        "cadence": "DAILY",
+        "relevance_to_me": "Confirms the routine completed end-to-end and tracks how many tokens / how much cost each daily run consumes (start-to-end).",
+    },
+}
+
+
+def _meta(section_key):
+    return SECTION_META.get(section_key, {"cadence": "", "relevance_to_me": ""})
 
 
 class GlobalAINewsPDF(FPDF):
@@ -338,12 +432,15 @@ def build_cover_page(pdf, sections_data):
             break
 
 
-def build_section(pdf, section_key, stories):
-    """Build a full section with header, description, and stories."""
+def _draw_section_header(pdf, section_key):
+    """Header bar + cadence badge + description + 'Relevant to me' line.
+    Returns the y-coordinate where story rendering should start."""
     config = SECTION_CONFIG[section_key]
+    meta = _meta(section_key)
     r, g, b = config["color"]
+    cadence = meta.get("cadence", "")
+    rel = meta.get("relevance_to_me", "")
 
-    # Check if we need a new page (at least 60mm space needed for header + one story)
     if pdf.get_y() > 220:
         pdf.add_page()
 
@@ -356,23 +453,54 @@ def build_section(pdf, section_key, stories):
     pdf.set_font("Helvetica", "B", 13)
     pdf.set_text_color(255, 255, 255)
     pdf.set_xy(15, y + 1)
-    icon = config.get("icon", "")
-    pdf.cell(180, 10, f"  {config['label'].upper()}")
+    pdf.cell(140, 10, f"  {config['label'].upper()}")
+
+    # Cadence pill, right-aligned in the same bar
+    if cadence:
+        pdf.set_font("Helvetica", "B", 9)
+        pdf.set_xy(160, y + 2)
+        # Light pill background
+        pdf.set_fill_color(255, 255, 255)
+        pdf.set_draw_color(255, 255, 255)
+        pdf.rect(162, y + 2, 32, 8, "F")
+        pdf.set_text_color(r, g, b)
+        pdf.set_xy(162, y + 2)
+        pdf.cell(32, 8, f"  {cadence}", align="C")
 
     y += 14
 
-    # Section description
+    # Section description (italic gray)
     pdf.set_font("Helvetica", "I", 8)
     pdf.set_text_color(100, 100, 100)
     pdf.set_xy(12, y)
-    pdf.cell(186, 5, sanitize_text(config["desc"]))
-    y += 7
+    pdf.multi_cell(186, 4.5, sanitize_text(config["desc"]))
+    y = pdf.get_y() + 1
+
+    # "Relevant to me" line — bold label, regular body
+    if rel:
+        pdf.set_font("Helvetica", "B", 8)
+        pdf.set_text_color(r, g, b)
+        pdf.set_xy(12, y)
+        pdf.cell(40, 4.5, "Relevant to me:")
+        pdf.set_font("Helvetica", "", 8)
+        pdf.set_text_color(60, 60, 60)
+        pdf.set_xy(40, y)
+        pdf.multi_cell(160, 4.5, sanitize_text(rel))
+        y = pdf.get_y() + 1
 
     # Thin accent line
     pdf.set_draw_color(r, g, b)
     pdf.set_line_width(0.5)
     pdf.line(12, y, 198, y)
-    y += 3
+    return y + 3
+
+
+def build_section(pdf, section_key, stories):
+    """Build a full section with header, description, and stories."""
+    config = SECTION_CONFIG[section_key]
+    r, g, b = config["color"]
+
+    y = _draw_section_header(pdf, section_key)
 
     if not stories:
         pdf.set_font("Helvetica", "I", 9)
@@ -513,32 +641,7 @@ def build_viral_video_section(pdf, section_key, stories):
     config = SECTION_CONFIG[section_key]
     r, g, b = config["color"]
 
-    if pdf.get_y() > 220:
-        pdf.add_page()
-
-    y = pdf.get_y() + 5
-
-    # Section header bar (same as build_section)
-    pdf.set_fill_color(r, g, b)
-    pdf.rect(10, y, 190, 12, "F")
-    pdf.set_font("Helvetica", "B", 13)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(15, y + 1)
-    pdf.cell(180, 10, f"  {config['label'].upper()}")
-    y += 14
-
-    # Section description
-    pdf.set_font("Helvetica", "I", 8)
-    pdf.set_text_color(100, 100, 100)
-    pdf.set_xy(12, y)
-    pdf.cell(186, 5, sanitize_text(config["desc"]))
-    y += 7
-
-    # Accent line
-    pdf.set_draw_color(r, g, b)
-    pdf.set_line_width(0.5)
-    pdf.line(12, y, 198, y)
-    y += 3
+    y = _draw_section_header(pdf, section_key)
 
     if not stories:
         pdf.set_font("Helvetica", "I", 9)
@@ -548,11 +651,14 @@ def build_viral_video_section(pdf, section_key, stories):
         pdf.set_y(y + 12)
         return
 
-    # Define subsection rendering order — 3 AI categories, max-views per category, last 24h
+    # Render order requested by the user:
+    #   1. Global AI-Automation long video
+    #   2. Global AI Short
+    #   3. India AI-Automation long video
     subsection_order = [
         ("global", True, "video", "AI Automation - Global (max views, 24h)"),
-        ("india", True, "video", "AI Automation - India (max views, 24h)"),
-        ("global", True, "short", "General AI Short - Global (max views, 24h)"),
+        ("global", True, "short", "AI Short - Global (max views, 24h)"),
+        ("india",  True, "video", "AI Automation - India (max views, 24h)"),
     ]
 
     # Group stories by (region, is_ai, format)
@@ -670,28 +776,7 @@ def build_telemetry_section(pdf, telemetry):
     config = SECTION_CONFIG["run_telemetry"]
     r, g, b = config["color"]
 
-    if pdf.get_y() > 220:
-        pdf.add_page()
-    y = pdf.get_y() + 5
-
-    pdf.set_fill_color(r, g, b)
-    pdf.rect(10, y, 190, 12, "F")
-    pdf.set_font("Helvetica", "B", 13)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(15, y + 1)
-    pdf.cell(180, 10, f"  {config['label'].upper()}")
-    y += 14
-
-    pdf.set_font("Helvetica", "I", 8)
-    pdf.set_text_color(100, 100, 100)
-    pdf.set_xy(12, y)
-    pdf.cell(186, 5, sanitize_text(config["desc"]))
-    y += 7
-
-    pdf.set_draw_color(r, g, b)
-    pdf.set_line_width(0.5)
-    pdf.line(12, y, 198, y)
-    y += 4
+    y = _draw_section_header(pdf, "run_telemetry")
 
     # Run summary
     pdf.set_font("Helvetica", "B", 10)

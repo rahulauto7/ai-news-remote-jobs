@@ -25,44 +25,44 @@ TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 OUTPUT_FILE = os.path.join(TMP_DIR, "analyzed_content.json")
 
 SECTIONS = [
-    "remote_jobs",
-    "ai_music_business_news",
-    "ai_music_copyright_laws",
-    "global_ai_news",
-    "indian_ai_industry",
-    "product_showcase_opportunities",
-    "anthropic_claude_news",
-    "elon_musk_ai_vision",
-    "unaddressed_ai_problems",
-    "ai_business_opportunities",
-    "quantum_ai_research",
-    "new_ai_tools",
-    "ai_model_benchmarks",
-    "ai_business_automation",
-    "ai_self_improvement_rsi",
-    "viral_video_landscape",
-    "youtube_ai_landscape",
-    "general_news",
+    "remote_jobs",                      # 0
+    "anthropic_claude_news",            # 1
+    "ai_business_automation",           # 2
+    "quantum_ai_research",              # 3
+    "product_showcase_opportunities",   # 4
+    "viral_video_landscape",            # 5
+    "youtube_ai_landscape",             # 6
+    "ai_music_copyright_laws",          # 7
+    "elon_musk_ai_vision",              # 8
+    "unaddressed_ai_problems",          # 9
+    "ai_business_opportunities",        # 10
+    "ai_music_business_news",           # 11
+    "global_ai_news",                   # 12
+    "indian_ai_industry",               # 13
+    "ai_self_improvement_rsi",          # 14
+    "ai_model_benchmarks",              # 15
+    "new_ai_tools",                     # 16
+    "general_news",                     # 17
 ]
 
 SECTION_LABELS = {
-    "remote_jobs": "Remote AI Automation Jobs (Global)",
-    "ai_music_business_news": "AI Music Business News",
-    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
-    "global_ai_news": "Global AI News",
-    "indian_ai_industry": "Indian AI Industry",
+    "remote_jobs": "Remote AI Automation Jobs (USA / Global)",
+    "anthropic_claude_news": "Anthropic & Claude Code Updates",
+    "ai_business_automation": "AI Automation & Businesses",
+    "quantum_ai_research": "Quantum + AI",
     "product_showcase_opportunities": "AI Product Showcase Opportunities",
-    "anthropic_claude_news": "Claude Model Updates",
+    "viral_video_landscape": "Viral Video Landscape (verified)",
+    "youtube_ai_landscape": "YouTube AI Landscape",
+    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
     "elon_musk_ai_vision": "Elon Musk's AI Vision",
     "unaddressed_ai_problems": "Unaddressed AI Problems",
     "ai_business_opportunities": "AI Business Opportunities",
-    "quantum_ai_research": "Quantum + AI",
-    "new_ai_tools": "New AI Tools",
-    "ai_model_benchmarks": "AI Model Benchmarks",
-    "ai_business_automation": "AI Automation & Businesses",
+    "ai_music_business_news": "AI Music Business News",
+    "global_ai_news": "Global AI News",
+    "indian_ai_industry": "Indian AI Industry",
     "ai_self_improvement_rsi": "AI Self-Improvement (RSI)",
-    "viral_video_landscape": "Viral Video Landscape (verified)",
-    "youtube_ai_landscape": "YouTube AI Landscape",
+    "ai_model_benchmarks": "AI Model Benchmarks",
+    "new_ai_tools": "New AI Tools",
     "general_news": "General News (non-AI)",
 }
 

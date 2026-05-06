@@ -1,9 +1,19 @@
 """
 Scrape global remote AI Automation jobs from multiple sources.
-Sources: LinkedIn (guest API), Wellfound, Indeed, Remotive, We Work Remotely,
-Himalayas, RemoteOK, Hacker News "Who is hiring", X/Twitter.
 
-Outputs: .tmp/jobs.json + .tmp/jobs.csv
+Reliable sources (work from datacenter IPs — used in cloud routine):
+  Remotive, RemoteOK, We Work Remotely (RSS), Himalayas, Hacker News (Algolia),
+  Greenhouse public boards (Anthropic, Scale, Hugging Face, Cohere, Databricks,
+  Zapier, Glean, Writer, Pinecone, etc.), Lever public boards (Replit,
+  Perplexity, Mistral, Harvey, ElevenLabs).
+
+Fragile sources (block datacenter IPs with 403/CAPTCHA — opt-in via env):
+  LinkedIn, Wellfound, Indeed, X/Twitter.
+  Skipped by default. Set JOBS_FRAGILE_SOURCES=1 to enable (works on a
+  residential IP, e.g. local laptop).
+
+Outputs: .tmp/jobs.json + .tmp/jobs.csv. Always writes a valid JSON file even
+if every source fails so the downstream pipeline never blocks on missing data.
 
 Each source is independent — failures in one don't kill the others.
 """
@@ -17,6 +27,8 @@ from urllib.parse import quote_plus
 
 import requests
 from bs4 import BeautifulSoup
+
+INCLUDE_FRAGILE = os.environ.get("JOBS_FRAGILE_SOURCES", "0").strip() == "1"
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
@@ -434,6 +446,116 @@ def scrape_remoteok(keywords=KEYWORDS, max_total=40):
     return jobs
 
 
+# ── Greenhouse public boards (no auth, JSON, datacenter-friendly) ─────────────
+GREENHOUSE_BOARDS = [
+    "anthropic", "scaleai", "huggingface", "cohere", "databricks",
+    "zapier", "glean", "writer", "pinecone", "elevenlabs",
+    "anyscale", "weaviate", "perplexityai", "openaifoundation",
+    "harvey", "decagon", "robinai", "magic", "runwayml",
+    "rocketcompanies", "thumbtack",
+]
+
+GREENHOUSE_KEYWORDS = [
+    "ai", "ml", " llm", "automation", "agent", "applied",
+    "claude", "n8n", "prompt", "workflow",
+]
+
+
+def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=10):
+    """Pull AI/automation roles from public Greenhouse boards. Direct apply URLs."""
+    jobs = []
+    for slug in boards:
+        try:
+            url = f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=false"
+            r = fetch(url, accept_json=True, referer=f"https://boards.greenhouse.io/{slug}")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Greenhouse:{slug}] HTTP {code}")
+                continue
+            data = r.json()
+            count = 0
+            for j in data.get("jobs", []):
+                title = (j.get("title") or "").strip()
+                tlow = title.lower()
+                if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
+                    continue
+                loc = (j.get("location") or {}).get("name", "") or ""
+                if loc and "remote" not in loc.lower() and "anywhere" not in loc.lower() \
+                        and "global" not in loc.lower() and "worldwide" not in loc.lower():
+                    # Allow US-based listings as fallback (still legitimately remote-friendly)
+                    if "united states" not in loc.lower() and "us" != loc.lower().strip().rstrip(",").strip():
+                        continue
+                jobs.append({
+                    "title": title[:200],
+                    "company": slug.title(),
+                    "url": j.get("absolute_url", ""),
+                    "posted": j.get("updated_at") or "",
+                    "salary": "",
+                    "source": f"Greenhouse:{slug}",
+                    "summary": f"{loc or 'Remote'} | direct apply",
+                })
+                count += 1
+                if count >= max_per_board:
+                    break
+            print(f"  [Greenhouse:{slug}] {count} matched jobs")
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"  [Greenhouse:{slug} ERROR] {e}")
+    return jobs
+
+
+# ── Lever public boards ───────────────────────────────────────────────────────
+LEVER_BOARDS = [
+    "replit", "perplexity", "mistral", "harvey",
+    "elevenlabs", "sierra", "cresta", "decagon",
+]
+
+
+def scrape_lever(boards=LEVER_BOARDS, max_per_board=10):
+    """Pull AI/automation roles from public Lever boards."""
+    jobs = []
+    for slug in boards:
+        try:
+            url = f"https://api.lever.co/v0/postings/{slug}?mode=json"
+            r = fetch(url, accept_json=True, referer=f"https://jobs.lever.co/{slug}")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Lever:{slug}] HTTP {code}")
+                continue
+            data = r.json() or []
+            count = 0
+            for j in data:
+                title = (j.get("text") or "").strip()
+                tlow = title.lower()
+                if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
+                    continue
+                cats = j.get("categories") or {}
+                loc = cats.get("location", "") or ""
+                commitment = cats.get("commitment", "") or ""
+                team = cats.get("team", "") or ""
+                if loc and "remote" not in loc.lower() and "anywhere" not in loc.lower() \
+                        and "global" not in loc.lower():
+                    if "united states" not in loc.lower() and "us" not in loc.lower().split():
+                        continue
+                jobs.append({
+                    "title": title[:200],
+                    "company": slug.title(),
+                    "url": j.get("hostedUrl") or j.get("applyUrl") or "",
+                    "posted": "",
+                    "salary": "",
+                    "source": f"Lever:{slug}",
+                    "summary": f"{team or ''} | {loc or 'Remote'} | {commitment or ''} | direct apply".strip(" |"),
+                })
+                count += 1
+                if count >= max_per_board:
+                    break
+            print(f"  [Lever:{slug}] {count} matched jobs")
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"  [Lever:{slug} ERROR] {e}")
+    return jobs
+
+
 # ── Hacker News "Who is hiring" via Algolia API ───────────────────────────────
 def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
     """Algolia HN search — public, no auth. Pulls recent hiring comments."""
@@ -521,59 +643,76 @@ def scrape_all_jobs():
     os.makedirs(TMP_DIR, exist_ok=True)
     all_jobs = []
 
-    print("[1/9] LinkedIn ...")
-    try:
-        all_jobs += scrape_linkedin()
-    except Exception as e:
-        print(f"  LinkedIn fatal: {e}")
+    print(f"[config] JOBS_FRAGILE_SOURCES={'on' if INCLUDE_FRAGILE else 'off (cloud-safe)'}")
 
-    print("[2/9] Wellfound ...")
-    try:
-        all_jobs += scrape_wellfound()
-    except Exception as e:
-        print(f"  Wellfound fatal: {e}")
+    if INCLUDE_FRAGILE:
+        print("[fragile] LinkedIn ...")
+        try:
+            all_jobs += scrape_linkedin()
+        except Exception as e:
+            print(f"  LinkedIn fatal: {e}")
 
-    print("[3/9] Indeed ...")
-    try:
-        all_jobs += scrape_indeed()
-    except Exception as e:
-        print(f"  Indeed fatal: {e}")
+        print("[fragile] Wellfound ...")
+        try:
+            all_jobs += scrape_wellfound()
+        except Exception as e:
+            print(f"  Wellfound fatal: {e}")
 
-    print("[4/9] Remotive ...")
+        print("[fragile] Indeed ...")
+        try:
+            all_jobs += scrape_indeed()
+        except Exception as e:
+            print(f"  Indeed fatal: {e}")
+
+        print("[fragile] Twitter/X via Nitter ...")
+        try:
+            all_jobs += scrape_twitter()
+        except Exception as e:
+            print(f"  Twitter fatal: {e}")
+    else:
+        print("[fragile] Skipping LinkedIn/Wellfound/Indeed/Twitter — datacenter IPs hard-block these (set JOBS_FRAGILE_SOURCES=1 to override)")
+
+    print("[reliable] Remotive ...")
     try:
         all_jobs += scrape_remotive()
     except Exception as e:
         print(f"  Remotive fatal: {e}")
 
-    print("[5/9] We Work Remotely ...")
+    print("[reliable] We Work Remotely ...")
     try:
         all_jobs += scrape_weworkremotely()
     except Exception as e:
         print(f"  WWR fatal: {e}")
 
-    print("[6/9] Himalayas ...")
+    print("[reliable] Himalayas ...")
     try:
         all_jobs += scrape_himalayas()
     except Exception as e:
         print(f"  Himalayas fatal: {e}")
 
-    print("[7/9] Twitter/X via Nitter ...")
-    try:
-        all_jobs += scrape_twitter()
-    except Exception as e:
-        print(f"  Twitter fatal: {e}")
-
-    print("[8/9] RemoteOK ...")
+    print("[reliable] RemoteOK ...")
     try:
         all_jobs += scrape_remoteok()
     except Exception as e:
         print(f"  RemoteOK fatal: {e}")
 
-    print("[9/9] Hacker News hiring ...")
+    print("[reliable] Hacker News hiring ...")
     try:
         all_jobs += scrape_hn_hiring()
     except Exception as e:
         print(f"  HN fatal: {e}")
+
+    print("[ATS] Greenhouse public boards ...")
+    try:
+        all_jobs += scrape_greenhouse()
+    except Exception as e:
+        print(f"  Greenhouse fatal: {e}")
+
+    print("[ATS] Lever public boards ...")
+    try:
+        all_jobs += scrape_lever()
+    except Exception as e:
+        print(f"  Lever fatal: {e}")
 
     deduped = dedupe(all_jobs)
     deduped.sort(key=score, reverse=True)

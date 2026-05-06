@@ -18,24 +18,24 @@ Every day at **00:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
 
 | # | Key | Source |
 |---|---|---|
-| 0 | `remote_jobs` | LinkedIn + Wellfound + Indeed + Remotive + We Work Remotely + Himalayas + RemoteOK + HN + X (Nitter) |
-| 1 | `ai_music_business_news` | RSS (MBW, DMN, Hypebot, etc.) |
-| 2 | `ai_music_copyright_laws` | RSS keyword filter |
-| 3 | `global_ai_news` | RSS (Verge, TechCrunch, etc.) |
-| 4 | `indian_ai_industry` | RSS (Inc42, YourStory, ETTech) |
-| 5 | `product_showcase_opportunities` | RSS (Product Hunt) + curated list |
-| 6 | `anthropic_claude_news` | Anthropic blog + RSS keyword |
-| 7 | `elon_musk_ai_vision` | xAI blog + Google News proxy |
-| 8 | `unaddressed_ai_problems` | RSS keyword filter |
-| 9 | `ai_business_opportunities` | RSS keyword filter |
-| 10 | `quantum_ai_research` | arXiv quant-ph + RSS |
-| 11 | `new_ai_tools` | Product Hunt + RSS |
-| 12 | `ai_model_benchmarks` | RSS keyword |
-| 13 | `ai_business_automation` | RSS keyword |
+| 0 | `remote_jobs` | Greenhouse + Lever ATS direct-apply + Remotive + We Work Remotely + Himalayas + RemoteOK + HN. LinkedIn / Indeed / Wellfound / Twitter are gated behind `JOBS_FRAGILE_SOURCES=1` (laptop-only; datacenter IPs hard-block them). USA / global, no India targeting. |
+| 1 | `anthropic_claude_news` | Anthropic blog + Claude Code release notes (new commands, hooks, MCP, slash commands, agents, model rollouts) |
+| 2 | `ai_business_automation` | RSS keyword (n8n, Zapier, Make, agents, workflow tools) |
+| 3 | `quantum_ai_research` | arXiv quant-ph + RSS |
+| 4 | `product_showcase_opportunities` | RSS (Product Hunt) + curated list |
+| 5 | `viral_video_landscape` | YouTube Data API v3 — 3 buckets: Global AI-Automation long, Global AI Short, India AI-Automation long |
+| 6 | `youtube_ai_landscape` | YouTube Data API v3 trending |
+| 7 | `ai_music_copyright_laws` | RSS keyword filter |
+| 8 | `elon_musk_ai_vision` | xAI blog + Google News proxy |
+| 9 | `unaddressed_ai_problems` | RSS keyword filter |
+| 10 | `ai_business_opportunities` | RSS keyword filter |
+| 11 | `ai_music_business_news` | RSS (MBW, DMN, Hypebot, etc.) |
+| 12 | `global_ai_news` | RSS (Verge, TechCrunch, etc.) |
+| 13 | `indian_ai_industry` | RSS (Inc42, YourStory, ETTech) |
 | 14 | `ai_self_improvement_rsi` | arXiv + RSS keyword |
-| 15 | `viral_video_landscape` | YouTube Data API v3 — verified |
-| 16 | `youtube_ai_landscape` | YouTube Data API v3 |
-| 17 | `general_news` | BBC, Hindu, NDTV |
+| 15 | `ai_model_benchmarks` | RSS keyword |
+| 16 | `new_ai_tools` | Product Hunt + RSS |
+| 17 | `general_news` | BBC, Hindu, NDTV (non-AI) |
 
 ## Steps (the agent executes these in order)
 
@@ -59,18 +59,11 @@ Every day at **00:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
 
    Drop arXiv abstracts and pure academic papers from sections 8 (Unaddressed Problems), 11 (New AI Tools), 12 (Benchmarks), 13 (Automation), 14 (RSI) unless they propose a working product/benchmark — these sections are for industry news, not raw research dumps.
 
-6.5. **Write `.tmp/agent_tokens.json`** with the agent's own session token usage so the PDF can render a "Run Telemetry" section. Schema:
+6.5. **Token tracking — agent self-instruments.** claude.ai routines do NOT give the agent live access to its own usage counters. The agent appends a one-line JSON checkpoint to `.tmp/agent_checkpoints.jsonl` after every major step (`bootstrap`, `scrapers`, `verify_videos`, `categorize`, `pdf`, `git_push`, `slack_send`):
    ```json
-   {
-     "model": "claude-opus-4-7",
-     "input_tokens": 0,
-     "output_tokens": 0,
-     "cache_read_tokens": 0,
-     "cache_creation_tokens": 0,
-     "notes": "optional free text"
-   }
+   {"t":"<iso>","step":"<name>","in":<int>,"out":<int>,"cache_read":<int>,"cache_creation":<int>,"note":"<optional>"}
    ```
-   If the runtime does not expose session usage, write `{ "available": false, "reason": "<why>" }` instead. The `run_daily_pipeline.py` orchestrator merges this file into `.tmp/run_telemetry.json` before PDF generation; if the file is missing, the PDF will note that token usage was unavailable.
+   At the end of the routine, `python tools/estimate_agent_tokens.py` sums all checkpoints into `.tmp/agent_tokens.json` (the file `generate_pdf.py`'s telemetry section reads). If checkpoints are missing it falls back to a bytes-based estimate (sum of files read/written ÷ 4 chars-per-token, plus a runtime-proportional thinking overhead). The PDF then shows **input + output + cache_read + cache_creation = total tokens** plus an estimated USD cost.
 
 7. Run `python tools/generate_pdf.py` → `.tmp/ai_news_remote_jobs_YYYY-MM-DD.pdf`
 8. **Push to dated GitHub branch** `daily/YYYY-MM-DD`:
@@ -82,16 +75,17 @@ Every day at **00:00 IST** (laptop off OK — runs as a claude.ai cloud schedule
     - Branch: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/tree/daily/<DATE>`
     - Raw PDF: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/raw/daily/<DATE>/daily/ai_news_remote_jobs_<DATE>.pdf`
 
-## Section 15 verification rules (critical)
+## Section 5 verification rules (critical)
 
 `tools/youtube_viral_verify.py` enforces:
 - Each candidate must have `publishedAfter = now - 24h`
 - Real `viewCount` from `videos.list` (not search snippet estimate)
-- Bucket A: global automation, **>= 100,000 views**
-- Bucket B: India automation (regionCode=IN), **>= 25,000 views**
-- Bucket C: global Short, duration ≤ 60s, **>= 250,000 views**
+- Bucket 1: Global AI-Automation long video, **>= 100,000 views**
+- Bucket 2: Global AI Short, duration ≤ 60s, **>= 250,000 views**
+- Bucket 3: India AI-Automation long video (regionCode=IN), **>= 25,000 views**
 - URL `https://www.youtube.com/watch?v=<id>` must return HTTP 200
-- If a bucket has no qualifying video, the section notes "no verified viral video in last 24h" — never fabricate.
+- The agent additionally re-verifies each URL with `curl -sI` in step 2.5 of the routine and drops anything that fails sanity.
+- If a bucket has no qualifying video, the section notes "no verified viral video in last 24h" — **never fabricate**.
 
 ## Failure handling
 

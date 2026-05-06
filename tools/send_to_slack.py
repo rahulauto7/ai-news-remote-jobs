@@ -86,5 +86,7 @@ def send_pdf(pdf_path: str, csv_path: str | None = None):
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("usage: send_to_slack.py <pdf-path> [<csv-path>]")
-        sys.exit(1)
-    send_pdf(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+        sys.exit(2)
+    result = send_pdf(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+    # Exit non-zero on failure so the routine can branch on $? and fail loudly.
+    sys.exit(0 if result else 1)

@@ -127,9 +127,9 @@ def run():
 
     out = []
 
-    # Bucket A: global automation
+    # Bucket 1: global AI automation long video
     try:
-        ids = search_candidates("AI automation tutorial OR n8n OR Make.com OR Zapier", region_code=None)
+        ids = search_candidates("AI automation tutorial OR n8n OR Make.com OR Zapier OR \"AI agent\"", region_code=None)
         items = fetch_video_details(ids)
         pick = pick_top(items, THRESH_GLOBAL, must_be_short=False)
         if pick:
@@ -140,20 +140,7 @@ def run():
     except Exception as e:
         print(f"  [global_automation ERROR] {e}")
 
-    # Bucket B: India automation
-    try:
-        ids = search_candidates("AI automation India OR \"n8n India\" OR \"AI agent India\"", region_code="IN")
-        items = fetch_video_details(ids)
-        pick = pick_top(items, THRESH_INDIA, must_be_short=False)
-        if pick:
-            out.append(to_record(*pick, bucket="india_automation"))
-            print(f"  [india_automation] {pick[1]:,} views — {pick[0]['snippet']['title'][:60]}")
-        else:
-            print("  [india_automation] none qualified")
-    except Exception as e:
-        print(f"  [india_automation ERROR] {e}")
-
-    # Bucket C: global AI Short
+    # Bucket 2: global AI Short
     try:
         ids = search_candidates("AI #shorts OR ChatGPT #shorts OR Claude #shorts", region_code=None)
         items = fetch_video_details(ids)
@@ -165,6 +152,19 @@ def run():
             print("  [global_short] none qualified")
     except Exception as e:
         print(f"  [global_short ERROR] {e}")
+
+    # Bucket 3: India AI automation long video
+    try:
+        ids = search_candidates("AI automation India OR \"n8n India\" OR \"AI agent India\"", region_code="IN")
+        items = fetch_video_details(ids)
+        pick = pick_top(items, THRESH_INDIA, must_be_short=False)
+        if pick:
+            out.append(to_record(*pick, bucket="india_automation"))
+            print(f"  [india_automation] {pick[1]:,} views — {pick[0]['snippet']['title'][:60]}")
+        else:
+            print("  [india_automation] none qualified")
+    except Exception as e:
+        print(f"  [india_automation ERROR] {e}")
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump({

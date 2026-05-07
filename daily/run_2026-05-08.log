@@ -1,0 +1,264 @@
+=== scrape_jobs ===
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[config] JOBS_FRAGILE_SOURCES=off (cloud-safe)
+[fragile] Skipping LinkedIn/Wellfound/Indeed/Twitter — datacenter IPs hard-block these (set JOBS_FRAGILE_SOURCES=1 to override)
+[reliable] Remotive ...
+  [Remotive ERROR] AI automation: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] AI automator: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] Claude Code: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] n8n developer: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] LLM engineer: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] prompt engineer: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] AI agent developer: Expecting value: line 1 column 1 (char 0)
+  [Remotive ERROR] automation engineer AI: Expecting value: line 1 column 1 (char 0)
+[reliable] We Work Remotely ...
+  [WWR] 25 matched jobs
+[reliable] Himalayas ...
+  [Himalayas] AI automation: non-JSON response
+  [Himalayas] AI automator: non-JSON response
+  [Himalayas] Claude Code: non-JSON response
+  [Himalayas] n8n developer: non-JSON response
+  [Himalayas] LLM engineer: non-JSON response
+  [Himalayas] prompt engineer: non-JSON response
+  [Himalayas] AI agent developer: non-JSON response
+  [Himalayas] automation engineer AI: non-JSON response
+[reliable] RemoteOK ...
+  [RemoteOK ERROR] Expecting value: line 1 column 1 (char 0)
+[reliable] Hacker News hiring ...
+  [HN] 15 hiring posts
+[ATS] Greenhouse public boards ...
+  [Greenhouse:anthropic] 5 matched jobs
+  [Greenhouse:scaleai] 0 matched jobs
+  [Greenhouse:huggingface] HTTP 404
+  [Greenhouse:cohere] HTTP 404
+  [Greenhouse:databricks] 10 matched jobs
+  [Greenhouse:zapier] HTTP 404
+  [Greenhouse:glean] HTTP 404
+  [Greenhouse:writer] HTTP 404
+  [Greenhouse:pinecone] HTTP 404
+  [Greenhouse:elevenlabs] HTTP 404
+  [Greenhouse:anyscale] HTTP 404
+  [Greenhouse:weaviate] HTTP 404
+  [Greenhouse:perplexityai] HTTP 404
+  [Greenhouse:openaifoundation] HTTP 404
+  [Greenhouse:harvey] HTTP 404
+  [Greenhouse:decagon] HTTP 404
+  [Greenhouse:robinai] HTTP 404
+  [Greenhouse:magic] 0 matched jobs
+  [Greenhouse:runwayml] HTTP 404
+  [Greenhouse:rocketcompanies] HTTP 404
+  [Greenhouse:thumbtack] HTTP 404
+[ATS] Lever public boards ...
+  [Lever:replit] HTTP 404
+  [Lever:perplexity] HTTP 404
+  [Lever:mistral] 0 matched jobs
+  [Lever:harvey] HTTP 404
+  [Lever:elevenlabs] HTTP 404
+  [Lever:sierra] HTTP 404
+  [Lever:cresta] HTTP 404
+  [Lever:decagon] HTTP 404
+
+Done. 51 unique jobs → /Users/rahulmeena/final ai news/.tmp/jobs.json
+CSV → /Users/rahulmeena/final ai news/.tmp/jobs.csv
+=== scrape_rss_feeds ===
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Scraping 30 RSS feeds (cutoff: 2026-05-06 18:23 UTC)...
+  [  0 articles] The Verge AI
+  [  0 articles] TechCrunch AI
+  [  0 articles] Ars Technica AI
+  [  0 articles] MIT Technology Review
+  [  0 articles] VentureBeat AI
+  [  0 articles] The Decoder
+  [  1 articles] AI News
+  [  5 articles] Wired AI
+  [ 15 articles] ZDNet AI
+  [  0 articles] The Register AI
+  [  0 articles] OpenAI Blog
+  [  0 articles] Google AI Blog
+  [  1 articles] Hugging Face Blog
+  [  0 articles] Inc42
+  [  9 articles] YourStory
+  [ 50 articles] Economic Times Tech
+  [ 15 articles] arXiv Quantum Physics
+  [ 15 articles] arXiv AI
+  [ 15 articles] arXiv Machine Learning
+  [ 10 articles] Music Business Worldwide
+  [  0 articles] Digital Music News
+  [ERROR] Hypebot: 404 Client Error: Not Found for url: https://www.hypebot.com/feed/
+  [  0 articles] Hypebot
+  [ERROR] Anthropic Blog: 404 Client Error: Not Found for url: https://www.anthropic.com/rss.xml
+  [  0 articles] Anthropic Blog
+  [ERROR] xAI Blog: 403 Client Error: Forbidden for url: https://x.ai/blog/rss.xml
+  [  0 articles] xAI Blog
+  [  3 articles] Elon Musk on X (via Google News)
+  [  3 articles] Product Hunt AI
+  [  0 articles] Futurism
+  [ 29 articles] BBC World
+  [ 60 articles] The Hindu - National
+  [ 20 articles] NDTV Top Stories
+
+Done! 251 unique articles saved to /Users/rahulmeena/final ai news/.tmp/rss_articles.json
+=== youtube_viral_verify ===
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+  [global_automation] none qualified
+  [global_short] none qualified
+  [india_automation] none qualified
+
+Verified videos saved → /Users/rahulmeena/final ai news/.tmp/youtube_verified.json (0/3 buckets filled)
+=== scrape_youtube_trending ===
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/google/api_core/_python_version_support.py:242: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/rahulmeena/final ai news/.venv/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Searching 28 queries...
+  [ 5 videos] 'AI news today'
+  [ 5 videos] 'artificial intelligence news'
+  [ 5 videos] 'AI breaking news'
+  [ 5 videos] 'AI business opportunities 2026'
+  [ 5 videos] 'AI business automation'
+  [ 5 videos] 'AI startups'
+  [ 5 videos] 'best AI tools'
+  [ 5 videos] 'AI image generation'
+  [ 5 videos] 'AI video generation tools'
+  [ 5 videos] 'AI content creation tools'
+  [ 5 videos] 'AI music news'
+  [ 5 videos] 'AI copyright law'
+  [ 5 videos] 'Suno AI music'
+  [ 5 videos] 'AI music distribution'
+  [ 5 videos] 'AI India news'
+  [ 5 videos] 'Indian AI startups'
+  [ 5 videos] 'quantum AI research'
+  [ 5 videos] 'quantum computing AI'
+  [ 5 videos] 'AI self improvement recursive'
+  [ 5 videos] 'AI regulation news'
+  [ 5 videos] 'AI China news'
+  [ 3 videos] 'AI Europe regulation'
+  [ 5 videos] 'Claude Anthropic AI news'
+  [ 5 videos] 'Anthropic Claude model update'
+  [ 5 videos] 'Elon Musk AI news'
+  [ 5 videos] 'xAI Grok AI'
+  [ 0 videos] 'AI industry problems unsolved'
+  [ 2 videos] 'where to submit AI product launch'
+
+Checking 5 AI channels...
+  [ 1 videos] The PrimeTime
+  [ 1 videos] Fireship
+
+Fetching viral trending charts...
+  [25 videos] Chart trending — Global
+  [25 videos] Chart trending — India
+
+Searching viral AI-platform videos (Global)...
+  [ 5 videos] 'Claude Code' — Global [platform=Claude Code]
+  [ 5 videos] 'Cursor AI' — Global [platform=Cursor AI]
+  [ 5 videos] 'Windsurf AI' — Global [platform=Windsurf AI]
+  [ 5 videos] 'Cline AI' — Global [platform=Cline AI]
+  [ 5 videos] 'Aider AI' — Global [platform=Aider AI]
+  [ 5 videos] 'Devin AI' — Global [platform=Devin AI]
+  [ 5 videos] 'Replit Agent' — Global [platform=Replit Agent]
+  [ 5 videos] 'Manus AI' — Global [platform=Manus AI]
+  [ 5 videos] 'v0 Vercel' — Global [platform=v0 Vercel]
+  [ 5 videos] 'Bolt.new' — Global [platform=Bolt.new]
+  [ 5 videos] 'Lovable AI' — Global [platform=Lovable AI]
+  [ 5 videos] 'GitHub Copilot agent' — Global [platform=GitHub Copilot agent]
+  [ 5 videos] 'ChatGPT agent' — Global [platform=ChatGPT agent]
+  [ 5 videos] 'Claude agents' — Global [platform=Claude agents]
+  [ 5 videos] 'Jules Google' — Global [platform=Jules Google]
+  [ 5 videos] 'OpenAI Codex' — Global [platform=OpenAI Codex]
+  [ 5 videos] 'CrewAI' — Global [platform=CrewAI]
+  [ 5 videos] 'LangGraph' — Global [platform=LangGraph]
+  [ 5 videos] 'AutoGen agent' — Global [platform=AutoGen agent]
+  [ 5 videos] 'Mastra AI' — Global [platform=Mastra AI]
+
+Searching viral AI-platform videos (India)...
+  [ 5 videos] 'Claude Code India' — India [platform=Claude Code]
+  [ 5 videos] 'Cursor AI India' — India [platform=Cursor AI]
+  [ 5 videos] 'Windsurf AI India' — India [platform=Windsurf AI]
+  [ 5 videos] 'Cline AI India' — India [platform=Cline AI]
+  [ 0 videos] 'Aider AI India' — India [platform=Aider AI]
+  [ 5 videos] 'Devin AI India' — India [platform=Devin AI]
+  [ 5 videos] 'Replit Agent India' — India [platform=Replit Agent]
+  [ 5 videos] 'Manus AI India' — India [platform=Manus AI]
+  [ 5 videos] 'v0 Vercel India' — India [platform=v0 Vercel]
+  [ 5 videos] 'Bolt.new India' — India [platform=Bolt.new]
+  [ 5 videos] 'Lovable AI India' — India [platform=Lovable AI]
+  [ 5 videos] 'GitHub Copilot agent India' — India [platform=GitHub Copilot agent]
+  [ 5 videos] 'ChatGPT agent India' — India [platform=ChatGPT agent]
+  [ 5 videos] 'Claude agents India' — India [platform=Claude agents]
+  [ 2 videos] 'Jules Google India' — India [platform=Jules Google]
+  [ 5 videos] 'OpenAI Codex India' — India [platform=OpenAI Codex]
+  [ 5 videos] 'CrewAI India' — India [platform=CrewAI]
+  [ 5 videos] 'LangGraph India' — India [platform=LangGraph]
+  [ 5 videos] 'AutoGen agent India' — India [platform=AutoGen agent]
+  [ 0 videos] 'Mastra AI India' — India [platform=Mastra AI]
+  [ 5 videos] 'Claude Code Hindi' — India [platform=Claude Code]
+  [ 5 videos] 'Cursor AI Hindi' — India [platform=Cursor AI]
+  [ 5 videos] 'Windsurf AI Hindi' — India [platform=Windsurf AI]
+  [ 5 videos] 'Cline AI Hindi' — India [platform=Cline AI]
+  [ 5 videos] 'Aider AI Hindi' — India [platform=Aider AI]
+  [ 5 videos] 'Devin AI Hindi' — India [platform=Devin AI]
+
+Searching viral AI Shorts...
+  [ 5 shorts] 'Claude Code shorts' — Global
+  [ 5 shorts] 'Claude Code shorts' — India
+  [ 5 shorts] 'Cursor AI shorts' — Global
+  [ 5 shorts] 'Cursor AI shorts' — India
+  [ 5 shorts] 'Devin AI shorts' — Global
+  [ 5 shorts] 'Devin AI shorts' — India
+  [ 5 shorts] 'Sora 2 shorts' — Global
+  [ 5 shorts] 'Sora 2 shorts' — India
+  [ 5 shorts] 'Veo shorts' — Global
+  [ 5 shorts] 'Veo shorts' — India
+  [ 5 shorts] 'ChatGPT shorts' — Global
+  [ 5 shorts] 'ChatGPT shorts' — India
+  [ 5 shorts] 'Gemini shorts' — Global
+  [ 5 shorts] 'Gemini shorts' — India
+  [ 5 shorts] 'AI agent shorts' — Global
+  [ 5 shorts] 'AI agent shorts' — India
+
+Searching general viral Shorts...
+  [ERROR] Shorts search 'viral shorts today' (region=None): <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/search?q=viral+shorts+today&part=snippet&type=video&order=viewCount&videoDuration=short&maxResults=5&relevanceLanguage=en&key=AIzaSyBOSBfqFDwxnHrf8Cim2HoA6UBrcnVG83s&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">
+  [ 0 shorts] General viral — Global
+  [ERROR] Shorts search 'viral shorts today' (region=IN): <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/search?q=viral+shorts+today&part=snippet&type=video&order=viewCount&videoDuration=short&maxResults=5&relevanceLanguage=en&regionCode=IN&key=AIzaSyBOSBfqFDwxnHrf8Cim2HoA6UBrcnVG83s&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">
+  [ 0 shorts] General viral — India
+  [filter] Dropped 1 viral video(s) matching excluded workflow tools
+
+Total viral videos fetched: 346
+
+Done! 386 unique videos saved to /Users/rahulmeena/final ai news/.tmp/youtube_trending.json
+Loaded 51 job postings
+Loaded 251 RSS articles
+Loaded 0 verified viral videos
+Loaded 386 YouTube trending videos
+
+Analysis saved to /Users/rahulmeena/final ai news/.tmp/analyzed_content.json
+Section breakdown:
+  [ 0] [25 items] Remote AI Automation Jobs (USA / Global)
+  [ 1] [ 4 items] Anthropic & Claude Code Updates
+  [ 2] [ 6 items] AI Automation & Businesses
+  [ 3] [ 8 items] Quantum + AI
+  [ 4] [ 3 items] AI Product Showcase Opportunities
+  [ 5] [ 0 items] Viral Video Landscape (verified)
+  [ 6] [10 items] YouTube AI Landscape
+  [ 7] [ 4 items] Copyright & Laws in AI Music Business
+  [ 8] [ 8 items] Elon Musk's AI Vision
+  [ 9] [ 5 items] Unaddressed AI Problems
+  [10] [ 8 items] AI Business Opportunities
+  [11] [ 8 items] AI Music Business News
+  [12] [ 8 items] Global AI News
+  [13] [ 8 items] Indian AI Industry
+  [14] [ 4 items] AI Self-Improvement (RSI)
+  [15] [ 3 items] AI Model Benchmarks
+  [16] [ 3 items] New AI Tools
+  [17] [ 8 items] General News (non-AI)
+Generating PDF...
+
+PDF generated: /Users/rahulmeena/final ai news/.tmp/ai_news_remote_jobs_2026-05-07.pdf
+  Size: 150 KB
+  Pages: 24
+  Stories: 123

@@ -448,11 +448,10 @@ def scrape_remoteok(keywords=KEYWORDS, max_total=40):
 
 # ── Greenhouse public boards (no auth, JSON, datacenter-friendly) ─────────────
 GREENHOUSE_BOARDS = [
-    "anthropic", "scaleai", "huggingface", "cohere", "databricks",
-    "zapier", "glean", "writer", "pinecone", "elevenlabs",
-    "anyscale", "weaviate", "perplexityai", "openaifoundation",
-    "harvey", "decagon", "robinai", "magic", "runwayml",
-    "rocketcompanies", "thumbtack",
+    # Verified 2026-05: 200 OK from boards-api.greenhouse.io
+    "anthropic", "scaleai", "databricks", "gleanwork", "datadog",
+    "stripe", "figma", "asana", "vercel", "discord", "wayve",
+    "togetherai", "imbue", "magic",
 ]
 
 GREENHOUSE_KEYWORDS = [
@@ -506,8 +505,9 @@ def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=10):
 
 # ── Lever public boards ───────────────────────────────────────────────────────
 LEVER_BOARDS = [
-    "replit", "perplexity", "mistral", "harvey",
-    "elevenlabs", "sierra", "cresta", "decagon",
+    # Verified 2026-05: 200 OK from api.lever.co. Many AI orgs (Harvey, ElevenLabs,
+    # Sierra, Cresta, Decagon, Perplexity) migrated to Ashby — see scrape_ashby below.
+    "mistral", "anyscale", "neon", "binance", "toptal",
 ]
 
 
@@ -553,6 +553,70 @@ def scrape_lever(boards=LEVER_BOARDS, max_per_board=10):
             time.sleep(0.3)
         except Exception as e:
             print(f"  [Lever:{slug} ERROR] {e}")
+    return jobs
+
+
+# ── Ashby public boards (most modern AI ATS — Harvey, ElevenLabs, Cohere, etc.)
+ASHBY_BOARDS = [
+    # Verified 2026-05: 200 OK from api.ashbyhq.com
+    "harvey", "mistral", "vanta", "elevenlabs", "sierra",
+    "cohere", "ramp", "decagon", "perplexity", "writer",
+    "modal", "linear",
+]
+
+
+def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=10):
+    """Pull AI/automation roles from public Ashby job boards.
+
+    Note: we bypass fetch() here because Ashby's CDN returns brotli-encoded
+    responses when Accept-Encoding includes ``br``, and the ``brotli`` package
+    isn't a hard dependency. Use minimal headers so requests negotiates gzip.
+    """
+    jobs = []
+    ashby_headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; ai-news-bot/1.0)",
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip, deflate",
+    }
+    for slug in boards:
+        try:
+            url = f"https://api.ashbyhq.com/posting-api/job-board/{slug}?includeCompensation=false"
+            r = requests.get(url, headers=ashby_headers, timeout=20)
+            if r.status_code != 200:
+                print(f"  [Ashby:{slug}] HTTP {r.status_code}")
+                continue
+            data = r.json() or {}
+            count = 0
+            for j in data.get("jobs", []):
+                title = (j.get("title") or "").strip()
+                tlow = title.lower()
+                if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
+                    continue
+                if not j.get("isListed", True):
+                    continue
+                # Prefer remote / global; allow US fallback
+                loc = (j.get("location") or "").strip()
+                workplace = (j.get("workplaceType") or "").lower()
+                is_remote = bool(j.get("isRemote")) or "remote" in workplace or "remote" in loc.lower()
+                if not is_remote:
+                    if "united states" not in loc.lower() and "us" != loc.lower().strip():
+                        continue
+                jobs.append({
+                    "title": title[:200],
+                    "company": slug.title(),
+                    "url": j.get("jobUrl") or j.get("applyUrl") or "",
+                    "posted": j.get("publishedAt") or "",
+                    "salary": "",
+                    "source": f"Ashby:{slug}",
+                    "summary": f"{j.get('department','') or ''} | {loc or 'Remote'} | {j.get('employmentType','') or ''} | direct apply".strip(" |"),
+                })
+                count += 1
+                if count >= max_per_board:
+                    break
+            print(f"  [Ashby:{slug}] {count} matched jobs")
+            time.sleep(0.3)
+        except Exception as e:
+            print(f"  [Ashby:{slug} ERROR] {e}")
     return jobs
 
 
@@ -713,6 +777,12 @@ def scrape_all_jobs():
         all_jobs += scrape_lever()
     except Exception as e:
         print(f"  Lever fatal: {e}")
+
+    print("[ATS] Ashby public boards ...")
+    try:
+        all_jobs += scrape_ashby()
+    except Exception as e:
+        print(f"  Ashby fatal: {e}")
 
     deduped = dedupe(all_jobs)
     deduped.sort(key=score, reverse=True)

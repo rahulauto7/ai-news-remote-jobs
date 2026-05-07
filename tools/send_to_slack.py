@@ -6,12 +6,15 @@ Uses files_upload_v2 — DM is opened automatically when channel=user_id.
 If env vars are missing, prints a notice and returns None so the pipeline
 doesn't crash on dev machines.
 """
+from __future__ import annotations
+
 import os
 import sys
 from datetime import datetime
+from typing import Optional
 
 
-def send_pdf(pdf_path: str, csv_path: str | None = None):
+def send_pdf(pdf_path: str, csv_path: Optional[str] = None):
     token = os.environ.get("SLACK_BOT_TOKEN", "").strip()
     user_id = os.environ.get("SLACK_USER_ID", "").strip()
     if not token or not user_id:

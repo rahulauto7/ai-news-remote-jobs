@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-4-7",
+  "input_tokens": 31300,
+  "output_tokens": 8350,
+  "cache_read_tokens": 0,
+  "cache_creation_tokens": 0,
+  "estimated_at": "2026-05-07T18:28:24.638089+00:00",
+  "notes": "Self-reported by agent across 4 checkpoints in agent_checkpoints.jsonl. Includes start-to-end usage (scraping, categorizing, PDF, push, Slack)."
+}

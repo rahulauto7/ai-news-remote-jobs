@@ -164,11 +164,11 @@ def route_article(art: dict) -> str | None:
         # else AI-touching world story → fall through to AI routing
 
     # Section 1 — Anthropic / Claude
-    if has_any(text, ["anthropic", "claude code", "claude "]) or "anthropic" in src:
+    if has_any(text, ["anthropic", "claude code", "claude "]) or "anthropic" in src or "claude code" in src:
         return "anthropic_claude_news"
 
     # Section 8 — Elon Musk / xAI / Grok
-    if has_any(text, ["elon musk", "elon's", " xai", "x.ai", "grok"]) or "elon musk" in src:
+    if has_any(text, ["elon musk", "elon's", " xai", "x.ai", "grok"]) or "elon musk" in src or "xai news" in src:
         return "elon_musk_ai_vision"
 
     # Section 7 — AI music copyright

@@ -47,15 +47,18 @@ FEEDS = {
     "arXiv Machine Learning": "https://rss.arxiv.org/rss/cs.LG",
 
     # Music Industry / Copyright
+    # Hypebot's hosted feed went 404 in 2026-04 — dropped. MBW + DMN cover the same beat.
     "Music Business Worldwide": "https://www.musicbusinessworldwide.com/feed/",
     "Digital Music News": "https://www.digitalmusicnews.com/feed/",
-    "Hypebot": "https://www.hypebot.com/feed",
 
-    # Anthropic / Claude
-    "Anthropic Blog": "https://www.anthropic.com/rss.xml",
+    # Anthropic / Claude — anthropic.com/rss.xml is dead. Use the Claude Code
+    # release-notes feed (covers new commands, hooks, MCP, slash commands, agents,
+    # model rollouts) — confirmed 200 OK, ~500KB.
+    "Anthropic Claude Code Releases": "https://docs.anthropic.com/en/release-notes/claude-code.rss",
 
-    # xAI / Elon Musk AI
-    "xAI Blog": "https://x.ai/blog/rss.xml",
+    # xAI / Elon Musk AI — x.ai/blog/rss.xml returns 403 from datacenter IPs (Cloudflare
+    # blocks non-residential). Use Google News proxies instead.
+    "xAI News (via Google News)": "https://news.google.com/rss/search?q=%22xAI%22+OR+%22Grok%22+(model+OR+launch+OR+update)&hl=en-US&gl=US&ceid=US:en",
     # Elon Musk posts on x.com — direct scraping requires auth (402), so we
     # proxy via Google News RSS filtered to site:x.com/elonmusk
     "Elon Musk on X (via Google News)": "https://news.google.com/rss/search?q=%22elon+musk%22+(xAI+OR+Grok+OR+AI)+site:x.com%2Felonmusk&hl=en-US&gl=US&ceid=US:en",
@@ -166,11 +169,11 @@ def _categorize_source(source_name):
         "indian": ["Inc42", "YourStory", "Economic Times Tech"],
         "quantum": ["arXiv Quantum Physics"],
         "ai_research": ["arXiv AI", "arXiv Machine Learning"],
-        "music_copyright": ["Music Business Worldwide", "Digital Music News", "Hypebot"],
+        "music_copyright": ["Music Business Worldwide", "Digital Music News"],
         "tools": ["Product Hunt AI"],
         "company_blog": ["OpenAI Blog", "Google AI Blog", "Hugging Face Blog"],
-        "anthropic_claude": ["Anthropic Blog"],
-        "elon_xai": ["xAI Blog"],
+        "anthropic_claude": ["Anthropic Claude Code Releases"],
+        "elon_xai": ["xAI News (via Google News)", "Elon Musk on X (via Google News)"],
         "general_news": ["BBC World", "The Hindu - National", "NDTV Top Stories"],
     }
     for cat, sources in categories.items():

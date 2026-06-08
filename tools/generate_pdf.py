@@ -1,952 +1,850 @@
 """
-Generate an attractive daily AI news PDF from analyzed content.
-Reads .tmp/analyzed_content.json → Outputs .tmp/ai_news_daily_YYYY-MM-DD.pdf
+Generate the daily AI news PDF as a "StayingAhead"-style magazine.
 
-Features:
-- Color-coded section headers with unique colors per section
-- Cover page with date, table of contents, and topic distribution chart
-- Relevance star ratings per story
-- Source attribution and URLs
-- Alternating row backgrounds
-- Charts via matplotlib
+Reads .tmp/analyzed_content.json (+ .tmp/youtube_content_ideas.json)
+   -> Outputs .tmp/ai_news_remote_jobs_YYYY-MM-DD.pdf
+
+Design: dark full-bleed cover + closing, oversized bold headlines with a lime
+highlight behind a key word, "Quick Take" cards, lime-tick bullet lists, and
+dark callout cards. Pure fpdf2 (no system deps) so the daily cloud run never
+breaks on a missing renderer. Bundled fonts live in assets/fonts/; if they fail
+to load the renderer degrades to Helvetica instead of crashing.
+
+All 19 sections in SECTION_ORDER are rendered. Special renderers (jobs,
+benchmarks, youtube ideas, viral video, instagram reels) keep their existing
+data contracts; everything else uses the generic story card.
 """
 
 import html
-import io
 import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime
 
 from fpdf import FPDF
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from PIL import Image
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 TODAY = datetime.now().strftime("%Y-%m-%d")
+DISPLAY_DATE = datetime.now().strftime("%a, %d %B %Y")
 OUTPUT_FILE = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{TODAY}.pdf")
 
 # ── Section Config ────────────────────────────────────────────────────────────
 SECTION_CONFIG = {
     "remote_jobs": {
-        "label": "Remote AI Automation Jobs (USA / Global)",
-        "icon": "✎",      # pencil
-        "color": (39, 174, 96),  # Emerald green
-        "desc": "USA/global remote AI-automation roles - Greenhouse + Lever direct-apply links, Remotive, RemoteOK, We Work Remotely, Himalayas, HN.",
+        "label": "Remote AI Jobs",
+        "desc": "Worldwide-remote AI roles ranked against workflows/user_profile.md (n8n / Voiceflow / Relevance AI / Claude Code, entry-level). Senior/lead/principal and region-locked listings dropped. Sources: Remotive, RemoteOK, WWR, Himalayas, HN, Greenhouse/Lever/Ashby boards.",
+    },
+    "youtube_content_ideas": {
+        "label": "YouTube Content Ideas",
+        "desc": "Three video ideas synthesised by the agent from the rest of this PDF, engineered to plausibly hit 10M views. Each ships with a hook, a thumbnail concept, and a 5-beat outline you can shoot the same week.",
+    },
+    "ai_search_trends": {
+        "label": "What People Are Searching For",
+        "desc": "Hottest AI topics right now: Google Trends rising queries (global + India), Hacker News top AI stories, and Reddit AI subreddits (last 24h).",
+    },
+    "instagram_viral_reels": {
+        "label": "Viral Instagram Reels",
+        "desc": "Top-engagement AI reels in the last 24h - one Global, one India. Ranked by likes + comments, AI-filtered, URL-checked. Reverse-engineer the hook for your own reels.",
     },
     "global_ai_news": {
         "label": "Global AI News",
-        "icon": "\u2637",      # ☷
-        "color": (41, 128, 185),  # Steel blue
-        "desc": "Worldwide AI: US, EU, China, Japan, Korea, Middle East & more",
+        "desc": "Worldwide AI news only (US, EU, China, Japan, Korea, Middle East) - no general tech, no non-AI business news.",
     },
     "indian_ai_industry": {
         "label": "Indian AI Industry",
-        "icon": "\u2605",      # ★
-        "color": (255, 153, 51),  # India saffron
-        "desc": "India-specific AI news, policy, startups, government initiatives",
+        "desc": "India-specific AI news only - Indian AI startups, AI policy, AI products.",
     },
     "product_showcase_opportunities": {
-        "label": "AI Product Showcase Opportunities",
-        "icon": "\u2709",      # ✉
-        "color": (0, 128, 128),   # Teal
-        "desc": "Platforms, directories & competitions to submit your AI product — India & worldwide",
+        "label": "AI Showcase Opportunities",
+        "desc": "AI hackathons & competitions plus accelerators / incubators (e.g. IndiaAI, YC, Techstars). Each item carries a direct apply link + deadline. India & worldwide.",
     },
     "anthropic_claude_news": {
-        "label": "Anthropic & Claude Code Updates",
-        "icon": "\u25C8",      # ◈
-        "color": (204, 121, 67),  # Warm amber
+        "label": "Anthropic & Claude Code",
         "desc": "Anthropic company news + Claude Code feature updates (new commands, hooks, MCP, slash commands, agents, model rollouts).",
     },
     "elon_musk_ai_vision": {
         "label": "Elon Musk's AI Vision",
-        "icon": "\u2604",      # ☄
-        "color": (50, 50, 50),    # Dark gray
-        "desc": "xAI & Grok news, Elon Musk's AI views, statements & predictions",
+        "desc": "xAI & Grok news, Elon Musk's AI views, statements & predictions.",
     },
     "unaddressed_ai_problems": {
         "label": "Unaddressed AI Problems",
-        "icon": "\u2753",      # ❓
-        "color": (180, 30, 30),   # Deep red
-        "desc": "Real problems in AI that nobody is solving — gaps & unmet needs",
+        "desc": "Real problems in AI that nobody is solving - gaps & unmet needs.",
     },
     "ai_business_opportunities": {
         "label": "AI Business Opportunities",
-        "icon": "\u2728",      # ✨
-        "color": (46, 204, 113),  # Green
-        "desc": "Emerging business opportunities in AI — India & world",
+        "desc": "Emerging business opportunities in AI - India & world.",
     },
     "quantum_ai_research": {
         "label": "Quantum + AI",
-        "icon": "\u269b",      # ⚛
-        "color": (26, 188, 156),  # Teal
-        "desc": "Quantum computing + AI breakthroughs — only stories where AI is involved",
-    },
-    "ai_music_business_news": {
-        "label": "AI Music Business News",
-        "icon": "\u266b",      # ♫
-        "color": (230, 126, 34),  # Orange
-        "desc": "Suno, Udio, DistroKid — platform updates, partnerships, revenue models, market trends",
+        "desc": "Stories addressing both quantum (qubits, quantum hardware/algorithms) and AI/ML. Pure-quantum or pure-AI items are dropped.",
     },
     "ai_music_copyright_laws": {
-        "label": "Copyright & Laws in AI Music Business",
-        "icon": "\u2696",      # ⚖
-        "color": (192, 57, 43),  # Dark red
-        "desc": "AI music copyright lawsuits, regulations, fair use rulings, licensing — India & world",
+        "label": "Copyright & Laws in AI Music",
+        "desc": "AI music copyright lawsuits, regulations, fair-use rulings, licensing - India & world.",
     },
     "new_ai_tools": {
         "label": "New AI Tools",
-        "icon": "\u2692",      # ⚒
-        "color": (155, 89, 182),  # Purple
-        "desc": "Latest AI tools with cost & feature comparisons",
+        "desc": "Latest AI tools with cost & feature notes - biased to Claude Code / n8n / Voiceflow / Relevance AI / MCP / agent builders.",
     },
     "ai_model_benchmarks": {
         "label": "AI Model Benchmarks",
-        "icon": "\u2261",      # ≡
-        "color": (70, 130, 180),  # Steel blue
-        "desc": "Model performance benchmarks — rankings, scores, and what each benchmark measures",
+        "desc": "Top model per category (Text/LLM, Coding, Image, Video, Music, Audio) as a table, then benchmark news.",
     },
     "ai_business_automation": {
-        "label": "AI Automation & Businesses",
-        "icon": "\u2699",      # ⚙
-        "color": (52, 152, 219),  # Blue
-        "desc": "AI automation news, tools, and market demand",
+        "label": "AI Automation & Business",
+        "desc": "How AI automation is changing work across industries: real deployments, ROI, sector updates.",
     },
     "ai_self_improvement_rsi": {
         "label": "AI Self-Improvement (RSI)",
-        "icon": "\u221e",      # ∞
-        "color": (142, 68, 173),  # Dark purple
-        "desc": "Recursive self-improvement, AGI progress, alignment research",
+        "desc": "Recursive self-improvement, AGI progress, alignment research.",
     },
     "viral_video_landscape": {
-        "label": "Viral Video Landscape",
-        "icon": "\u25bc",      # ▼
-        "color": (255, 69, 0),  # Red-orange
-        "desc": "Top AI-Automation video (Global), top AI Short (Global), top AI-Automation video (India) - max views in last 24h, YouTube API verified + URL HEAD-checked.",
-    },
-    "youtube_ai_landscape": {
-        "label": "YouTube AI Landscape",
-        "icon": "\u25b6",      # ▶
-        "color": (255, 0, 0),   # YouTube Red
-        "desc": "Trending AI videos, viral topics across platforms, and content gaps to cover",
+        "label": "Viral AI on YouTube",
+        "desc": "Verified-viral picks from the last 7 days (2 long: Global + India, 1 Global Short). Floors: long >= 100K, short >= 500K. No view counts. No automation angle.",
     },
     "general_news": {
         "label": "General News",
-        "icon": "\u2691",      # ⚑
-        "color": (108, 122, 137),  # Slate gray
-        "desc": "Top world & India headlines outside of AI",
+        "desc": "Top world & India headlines outside of AI.",
     },
-    "run_telemetry": {
-        "label": "Run Telemetry",
-        "icon": "⚙",      # gear
-        "color": (90, 90, 90),
-        "desc": "What this scheduler run cost: per-step timings, scrape counts, agent token usage.",
-    },
-}
-
-# Published per-million-token rates (USD). Update when models change.
-MODEL_PRICING = {
-    "claude-opus-4-7": {"input": 15.0, "output": 75.0, "cache_read": 1.5, "cache_creation": 18.75},
-    "claude-sonnet-4-6": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_creation": 3.75},
-    "claude-haiku-4-5": {"input": 1.0, "output": 5.0, "cache_read": 0.10, "cache_creation": 1.25},
 }
 
 SECTION_ORDER = [
-    "remote_jobs",                      # 0
-    "anthropic_claude_news",            # 1
-    "ai_business_automation",           # 2
-    "quantum_ai_research",              # 3
-    "product_showcase_opportunities",   # 4
-    "viral_video_landscape",            # 5
-    "youtube_ai_landscape",             # 6
-    "ai_music_copyright_laws",          # 7
+    "remote_jobs",                      # 1
+    "product_showcase_opportunities",   # 2  hackathons + accelerators
+    "youtube_content_ideas",            # 3
+    "viral_video_landscape",            # 4  merged YouTube section
+    "instagram_viral_reels",            # 5
+    "quantum_ai_research",              # 6
+    "ai_self_improvement_rsi",          # 7
     "elon_musk_ai_vision",              # 8
-    "unaddressed_ai_problems",          # 9
-    "ai_business_opportunities",        # 10
-    "ai_music_business_news",           # 11
-    "global_ai_news",                   # 12
-    "indian_ai_industry",               # 13
-    "ai_self_improvement_rsi",          # 14
-    "ai_model_benchmarks",              # 15
-    "new_ai_tools",                     # 16
-    "general_news",                     # 17
+    "ai_model_benchmarks",              # 9
+    "new_ai_tools",                     # 10
+    "indian_ai_industry",               # 11
+    "anthropic_claude_news",            # 12
+    "ai_business_automation",           # 13
+    "global_ai_news",                   # 14
+    "ai_search_trends",                 # 15
+    "unaddressed_ai_problems",          # 16
+    "ai_business_opportunities",        # 17
+    "ai_music_copyright_laws",          # 18
+    "general_news",                     # 19
 ]
-
-# Per-section reading cadence + "why this matters to me" line.
-# Tied to user goals: (1) remote AI-automation job, (2) YouTube channel teaching AI automation.
-SECTION_META = {
-    "remote_jobs": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Primary goal. Apply to 3+ roles every day; 'Greenhouse:' / 'Lever:' tagged listings are direct-apply links - paste resume + Claude Code portfolio same day.",
-    },
-    "anthropic_claude_news": {
-        "cadence": "DAILY",
-        "relevance_to_me": "You build with Claude Code daily. New hooks / commands / MCP changes = same-day skill upgrade; mentioning these in interviews proves you live on the edge of the tool.",
-    },
-    "ai_business_automation": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Core income skill. Each story = a workflow you can rebuild in n8n / Claude Code, ship a portfolio repo, and link in your next job application.",
-    },
-    "quantum_ai_research": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Long-tail. Not hiring on quantum, but a one-line take in a cover letter or tweet signals depth beyond surface-level AI hype.",
-    },
-    "product_showcase_opportunities": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Submit something every week. Each accepted submission = a public link you paste into your resume / next application - beats the 'no experience' objection.",
-    },
-    "viral_video_landscape": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Reverse-engineer what AI content blew up in the last 24h. Each entry = a candidate hook for your YouTube channel teaching AI automation.",
-    },
-    "youtube_ai_landscape": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Trending = demand. Pick the topic gap closest to AI automation and ship a 60-90s explainer the same week - earliest path to channel growth.",
-    },
-    "ai_music_copyright_laws": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Personal interest niche. Skim weekly headlines; deep-read only if a ruling directly affects a tool (Suno / Udio) you use or might build on.",
-    },
-    "elon_musk_ai_vision": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Competitive context only. xAI ships fast; useful for benchmark conversations - don't optimize portfolio around Grok unless a job spec asks.",
-    },
-    "unaddressed_ai_problems": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Each unsolved problem is a possible portfolio project. Pick one per month, build a Claude Code demo, post it as 'I solved X with AI automation' tweet/video.",
-    },
-    "ai_business_opportunities": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Who just got funded = who'll be hiring in 60-90 days. Track Series A/B announcements, then check their careers page next week.",
-    },
-    "ai_music_business_news": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Personal interest. Scan weekly for crossover with automation tooling - workflows on Suno/Udio could become a niche YouTube series.",
-    },
-    "global_ai_news": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Macro signal. Skim headlines only; deep-read only if a regulation (EU AI Act, US executive orders) affects a tool or model you use.",
-    },
-    "indian_ai_industry": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Even though you apply USA / global, Indian AI talent is your referral network. Track founder/exec moves at India-HQ AI startups for warm-intro paths.",
-    },
-    "ai_self_improvement_rsi": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Long-horizon. Read for vocabulary you can drop in interviews - alignment, RSI, scaling laws - to sound senior even with zero years on resume.",
-    },
-    "ai_model_benchmarks": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Job filtering signal. Pick the model with best price/perf for portfolio demos. Re-rank weekly; switch demos to whatever ranks best on coding/agent benchmarks.",
-    },
-    "new_ai_tools": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Two uses: (1) integrate the best one into a portfolio demo this week, (2) make a 'Tool Tested in 60 Seconds' YouTube short the same day.",
-    },
-    "general_news": {
-        "cadence": "WEEKLY",
-        "relevance_to_me": "Awareness only. Don't read in-depth - interview small-talk fuel and one-line context for cover-letter intros, nothing more.",
-    },
-    "run_telemetry": {
-        "cadence": "DAILY",
-        "relevance_to_me": "Confirms the routine completed end-to-end and tracks how many tokens / how much cost each daily run consumes (start-to-end).",
-    },
-}
 
 
 def _meta(section_key):
-    return SECTION_META.get(section_key, {"cadence": "", "relevance_to_me": ""})
+    return SECTION_CONFIG.get(section_key, {"label": section_key, "desc": ""})
 
 
-class GlobalAINewsPDF(FPDF):
-    """Custom PDF with headers, footers, and styling."""
+# ── Magazine theme ────────────────────────────────────────────────────────────
+INK = (13, 13, 13)
+PAPER = (255, 255, 255)
+LIME = (198, 242, 78)
+MUTED = (107, 107, 107)
+CARD = (240, 240, 241)
+WHITE = (255, 255, 255)
+LIGHT = (210, 210, 210)
+LINK = (90, 120, 180)
 
-    def header(self):
-        if self.page_no() == 1:
-            return  # Cover page has custom header
-        self.set_fill_color(26, 26, 46)
-        self.rect(0, 0, 210, 12, "F")
-        self.set_font("Helvetica", "B", 8)
-        self.set_text_color(200, 200, 200)
-        self.set_xy(5, 3)
-        self.cell(100, 6, "GLOBAL AI NEWS DAILY BRIEFING", new_x="RIGHT")
-        self.set_xy(150, 3)
-        self.cell(55, 6, TODAY, align="R")
-        self.set_text_color(0, 0, 0)
-        self.ln(12)
+MARGIN = 18
+PAGE_W, PAGE_H = 210, 297
+CONTENT_W = PAGE_W - 2 * MARGIN
+BOTTOM = 280  # y past which we page-break
 
-    def footer(self):
-        self.set_y(-12)
-        self.set_font("Helvetica", "I", 7)
-        self.set_text_color(150, 150, 150)
-        self.cell(0, 10, f"Page {self.page_no()}/{{nb}}  |  Global AI News  |  {TODAY}", align="C")
+FONTS_DIR = os.path.join(PROJECT_ROOT, "assets", "fonts")
+F_SANS, F_BLACK, F_SERIF = "Inter", "InterBlack", "Serif"
+FONTS_OK = True  # flipped to False by register_fonts on load failure
 
 
-def generate_topic_chart(sections_data):
-    """Generate a bar chart of stories per section. Returns PNG bytes."""
-    labels = []
-    counts = []
-    colors = []
-
-    for section_key in SECTION_ORDER:
-        config = SECTION_CONFIG[section_key]
-        stories = sections_data.get(section_key, [])
-        if stories:
-            labels.append(config["label"])
-            counts.append(len(stories))
-            r, g, b = config["color"]
-            colors.append((r / 255, g / 255, b / 255))
-
-    if not labels:
-        return None
-
-    fig, ax = plt.subplots(figsize=(7, 3.5))
-    bars = ax.barh(range(len(labels)), counts, color=colors, height=0.6)
-    ax.set_yticks(range(len(labels)))
-    ax.set_yticklabels(labels, fontsize=7)
-    ax.set_xlabel("Number of Stories", fontsize=8)
-    ax.set_title("Today's Coverage Distribution", fontsize=10, fontweight="bold")
-    ax.invert_yaxis()
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-    for bar, count in zip(bars, counts):
-        ax.text(bar.get_width() + 0.2, bar.get_y() + bar.get_height() / 2,
-                str(count), va="center", fontsize=7, fontweight="bold")
-
-    plt.tight_layout()
-
-    buf = io.BytesIO()
-    plt.savefig(buf, format="png", dpi=150, bbox_inches="tight")
-    plt.close(fig)
-    buf.seek(0)
-    return buf
+def register_fonts(pdf):
+    """Register bundled TTFs. On any failure, downgrade aliases to Helvetica so
+    the run still produces a (plainer) PDF instead of crashing the daily job."""
+    global F_SANS, F_BLACK, F_SERIF, FONTS_OK
+    try:
+        pdf.add_font("Inter", "", os.path.join(FONTS_DIR, "Inter-Regular.ttf"))
+        pdf.add_font("Inter", "B", os.path.join(FONTS_DIR, "Inter-Bold.ttf"))
+        pdf.add_font("InterBlack", "", os.path.join(FONTS_DIR, "Inter-Black.ttf"))
+        pdf.add_font("Serif", "I", os.path.join(FONTS_DIR, "Newsreader-Italic.ttf"))
+        F_SANS, F_BLACK, F_SERIF, FONTS_OK = "Inter", "InterBlack", "Serif", True
+    except Exception as e:
+        print(f"[generate_pdf] font load failed ({e}); using Helvetica fallback")
+        F_SANS, F_BLACK, F_SERIF, FONTS_OK = "Helvetica", "Helvetica", "Helvetica", False
 
 
+# ── Text cleaning ─────────────────────────────────────────────────────────────
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
-_TRUNCATED_TAG_RE = re.compile(r"<[^>]*$")  # opens but never closes (e.g. truncated RSS)
+_TRUNCATED_TAG_RE = re.compile(r"<[^>]*$")
 _WHITESPACE_RE = re.compile(r"\s+")
+_SMART = {
+    "—": "-", "–": "-", "‘": "'", "’": "'",
+    "“": '"', "”": '"', "…": "...", "•": "-",
+    " ": " ", "​": "",
+}
 
 
-def sanitize_text(text):
-    """Strip HTML, decode entities, normalise whitespace, and downcast to latin-1."""
+def clean(text):
+    """Strip HTML, decode entities, normalise whitespace, downgrade smart
+    punctuation. Preserves unicode for the bundled TTFs; only downcasts to
+    latin-1 when the Helvetica fallback is active (core fonts are latin-1)."""
     if not text:
         return ""
     if not isinstance(text, str):
         text = str(text)
-    # Strip HTML tags and decode entities (raw RSS often leaks <p>, <a>, &amp;, etc.)
     text = _HTML_TAG_RE.sub(" ", text)
-    text = _TRUNCATED_TAG_RE.sub("", text)  # cut dangling unclosed tags
+    text = _TRUNCATED_TAG_RE.sub("", text)
     text = html.unescape(text)
-    # Collapse whitespace
     text = _WHITESPACE_RE.sub(" ", text).strip()
-    replacements = {
-        "\u2014": "-",   # em-dash
-        "\u2013": "-",   # en-dash
-        "\u2018": "'",   # left single quote
-        "\u2019": "'",   # right single quote
-        "\u201c": '"',   # left double quote
-        "\u201d": '"',   # right double quote
-        "\u2026": "...", # ellipsis
-        "\u2022": "-",   # bullet
-        "\u00a0": " ",   # non-breaking space
-        "\u200b": "",    # zero-width space
-    }
-    for char, repl in replacements.items():
-        text = text.replace(char, repl)
-    return text.encode("latin-1", errors="replace").decode("latin-1")
+    for ch, repl in _SMART.items():
+        text = text.replace(ch, repl)
+    if not FONTS_OK:
+        text = text.encode("latin-1", errors="replace").decode("latin-1")
+    return text
 
 
-def render_stars(relevance):
-    """Return star string for relevance score."""
-    filled = min(max(int(relevance), 0), 5)
-    return "*" * filled + "." * (5 - filled)  # star rating
+sanitize_text = clean  # backwards-compatible alias
 
 
-def build_cover_page(pdf, sections_data):
-    """Build the cover page with title, date, chart, and table of contents."""
-    # Dark header bar
-    pdf.set_fill_color(26, 26, 46)
-    pdf.rect(0, 0, 210, 70, "F")
-
-    # Title
-    pdf.set_font("Helvetica", "B", 28)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(15, 15)
-    pdf.cell(180, 15, "AI NEWS + REMOTE JOBS", align="C")
-
-    # Subtitle
-    pdf.set_font("Helvetica", "", 14)
-    pdf.set_text_color(180, 200, 255)
-    pdf.set_xy(15, 32)
-    pdf.cell(180, 10, "Daily Briefing for Remote AI Automators", align="C")
-
-    # Date
-    pdf.set_font("Helvetica", "B", 16)
-    pdf.set_text_color(255, 215, 0)
-    pdf.set_xy(15, 48)
-    nice_date = datetime.now().strftime("%A, %B %d, %Y")
-    pdf.cell(180, 10, nice_date, align="C")
-
-    pdf.set_text_color(0, 0, 0)
-
-    # Topic distribution chart
-    chart_buf = generate_topic_chart(sections_data)
-    if chart_buf:
-        chart_path = os.path.join(TMP_DIR, "topic_chart.png")
-        with open(chart_path, "wb") as f:
-            f.write(chart_buf.read())
-        pdf.image(chart_path, x=15, y=75, w=180)
-
-    # Table of contents
-    toc_y = 165
-    pdf.set_xy(15, toc_y)
-    pdf.set_font("Helvetica", "B", 12)
-    pdf.set_text_color(26, 26, 46)
-    pdf.cell(180, 8, "TABLE OF CONTENTS", align="C")
-    toc_y += 12
-
-    pdf.set_font("Helvetica", "", 9)
-    for i, section_key in enumerate(SECTION_ORDER, 1):
-        config = SECTION_CONFIG[section_key]
-        stories = sections_data.get(section_key, [])
-        count = len(stories)
-
-        r, g, b = config["color"]
-        pdf.set_fill_color(r, g, b)
-        pdf.rect(20, toc_y, 3, 5, "F")
-
-        pdf.set_text_color(50, 50, 50)
-        pdf.set_xy(26, toc_y)
-        label_text = f"{i}. {config['label']}"
-        if count > 0:
-            label_text += f"  ({count} stories)"
-        pdf.cell(160, 5, label_text)
-        toc_y += 6
-
-        if toc_y > 280:
-            break
+_ANGLE_RE = re.compile(r"\bAutomation angle\s*:\s*", re.IGNORECASE)
 
 
-def _draw_section_header(pdf, section_key):
-    """Header bar + cadence badge + description + 'Relevant to me' line.
-    Returns the y-coordinate where story rendering should start."""
-    config = SECTION_CONFIG[section_key]
-    meta = _meta(section_key)
-    r, g, b = config["color"]
-    cadence = meta.get("cadence", "")
-    rel = meta.get("relevance_to_me", "")
+def split_summary_and_angle(text):
+    """Split a summary on an 'Automation angle:' marker. Returns (main, angle)."""
+    if not text:
+        return "", ""
+    m = _ANGLE_RE.search(text)
+    if not m:
+        return text.strip(), ""
+    main = text[:m.start()].strip().rstrip(".")
+    angle = text[m.end():].strip()
+    if main and not main.endswith("."):
+        main += "."
+    return main, angle
 
-    if pdf.get_y() > 220:
+
+_STOPWORDS = {"the", "a", "an", "and", "or", "but", "just", "is", "are", "of",
+              "to", "in", "on", "for", "with", "its", "it's", "this", "that",
+              "you", "your", "new", "has", "have", "as", "at", "by", "from"}
+
+
+def pick_highlight_word(title):
+    """Longest non-stopword token in the title (deterministic), else last word."""
+    if not title:
+        return ""
+    toks = re.findall(r"[A-Za-z0-9$%']+", title)
+    if not toks:
+        return ""
+    pool = [t for t in toks if t.lower() not in _STOPWORDS] or toks
+    return max(pool, key=len)
+
+
+def stars_str(relevance):
+    """Five-star relevance string. Unicode stars with TTFs, ASCII on fallback."""
+    try:
+        n = max(0, min(5, int(round(float(relevance)))))
+    except (TypeError, ValueError):
+        n = 0
+    if FONTS_OK:
+        return "★" * n + "☆" * (5 - n)
+    return "*" * n + "." * (5 - n)
+
+
+def render_stars(relevance):  # legacy helper kept for any external callers
+    return stars_str(relevance)
+
+
+# ── Drawing primitives ────────────────────────────────────────────────────────
+def _set(pdf, family, style, size, color):
+    pdf.set_font(family, style, size)
+    pdf.set_text_color(*color)
+
+
+def _measure_lines(pdf, w, text, family, style, size):
+    """Number of wrapped lines `text` occupies in width `w` (no drawing)."""
+    pdf.set_font(family, style, size)
+    return pdf.multi_cell(w, 5, clean(text), dry_run=True, output="LINES")
+
+
+def dark_page(pdf):
+    pdf.set_fill_color(*INK)
+    pdf.rect(0, 0, PAGE_W, PAGE_H, "F")
+
+
+def eyebrow(pdf, x, y, text):
+    """Small lime tag label, e.g. '01 . REMOTE AI JOBS'. Returns y below it."""
+    _set(pdf, F_SANS, "B", 8, INK)
+    label = text.upper()
+    w = pdf.get_string_width(label) + 6
+    pdf.set_fill_color(*LIME)
+    pdf.rect(x, y, w, 6, "F")
+    pdf.set_xy(x + 3, y + 0.8)
+    pdf.cell(w - 6, 4.4, label)
+    return y + 6
+
+
+def highlight_headline(pdf, x, y, text, size=30, ink=INK):
+    """Bold headline; the pick_highlight_word() token gets a lime box behind it.
+    Wraps within CONTENT_W. Returns the y below the headline."""
+    lead = size * 0.46
+    hl = pick_highlight_word(text).lower()
+    text = clean(text)
+    pdf.set_font(F_BLACK, "", size)
+    space = pdf.get_string_width(" ")
+    cx, cy = x, y
+    for word in text.split():
+        ww = pdf.get_string_width(word)
+        if cx + ww > x + CONTENT_W and cx > x:
+            cx = x
+            cy += lead
+        if hl and word.strip(".,:;'\"!?").lower() == hl:
+            pdf.set_fill_color(*LIME)
+            pdf.rect(cx - 1, cy + lead * 0.16, ww + 2, lead * 0.84, "F")
+            pdf.set_text_color(*INK)
+        else:
+            pdf.set_text_color(*ink)
+        pdf.set_xy(cx, cy)
+        pdf.cell(ww, lead, word)
+        cx += ww + space
+    return cy + lead
+
+
+def wrapped(pdf, x, y, w, text, family, style, size, color, lh=4.6):
+    _set(pdf, family, style, size, color)
+    pdf.set_xy(x, y)
+    pdf.multi_cell(w, lh, clean(text))
+    return pdf.get_y()
+
+
+def link_line(pdf, x, y, w, text, url, size=7.5, color=LINK):
+    """One clickable line, truncated with a trailing ... so it fits width `w`."""
+    _set(pdf, F_SANS, "", size, color)
+    s = clean(text)
+    while s and pdf.get_string_width(s) > w:
+        s = s[:-2]
+    if s != clean(text):
+        s = s[:-1] + "…" if FONTS_OK else s[:-3] + "..."
+    pdf.set_xy(x, y)
+    pdf.cell(w, 4, s, link=url)
+    return y + 5
+
+
+def card_box(pdf, x, y, w, body, label=None, pad=4):
+    """Grey 'Quick Take' card with a lime left bar. Returns y below the box."""
+    body = clean(body)
+    n = len(_measure_lines(pdf, w - 2 * pad, body, F_SANS, "", 9.5))
+    body_h = n * 4.8
+    label_h = 6 if label else 0
+    h = pad + label_h + body_h + pad
+    pdf.set_fill_color(*CARD)
+    pdf.rect(x, y, w, h, "F")
+    pdf.set_fill_color(*LIME)
+    pdf.rect(x, y, 1.6, h, "F")
+    yy = y + pad
+    if label:
+        _set(pdf, F_SANS, "B", 7.5, INK)
+        pdf.set_xy(x + pad, yy)
+        pdf.cell(60, 4, label.upper())
+        yy += label_h
+    _set(pdf, F_SANS, "", 9.5, INK)
+    pdf.set_xy(x + pad, yy)
+    pdf.multi_cell(w - 2 * pad, 4.8, body)
+    return y + h
+
+
+def callout(pdf, x, y, w, label, body, pad=5):
+    """Dark callout card: lime label + white body."""
+    body = clean(body)
+    n = len(_measure_lines(pdf, w - 2 * pad, body, F_SANS, "", 9))
+    h = pad + 6 + n * 4.8 + pad
+    pdf.set_fill_color(*INK)
+    pdf.rect(x, y, w, h, "F")
+    _set(pdf, F_SANS, "B", 8, LIME)
+    pdf.set_xy(x + pad, y + pad)
+    pdf.cell(120, 4, label.upper())
+    _set(pdf, F_SANS, "", 9, WHITE)
+    pdf.set_xy(x + pad, y + pad + 6)
+    pdf.multi_cell(w - 2 * pad, 4.8, body)
+    return y + h
+
+
+def tick_list(pdf, x, y, w, items):
+    """Lime-tick bullet list. Returns y below."""
+    for it in items:
+        pdf.set_fill_color(*LIME)
+        pdf.rect(x, y + 1.3, 2.4, 2.4, "F")
+        y = wrapped(pdf, x + 5, y, w - 5, it, F_SANS, "", 9, INK, lh=4.6) + 1.5
+    return y
+
+
+# ── Cover / contents / closing ────────────────────────────────────────────────
+COVER_PRIORITY = ["global_ai_news", "anthropic_claude_news", "new_ai_tools",
+                  "indian_ai_industry", "ai_business_automation",
+                  "elon_musk_ai_vision"]
+
+
+def pick_cover_story(sections):
+    best, best_rel = None, -1.0
+    for key in COVER_PRIORITY:
+        for it in sections.get(key, []) or []:
+            try:
+                rel = float(it.get("relevance", 0))
+            except (TypeError, ValueError):
+                rel = 0.0
+            if rel > best_rel and it.get("title"):
+                best, best_rel = it, rel
+    if not best:
+        return (f"Your AI briefing for {DISPLAY_DATE}",
+                "The day's signal across 19 sections - jobs, tools, research, viral, and more.")
+    standfirst = split_summary_and_angle(best.get("summary", ""))[0]
+    return clean(best["title"]), clean(standfirst)[:280]
+
+
+def _issue_number():
+    epoch = datetime(2026, 4, 25)  # issue 001 anchor
+    return max(1, (datetime.now() - epoch).days + 1)
+
+
+def build_cover(pdf, sections, issue_no):
+    pdf.add_page()
+    dark_page(pdf)
+    # wordmark
+    pdf.set_fill_color(*LIME)
+    pdf.rect(MARGIN, 16, 4.5, 4.5, "F")
+    _set(pdf, F_SANS, "B", 12, WHITE)
+    pdf.set_xy(MARGIN + 7, 15)
+    pdf.cell(60, 5, "staying")
+    _set(pdf, F_SANS, "", 12, WHITE)
+    pdf.set_xy(MARGIN + 7, 20)
+    pdf.cell(60, 5, "ahead")
+    _set(pdf, F_SANS, "B", 9, LIME)
+    pdf.set_xy(PAGE_W - MARGIN - 70, 16)
+    pdf.cell(70, 5, f"ISSUE {issue_no:03d}", align="R")
+    _set(pdf, F_SANS, "B", 9, MUTED)
+    pdf.set_xy(PAGE_W - MARGIN - 70, 21)
+    pdf.cell(70, 5, DISPLAY_DATE.upper(), align="R")
+    # headline
+    title, standfirst = pick_cover_story(sections)
+    if len(title) > 78:
+        title = title[:75].rstrip() + "..."
+    eyebrow(pdf, MARGIN, 96, "TODAY'S HEADLINE")
+    y = highlight_headline(pdf, MARGIN, 108, title, size=32, ink=WHITE)
+    wrapped(pdf, MARGIN, y + 8, CONTENT_W, standfirst, F_SANS, "", 12, LIGHT, lh=6)
+    # footer
+    _set(pdf, F_SANS, "B", 11, WHITE)
+    lead = "Five minutes. Then you are "
+    pdf.set_xy(MARGIN, 270)
+    pdf.cell(pdf.get_string_width(lead), 5, lead)
+    _set(pdf, F_SANS, "B", 11, LIME)
+    pdf.set_xy(MARGIN + pdf.get_string_width(lead), 270)
+    pdf.cell(0, 5, "ahead.")
+    _set(pdf, F_SANS, "", 8, MUTED)
+    pdf.set_xy(PAGE_W - MARGIN - 70, 269)
+    pdf.cell(70, 5, "SENT BY", align="R")
+    _set(pdf, F_SANS, "B", 10, WHITE)
+    pdf.set_xy(PAGE_W - MARGIN - 70, 274)
+    pdf.cell(70, 5, "Your Daily Agent", align="R")
+
+
+def build_contents(pdf, sections):
+    pdf.add_page()
+    eyebrow(pdf, MARGIN, 20, "MORNING DIGEST")
+    highlight_headline(pdf, MARGIN, 30, "What we cover today.", size=26)
+    y = 58
+    for i, key in enumerate(SECTION_ORDER, 1):
+        if y > 272:
+            pdf.add_page()
+            y = 24
+        label = _meta(key)["label"]
+        items = sections.get(key, []) or []
+        if items and isinstance(items[0], dict) and items[0].get("title"):
+            teaser = clean(items[0]["title"])[:84]
+        else:
+            teaser = f"{len(items)} item(s)" if items else "no new items today"
+        _set(pdf, F_BLACK, "", 11, INK)
+        pdf.set_xy(MARGIN, y)
+        pdf.cell(11, 6, f"{i:02d}")
+        _set(pdf, F_SANS, "B", 10.5, INK)
+        pdf.set_xy(MARGIN + 11, y)
+        pdf.cell(0, 6, label[:60])
+        _set(pdf, F_SANS, "", 8.5, MUTED)
+        pdf.set_xy(MARGIN + 11, y + 5.5)
+        pdf.multi_cell(CONTENT_W - 11, 4, teaser)
+        y = pdf.get_y() + 3.5
+        pdf.set_draw_color(228, 228, 228)
+        pdf.line(MARGIN, y - 1.5, PAGE_W - MARGIN, y - 1.5)
+
+
+def build_closing(pdf):
+    pdf.add_page()
+    dark_page(pdf)
+    highlight_headline(pdf, MARGIN, 86, "You are caught up. Now stay ahead.",
+                       size=30, ink=WHITE)
+    wrapped(pdf, MARGIN, 150, CONTENT_W,
+            "Tomorrow's PDF lands at 00:00 IST - the exact stack you need to stay "
+            "one day ahead of everyone else in AI.",
+            F_SANS, "", 11, LIGHT, lh=6)
+    _set(pdf, F_SANS, "", 9, MUTED)
+    pdf.set_xy(MARGIN, 275)
+    pdf.cell(0, 5, f"Issue {_issue_number():03d}  .  {DISPLAY_DATE}")
+
+
+# ── Section header + generic story card ───────────────────────────────────────
+def section_header(pdf, section_key, idx):
+    """Magazine section opener on a fresh page. Returns starting y."""
+    pdf.add_page()
+    label = _meta(section_key)["label"]
+    eyebrow(pdf, MARGIN, 20, f"{idx:02d} . {label}")
+    y = highlight_headline(pdf, MARGIN, 32, label, size=22)
+    desc = (_meta(section_key).get("desc") or "").strip()
+    if desc:
+        y = wrapped(pdf, MARGIN, y + 3, CONTENT_W, desc[:240],
+                    F_SANS, "", 8.5, MUTED, lh=4.2)
+    return y + 4
+
+
+def _ensure_space(pdf, y, need, section_key, idx):
+    if y + need > BOTTOM:
         pdf.add_page()
-
-    y = pdf.get_y() + 5
-
-    # Section header bar
-    pdf.set_fill_color(r, g, b)
-    pdf.rect(10, y, 190, 12, "F")
-
-    pdf.set_font("Helvetica", "B", 13)
-    pdf.set_text_color(255, 255, 255)
-    pdf.set_xy(15, y + 1)
-    pdf.cell(140, 10, f"  {config['label'].upper()}")
-
-    # Cadence pill, right-aligned in the same bar
-    if cadence:
-        pdf.set_font("Helvetica", "B", 9)
-        pdf.set_xy(160, y + 2)
-        # Light pill background
-        pdf.set_fill_color(255, 255, 255)
-        pdf.set_draw_color(255, 255, 255)
-        pdf.rect(162, y + 2, 32, 8, "F")
-        pdf.set_text_color(r, g, b)
-        pdf.set_xy(162, y + 2)
-        pdf.cell(32, 8, f"  {cadence}", align="C")
-
-    y += 14
-
-    # Section description (italic gray)
-    pdf.set_font("Helvetica", "I", 8)
-    pdf.set_text_color(100, 100, 100)
-    pdf.set_xy(12, y)
-    pdf.multi_cell(186, 4.5, sanitize_text(config["desc"]))
-    y = pdf.get_y() + 1
-
-    # "Relevant to me" line — bold label, regular body
-    if rel:
-        pdf.set_font("Helvetica", "B", 8)
-        pdf.set_text_color(r, g, b)
-        pdf.set_xy(12, y)
-        pdf.cell(40, 4.5, "Relevant to me:")
-        pdf.set_font("Helvetica", "", 8)
-        pdf.set_text_color(60, 60, 60)
-        pdf.set_xy(40, y)
-        pdf.multi_cell(160, 4.5, sanitize_text(rel))
-        y = pdf.get_y() + 1
-
-    # Thin accent line
-    pdf.set_draw_color(r, g, b)
-    pdf.set_line_width(0.5)
-    pdf.line(12, y, 198, y)
-    return y + 3
+        eyebrow(pdf, MARGIN, 16, f"{idx:02d} . {_meta(section_key)['label']} (cont.)")
+        return 26
+    return y
 
 
-def build_section(pdf, section_key, stories):
-    """Build a full section with header, description, and stories."""
-    config = SECTION_CONFIG[section_key]
-    r, g, b = config["color"]
+def story_card(pdf, y, item, section_key, idx):
+    y = _ensure_space(pdf, y, 38, section_key, idx)
+    y = wrapped(pdf, MARGIN, y, CONTENT_W, item.get("title", "Untitled"),
+                F_SANS, "B", 12.5, INK, lh=5.6) + 1
+    summ = item.get("summary", "")
+    if summ:
+        y = card_box(pdf, MARGIN, y, CONTENT_W, summ, label="Quick Take") + 2
+    src = item.get("source", "")
+    when = str(item.get("published") or item.get("posted") or "")[:10]
+    rel = item.get("relevance")
+    bits = [b for b in [src, when, (stars_str(rel) if rel is not None else "")] if b]
+    if bits:
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, "  .  ".join(bits),
+                    F_SANS, "", 8, MUTED, lh=4)
+    url = item.get("url")
+    if url:
+        y = link_line(pdf, MARGIN, y, CONTENT_W, url, url)
+    pdf.set_draw_color(232, 232, 232)
+    pdf.line(MARGIN, y, PAGE_W - MARGIN, y)
+    return y + 4
 
-    y = _draw_section_header(pdf, section_key)
 
+def _empty_note(pdf, y, text):
+    wrapped(pdf, MARGIN, y, CONTENT_W, text, F_SERIF, "I", 11, MUTED)
+
+
+def build_section(pdf, section_key, stories, idx):
+    y = section_header(pdf, section_key, idx)
     if not stories:
-        pdf.set_font("Helvetica", "I", 9)
-        pdf.set_text_color(150, 150, 150)
-        pdf.set_xy(15, y)
-        pdf.cell(180, 8, "No stories in this section today.")
-        pdf.set_y(y + 12)
+        _empty_note(pdf, y, "No new items in the last 24h.")
         return
-
-    # Stories
-    for idx, story in enumerate(stories):
-        # Check page break
-        if y > 255:
-            pdf.add_page()
-            y = pdf.get_y() + 2
-
-        # Alternating background
-        if idx % 2 == 0:
-            pdf.set_fill_color(245, 247, 250)
-            pdf.rect(10, y, 190, 24, "F")
-
-        # Title + relevance stars (title is a clickable hyperlink to story URL)
-        story_url = story.get("url", "")
-        pdf.set_font("Helvetica", "B", 9)
-        pdf.set_text_color(25, 75, 200)  # link blue
-        pdf.set_xy(14, y + 1)
-
-        title = sanitize_text(story.get("title", "Untitled")[:90])
-        relevance = story.get("relevance", 3)
-        stars = render_stars(relevance)
-
-        pdf.cell(155, 5, title, link=story_url)
-        pdf.set_font("Helvetica", "", 9)
-        pdf.set_text_color(r, g, b)
-        pdf.cell(25, 5, stars, align="R")
-
-        # Source and metadata line
-        pdf.set_font("Helvetica", "", 7)
-        pdf.set_text_color(120, 120, 120)
-        pdf.set_xy(14, y + 6)
-
-        source = story.get("source") or story.get("channel") or "Unknown"
-        source = sanitize_text(source)
-        meta_parts = [f"Source: {source}"]
-
-        # Section-specific metadata
-        if section_key == "new_ai_tools":
-            pricing = story.get("pricing", "")
-            category = story.get("category", "")
-            if pricing:
-                meta_parts.append(f"Price: {pricing}")
-            if category:
-                meta_parts.append(f"Type: {category}")
-        elif section_key == "unaddressed_ai_problems":
-            who = story.get("who_affected", "")
-            severity = story.get("severity", "")
-            if who:
-                meta_parts.append(f"Affects: {who}")
-            if severity:
-                meta_parts.append(f"[{severity.upper()}]")
-        elif section_key == "product_showcase_opportunities":
-            platform = story.get("platform_type", "")
-            region = story.get("region", "")
-            sub_url = story.get("submission_url", "")
-            if platform:
-                meta_parts.append(f"Type: {platform}")
-            if region:
-                meta_parts.append(f"Region: {region}")
-            if sub_url:
-                meta_parts.append(f"Submit: {sub_url}")
-        elif section_key == "ai_music_business_news":
-            platform = story.get("platform", "")
-            deal_value = story.get("deal_value", "")
-            if platform:
-                meta_parts.append(f"Platform: {platform}")
-            if deal_value:
-                meta_parts.append(f"Deal: {deal_value}")
-        elif section_key == "ai_music_copyright_laws":
-            case_name = story.get("case_name", "")
-            jurisdiction = story.get("jurisdiction", "")
-            status = story.get("status", "")
-            if case_name:
-                meta_parts.append(f"Case: {case_name}")
-            if jurisdiction:
-                meta_parts.append(f"Jurisdiction: {jurisdiction}")
-            if status:
-                meta_parts.append(f"[{status.upper()}]")
-        elif section_key == "ai_model_benchmarks":
-            model_name = story.get("model_name", "")
-            benchmark_name = story.get("benchmark_name", "")
-            score = story.get("score", "")
-            rank = story.get("rank", "")
-            if model_name:
-                meta_parts.append(f"Model: {model_name}")
-            if benchmark_name:
-                meta_parts.append(f"Benchmark: {benchmark_name}")
-            if score:
-                meta_parts.append(f"Score: {score}")
-            if rank:
-                meta_parts.append(f"Rank: {rank}")
-
-        elif section_key == "youtube_ai_landscape":
-            views = story.get("views", 0)
-            channel = story.get("channel", "")
-            platform = story.get("platform", "")
-            content_gap = story.get("content_gap", "")
-            if channel:
-                meta_parts.append(f"Channel: {channel}")
-            if views:
-                meta_parts.append(f"Views: {views:,}")
-            if platform:
-                meta_parts.append(f"Platform: {platform}")
-            if content_gap:
-                meta_parts.append(f"Gap: {content_gap}")
-
-        pdf.cell(180, 4, sanitize_text("  |  ".join(meta_parts)))
-
-        # Summary
-        pdf.set_font("Helvetica", "", 8)
-        pdf.set_text_color(60, 60, 60)
-        pdf.set_xy(14, y + 11)
-        summary = sanitize_text(story.get("summary", "")[:250])
-        pdf.multi_cell(178, 3.5, summary)
-
-        y = pdf.get_y() + 1
-        if story.get("url"):
-            pdf.set_font("Helvetica", "U", 7)
-            pdf.set_text_color(25, 75, 200)
-            pdf.set_xy(14, y)
-            url_txt = sanitize_text(story["url"][:140])
-            pdf.cell(180, 4, url_txt, link=story["url"])
-            y += 5
-        y += 3
-
-
-def build_viral_video_section(pdf, section_key, stories):
-    """Build the Viral Video Landscape section with Global/India subsection headers."""
-    config = SECTION_CONFIG[section_key]
-    r, g, b = config["color"]
-
-    y = _draw_section_header(pdf, section_key)
-
-    if not stories:
-        pdf.set_font("Helvetica", "I", 9)
-        pdf.set_text_color(150, 150, 150)
-        pdf.set_xy(15, y)
-        pdf.cell(180, 8, "No stories in this section today.")
-        pdf.set_y(y + 12)
-        return
-
-    # Render order requested by the user:
-    #   1. Global AI-Automation long video
-    #   2. Global AI Short
-    #   3. India AI-Automation long video
-    subsection_order = [
-        ("global", True, "video", "AI Automation - Global (max views, 24h)"),
-        ("global", True, "short", "AI Short - Global (max views, 24h)"),
-        ("india",  True, "video", "AI Automation - India (max views, 24h)"),
-    ]
-
-    # Group stories by (region, is_ai, format)
-    grouped = {}
-    for story in stories:
-        key = (
-            story.get("region", "global").lower(),
-            story.get("is_ai", False),
-            story.get("format", "video").lower(),
-        )
-        if key not in grouped:
-            grouped[key] = []
-        grouped[key].append(story)
-
-    current_region = None
-    story_idx = 0
-
-    for region, is_ai, fmt, subsection_label in subsection_order:
-        group_stories = grouped.get((region, is_ai, fmt), [])
-        if not group_stories:
+    for it in stories:
+        if not isinstance(it, dict):
             continue
-
-        # Region header (only when region changes)
-        if region != current_region:
-            current_region = region
-            if y > 250:
-                pdf.add_page()
-                y = pdf.get_y() + 2
-
-            # Light background bar for region
-            pdf.set_fill_color(
-                min(r + 80, 255), min(g + 80, 255), min(b + 80, 255)
-            )
-            pdf.rect(10, y, 190, 8, "F")
-            pdf.set_font("Helvetica", "B", 10)
-            pdf.set_text_color(40, 40, 40)
-            pdf.set_xy(14, y + 1)
-            pdf.cell(180, 6, region.upper())
-            y += 10
-
-        # Subsection label
-        if y > 255:
-            pdf.add_page()
-            y = pdf.get_y() + 2
-
-        pdf.set_font("Helvetica", "B", 8)
-        pdf.set_text_color(r, g, b)
-        pdf.set_xy(16, y)
-        pdf.cell(180, 5, subsection_label)
-        y += 6
-
-        # Render story (just the top 1)
-        story = group_stories[0]
-
-        if y > 255:
-            pdf.add_page()
-            y = pdf.get_y() + 2
-
-        # Alternating background
-        if story_idx % 2 == 0:
-            pdf.set_fill_color(245, 247, 250)
-            pdf.rect(10, y, 190, 24, "F")
-
-        # Title + stars (clickable)
-        story_url = story.get("url", "")
-        pdf.set_font("Helvetica", "B", 9)
-        pdf.set_text_color(25, 75, 200)
-        pdf.set_xy(14, y + 1)
-        title = sanitize_text(story.get("title", "Untitled")[:90])
-        relevance = story.get("relevance", 3)
-        stars = render_stars(relevance)
-        pdf.cell(155, 5, title, link=story_url)
-        pdf.set_font("Helvetica", "", 9)
-        pdf.set_text_color(r, g, b)
-        pdf.cell(25, 5, stars, align="R")
-
-        # Metadata line
-        pdf.set_font("Helvetica", "", 7)
-        pdf.set_text_color(120, 120, 120)
-        pdf.set_xy(14, y + 6)
-        meta_parts = []
-        channel = story.get("channel", "")
-        views = story.get("views", 0)
-        vid_format = story.get("format", "video").upper()
-        if channel:
-            meta_parts.append(f"Channel: {channel}")
-        if views:
-            meta_parts.append(f"Views: {views:,}")
-        meta_parts.append(f"[{vid_format}]")
-        pdf.cell(180, 4, sanitize_text("  |  ".join(meta_parts)))
-
-        # Summary
-        pdf.set_font("Helvetica", "", 8)
-        pdf.set_text_color(60, 60, 60)
-        pdf.set_xy(14, y + 11)
-        summary = sanitize_text(story.get("summary", "")[:250])
-        pdf.multi_cell(178, 3.5, summary)
-
-        y = pdf.get_y() + 1
-        if story.get("url"):
-            pdf.set_font("Helvetica", "U", 7)
-            pdf.set_text_color(25, 75, 200)
-            pdf.set_xy(14, y)
-            url_txt = sanitize_text(story["url"][:140])
-            pdf.cell(180, 4, url_txt, link=story["url"])
-            y += 5
-        y += 3
-        story_idx += 1
-
-    pdf.set_y(y)
+        y = story_card(pdf, y, it, section_key, idx)
+    takeaway = stories[0].get("section_takeaway") if isinstance(stories[0], dict) else None
+    if takeaway:
+        y = _ensure_space(pdf, y, 40, section_key, idx)
+        callout(pdf, MARGIN, y + 2, CONTENT_W, "The Big Picture", takeaway)
 
 
-def build_telemetry_section(pdf, telemetry):
-    """Render the run_telemetry section: per-step timings + agent token usage."""
-    config = SECTION_CONFIG["run_telemetry"]
-    r, g, b = config["color"]
+# ── Special renderers ─────────────────────────────────────────────────────────
+_BUCKET_LABELS = {
+    "global_ai": "Global", "india_ai": "India",
+    "global": "Global", "india": "India",
+    "global_long": "Global - Long", "india_long": "India - Long",
+    "global_short": "Global - Short",
+}
 
-    y = _draw_section_header(pdf, "run_telemetry")
 
-    # Run summary
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.set_text_color(40, 40, 40)
-    pdf.set_xy(14, y)
-    pdf.cell(180, 5, "Pipeline Run")
+def _pretty_bucket(bucket):
+    if not bucket:
+        return ""
+    return _BUCKET_LABELS.get(str(bucket).lower(), str(bucket).replace("_", " ").title())
+
+
+def _looks_dumped(text):
+    """True if `text` is an HN-parsed body dump rather than a real field value."""
+    t = (text or "").strip().lower()
+    return bool(t) and (t.startswith("location:") or "remote:" in t
+                        or "willing to relocate" in t or t.startswith("http"))
+
+
+def _job_is_clean(job):
+    """Both title and company must read like real values (HN posts swap a URL
+    into title and a 'Location:/Remote:' dump into company)."""
+    t = (job.get("title") or "").strip()
+    c = (job.get("company") or "").strip()
+    if not t or len(t) > 90 or _looks_dumped(t):
+        return False
+    if not c or len(c) > 60 or _looks_dumped(c):
+        return False
+    return True
+
+
+def _tidy_job(job):
+    """(title, company) cleaned for display: collapse URL/dump fields."""
+    t = (job.get("title") or "Role").strip()
+    c = (job.get("company") or "").strip()
+    if _looks_dumped(t) or "github.com" in t.lower():
+        t = "HN 'Who is hiring' role"
+    if _looks_dumped(c) or len(c) > 50:
+        c = ""
+    return t[:80], c
+
+
+def build_jobs(pdf, section_key, jobs, idx):
+    y = section_header(pdf, section_key, idx)
+    jobs = [j for j in (jobs or []) if isinstance(j, dict)]
+    if not jobs:
+        _empty_note(pdf, y, "No fresh remote roles surfaced today.")
+        return
+    # Spotlight = highest-ranked fully-clean role; fall back to jobs[0].
+    spot_i = next((i for i, j in enumerate(jobs) if _job_is_clean(j)), 0)
+    jobs = [jobs[spot_i]] + jobs[:spot_i] + jobs[spot_i + 1:]
+    top = jobs[0]
+    sx, sy = MARGIN, y
+    eyebrow(pdf, sx, sy, "Today's Spotlight Role")
+    t_title, t_company = _tidy_job(top)
+    y = wrapped(pdf, sx, sy + 8, CONTENT_W,
+                f"{t_title} - {t_company}".strip(" -"),
+                F_SANS, "B", 13, INK, lh=6) + 1
+    sub = [b for b in [top.get("salary", ""), top.get("source", ""),
+                       stars_str(top.get("relevance"))] if b]
+    if sub:
+        y = wrapped(pdf, sx, y, CONTENT_W, "  .  ".join(sub), F_SANS, "", 8.5, MUTED)
+    skills = [s for s in (top.get("matched_skills") or []) if s][:6]
+    if skills:
+        cx = sx
+        y += 1
+        for s in skills:
+            _set(pdf, F_SANS, "B", 7.5, INK)
+            w = pdf.get_string_width(str(s)) + 5
+            if cx + w > sx + CONTENT_W:
+                cx = sx
+                y += 7
+            pdf.set_fill_color(*LIME)
+            pdf.rect(cx, y, w, 5, "F")
+            pdf.set_xy(cx + 2.5, y + 0.5)
+            pdf.cell(w - 5, 4, str(s))
+            cx += w + 3
+        y += 8
+    if top.get("summary"):
+        y = card_box(pdf, sx, y, CONTENT_W, top["summary"], label="Why it fits") + 2
+    if top.get("url"):
+        _set(pdf, F_SANS, "B", 8.5, LINK)
+        pdf.set_xy(sx, y)
+        pdf.cell(40, 5, "Apply " + ("→" if FONTS_OK else "->"), link=top["url"])
+        y += 8
+    pdf.set_draw_color(*LIME)
+    pdf.set_line_width(0.7)
+    pdf.rect(sx - 3, sy - 3, CONTENT_W + 6, (y - sy) + 3)
+    pdf.set_line_width(0.2)
     y += 6
+    if len(jobs) > 1:
+        _set(pdf, F_SANS, "B", 9.5, INK)
+        pdf.set_xy(MARGIN, y)
+        pdf.cell(0, 5, "More roles today")
+        y += 7
+        for j in jobs[1:]:
+            y = _ensure_space(pdf, y, 16, section_key, idx)
+            jt, jc = _tidy_job(j)
+            head = f"{jt} - {jc}".strip(" -") + f"  {stars_str(j.get('relevance'))}"
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, head, F_SANS, "B", 9.5, INK, lh=4.6)
+            line = [b for b in [j.get("salary", ""), j.get("source", "")] if b]
+            if line:
+                y = wrapped(pdf, MARGIN, y, CONTENT_W, "  .  ".join(line),
+                            F_SANS, "", 7.5, MUTED, lh=4)
+            if j.get("url"):
+                y = link_line(pdf, MARGIN, y, CONTENT_W, j["url"], j["url"], size=7)
+            y += 2.5
 
-    pdf.set_font("Helvetica", "", 9)
-    pdf.set_text_color(60, 60, 60)
-    started = telemetry.get("started_at", "?")
-    finished = telemetry.get("finished_at", "?")
-    total = telemetry.get("total_elapsed_s", 0)
-    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Started:  {started}")); y += 5
-    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Finished: {finished}")); y += 5
-    pdf.set_xy(14, y); pdf.cell(180, 5, sanitize_text(f"Total:    {total:.1f}s")); y += 8
 
-    # Per-step timings table
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.set_text_color(40, 40, 40)
-    pdf.set_xy(14, y); pdf.cell(180, 5, "Per-Step Timings"); y += 6
+def build_benchmark_table(pdf, section_key, stories, idx):
+    y = section_header(pdf, section_key, idx)
+    rows, news = [], []
+    for it in (stories or []):
+        if not isinstance(it, dict):
+            continue
+        std = it.get("standings")
+        if isinstance(std, list) and std:
+            for r in std:
+                if isinstance(r, dict):
+                    rows.append((r.get("category", ""), r.get("best", ""),
+                                 r.get("runner_up", ""),
+                                 r.get("benchmark", "") or r.get("benchmark_name", "")))
+                elif isinstance(r, (list, tuple)) and len(r) >= 4:
+                    rows.append(tuple(r[:4]))
+        elif it.get("category") and it.get("best"):
+            rows.append((it.get("category", ""), it.get("best", ""),
+                         it.get("runner_up", ""), it.get("benchmark_name", "")))
+        else:
+            news.append(it)
+    if rows:
+        cols = [("Task", 42), ("Best", 56), ("Runner-up", 46), ("Benchmark", CONTENT_W - 144)]
+        pdf.set_fill_color(*INK)
+        pdf.rect(MARGIN, y, CONTENT_W, 7, "F")
+        cx = MARGIN
+        for name, w in cols:
+            _set(pdf, F_SANS, "B", 8, LIME)
+            pdf.set_xy(cx + 2, y + 1.6)
+            pdf.cell(w - 2, 4, name)
+            cx += w
+        y += 7
+        for i, row in enumerate(rows):
+            heights = [len(_measure_lines(pdf, w - 3, str(v), F_SANS, "", 7.5))
+                       for (n, w), v in zip(cols, row)]
+            rh = max(8, max(heights) * 3.8 + 3)
+            y = _ensure_space(pdf, y, rh, section_key, idx)
+            if i % 2:
+                pdf.set_fill_color(246, 246, 246)
+                pdf.rect(MARGIN, y, CONTENT_W, rh, "F")
+            cx = MARGIN
+            for (name, w), val in zip(cols, row):
+                _set(pdf, F_SANS, "B" if name == "Task" else "", 7.5, INK)
+                pdf.set_xy(cx + 2, y + 1.6)
+                pdf.multi_cell(w - 3, 3.8, clean(str(val))[:80])
+                cx += w
+            y += rh
+        y += 4
+    for it in news:
+        y = story_card(pdf, y, it, section_key, idx)
 
-    pdf.set_font("Helvetica", "B", 8)
-    pdf.set_fill_color(230, 230, 230)
-    pdf.set_text_color(40, 40, 40)
-    pdf.set_xy(14, y)
-    pdf.cell(90, 6, "  Step", border=0, fill=True)
-    pdf.cell(30, 6, "Status", border=0, fill=True, align="C")
-    pdf.cell(30, 6, "Elapsed (s)", border=0, fill=True, align="R")
-    pdf.cell(30, 6, "Items", border=0, fill=True, align="R")
-    y += 7
 
-    pdf.set_font("Helvetica", "", 8)
-    pdf.set_text_color(60, 60, 60)
-    for step_name, info in (telemetry.get("steps") or {}).items():
-        if y > 270:
-            pdf.add_page(); y = pdf.get_y() + 2
-        ok = info.get("ok")
-        status = "OK" if ok else ("SKIP" if ok is None else "FAIL")
-        elapsed_s = info.get("elapsed_s", 0) or 0
-        items = info.get("items")
-        items_s = str(items) if items is not None else "-"
-        pdf.set_xy(14, y)
-        pdf.cell(90, 5, sanitize_text(f"  {step_name}"))
-        pdf.cell(30, 5, status, align="C")
-        pdf.cell(30, 5, f"{elapsed_s:.1f}", align="R")
-        pdf.cell(30, 5, items_s, align="R")
+def build_youtube_ideas(pdf, section_key, ideas, idx):
+    y = section_header(pdf, section_key, idx)
+    ideas = [i for i in (ideas or []) if isinstance(i, dict)]
+    if not ideas:
+        _empty_note(pdf, y, "No ideas generated this run.")
+        return
+    for n, idea in enumerate(ideas[:3], 1):
+        y = _ensure_space(pdf, y, 56, section_key, idx)
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, f"{n}. {idea.get('title', 'Untitled')}",
+                    F_SANS, "B", 12, INK, lh=5.6) + 1
+        if idea.get("hook"):
+            y = card_box(pdf, MARGIN, y, CONTENT_W, idea["hook"],
+                         label="Hook (first 8s)") + 2
+        why = idea.get("why_10m") or idea.get("why_it_hits") or idea.get("why")
+        if why:
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, "Why it hits 10M: " + str(why),
+                        F_SANS, "", 9, INK) + 1
+        if idea.get("thumbnail"):
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, "Thumbnail: " + str(idea["thumbnail"]),
+                        F_SANS, "", 9, MUTED) + 1
+        outline = idea.get("outline") or idea.get("beats") or []
+        if isinstance(outline, list) and outline:
+            y = tick_list(pdf, MARGIN, y + 1, CONTENT_W, [str(b) for b in outline[:5]])
         y += 5
-    y += 3
-
-    # Agent token usage
-    if y > 250:
-        pdf.add_page(); y = pdf.get_y() + 2
-
-    pdf.set_font("Helvetica", "B", 10)
-    pdf.set_text_color(40, 40, 40)
-    pdf.set_xy(14, y); pdf.cell(180, 5, "Agent Token Usage"); y += 6
-
-    tok = telemetry.get("agent_tokens") or {}
-    pdf.set_font("Helvetica", "", 9)
-    pdf.set_text_color(60, 60, 60)
-
-    if not tok or tok.get("available") is False:
-        reason = tok.get("reason", "agent did not write .tmp/agent_tokens.json")
-        pdf.set_xy(14, y)
-        pdf.multi_cell(180, 5, sanitize_text(f"Token usage unavailable. Reason: {reason}"))
-        y = pdf.get_y() + 2
-    else:
-        model = tok.get("model", "unknown")
-        in_tok = int(tok.get("input_tokens", 0) or 0)
-        out_tok = int(tok.get("output_tokens", 0) or 0)
-        cr_tok = int(tok.get("cache_read_tokens", 0) or 0)
-        cc_tok = int(tok.get("cache_creation_tokens", 0) or 0)
-        total_tok = in_tok + out_tok + cr_tok + cc_tok
-
-        rates = MODEL_PRICING.get(model)
-        cost = None
-        if rates:
-            cost = (
-                in_tok / 1e6 * rates["input"]
-                + out_tok / 1e6 * rates["output"]
-                + cr_tok / 1e6 * rates["cache_read"]
-                + cc_tok / 1e6 * rates["cache_creation"]
-            )
-
-        rows = [
-            ("Model", model),
-            ("Input tokens", f"{in_tok:,}"),
-            ("Output tokens", f"{out_tok:,}"),
-            ("Cache read", f"{cr_tok:,}"),
-            ("Cache creation", f"{cc_tok:,}"),
-            ("Total tokens", f"{total_tok:,}"),
-            ("Estimated cost (USD)", f"${cost:.4f}" if cost is not None else "n/a (unknown model rates)"),
-        ]
-        for label, val in rows:
-            pdf.set_xy(14, y)
-            pdf.cell(60, 5, sanitize_text(label))
-            pdf.cell(120, 5, sanitize_text(val))
-            y += 5
-
-        notes = tok.get("notes")
-        if notes:
-            y += 2
-            pdf.set_font("Helvetica", "I", 8)
-            pdf.set_text_color(100, 100, 100)
-            pdf.set_xy(14, y)
-            pdf.multi_cell(180, 4, sanitize_text(f"Notes: {notes}"))
-            y = pdf.get_y() + 2
-
-    pdf.set_y(y + 3)
 
 
+def build_viral_video(pdf, section_key, vids, idx):
+    y = section_header(pdf, section_key, idx)
+    vids = [v for v in (vids or []) if isinstance(v, dict)]
+    if not vids:
+        _empty_note(pdf, y, "No new viral video cleared the floor this period.")
+        return
+    for v in vids:
+        y = _ensure_space(pdf, y, 34, section_key, idx)
+        y = wrapped(pdf, MARGIN, y, CONTENT_W,
+                    f"{v.get('title', 'Video')} - {v.get('channel', '')}".strip(" -"),
+                    F_SANS, "B", 11.5, INK, lh=5.4) + 1
+        tag = [b for b in [v.get("format", ""), _pretty_bucket(v.get("bucket", ""))] if b]
+        if tag:
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, "  .  ".join(tag),
+                        F_SANS, "", 8, MUTED, lh=4)
+        if v.get("summary"):
+            y = card_box(pdf, MARGIN, y, CONTENT_W, v["summary"],
+                         label="Why it went viral") + 1
+        if v.get("url"):
+            y = link_line(pdf, MARGIN, y, CONTENT_W, v["url"], v["url"])
+        y += 3
+
+
+def build_instagram_reels(pdf, section_key, reels, idx):
+    y = section_header(pdf, section_key, idx)
+    reels = [r for r in (reels or []) if isinstance(r, dict)]
+    if not reels:
+        _empty_note(pdf, y, "No new viral reel this period.")
+        return
+    for r in reels:
+        y = _ensure_space(pdf, y, 30, section_key, idx)
+        user = str(r.get("username", "")).strip().lstrip("@")
+        parts = ([("@" + user)] if user else []) + ([_pretty_bucket(r.get("bucket"))]
+                                                     if r.get("bucket") else [])
+        head = "  .  ".join(parts) or clean(r.get("title", "Reel"))
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, head,
+                    F_SANS, "B", 11, INK, lh=5.2) + 1
+        if r.get("hashtag"):
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, "#" + str(r["hashtag"]).lstrip("#"),
+                        F_SANS, "", 8, MUTED, lh=4)
+        if r.get("summary"):
+            y = card_box(pdf, MARGIN, y, CONTENT_W, r["summary"], label="Why it works") + 1
+        if r.get("url"):
+            y = link_line(pdf, MARGIN, y, CONTENT_W, r["url"], r["url"])
+        y += 3
+
+
+SPECIAL = {
+    "remote_jobs": build_jobs,
+    "ai_model_benchmarks": build_benchmark_table,
+    "youtube_content_ideas": build_youtube_ideas,
+    "viral_video_landscape": build_viral_video,
+    "instagram_viral_reels": build_instagram_reels,
+}
+
+
+# ── Orchestration ─────────────────────────────────────────────────────────────
 def generate_pdf():
-    """Main function: load analyzed content and generate PDF."""
+    """Load analyzed content and render the magazine PDF."""
     input_file = os.path.join(TMP_DIR, "analyzed_content.json")
-
     if not os.path.exists(input_file):
         print("ERROR: analyzed_content.json not found. Run analyze_and_categorize.py first.")
         sys.exit(1)
-
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)
+    sections = data.get("sections", {}) or {}
 
-    sections_data = data.get("sections", {})
-
-    print("Generating PDF...")
-
-    # Create PDF
-    pdf = GlobalAINewsPDF()
-    pdf.alias_nb_pages()
-    pdf.set_auto_page_break(auto=True, margin=15)
-
-    # Cover page
-    pdf.add_page()
-    build_cover_page(pdf, sections_data)
-
-    # Section pages
-    for section_key in SECTION_ORDER:
-        stories = sections_data.get(section_key, [])
-        pdf.add_page()
-        if section_key == "viral_video_landscape":
-            build_viral_video_section(pdf, section_key, stories)
-        else:
-            build_section(pdf, section_key, stories)
-
-    # Run telemetry section (appended; not part of canonical 18)
-    telemetry_file = os.path.join(TMP_DIR, "run_telemetry.json")
-    telemetry = {}
-    if os.path.exists(telemetry_file):
+    # Merge agent-written YouTube ideas (separate file) into the section payload.
+    ideas_path = os.path.join(TMP_DIR, "youtube_content_ideas.json")
+    if os.path.exists(ideas_path):
         try:
-            with open(telemetry_file, "r", encoding="utf-8") as f:
-                telemetry = json.load(f)
-        except Exception as e:
-            print(f"  [telemetry] failed to load: {e}")
-    pdf.add_page()
-    build_telemetry_section(pdf, telemetry)
+            with open(ideas_path, "r", encoding="utf-8") as f:
+                ideas = (json.load(f) or {}).get("ideas", []) or []
+            if ideas:
+                sections["youtube_content_ideas"] = ideas
+        except Exception:
+            pass
 
-    # Save
+    print("Generating magazine PDF...")
+    pdf = FPDF(format="A4")
+    pdf.set_auto_page_break(False)
+    pdf.set_title("Daily AI News & Remote Jobs")
+    pdf.set_margins(MARGIN, MARGIN, MARGIN)
+    register_fonts(pdf)
+
+    issue_no = _issue_number()
+    build_cover(pdf, sections, issue_no)
+    build_contents(pdf, sections)
+    for idx, key in enumerate(SECTION_ORDER, 1):
+        stories = sections.get(key, []) or []
+        builder = SPECIAL.get(key)
+        if builder:
+            builder(pdf, key, stories, idx)
+        else:
+            build_section(pdf, key, stories, idx)
+    build_closing(pdf)
+
     os.makedirs(TMP_DIR, exist_ok=True)
     pdf.output(OUTPUT_FILE)
-
-    file_size = os.path.getsize(OUTPUT_FILE) / 1024
-    total_stories = sum(len(sections_data.get(s, [])) for s in SECTION_ORDER)
-
-    print(f"\nPDF generated: {OUTPUT_FILE}")
-    print(f"  Size: {file_size:.0f} KB")
-    print(f"  Pages: {pdf.page_no()}")
-    print(f"  Stories: {total_stories}")
-
-    return OUTPUT_FILE
+    size_kb = os.path.getsize(OUTPUT_FILE) / 1024
+    total = sum(len(sections.get(s, [])) for s in SECTION_ORDER
+                if isinstance(sections.get(s), list))
+    print(f"[generate_pdf] wrote {OUTPUT_FILE} ({pdf.page_no()} pages, "
+          f"{size_kb:.0f} KB, {total} items)")
+    return True, OUTPUT_FILE
 
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@ import sys
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
-from tools.agent_analyze import classify, clean, SECTION_MIN, LLM_SECTIONS
+from tools.agent_analyze import classify, clean, is_ai, SECTION_MIN, LLM_SECTIONS
 from tools.analyze_and_categorize import OUTPUT_FILE, _within_hours, NEWS_FRESH_HOURS
 from tools import content_history
 
@@ -47,6 +47,55 @@ DEDUP_DAYS = 7
 #    URLs as "seen", which permanently empties the user's portfolio-showcase
 #    section. This is the user's most important section — it must never empty.
 DEDUP_EXEMPT = {"ai_model_benchmarks", "product_showcase_opportunities"}
+
+# ── Final deterministic guard over the categorized sections ───────────────────
+# Probabilistic categorization (the Claude agent OR the keyword fallback) can
+# misroute non-AI headlines into AI-only sections and leave >24h items behind.
+# These two sets are scrubbed AFTER analysis so the PDF is always AI-only and
+# strictly last-24h, regardless of how categorization happened.
+#
+# AI_ONLY_SECTIONS: drop any item whose title+summary shows no AI signal.
+#   Excludes general_news (intentionally non-AI), ai_model_benchmarks (standings
+#   rows carry no AI keyword), ai_search_trends (short query phrases), jobs/
+#   showcase/youtube/instagram/viral (own logic, often no literal "AI" token).
+AI_ONLY_SECTIONS = {
+    "indian_ai_industry", "global_ai_news", "anthropic_claude_news",
+    "new_ai_tools", "ai_business_automation", "ai_business_opportunities",
+    "elon_musk_ai_vision", "ai_self_improvement_rsi", "quantum_ai_research",
+    "unaddressed_ai_problems", "ai_music_copyright_laws",
+}
+# NEWS_24H_SECTIONS: drop any dated item older than NEWS_FRESH_HOURS.
+#   Excludes remote_jobs (postings; freshness via job_history dedup),
+#   product_showcase_opportunities (future deadlines, never-empty),
+#   ai_model_benchmarks (standings snapshot), viral_video_landscape (7-day by
+#   design — virality needs time), instagram_viral_reels (own 24h verify),
+#   youtube_content_ideas (synthesized), ai_search_trends (no published date).
+NEWS_24H_SECTIONS = AI_ONLY_SECTIONS | {"general_news"}
+
+
+def _sanitize_sections(sections: dict) -> tuple[int, int]:
+    """Drop non-AI items from AI-only sections and >24h items from news
+    sections. Returns (non_ai_dropped, stale_dropped)."""
+    non_ai = stale = 0
+    for sec, items in sections.items():
+        if not isinstance(items, list):
+            continue
+        kept = []
+        for it in items:
+            if not isinstance(it, dict):
+                kept.append(it)
+                continue
+            text = f"{it.get('title', '')} {it.get('summary', '')}"
+            if sec in AI_ONLY_SECTIONS and not is_ai(text):
+                non_ai += 1
+                continue
+            if sec in NEWS_24H_SECTIONS and not _within_hours(
+                    it.get("published") or it.get("posted"), NEWS_FRESH_HOURS):
+                stale += 1
+                continue
+            kept.append(it)
+        sections[sec] = kept
+    return non_ai, stale
 
 # Deterministic "Top Model Per Category" seed for ai_model_benchmarks so the
 # section always leads with the standings table (like the reference PDFs), even
@@ -185,6 +234,9 @@ def main() -> int:
     # --- 2b. Seed benchmarks standings table (exempt from dedup) ---
     _seed_benchmark_standings(sections)
 
+    # --- 2c. Deterministic guard: AI-only + strict-24h over final sections ---
+    non_ai_dropped, stale_dropped = _sanitize_sections(sections)
+
     # --- 3. Record surfaced RSS URLs so tomorrow rotates them out ---
     surfaced = [
         (it.get("url") or "")
@@ -203,6 +255,7 @@ def main() -> int:
 
     print(
         f"[dedupe_backfill] dropped {dropped} repeat(s), backfilled {added}, "
+        f"scrubbed {non_ai_dropped} non-AI + {stale_dropped} stale (>24h), "
         f"recorded {len(set(surfaced))} URL(s) in '{NEWS_NS}' history"
     )
     return 0

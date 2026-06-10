@@ -1,0 +1,11 @@
+=== scrape_jobs ===
+All job sources returned 403 (datacenter IP block). Content gathered via WebSearch fallback.
+=== scrape_rss_feeds ===
+All 29 RSS feeds returned 403 (datacenter IP). Content gathered via WebSearch.
+=== youtube_viral_verify ===
+global_automation: none qualified
+global_short: dropped (not AI content)
+india_automation: 39,202 views - TCS Chairman on AI Agents (kept)
+=== generate_pdf ===
+PDF generated: 21 pages, 77 stories, 125KB
+Date: 2026-06-11 (IST)

@@ -1,13 +1,15 @@
 """
-Search YouTube for trending AI news videos from the last 24 hours.
+Search YouTube for trending AI videos — no time window.
 Uses YouTube Data API v3. Outputs .tmp/youtube_trending.json
+"trending" = YouTube's mostPopular chart + viewCount-ordered AI searches,
+no publishedAfter filter (user explicitly chose this on 2026-05-21).
 """
 
 import json
 import os
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
@@ -20,46 +22,32 @@ OUTPUT_FILE = os.path.join(TMP_DIR, "youtube_trending.json")
 
 API_KEY = os.getenv("YOUTUBE_API_KEY")
 
-# Search queries covering all 15 sections
+# AI-automation-focused queries — what other creators are publishing on YouTube
+# about AI automation. Feeds the user's planned AI-automation teaching channel.
 SEARCH_QUERIES = [
-    # Trending AI
-    "AI news today",
-    "artificial intelligence news",
-    "AI breaking news",
-    # Business & Automation
-    "AI business opportunities 2026",
-    "AI business automation",
-    "AI startups",
-    # Tools
-    "best AI tools",
-    "AI image generation",
-    "AI video generation tools",
-    "AI content creation tools",
-    # Music & Copyright
-    "AI music news",
-    "AI copyright law",
-    "Suno AI music",
-    "AI music distribution",
-    # India
-    "AI India news",
-    "Indian AI startups",
-    # Quantum & RSI
-    "quantum AI research",
-    "quantum computing AI",
-    "AI self improvement recursive",
-    # Global
-    "AI regulation news",
-    "AI China news",
-    "AI Europe regulation",
-    # Anthropic / Claude
-    "Claude Anthropic AI news",
-    "Anthropic Claude model update",
-    # Elon Musk / xAI / Grok
-    "Elon Musk AI news",
-    "xAI Grok AI",
-    # AI problems & product opportunities
-    "AI industry problems unsolved",
-    "where to submit AI product launch",
+    # Tutorials & teaching content
+    "AI automation tutorial",
+    "AI agent tutorial",
+    "build AI agent",
+    "AI workflow automation",
+    "how to automate with AI",
+    # Tool-specific automation
+    "n8n tutorial",
+    "n8n AI workflow",
+    "Make.com AI tutorial",
+    "Zapier AI tutorial",
+    "Claude Code tutorial",
+    "Cursor AI tutorial",
+    "Windsurf AI tutorial",
+    "Cline AI tutorial",
+    # Agent platforms
+    "LangGraph tutorial",
+    "CrewAI tutorial",
+    "AutoGen tutorial",
+    # Use-case content
+    "AI automation business",
+    "AI agency build",
+    "AI SaaS automation",
 ]
 
 # Modern AI-native automation platforms — drives viral slots 1 & 2.
@@ -104,18 +92,20 @@ AI_CHANNELS = [
 ]
 
 
-def search_youtube(youtube, query, published_after, max_results=10):
-    """Search YouTube for videos matching query."""
+def search_youtube(youtube, query, published_after=None, max_results=10):
+    """Search YouTube for trending videos matching query. No time filter."""
     try:
-        request = youtube.search().list(
+        params = dict(
             q=query,
             part="snippet",
             type="video",
-            order="date",
-            publishedAfter=published_after,
+            order="viewCount",
             maxResults=max_results,
             relevanceLanguage="en",
         )
+        if published_after:
+            params["publishedAfter"] = published_after
+        request = youtube.search().list(**params)
         response = request.execute()
 
         videos = []
@@ -157,17 +147,19 @@ def search_youtube(youtube, query, published_after, max_results=10):
         return []
 
 
-def get_channel_videos(youtube, channel_id, published_after):
-    """Get recent videos from a specific channel."""
+def get_channel_videos(youtube, channel_id, published_after=None):
+    """Get recent videos from a specific channel. Time filter optional."""
     try:
-        request = youtube.search().list(
+        params = dict(
             channelId=channel_id,
             part="snippet",
             type="video",
             order="date",
-            publishedAfter=published_after,
             maxResults=5,
         )
+        if published_after:
+            params["publishedAfter"] = published_after
+        request = youtube.search().list(**params)
         response = request.execute()
 
         videos = []
@@ -452,21 +444,19 @@ def scrape_youtube():
     os.makedirs(TMP_DIR, exist_ok=True)
     youtube = build("youtube", "v3", developerKey=API_KEY)
 
-    cutoff = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%SZ")
-
     all_videos = []
 
-    # Search queries (each costs 100 quota units)
+    # Search queries (each costs 100 quota units) - no time filter, trending now
     print(f"Searching {len(SEARCH_QUERIES)} queries...")
     for query in SEARCH_QUERIES:
-        videos = search_youtube(youtube, query, cutoff, max_results=5)
+        videos = search_youtube(youtube, query, max_results=5)
         print(f"  [{len(videos):>2} videos] '{query}'")
         all_videos.extend(videos)
 
-    # Check known channels
+    # Check known channels - latest 5 per channel
     print(f"\nChecking {len(AI_CHANNELS)} AI channels...")
     for channel_id in AI_CHANNELS:
-        videos = get_channel_videos(youtube, channel_id, cutoff)
+        videos = get_channel_videos(youtube, channel_id)
         if videos:
             print(f"  [{len(videos):>2} videos] {videos[0]['channel']}")
         all_videos.extend(videos)
@@ -489,7 +479,7 @@ def scrape_youtube():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "scraped_at": datetime.now(timezone.utc).isoformat(),
-            "cutoff": cutoff,
+            "cutoff": None,  # no time window - trending now
             "total_videos": len(unique_videos),
             "queries_searched": len(SEARCH_QUERIES),
             "channels_checked": len(AI_CHANNELS),

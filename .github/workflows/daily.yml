@@ -1,8 +1,10 @@
-name: Daily AI News + Remote Jobs
+name: Daily AI News + Remote Jobs (backup runner)
 
+# Backup for the claude.ai cloud routine (00:00 IST). Runs 75 min later and
+# exits early if the routine already pushed today's daily/<date> branch.
 on:
   schedule:
-    - cron: '30 18 * * *'  # 18:30 UTC = 00:00 IST
+    - cron: '45 19 * * *'  # 19:45 UTC = 01:15 IST
   workflow_dispatch:
 
 jobs:
@@ -12,22 +14,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Skip if cloud routine already delivered today
+        id: guard
+        run: |
+          DATE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
+          if git ls-remote --exit-code origin "refs/heads/daily/${DATE}" >/dev/null 2>&1; then
+            echo "Routine already pushed daily/${DATE} — skipping backup run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != 'true'
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        if: steps.guard.outputs.skip != 'true'
+        run: pip install -r requirements.txt
 
       - name: Run pipeline
+        if: steps.guard.outputs.skip != 'true'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+          TRENDS_BUDGET_SECONDS: '240'
         run: python tools/run_daily_pipeline.py
 
       - name: Upload artifacts (kept 7 days)
-        if: always()
+        if: always() && steps.guard.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: daily-pdf
@@ -45,7 +63,24 @@ jobs:
           SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
         run: |
           python - <<'PY'
-          import sys; sys.path.insert(0, ".")
-          from tools.notify_slack import notify, tail_log
-          notify("GitHub Actions job", "Workflow exited non-zero", tail_log(".tmp/pipeline.log"))
+          import json, os, urllib.request
+          try:
+              with open(".tmp/pipeline.log", encoding="utf-8") as f:
+                  tail = f.read()[-1400:]
+          except OSError:
+              tail = "no pipeline.log"
+          from datetime import date
+          payload = json.dumps({
+              "channel": os.environ["SLACK_USER_ID"],
+              "text": f"🚨 Daily AI News BACKUP Actions run FAILED — {date.today()}\n```{tail}```",
+          }).encode()
+          req = urllib.request.Request(
+              "https://slack.com/api/chat.postMessage",
+              data=payload,
+              headers={
+                  "Authorization": "Bearer " + os.environ["SLACK_BOT_TOKEN"],
+                  "Content-Type": "application/json; charset=utf-8",
+              },
+          )
+          print(urllib.request.urlopen(req).read().decode()[:300])
           PY

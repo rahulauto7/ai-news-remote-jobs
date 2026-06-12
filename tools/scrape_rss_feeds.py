@@ -1,6 +1,6 @@
 """
 Scrape RSS feeds from 25+ AI news sources.
-Filters to last 24 hours. Outputs .tmp/rss_articles.json
+Filters to last 7 days. Outputs .tmp/rss_articles.json
 """
 
 import json
@@ -45,6 +45,9 @@ FEEDS = {
     "arXiv Quantum Physics": "https://rss.arxiv.org/rss/quant-ph",
     "arXiv AI": "https://rss.arxiv.org/rss/cs.AI",
     "arXiv Machine Learning": "https://rss.arxiv.org/rss/cs.LG",
+    # AI safety / alignment / policy research — feeds the RSI section, which the
+    # general-AI news feeds rarely surface (alignment papers live on arXiv cs.CY).
+    "arXiv CS & Society": "https://rss.arxiv.org/rss/cs.CY",
 
     # Music Industry / Copyright
     # Hypebot's hosted feed went 404 in 2026-04 — dropped. MBW + DMN cover the same beat.
@@ -67,6 +70,13 @@ FEEDS = {
     "Product Hunt AI": "https://www.producthunt.com/feed?category=artificial-intelligence",
     "Futurism": "https://futurism.com/feed",
 
+    # AI Hackathons & Competitions (Section 5) — Devpost/MLH have no public RSS,
+    # so we proxy via Google News queries that catch announcements + winners
+    # globally (e.g., GitLab AI Hackathon 2026 on Devpost, Anthropic/Google Cloud
+    # co-sponsored events, AWS AI hackathons, Microsoft AI Agent challenges).
+    "AI Hackathons (via Google News)": "https://news.google.com/rss/search?q=(%22AI+hackathon%22+OR+%22AI+agents+hackathon%22+OR+%22AI+agent+hackathon%22)+(submission+OR+deadline+OR+winners+OR+devpost+OR+launches+OR+announces)&hl=en-US&gl=US&ceid=US:en",
+    "AI Competitions on Devpost (via Google News)": "https://news.google.com/rss/search?q=(devpost+OR+%22AI+competition%22+OR+%22AI+challenge%22)+(submission+OR+deadline+OR+winners+OR+%22cash+prize%22)+AI&hl=en-US&gl=US&ceid=US:en",
+
     # General News (non-AI) — world + India top headlines
     "BBC World": "http://feeds.bbci.co.uk/news/world/rss.xml",
     "The Hindu - National": "https://www.thehindu.com/news/national/feeder/default.rss",
@@ -74,8 +84,9 @@ FEEDS = {
 }
 
 
-# arXiv feeds return hundreds of papers — limit to most relevant
-ARXIV_MAX_PER_FEED = 15
+# arXiv feeds return hundreds of papers — limit to most relevant. Kept generous
+# enough that quantum/RSI candidates aren't truncated before classification.
+ARXIV_MAX_PER_FEED = 25
 
 import random as _random
 
@@ -113,12 +124,23 @@ RSS_HEADERS = _rss_headers()
 def fetch_feed(name, url, cutoff_time, timeout=20):
     """Fetch and parse a single RSS feed. Returns list of articles."""
     is_arxiv = name.startswith("arXiv")
+    # arXiv's rss.arxiv.org is slow and frequently exceeds a 20s read — give it
+    # a longer read budget. (connect, read) tuple so a dead host fails fast.
+    eff_timeout = (10, 45) if is_arxiv else timeout
     articles = []
     try:
-        # Retry up to 3x with rotating UA on 403/429/5xx (datacenter IPs hit WAFs).
+        # Retry up to 3x with rotating UA. Retry on 403/429/5xx (datacenter IPs
+        # hit WAFs) AND on connection/read timeouts (arXiv times out often) — the
+        # old loop let a Timeout bubble straight out, so arXiv silently returned 0.
         response = None
         for attempt in range(3):
-            response = requests.get(url, timeout=timeout, headers=_rss_headers())
+            try:
+                response = requests.get(url, timeout=eff_timeout, headers=_rss_headers())
+            except requests.exceptions.RequestException as e:
+                if attempt < 2:
+                    time.sleep(1.5 + _random.random() * 2.0)
+                    continue
+                raise
             if response.status_code in (403, 429) or response.status_code >= 500:
                 time.sleep(1.5 + _random.random() * 2.0)
                 continue
@@ -174,6 +196,7 @@ def _categorize_source(source_name):
         "company_blog": ["OpenAI Blog", "Google AI Blog", "Hugging Face Blog"],
         "anthropic_claude": ["Anthropic Claude Code Releases"],
         "elon_xai": ["xAI News (via Google News)", "Elon Musk on X (via Google News)"],
+        "hackathons": ["AI Hackathons (via Google News)", "AI Competitions on Devpost (via Google News)"],
         "general_news": ["BBC World", "The Hindu - National", "NDTV Top Stories"],
     }
     for cat, sources in categories.items():
@@ -186,10 +209,14 @@ def scrape_all_feeds():
     """Scrape all RSS feeds and save to JSON."""
     os.makedirs(TMP_DIR, exist_ok=True)
 
-    cutoff_time = datetime.now(timezone.utc) - timedelta(hours=24)
+    # Collect ~7 days on purpose: the analyzer surfaces only last-24h items
+    # (analyze_and_categorize.NEWS_FRESH_HOURS), but dedupe_and_backfill WIDENS to
+    # this older pool to keep low-volume sections (Quantum/RSI) above SECTION_MIN.
+    # Do NOT shrink this to 24h or those sections go empty again.
+    cutoff_time = datetime.now(timezone.utc) - timedelta(days=7)
     all_articles = []
 
-    print(f"Scraping {len(FEEDS)} RSS feeds (cutoff: {cutoff_time.strftime('%Y-%m-%d %H:%M UTC')})...")
+    print(f"Scraping {len(FEEDS)} RSS feeds (cutoff: {cutoff_time.strftime('%Y-%m-%d %H:%M UTC')}, 7d pool / 24h surfaced)...")
 
     for name, url in FEEDS.items():
         articles = fetch_feed(name, url, cutoff_time)

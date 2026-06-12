@@ -58,7 +58,7 @@ SECTION_CONFIG = {
     },
     "product_showcase_opportunities": {
         "label": "AI Showcase Opportunities",
-        "desc": "AI hackathons & competitions plus accelerators / incubators (e.g. IndiaAI, YC, Techstars). Each item carries a direct apply link + deadline. India & worldwide.",
+        "desc": "Two blocks: Hackathons & Competitions (prize + deadline) and Accelerators & Incubators (who can apply, what you get, deadline). Every item has a direct apply link. India & worldwide.",
     },
     "anthropic_claude_news": {
         "label": "Anthropic & Claude Code",
@@ -787,8 +787,107 @@ def build_instagram_reels(pdf, section_key, reels, idx):
         y += 3
 
 
+def _fmt_deadline(iso):
+    """Human-readable deadline: 'June 15, 2026' for an ISO date,
+    'Rolling — apply anytime' when there's no fixed deadline."""
+    if not iso:
+        return "Rolling — apply anytime"
+    try:
+        d = datetime.strptime(str(iso)[:10], "%Y-%m-%d")
+        return f"{d.strftime('%B')} {d.day}, {d.year}"
+    except (ValueError, TypeError):
+        return str(iso)
+
+
+def _showcase_group(it):
+    """'hackathon' or 'accelerator'; default missing/unknown -> 'hackathon'."""
+    g = (it.get("group") or "").strip().lower()
+    return g if g in ("hackathon", "accelerator") else "hackathon"
+
+
+def _kv(pdf, x, y, w, label, value):
+    """Bold 'Label:' + regular value. One line when it fits, else the label then
+    the wrapped value beneath it. Missing/empty value -> nothing drawn (so a
+    null prize shows no 'Prize:' line rather than 'Prize: None'). Returns y."""
+    if value is None:
+        return y
+    value = clean(str(value))
+    if not value:
+        return y
+    lab = label + ": "
+    _set(pdf, F_SANS, "B", 9.5, INK)
+    lw = pdf.get_string_width(lab)
+    _set(pdf, F_SANS, "", 9.5, INK)
+    if lw + pdf.get_string_width(value) <= w:
+        _set(pdf, F_SANS, "B", 9.5, INK)
+        pdf.set_xy(x, y)
+        pdf.cell(lw, 5, lab)
+        _set(pdf, F_SANS, "", 9.5, INK)
+        pdf.cell(0, 5, value)
+        return y + 5.4
+    _set(pdf, F_SANS, "B", 9.5, INK)
+    pdf.set_xy(x, y)
+    pdf.cell(lw, 5, lab)
+    return wrapped(pdf, x, y + 5, w, value, F_SANS, "", 9.5, INK, lh=4.8) + 1
+
+
+def build_showcase(pdf, section_key, items, idx):
+    """Two labeled sub-blocks so the user clearly sees BOTH kinds of opportunity:
+      Hackathons & Competitions  -> Title / Prize / Deadline / apply link
+      Accelerators & Incubators  -> Title / Who can apply / What you get /
+                                    Deadline / apply link
+    Each list is sorted by deadline ascending (rolling/undated last)."""
+    y = section_header(pdf, section_key, idx)
+    items = [it for it in (items or []) if isinstance(it, dict)]
+    if not items:
+        _empty_note(pdf, y, "No open hackathons or accelerator programs right now.")
+        return
+
+    def _dl_key(it):
+        d = it.get("deadline_iso")
+        return (1, "") if not d else (0, str(d)[:10])
+
+    hackathons = sorted([it for it in items if _showcase_group(it) == "hackathon"], key=_dl_key)
+    accelerators = sorted([it for it in items if _showcase_group(it) == "accelerator"], key=_dl_key)
+
+    def _title(it):
+        return clean(it.get("title") or "Untitled")
+
+    def _apply_url(it):
+        return (it.get("url") or it.get("submission_url") or it.get("apply_url") or "").strip()
+
+    if hackathons:
+        y = _ensure_space(pdf, y, 18, section_key, idx)
+        y = eyebrow(pdf, MARGIN, y, "Hackathons & Competitions") + 3
+        for it in hackathons:
+            y = _ensure_space(pdf, y, 30, section_key, idx)
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, _title(it), F_SANS, "B", 11.5, INK, lh=5.2) + 1
+            y = _kv(pdf, MARGIN, y, CONTENT_W, "Prize", it.get("prize_summary"))
+            y = _kv(pdf, MARGIN, y, CONTENT_W, "Deadline", _fmt_deadline(it.get("deadline_iso")))
+            url = _apply_url(it)
+            if url:
+                y = link_line(pdf, MARGIN, y, CONTENT_W, url, url)
+            y += 4
+
+    if accelerators:
+        y = _ensure_space(pdf, y, 22, section_key, idx)
+        y = eyebrow(pdf, MARGIN, y + 2, "Accelerators & Incubators") + 3
+        for it in accelerators:
+            y = _ensure_space(pdf, y, 36, section_key, idx)
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, _title(it), F_SANS, "B", 11.5, INK, lh=5.2) + 1
+            y = _kv(pdf, MARGIN, y, CONTENT_W, "Who can apply", it.get("eligibility"))
+            y = _kv(pdf, MARGIN, y, CONTENT_W, "What you get",
+                    it.get("benefits") or it.get("summary"))
+            y = _kv(pdf, MARGIN, y, CONTENT_W, "Deadline", _fmt_deadline(it.get("deadline_iso")))
+            url = _apply_url(it)
+            if url:
+                y = link_line(pdf, MARGIN, y, CONTENT_W, url, url)
+            y += 4
+
+
 SPECIAL = {
     "remote_jobs": build_jobs,
+    "product_showcase_opportunities": build_showcase,
     "ai_model_benchmarks": build_benchmark_table,
     "youtube_content_ideas": build_youtube_ideas,
     "viral_video_landscape": build_viral_video,

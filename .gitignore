@@ -9,3 +9,4 @@ token.json
 service_account.json
 *.pdf
 jobs.csv
+.DS_Store

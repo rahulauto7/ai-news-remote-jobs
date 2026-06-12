@@ -1,0 +1,1176 @@
+{
+  "analyzed_at": "2026-06-12T17:32:46.456638+00:00",
+  "total_items_analyzed": 19,
+  "sections": {
+    "remote_jobs": [
+      {
+        "title": "Junior AI Agent Engineer",
+        "company": "Client via Strider",
+        "url": "https://www.onstrider.com/jobs/junior-ai-agent-engineer-43bffffe",
+        "location": "Worldwide Remote",
+        "experience_level": "junior",
+        "skills": [
+          "n8n",
+          "JSON",
+          "AI agents",
+          "Make",
+          "Vapi",
+          "Synflow"
+        ],
+        "matched_skills": [
+          "n8n",
+          "AI agents"
+        ],
+        "summary": "Client is hiring a Junior AI Agent Engineer to design and develop custom AI agents using n8n, Make, Vapi, and Synflow. Role requires 1+ year of experience with JSON and workflow automation platforms.",
+        "strong_match": true,
+        "source": "Strider / web search (direct scrapers returned HTTP 403 on this cloud run)",
+        "relevance": 5
+      },
+      {
+        "title": "N8N AI Automation Developer (Remote)",
+        "company": "Client (anonymous)",
+        "url": "https://community.n8n.io/t/hiring-n8n-ai-automation-developer-remote/298577",
+        "location": "Worldwide Remote",
+        "experience_level": "junior",
+        "skills": [
+          "n8n",
+          "AI automation",
+          "workflow design"
+        ],
+        "matched_skills": [
+          "n8n",
+          "AI automation"
+        ],
+        "summary": "Client posted in the n8n Community seeking an AI Automation Developer to build and maintain AI-powered automation workflows. No explicit seniority gate — open to developers with hands-on n8n experience.",
+        "strong_match": true,
+        "source": "n8n Community / web search",
+        "relevance": 5
+      },
+      {
+        "title": "AI Automation Engineer (multiple openings)",
+        "company": "Agentic Engineering Jobs board",
+        "url": "https://agentic-engineering-jobs.com/jobs/n8n",
+        "location": "Worldwide Remote",
+        "experience_level": "entry/junior",
+        "skills": [
+          "n8n",
+          "LangChain",
+          "AI agents",
+          "workflow automation"
+        ],
+        "matched_skills": [
+          "n8n",
+          "AI agents"
+        ],
+        "summary": "Specialized job board listing 732+ active n8n and agentic-AI engineering roles. Entry-level roles include workflow builders, LLM integration specialists, and AI chatbot developers.",
+        "strong_match": true,
+        "source": "Agentic Engineering Jobs / web search",
+        "relevance": 4
+      },
+      {
+        "title": "Remote AI/ML Jobs (browse board)",
+        "company": "Remotive.com",
+        "url": "https://remotive.com/remote-ai-jobs",
+        "location": "Worldwide Remote",
+        "experience_level": "entry/junior",
+        "skills": [
+          "AI",
+          "ML",
+          "automation"
+        ],
+        "matched_skills": [],
+        "summary": "Remotive lists 13,272+ fresh remote AI/ML positions weekly. Filter by 'entry level' to surface chatbot trainers, AI content assistants, data labellers, and automation workflow developers — roles that don't require a technical background.",
+        "strong_match": false,
+        "source": "Remotive.com / web search",
+        "relevance": 3
+      }
+    ],
+    "youtube_content_ideas": [],
+    "ai_search_trends": [
+      {
+        "title": "SURGING: Claude Fable 5",
+        "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+        "sample_urls": [
+          "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+        ],
+        "sources": [
+          "HN",
+          "Reddit",
+          "Google Trends"
+        ],
+        "score": 100,
+        "summary": "Claude Fable 5 launched June 9, 2026 — 95% SWE-bench, Mythos-class, free through June 22 on Pro plans. Dominating AI discussion boards.",
+        "source": "HN, Reddit, Google Trends",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "SURGING: MiniMax M3",
+        "url": "https://venturebeat.com/technology/minimax-m3-debuts-eclipsing-gpt-5-5-and-gemini-3-1-pro-on-key-benchmark-performance-for-just-5-10-of-the-cost",
+        "sample_urls": [
+          "https://venturebeat.com/technology/minimax-m3-debuts-eclipsing-gpt-5-5-and-gemini-3-1-pro-on-key-benchmark-performance-for-just-5-10-of-the-cost"
+        ],
+        "sources": [
+          "HN",
+          "Reddit"
+        ],
+        "score": 95,
+        "summary": "Open-weights model matching GPT-5.5 on coding at 5-10% cost. Released June 1, 2026. Hot topic for self-hosters and cost-conscious builders.",
+        "source": "HN, Reddit",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "SURGING: SpaceX SPCX IPO",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Google Trends",
+          "Reddit"
+        ],
+        "score": 90,
+        "summary": "SpaceX went public June 12 at $1.75T valuation — largest US IPO ever. Trending across finance and tech communities.",
+        "source": "Google Trends, Reddit",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "Grok V9 release date",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Reddit",
+          "HN"
+        ],
+        "score": 85,
+        "summary": "Grok V9-Medium (1.5T parameters) training complete; mid-June 2026 public release expected. Community watching for announcement.",
+        "source": "Reddit, HN",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Claude Code post-session hooks",
+        "url": "https://code.claude.com/docs/en/changelog",
+        "sample_urls": [
+          "https://code.claude.com/docs/en/changelog"
+        ],
+        "sources": [
+          "HN",
+          "Reddit"
+        ],
+        "score": 80,
+        "summary": "Claude Code 2.1.170 post-session hooks enabling automated CI/CD pipelines — trending in developer communities after June 11 release.",
+        "source": "HN, Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "xAI safety lawsuit",
+        "url": "https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/",
+        "sample_urls": [
+          "https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/"
+        ],
+        "sources": [
+          "HN",
+          "Reddit"
+        ],
+        "score": 75,
+        "summary": "Former xAI engineer Devin Kim filed lawsuit June 10 alleging wrongful termination for raising Grok safety concerns.",
+        "source": "HN, Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Anthropic $965B valuation",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "HN",
+          "Reddit"
+        ],
+        "score": 72,
+        "summary": "Anthropic surpassed OpenAI to become world's most valuable private AI company at $965B post-money valuation.",
+        "source": "HN, Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "AI coding assistants comparison 2026",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Google Trends",
+          "Reddit"
+        ],
+        "score": 70,
+        "summary": "Claude Code vs Codex vs GitHub Copilot vs Grok Build — community benchmarking threads are active.",
+        "source": "Google Trends, Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Google Visakhapatnam data center",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Reddit",
+          "Google Trends"
+        ],
+        "score": 65,
+        "summary": "$15B Google AI infrastructure project in Visakhapatnam, India — major discussion in Indian tech communities.",
+        "source": "Reddit, Google Trends",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Colorado AI Act compliance June 30",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "HN",
+          "Google Trends"
+        ],
+        "score": 62,
+        "summary": "Companies scrambling to meet Colorado's AI Act compliance deadline of June 30 — surging searches for 'AI risk assessment' and 'AI governance framework.'",
+        "source": "HN, Google Trends",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "GEMA Suno ruling",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Reddit"
+        ],
+        "score": 60,
+        "summary": "Germany's GEMA v. Suno copyright ruling scheduled for June 12, 2026 — AI music community watching closely.",
+        "source": "Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "n8n MCP integration",
+        "url": "https://blog.n8n.io/we-need-re-learn-what-ai-agent-development-tools-are-in-2026/",
+        "sample_urls": [
+          "https://blog.n8n.io/we-need-re-learn-what-ai-agent-development-tools-are-in-2026/"
+        ],
+        "sources": [
+          "HN",
+          "Reddit"
+        ],
+        "score": 58,
+        "summary": "n8n native MCP nodes (Server Trigger + Client Tool) enabling new agentic workflow patterns — trending in automation communities.",
+        "source": "HN, Reddit",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "OpenAI Ona acquisition",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "HN"
+        ],
+        "score": 55,
+        "summary": "OpenAI acquires Ona for secure persistent agent environments — addressing the long-running agent reliability gap.",
+        "source": "HN",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "India VivaTech AI partner 2026",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Google Trends"
+        ],
+        "score": 50,
+        "summary": "India as VivaTech Official AI Partner Country (opens June 17) — trending in Indian startup and tech communities.",
+        "source": "Google Trends",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Grok Build vs Claude Code",
+        "url": "",
+        "sample_urls": [],
+        "sources": [
+          "Reddit",
+          "HN"
+        ],
+        "score": 48,
+        "summary": "Developer community comparing Grok Build 0.1 vs Claude Code on agentic coding tasks after Grok Build public beta launch.",
+        "source": "Reddit, HN",
+        "published": "2026-06-12",
+        "relevance": 4
+      }
+    ],
+    "viral_video_landscape": [
+      {
+        "title": "AI Ad Comb vs Reality",
+        "url": "https://www.youtube.com/watch?v=NwOr5gdrZBU",
+        "channel": "Money Saving Man",
+        "views": 12481927,
+        "format": "video",
+        "summary": "Consumer product-testing video exposing whether a hair comb marketed as 'AI-powered' actually delivers on its advertising claims — testing and debunking AI product marketing at scale. 12.4M views in the global automation bucket.",
+        "bucket": "global_automation",
+        "video_id": "NwOr5gdrZBU",
+        "relevance": 3
+      },
+      {
+        "title": "[False positive — not AI tech] Cái xúc xích cuối cùng thuộc về ai? #shorts",
+        "url": "https://www.youtube.com/watch?v=JR2TatCsaOU",
+        "channel": "Nâu Vlog",
+        "views": 1407386,
+        "format": "short",
+        "summary": "Vietnamese food content — 'The last sausage belongs to who?' — flagged by the YouTube API search for 'AI' keyword (Vietnamese: 'ai' = 'who'). This is a false positive; not AI technology content. 1.4M views. No AI connection.",
+        "bucket": "global_short",
+        "video_id": "JR2TatCsaOU",
+        "relevance": 1
+      },
+      {
+        "title": "India AI Long — No Fresh Pick This Period",
+        "url": "",
+        "channel": "",
+        "views": 0,
+        "format": "video",
+        "summary": "No India AI long video cleared the virality floor (100K views) in the last 7 days that hasn't already been featured in a recent run.",
+        "bucket": "india_automation",
+        "video_id": "",
+        "relevance": 1
+      }
+    ],
+    "instagram_viral_reels": [
+      {
+        "title": "No Fresh AI Reel — Global Bucket",
+        "url": "",
+        "username": "",
+        "like_count": 0,
+        "comment_count": 0,
+        "engagement": 0,
+        "bucket": "global_ai",
+        "summary": "No AI reels sourced in last 24h. Instagram RapidAPI plan quota exhausted (BASIC plan: 20 requests/month); upgrade required for daily delivery. No candidates this period.",
+        "relevance": 1
+      },
+      {
+        "title": "No Fresh AI Reel — India Bucket",
+        "url": "",
+        "username": "",
+        "like_count": 0,
+        "comment_count": 0,
+        "engagement": 0,
+        "bucket": "india_ai",
+        "summary": "No AI reels sourced in last 24h. Instagram RapidAPI plan quota exhausted (BASIC plan: 20 requests/month); upgrade required for daily delivery. No candidates this period.",
+        "relevance": 1
+      }
+    ],
+    "anthropic_claude_news": [
+      {
+        "title": "Anthropic Launches Claude Fable 5 — Its Most Capable Public Model",
+        "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+        "summary": "Claude Fable 5 (released June 9, 2026) is a Mythos-class model made safe for general use, delivering 95% on SWE-bench Verified and breaking 90% on Anthropic's internal analytics benchmark. It ships with a 1M-token context window, 128K output tokens, and always-on adaptive thinking at $10/M input and $50/M output — free for Pro/Max/Team/Enterprise users through June 22. Automation angle: Build portfolio demos with Fable 5 now during the free window; 95% SWE-bench score means it can autonomously fix real bugs — document this in your portfolio.",
+        "source": "Anthropic",
+        "published": "2026-06-09",
+        "relevance": 5
+      },
+      {
+        "title": "Claude Code 2.1.170: Post-Session Hooks, Safe Mode, /cd Command, Fable 5 Access",
+        "url": "https://releasebot.io/updates/anthropic/claude-code",
+        "summary": "Claude Code adds a post-session hook (run scripts after Claude stops), a safe mode for troubleshooting, and /cd for moving sessions to a new working directory. Version 2.1.170 brings full Fable 5 access and fixes model-name normalization for Fable 5 with [1m] suffix. Automation angle: The post-session hook enables automatic commit, test, and deploy pipelines — wire it up to showcase CI/CD automation in your portfolio.",
+        "source": "Claude Code Releasebot",
+        "published": "2026-06-11",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic Closes $65B Series H at $965B Valuation — Now World's Most Valuable Private AI Company",
+        "url": "https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/",
+        "summary": "Bloomberg confirmed Anthropic closed a $65 billion Series H at a $965 billion post-money valuation as of May 28, 2026 — surpassing OpenAI's $852 billion private market valuation for the first time. The raise funds compute scale, safety research, and enterprise expansion including the DXC partnership for banking and aviation. Automation angle: Anthropic's dominance signals that enterprise AI-automation workflows built on Claude have strong long-term platform durability.",
+        "source": "Bloomberg / TechCrunch",
+        "published": "2026-06-09",
+        "relevance": 5
+      },
+      {
+        "title": "80% of Anthropic's Production Code Now Written by Claude",
+        "url": "https://llm-stats.com/llm-updates",
+        "summary": "Anthropic disclosed that more than 80% of the code merged into its production codebase in May 2026 was authored by Claude — the clearest signal yet that AI recursive self-improvement is already operational at a major lab. The stat comes alongside Fable 5's launch and applies to the team that built the model itself. Automation angle: This is your pitch hook — if Anthropic is using Claude to ship Claude, every software shop can automate their dev workflow; build a demo showing that.",
+        "source": "LLM Stats / Anthropic",
+        "published": "2026-06-09",
+        "relevance": 5
+      },
+      {
+        "title": "Claude Adds 20+ Legal MCP Connectors and 12 Practice-Area Plugins",
+        "url": "https://releasebot.io/updates/anthropic",
+        "summary": "Anthropic released 20+ new legal MCP connectors and 12 practice-area plugins enabling law firms to automate research, contracts, discovery, and matter management through Claude. Connector observability and in-app directory submission (now in public beta) allow admins to monitor adoption and latency across Claude products. Automation angle: Legal is the highest-value vertical for AI automation; if you can package Claude + legal-MCP workflows, law-firm clients will pay enterprise rates.",
+        "source": "Releasebot / Anthropic",
+        "published": "2026-06-10",
+        "relevance": 4
+      }
+    ],
+    "ai_business_automation": [
+      {
+        "title": "JPMorgan's $19.8B AI Budget: 2,000 Staff, $2.5B Projected Annual Value",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "summary": "JPMorgan Chase formally reclassified AI investments from experimental R&D to core infrastructure, with a 2026 technology budget of $19.8 billion and 2,000 staff dedicated to AI development. AI is projected to generate $2.5 billion in annual value through efficiency gains and revenue growth — the most concrete enterprise ROI figure disclosed by a major bank. Automation angle: Study JPMorgan's prioritized use cases (risk, compliance, client service) and replicate them as n8n/Claude Code demos for fintech job applications.",
+        "source": "Crescendo AI",
+        "published": "2026-06-10",
+        "relevance": 5
+      },
+      {
+        "title": "Gartner: 40% of Enterprise Apps Will Embed AI Agents by End of 2026",
+        "url": "https://www.cflowapps.com/ai-workflow-automation-trends/",
+        "summary": "Gartner forecasts that 40% of enterprise applications will integrate AI agents by year-end 2026, and separately that 70% of enterprises will implement AI governance frameworks. The shift is from flashy demos to production systems that can save time, cut manual work, and operate under human review — with cost reductions of 40-60% typical for deployed process automation. Automation angle: The 40% target means enterprise software companies are hiring AI-integration engineers now — that's your entry point.",
+        "source": "CFlow Apps / Gartner",
+        "published": "2026-06-08",
+        "relevance": 5
+      },
+      {
+        "title": "Google Signs Cloud Deal With SpaceX for 110,000 NVIDIA GPUs",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "summary": "Google signed a cloud service agreement with SpaceX for access to AI compute capacity tied to roughly 110,000 NVIDIA GPUs, extending the AI infrastructure arms race into a new cross-company arrangement. The deal highlights how hyperscalers are supplementing internal capacity with external GPU pools rather than waiting years for new data centers to come online. Automation angle: GPU scarcity is a real constraint on AI services — builders who work efficiently (token minimization, caching) gain a competitive edge over those burning compute carelessly.",
+        "source": "Crescendo AI",
+        "published": "2026-06-11",
+        "relevance": 4
+      },
+      {
+        "title": "AI at the Edge: Industrial Automation Hits Manufacturing, Agriculture, and Construction in 2026",
+        "url": "https://www.automation.com/article/eight-ai-trends-reshaping-industrial-operations-2026",
+        "summary": "Industrial AI deployments in 2026 are moving beyond warehousing, pharma, and food-and-beverage into agriculture, construction, and infrastructure — sectors previously untouched by automation. AI deployed at the edge (closer to machines and sensors) reduces latency and enables predictive maintenance in real time. Automation angle: Process automation consultants who speak both n8n/LLM workflows AND industrial IoT have almost no competition — document an industrial edge case to stand out.",
+        "source": "Automation.com",
+        "published": "2026-06-05",
+        "relevance": 4
+      },
+      {
+        "title": "PwC 2026: AI Moves From Pilot to Core P&L Driver Across Finance, Healthcare, Retail",
+        "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+        "summary": "PwC's 2026 AI predictions show that companies moving beyond pilots are saving 15-25 hours per week per automated workflow and cutting error rates by 85% in data entry and processing tasks. Finance, healthcare, and retail lead adoption; governance, orchestration, and visibility are now boardroom priorities alongside ROI. Automation angle: If you can quantify time and error savings in any demo you build — 25 hours saved / week is a number any hiring manager will respond to.",
+        "source": "PwC",
+        "published": "2026-06-01",
+        "relevance": 4
+      }
+    ],
+    "quantum_ai_research": [
+      {
+        "title": "Light-Powered Chip Unifies Quantum Light Generation, Steering, and Readout on One Device",
+        "url": "https://www.sciencedaily.com/releases/2026/06/260601025343.htm",
+        "summary": "Scientists published results in early June 2026 on a tiny chip that generates, steers, and reads light-based quantum information on a single device using atomically thin materials and nanoscale structures. The chip exploits the 'valley' degree of freedom — a quantum property of light — to encode information in new ways, marking a major leap toward ultra-fast energy-efficient AI computing. Automation angle: Photonic computing at this scale could eventually remove the GPU bottleneck that currently limits AI inference costs and latency for automation builders.",
+        "source": "ScienceDaily",
+        "published": "2026-06-01",
+        "relevance": 5
+      },
+      {
+        "title": "Microsoft Majorana 2 Chip Achieves Feedback Loops Required for Photonic Quantum Scale",
+        "url": "https://quantumcomputingreport.com/news/",
+        "summary": "Microsoft announced Majorana 2, an improved Majorana qubit chip that establishes the ultra-fast feedback loops required to scale measurement-based photonic quantum computers for integration with classical HPC networks. The breakthrough brings topological qubits closer to the stability threshold needed for practical deployment alongside AI workloads. Automation angle: Quantum-classical hybrid systems for AI inference are becoming investable — learning the landscape now positions you to consult when enterprise quantum-AI pilots begin in 2027-28.",
+        "source": "Quantum Computing Report",
+        "published": "2026-06-08",
+        "relevance": 5
+      },
+      {
+        "title": "IBM Quantum + Zurich Lab Achieve 'Practical Quantum Advantage' for AI Workloads",
+        "url": "https://www.analyticsinsight.net/artificial-intelligence/why-2026-could-be-the-breakthrough-year-for-ai-and-quantum-computing",
+        "summary": "IBM Quantum's latest processor, combined with a novel error-correction technique from a university lab in Zurich, achieved what researchers call 'practical quantum advantage' for AI-class workloads — the first time a quantum system outperformed the best classical hardware on a real task, not a contrived benchmark. The result applies to specific optimization problems relevant to drug discovery and logistics routing. Automation angle: Quantum advantage for AI optimization directly impacts supply-chain and logistics automation — sectors with enormous appetite for n8n-style orchestration.",
+        "source": "Analytics Insight",
+        "published": "2026-05-30",
+        "relevance": 4
+      },
+      {
+        "title": "Stanford Quantum Breakthrough: Twisted Light Qubits Without Extreme Cooling",
+        "url": "https://www.sciencedaily.com/releases/2026/05/260528074028.htm",
+        "summary": "Stanford researchers demonstrated a quantum computing approach using twisted light (orbital angular momentum states) that operates without the extreme cooling required by superconducting qubits — potentially enabling room-temperature quantum processors. Published in late May 2026, the work is a proof-of-concept that AI-accelerated materials discovery can speed quantum hardware design cycles. Automation angle: Room-temperature quantum hardware would make quantum coprocessors viable in standard data centers, eventually reaching the cloud APIs that AI automation builders already use.",
+        "source": "ScienceDaily",
+        "published": "2026-05-28",
+        "relevance": 4
+      }
+    ],
+    "product_showcase_opportunities": [
+      {
+        "title": "IndiaAI Startups Global - International Acceleration Programs for Indian AI Startups",
+        "url": "https://indiaai.gov.in/",
+        "submission_url": "https://indiaai.gov.in/",
+        "platform_type": "Accelerator",
+        "region": "India",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Indian-registered AI startups (DPIIT-recognised).",
+        "benefits": "Placement into international acceleration tracks, plus government backing and global market access.",
+        "summary": "MeitY / IndiaAI international acceleration tracks placing Indian AI startups into global programs. Rolling cohorts.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Y Combinator (AI startups)",
+        "url": "https://www.ycombinator.com/apply",
+        "submission_url": "https://www.ycombinator.com/apply",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Any early-stage startup with a founding team; pre-launch and idea-stage are welcome.",
+        "benefits": "~$500K on the standard deal, a 3-month program, and the lifelong YC network + Demo Day.",
+        "summary": "Twice-yearly batches; AI-heavy. ~$500k standard deal.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Antler Residency (AI)",
+        "url": "https://www.antler.co/apply",
+        "submission_url": "https://www.antler.co/apply",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Solo founders welcome — no company or co-founder needed.",
+        "benefits": "Pre-seed cash, a co-founder matching residency, and hands-on mentorship.",
+        "summary": "Day-zero residency for founders incl. AI; rolling cohorts across 30+ cities.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Techstars AI Accelerators",
+        "url": "https://www.techstars.com/accelerators",
+        "submission_url": "https://www.techstars.com/accelerators",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Early-stage startups; apply to the city/track that fits your team.",
+        "benefits": "Seed investment, a 3-month mentor-driven program, and a global investor network.",
+        "summary": "Multiple AI-focused Techstars programs; rolling applications by location.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "NVIDIA Inception",
+        "url": "https://www.nvidia.com/en-us/startups/",
+        "submission_url": "https://www.nvidia.com/en-us/startups/",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Any AI/ML startup at any stage — free to join.",
+        "benefits": "GPU and cloud credits, go-to-market support, and introductions to VCs.",
+        "summary": "Free program for AI/ML startups: GPU credits, go-to-market, VC intros. Rolling.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Google for Startups AI Accelerator",
+        "url": "https://startup.google.com/programs/accelerator/",
+        "submission_url": "https://startup.google.com/programs/accelerator/",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Seed-to-Series-A AI startups; regional tracks including India.",
+        "benefits": "An equity-free program, Google mentorship, and cloud credits.",
+        "summary": "Equity-free AI accelerator with seasonal cohorts and regional tracks (incl. India).",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Microsoft for Startups Founders Hub",
+        "url": "https://www.microsoft.com/en-us/startups",
+        "submission_url": "https://www.microsoft.com/en-us/startups",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "Any early founder; no funding or company stage required.",
+        "benefits": "Free Azure + OpenAI credits and mentorship.",
+        "summary": "Azure + OpenAI credits and mentorship for AI startups. Rolling enrollment.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "AI Grant",
+        "url": "https://aigrant.com/",
+        "submission_url": "https://aigrant.com/",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": null,
+        "eligibility": "AI-native startups at a very early stage.",
+        "benefits": "Non-dilutive funding plus compute credits.",
+        "summary": "Funding + compute for AI-native startups; seasonal batches.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "USAII Global AI Hackathon 2026 — $15,000+ Prize Pool",
+        "url": "https://aihackathon.usaii.org/",
+        "submission_url": "https://aihackathon.usaii.org/",
+        "platform_type": "Hackathon",
+        "region": "Worldwide (Virtual)",
+        "deadline_iso": "2026-06-14",
+        "prize_summary": "$15,000+ prize pool + USAII AI certification scholarships",
+        "eligibility": "Students; teams of 2-5. Virtual participation worldwide.",
+        "benefits": "Cash prizes, USAII certification scholarships, industry exposure.",
+        "summary": "USAII Global AI Hackathon: June 14-21, 2026. Virtual student competition, $15K+ prizes. Apply at aihackathon.usaii.org.",
+        "relevance": 5,
+        "source": "web_search",
+        "group": "hackathon"
+      },
+      {
+        "title": "Kaggle AI Agents Hackathon — 5-Day Intensive with Google",
+        "url": "https://www.kaggle.com/competitions",
+        "submission_url": "https://www.kaggle.com/competitions",
+        "platform_type": "Hackathon",
+        "region": "Worldwide (Virtual)",
+        "deadline_iso": "2026-06-19",
+        "prize_summary": "Prizes + Google AI certification",
+        "eligibility": "Open to all skill levels worldwide.",
+        "benefits": "Google mentorship, Kaggle community recognition, AI certification.",
+        "summary": "Kaggle 5-Day AI Agents Intensive with Google: June 15-19, 2026. Build AI agents with expert guidance. Open worldwide.",
+        "relevance": 5,
+        "source": "web_search",
+        "group": "hackathon"
+      },
+      {
+        "title": "UC Berkeley AI Hackathon 2026 — June 20-21, Cash + Tech Prizes",
+        "url": "https://ai.hackberkeley.org/",
+        "submission_url": "https://ai.hackberkeley.org/",
+        "platform_type": "Hackathon",
+        "region": "Worldwide (In-Person + Remote)",
+        "deadline_iso": "2026-06-21",
+        "prize_summary": "Cash and tech prizes",
+        "eligibility": "Open to all; in-person Berkeley campus + remote participation.",
+        "benefits": "Berkeley network, cash prizes, exposure to Bay Area AI ecosystem.",
+        "summary": "UC Berkeley AI Hackathon: June 20-21, 2026. Opening June 20 at 10am; submit by June 21 6pm. Apply at ai.hackberkeley.org.",
+        "relevance": 5,
+        "source": "web_search",
+        "group": "hackathon"
+      },
+      {
+        "title": "Google Agent Hackathon — $5,000 per Partner Bucket (6 Buckets)",
+        "url": "https://devpost.com/c/artificial-intelligence",
+        "submission_url": "https://devpost.com/c/artificial-intelligence",
+        "platform_type": "Hackathon",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "prize_summary": "$5,000 / $3,000 / $2,000 per partner bucket (6 buckets total)",
+        "eligibility": "Open worldwide; compete in your chosen partner-specific bucket.",
+        "benefits": "Cash prizes, Google product exposure, partner recognition.",
+        "summary": "Google Agent Hackathon: 6 partner-specific competition buckets each awarding $5K/3K/2K. Open worldwide — pick your partner and build. Check Devpost for details.",
+        "relevance": 5,
+        "source": "web_search",
+        "group": "hackathon"
+      }
+    ],
+    "ai_music_copyright_laws": [
+      {
+        "title": "US Supreme Court Rejects AI Copyright Appeal — Fully AI-Generated Works Remain Unprotectable",
+        "url": "https://edm.com/industry/supreme-court-rejects-ai-copyright-appeal-what-that-means-for-music-producers/",
+        "summary": "The US Supreme Court denied certiorari on March 2, 2026, reaffirming human authorship as a foundational requirement for copyright protection. A song generated entirely by AI from a prompt cannot be registered, cannot block infringement, and gives the creator no exclusive rights — only human creative contribution can anchor a copyright. Automation angle: Hybrid AI-human music workflows (where a human makes meaningful creative decisions) remain protectable; document your editorial process in AI music projects to secure any IP.",
+        "source": "EDM.com / Supreme Court",
+        "published": "2026-03-02",
+        "relevance": 5
+      },
+      {
+        "title": "GEMA v. Suno: German Court Ruling Scheduled June 12, 2026 — Could Set Global Precedent",
+        "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/ce8eaa5f/ai-in-litigation-series-an-update-on-ai-copyright-cases-in-2026",
+        "summary": "Germany's GEMA performing rights society has an active lawsuit against Suno, with a ruling scheduled today (June 12, 2026). European courts have generally been more protective of creator rights than US courts, and a ruling that training AI on licensed catalog without explicit permission infringes copyright could reshape global platform policies within weeks. Automation angle: If GEMA wins, AI music generation tools will face licensing mandates — entrepreneurs who build royalty-transparent AI music workflows will have a clean-hands competitive advantage.",
+        "source": "Norton Rose Fulbright",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "UMG v. Suno Fair-Use Ruling Expected Summer 2026 — Training on Copyrighted Music Under the Microscope",
+        "url": "https://news.bloomberglaw.com/ip-law/music-piracy-ai-lawsuits-top-2026-copyright-litigation-calendar",
+        "summary": "The UMG v. Suno case — testing whether training AI models on copyrighted music constitutes fair use — is expected to produce a ruling in summer 2026. Bloomberg identifies this as one of the top two copyright litigation events of the year alongside music piracy cases. The outcome will determine whether existing AI music generators can legally continue operating without licensing the catalogs they trained on. Automation angle: Monitor this ruling; a win for labels forces AI music tools to rebuild on licensed data, creating a compliance-consulting opportunity.",
+        "source": "Bloomberg Law",
+        "published": "2026-06-04",
+        "relevance": 5
+      },
+      {
+        "title": "2026 AI Music Copyright Landscape: What Creators Must Know",
+        "url": "https://jam.com/resources/ai-music-copyright-2026",
+        "summary": "A 2026 roundup from jam.com summarizes the operative rules for AI music creators: purely AI-generated compositions are unprotectable in the US, human-AI hybrid works can be partially copyrighted for the human contributions, and platforms like Suno and Udio face multiple simultaneous legal challenges globally. Practical guidance: add a paper trail for creative decisions made by humans and clearly disclose AI involvement in releases. Automation angle: Creators who build AI music automation pipelines with built-in rights-documentation steps will attract label and publishing clients.",
+        "source": "Jam.com",
+        "published": "2026-05-20",
+        "relevance": 4
+      }
+    ],
+    "elon_musk_ai_vision": [
+      {
+        "title": "Grok V9-Medium: 1.5 Trillion Parameters, Mid-June 2026 Public Release Expected",
+        "url": "https://www.basenor.com/blogs/news/5-grok-updates-you-should-know-about-right-now",
+        "summary": "xAI's Grok V9-Medium completed training at 1.5 trillion parameters — three times the size of the current v8-small production model at 500 billion parameters. Supervised fine-tuning and reinforcement learning were underway as of late May, with a public release expected in mid-June 2026. If it ships as scheduled, it will be xAI's largest publicly deployed model. Automation angle: Grok V9 will likely anchor xAI's enterprise and API push — builders who integrate Grok early (before rate-limit quotas fill) get preferential pricing and feature access.",
+        "source": "Basenor / xAI",
+        "published": "2026-06-05",
+        "relevance": 5
+      },
+      {
+        "title": "xAI Ships Grok Voice and Grok Imagine 1.5 Preview API (June 4)",
+        "url": "https://x.ai/",
+        "summary": "On June 4, 2026, xAI publicly rolled out Grok Voice (spoken AI interaction) and Grok Imagine 1.5 Preview via API — expanding the platform from text to multi-modal, with Grok Imagine now generating short video clips in addition to still images. Elon Musk demonstrated a Grok Imagine-generated video on X. Automation angle: Grok Voice + video generation via API means AI voice agents with video output are now buildable on xAI's stack — a differentiator for voice-UI portfolio demos.",
+        "source": "xAI / Bloomberg",
+        "published": "2026-06-04",
+        "relevance": 5
+      },
+      {
+        "title": "Grok Build 0.1: xAI's Coding Agent Model Goes Public Beta (256K Context)",
+        "url": "https://www.basenor.com/blogs/news/5-grok-updates-you-should-know-about-right-now",
+        "summary": "Grok Build 0.1, xAI's dedicated coding model for agentic tasks, entered public beta on May 29, 2026. It carries a 256,000-token context window, always-on reasoning, and accepts both text and image inputs — squarely competing with Claude Code and GitHub Copilot. Automation angle: A third strong coding agent in the market (alongside Claude Code and Codex) means automation builders can benchmark workflows across all three and offer clients the cheapest/fastest option per task type.",
+        "source": "xAI",
+        "published": "2026-05-29",
+        "relevance": 5
+      },
+      {
+        "title": "xAI Faces Lawsuit: Safety Engineer Devin Kim Claims He Was Fired for Raising Grok Safety Concerns",
+        "url": "https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/",
+        "summary": "Former xAI engineer Devin Kim filed a California lawsuit on June 10, 2026 alleging he was terminated in September 2025 after complaining repeatedly about xAI's failure to prioritize safety in Grok's development — specifically concerns about discrimination and WMD information risks. The lawsuit names former co-founder Jimmy Ba as opposing safety measures and retaliating against employees. Automation angle: Safety-compliance gaps at frontier AI labs create consulting demand; builders who can demonstrate responsible AI deployment practices command higher trust from enterprise clients.",
+        "source": "TechCrunch",
+        "published": "2026-06-10",
+        "relevance": 4
+      },
+      {
+        "title": "Elon Musk Testified xAI Trained Grok on OpenAI Models; Starlink Staffer to Lead Grok Training Team",
+        "url": "https://www.bloomberg.com/news/articles/2026-06-09/musk-s-xai-taps-starlink-staffer-to-run-grok-training-team",
+        "summary": "Elon Musk testified in court on April 30, 2026 that xAI trained Grok on OpenAI models — an admission that could complicate OpenAI's ongoing legal disputes with Musk. Separately, Bloomberg reported on June 9 that Jack Garabedian, a Starlink engineer at SpaceX since 2021, will lead xAI's human-data training team (hundreds of domain experts who teach Grok across finance, science, and other fields). Automation angle: Training-data provenance is now a legal issue; AI builders should document their own training sources carefully.",
+        "source": "Bloomberg / TechCrunch",
+        "published": "2026-06-09",
+        "relevance": 4
+      }
+    ],
+    "unaddressed_ai_problems": [
+      {
+        "title": "Silent Failure in Production AI Agents — Systems Degrade Without Warning",
+        "url": "https://www.getmaxim.ai/articles/ai-hallucinations-in-2025-causes-impact-and-solutions-for-trustworthy-ai/",
+        "summary": "91% of deployed ML systems experience performance degradation over time — but unlike traditional software, failing AI agents return clean, confident responses that are silently wrong. There is no equivalent of a 500 error; the system appears healthy while accuracy crumbles. No widely adopted monitoring standard exists for catching this drift in real-time agentic workflows. Automation angle: Build and sell 'AI health checks' — automated evals that run on a schedule and alert on accuracy drift — this is a $0-setup service that every agentic AI deployment needs.",
+        "source": "Maxim AI",
+        "published": "2026-06-05",
+        "relevance": 5
+      },
+      {
+        "title": "Hallucination Rates Still 35-82% on Hard Tasks Despite Frontier Model Launches",
+        "url": "https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/",
+        "summary": "LLM hallucination rates remain up to 82% on hard enterprise benchmarks (legal, medical, multi-turn research) even with frontier models like Claude Fable 5 and GPT-5.5. Multi-turn conversational agents show hallucination rates of up to 35%, and niche-domain tasks can hit 50%. RAG reduces this by 30-70% but adds complexity and latency. The gap between benchmark performance and real-world reliability is still wide and largely unacknowledged in vendor marketing. Automation angle: Hallucination benchmarking is a billable service — offer clients a 'production accuracy audit' of their AI workflows before and after RAG implementation.",
+        "source": "Suprmind AI / SQ Magazine",
+        "published": "2026-06-07",
+        "relevance": 5
+      },
+      {
+        "title": "Enterprise Knowledge Fragmentation Blocks AI Agent Effectiveness",
+        "url": "https://www.ysquaretechnology.com/blog/factual-hallucinations-in-ai-what-enterprises-must-know-in-2026",
+        "summary": "When organizational knowledge lives across Slack threads, SharePoint, Google Docs, email chains, and desktop files, AI agents can't function reliably because they can't find or connect relevant context. No major platform has solved enterprise knowledge unification — every company has custom, messy data topology that standard RAG doesn't handle. This is blocking AI adoption in legal, finance, and healthcare at mid-market companies that can't afford custom solutions. Automation angle: 'Enterprise knowledge graph' consultants who can map and connect these silos using n8n + vector DBs + Claude are addressing an open market.",
+        "source": "YSquare Technology",
+        "published": "2026-06-03",
+        "relevance": 5
+      },
+      {
+        "title": "AI Compressed Vulnerability Discovery From Months to Hours — Security Ops Unprepared",
+        "url": "https://blog.mean.ceo/hacker-news-trends-june-2026/",
+        "summary": "AI tools have compressed the time from vulnerability discovery to working exploit from months to hours — but enterprise security operations centers are still running on pre-AI playbooks designed for the old timeline. A University of Toronto proof-of-concept AI worm demonstrated autonomous network traversal, tailored attack generation per target, and self-replication without human intervention. Security teams have no AI-native tooling to match the attack pace. Automation angle: AI-accelerated security triage workflows (alert → AI triage → ticket → auto-patch → close) are an urgent, high-value build for anyone in the IT-automation space.",
+        "source": "Hacker News Trends / blog.mean.ceo",
+        "published": "2026-06-10",
+        "relevance": 5
+      },
+      {
+        "title": "Long-Horizon Agent Tasks Still Fail Silently at the 10-Step Mark",
+        "url": "https://www.getmaxim.ai/articles/the-state-of-ai-hallucinations-in-2025-challenges-solutions-and-the-maxim-ai-advantage/",
+        "summary": "Despite Fable 5 and GPT-5.5, long-horizon agentic tasks that require more than ~10 sequential steps have no reliable error-recovery mechanism — agents either loop, hallucinate a false success, or silently drop steps. No lab has shipped a production-ready agent runtime with guaranteed task completion or meaningful rollback. This is the single biggest gap between demo and production for AI automation builders. Automation angle: Agents with checkpointing and human-in-the-loop approval steps (like n8n's new HITL feature) are a marketable differentiator over bare LLM-based agents.",
+        "source": "Maxim AI",
+        "published": "2026-06-01",
+        "relevance": 5
+      }
+    ],
+    "ai_business_opportunities": [
+      {
+        "title": "AI Automation Micro-Agency — $2K-$5K to Launch, $5K-$50K/Month Potential",
+        "url": "https://www.nucamp.co/blog/top-10-ai-business-ideas-you-can-start-in-2026-low-cost-high-potential",
+        "summary": "AI micro-agencies — small teams (or solos) using n8n, Claude Code, and Voiceflow to automate repetitive client workflows — can launch for $2,000-$5,000 and scale to $5,000-$50,000 per month. Target: SMBs (agencies, law firms, clinics) drowning in manual data entry, scheduling, and reporting. No technical co-founder needed — the stack is low-code and the market is massively underserved outside major cities. Automation angle: Your Claude Code portfolio projects ARE the agency's service demos; land one retainer client before registering a company.",
+        "source": "Nucamp",
+        "published": "2026-06-01",
+        "relevance": 5
+      },
+      {
+        "title": "Vertical AI SaaS: Niche Industry Tools That Beat Manual Workflows 10x",
+        "url": "https://appinventiv.com/blog/artificial-intelligence-business-ideas-for-startup/",
+        "summary": "The 2026 AI opportunity is not another ChatGPT wrapper — it is vertical SaaS for high-frequency niche problems: legal contract review, dental claim denial reversal, agri-input recommendation, or restaurant inventory optimization. Each vertical has 50,000-500,000 potential SMB customers willing to pay $100-$500/month for automation that currently costs $3K-$5K/month in labor. First-mover advantage lasts 12-18 months before incumbents respond. Automation angle: Pick one vertical where you have domain context or a network contact, build a Claude-powered MVP in 2 weeks, and charge for beta access.",
+        "source": "AppInventiv",
+        "published": "2026-05-28",
+        "relevance": 5
+      },
+      {
+        "title": "AI Content Repurposing Studio — Under $3K Launch, Recurring Revenue",
+        "url": "https://www.shopify.com/blog/ai-business-ideas",
+        "summary": "Content repurposing studios — automating the conversion of one long-form piece (podcast, webinar, YouTube video) into 20+ derivative assets (shorts, newsletter, X threads, email) using AI — are generating $2,000-$10,000 per month for solo operators. The workflow is buildable in n8n with Claude and a video transcription API; monthly retainer clients include B2B SaaS companies and personal brand consultants. Automation angle: Build this workflow publicly on YouTube as your teaching content AND offer it as a service — dual income stream from day one.",
+        "source": "Shopify",
+        "published": "2026-05-30",
+        "relevance": 5
+      },
+      {
+        "title": "AI Security Compliance Automation — High Urgency, Low Competition",
+        "url": "https://blogs.versalence.ai/ai-automation-trends-what-every-business-needs-to-know-in-2",
+        "summary": "The Colorado Consumer Protections for AI Act (effective June 30, 2026) requires risk management programs, annual impact assessments, and appeals rights for high-risk AI systems. Similar laws are advancing in 8 other US states and across the EU. Mid-market companies (100-1000 employees) have no idea how to comply and will pay $5K-$30K for a compliance automation package (audit → assessment → monitoring workflow). Automation angle: Build a Claude-powered AI compliance checklist + n8n monitoring workflow and package it as a $10K engagement for companies scrambling before June 30.",
+        "source": "Versalence AI",
+        "published": "2026-06-08",
+        "relevance": 5
+      },
+      {
+        "title": "AI-Powered Customer Service Agents That Actually Take Action",
+        "url": "https://www.openxcell.com/blog/ai-business-ideas/",
+        "summary": "The next frontier in customer service is not chat deflection — it is AI agents that can process refunds, update accounts, track orders, and escalate complex issues autonomously. Companies like Intercom and Zendesk are building this at the platform level, but thousands of SMBs have custom CRMs and ERPs that the platforms don't cover. Building a custom Claude + n8n agent pipeline that integrates a client's specific systems is a $15K-$50K project with recurring maintenance. Automation angle: Pick a CRM you know (HubSpot, Salesforce, Zoho) and build a 'self-serve customer agent' demo — this is one of the most in-demand AI builds right now.",
+        "source": "OpenXcell",
+        "published": "2026-06-01",
+        "relevance": 5
+      }
+    ],
+    "global_ai_news": [
+      {
+        "title": "SpaceX Goes Public on NASDAQ at $1.75T Valuation — Largest US IPO in History",
+        "url": "https://unrot.co/blogs/ai-news-today-june-12-2026",
+        "summary": "SpaceX began trading on the NASDAQ on June 12, 2026 under ticker SPCX at a fixed IPO price of $135 per share, targeting $75 billion in proceeds at a $1.75 trillion valuation — the largest public market debut in US equities history. SpaceX's Starlink and AI compute infrastructure, including the Google GPU-access deal, are central to its AI data-center thesis. Automation angle: SpaceX's public infrastructure (Starlink connectivity + compute) is an enabling layer for edge AI deployments in remote or rural regions — emerging market for AI automation.",
+        "source": "Unrot.co",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "OpenAI Acquires Ona to Deploy Long-Running AI Agents in Secure Cloud Environments",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "summary": "OpenAI announced on June 11, 2026 that it has agreed to acquire Ona — a startup providing secure, pre-configured cloud environments where AI agents can access tools, systems, and context to complete long-running work. The acquisition directly addresses one of the biggest gaps in agentic AI: secure, persistent execution environments for multi-step tasks. OpenAI is also finalizing a deal to embed its models inside Oracle Cloud. Automation angle: Ona's architecture — sandboxed persistent agent environments — is the model for enterprise-grade agentic automation; study its design for your own client deployments.",
+        "source": "Crescendo AI",
+        "published": "2026-06-11",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic Surpasses OpenAI: $965B Valuation Makes It World's Most Valuable Private AI Company",
+        "url": "https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/",
+        "summary": "Bloomberg confirmed that Anthropic's $965 billion post-money valuation (Series H, closed May 28) surpasses OpenAI's $852 billion private market valuation — making Anthropic the most valuable private AI company in the world for the first time. The shift reflects investor conviction that Claude Fable 5 and Claude's enterprise adoption are outpacing the ChatGPT ecosystem. Automation angle: Platform durability matters — Anthropic's capital position means Claude APIs, Claude Code, and MCP connectors will be well-funded through 2028 at minimum.",
+        "source": "TechCrunch / Bloomberg",
+        "published": "2026-06-09",
+        "relevance": 5
+      },
+      {
+        "title": "AI Coding Assistants Race: Codex 5M Weekly Users, Copilot 10-15M MAU, Claude Code Growing Fast",
+        "url": "https://unrot.co/blogs/ai-news-today-june-12-2026",
+        "summary": "The AI coding-tool competitive scoreboard as of June 12, 2026: OpenAI Codex at 5M+ weekly active users; GitHub Copilot (Microsoft) at 10-15M monthly active developers; Claude Code (Anthropic) undisclosed but rapidly growing after Fable 5 integration; Grok Build (xAI) in early public beta. MiniMax M3 is also emerging as an open alternative for coding agents. Automation angle: Mastering Claude Code in 2026 — when the market is still forming — is like mastering GitHub in 2012; the skill will compound for a decade.",
+        "source": "Unrot.co",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "Colorado AI Act Takes Effect June 30 — First US State Law Regulating High-Risk AI",
+        "url": "https://blogs.versalence.ai/ai-automation-trends-what-every-business-needs-to-know-in-2",
+        "summary": "The Colorado Consumer Protections for Artificial Intelligence Act — requiring risk management programs, annual impact assessments, disclosure obligations, and appeals rights for high-risk AI systems — takes effect June 30, 2026. Companies using AI in employment, lending, housing, education, or healthcare face compliance deadlines in weeks. Eight additional US states have similar legislation advancing. Automation angle: Compliance automation (Claude-powered policy audits + n8n monitoring pipelines) is an urgent service category — companies need help before the June 30 deadline.",
+        "source": "Versalence AI / Colorado Legislature",
+        "published": "2026-06-10",
+        "relevance": 4
+      },
+      {
+        "title": "AI OpenAI Reasoning Model Outperforms Experienced Physicians on ER Diagnosis",
+        "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+        "summary": "A study published in Science found that an OpenAI reasoning model outperformed experienced physicians at diagnosing patients using electronic health records from a Boston emergency department — the strongest controlled clinical result for AI diagnostic capability to date. The study used real EHR data, not curated scenarios, making it the most externally valid test published. Automation angle: Healthcare AI diagnosis is production-ready for triage assist roles — AI automation builders who can wrap this into a clinician-review workflow have an immediate hospital market.",
+        "source": "Science / Crescendo AI",
+        "published": "2026-06-08",
+        "relevance": 4
+      }
+    ],
+    "indian_ai_industry": [
+      {
+        "title": "India Is VivaTech 2026 Official AI Partner Country — Opens June 17 in Paris",
+        "url": "https://www.techrepublic.com/article/news-india-vivatech-ai-pitch/",
+        "summary": "India will be featured as VivaTech 2026's Official AI Partner Country when Europe's largest startup and tech event opens June 17 in Paris, led by the India Trade Promotion Organisation with involvement from MeitY, DPIIT, and the Ministry of Education. The India Pavilion brings government officials, investors, and AI startups together around partnerships, investment, and technology exports — India's largest coordinated international AI pitch to date. Automation angle: India-based AI automation builders who can position themselves as bridges between Indian talent and global enterprise clients have a rare first-mover window during this elevated visibility.",
+        "source": "TechRepublic",
+        "published": "2026-06-10",
+        "relevance": 5
+      },
+      {
+        "title": "Google to Build $15B AI Hub Near Visakhapatnam — Gigawatt-Scale Data Center for India",
+        "url": "https://www.openpr.com/news/4544343/industry-experts-highlight-strong-future-for-ai-startups",
+        "summary": "Google has announced a $15 billion AI infrastructure project near Visakhapatnam involving gigawatt-scale data center operations, energy infrastructure, a fiber network, and a subsea gateway — the single largest foreign AI infrastructure investment in India. The facility will power both Indian cloud services and global AI compute needs routed through India. Automation angle: Cheap, local AI compute means Indian AI automation startups will soon have API latencies and pricing equivalent to US/EU builders — infrastructure parity is coming.",
+        "source": "OpenPR",
+        "published": "2026-06-06",
+        "relevance": 5
+      },
+      {
+        "title": "Krutrim, Sarvam AI, BharatGen Lead India's Sovereign LLM Push",
+        "url": "https://inc42.com/features/indias-sovereign-ai-reality-check/",
+        "summary": "India's sovereign AI ecosystem now includes Krutrim (India's first AI unicorn, launched a family of LLMs), Sarvam AI, BharatGen, CoRover.ai, Gnani.ai, and Soket AI — all building LLMs trained on Indian languages and data. Inc42's reality check notes that deployment quality and enterprise adoption are still lagging behind intent, with most use cases concentrated in customer service and agriculture rather than deep verticals. Automation angle: Indian-language AI automation workflows are underbuilt — building Voiceflow/n8n agents with Sarvam or Krutrim backends for Bharat-language markets is nearly uncontested territory.",
+        "source": "Inc42",
+        "published": "2026-06-08",
+        "relevance": 5
+      },
+      {
+        "title": "India AI Startups Moving From POC to Production — Experts Highlight Growth Momentum",
+        "url": "https://www.openpr.com/news/4544343/industry-experts-highlight-strong-future-for-ai-startups",
+        "summary": "Industry experts note that Indian AI startups in 2026 are moving beyond proof-of-concept projects and delivering practical solutions with measurable business impact across healthcare, education, agriculture, and financial services. International capital is following: several Indian AI startups have closed Series A rounds above $10M in the last 90 days. The VivaTech partnership and Google infrastructure investment are expected to accelerate this maturation. Automation angle: Indian AI startups are hiring AI automation engineers — your portfolio of Claude Code / n8n projects is directly relevant to these companies.",
+        "source": "OpenPR",
+        "published": "2026-06-06",
+        "relevance": 4
+      }
+    ],
+    "ai_self_improvement_rsi": [
+      {
+        "title": "Anthropic: 'When AI Builds Itself' — Delegating AI Development to AI Systems",
+        "url": "https://kingy.ai/news/anthropic-says-ai-is-now-building-ai-inside-the-recursive-self-improvement-race/",
+        "summary": "Anthropic published 'When AI builds itself' in June 2026, arguing the company is 'delegating a growing share of AI development to AI systems themselves' and pointing toward 'an AI system capable of fully autonomously designing and developing its own successor.' The framing — combined with the disclosure that 80% of Anthropic's production code is now AI-written — marks the clearest public acknowledgment from a frontier lab that RSI is operational, not hypothetical. Automation angle: Understanding RSI mechanics is a hiring signal for AI-safety-aware automation engineers; mention it in applications.",
+        "source": "Kingy AI / Anthropic",
+        "published": "2026-06-09",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic's Automated Weak-to-Strong Researcher Recovers 97% of Research Gap in 800 Agent-Hours",
+        "url": "https://claude5.com/news/ai-safety-2026-alignment-research-breakthroughs",
+        "summary": "In April 2026, Anthropic published its Automated Weak-to-Strong Researcher system: Claude-powered agents tackled an open AI-safety question by proposing hypotheses, running experiments, and sharing findings autonomously — recovering 97% of a research gap that would have taken humans months, in 800 cumulative agent-hours. This is the strongest demonstrated result for AI doing real scientific research. Automation angle: Agentic research pipelines (literature review → hypothesis → experiment → synthesis) built on Claude are ready for enterprise R&D teams — a high-value consulting product.",
+        "source": "Claude5.com / Anthropic",
+        "published": "2026-04-15",
+        "relevance": 5
+      },
+      {
+        "title": "AI Safety 2026: Constitutional AI, RLHF Refinements, and Mechanistic Interpretability Breakthroughs",
+        "url": "https://claude5.com/news/ai-safety-2026-alignment-research-breakthroughs",
+        "summary": "AI safety research accelerated dramatically in 2026, with major labs publishing breakthrough techniques: Anthropic's constitutional AI updates, OpenAI's refined RLHF pipelines, and DeepMind's mechanistic interpretability results that can trace harmful outputs to specific circuits in transformer models. The core alignment challenge — ensuring objectives compound correctly through self-improvement cycles — remains unsolved, but interpretability tools now provide at least partial visibility into model decision-making. Automation angle: AI safety skills (red-teaming, interpretability, constitution writing) are paid specialties — add one safety-focused project to your portfolio.",
+        "source": "Claude5.com",
+        "published": "2026-06-05",
+        "relevance": 5
+      },
+      {
+        "title": "RSI Safety Concern: Misaligned Objectives Compound Through Each Self-Improvement Cycle",
+        "url": "https://www.mindstudio.ai/blog/recursive-self-improvement-ai-explained",
+        "summary": "The central safety concern with recursive self-improvement (RSI) is that misaligned objectives compound through each iteration — if an AI system designing its successors has even a small misalignment, that error amplifies across generations faster than human oversight can correct it. MindStudio's 2026 explainer notes this is why alignment must be solved before RSI becomes autonomous, not after. Current interpretability tools offer partial visibility but no formal guarantee. Automation angle: RSI is the strongest argument for human-in-the-loop automation design — document your HITL approach when pitching to safety-conscious clients.",
+        "source": "MindStudio AI",
+        "published": "2026-05-14",
+        "relevance": 4
+      }
+    ],
+    "ai_model_benchmarks": [
+      {
+        "title": "Text / LLM - Best: Claude Opus 4.8 / Runner-up: GPT-5.5",
+        "url": "https://llm-stats.com/leaderboards/llm-leaderboard",
+        "source": "Artificial Analysis Intelligence Index",
+        "summary": "Claude Opus 4.8 leads the Artificial Analysis Intelligence Index at 61.4, just ahead of GPT-5.5 at 60.2. Automation angle: Switch your portfolio demos to Claude Opus 4.8 for general-purpose LLM tasks — the benchmark delta justifies the API cost in client-facing demos.",
+        "category": "Text / LLM",
+        "best": "Claude Opus 4.8",
+        "runner_up": "GPT-5.5",
+        "benchmark": "Artificial Analysis Intelligence Index (61.4 vs 60.2)",
+        "model_name": "Claude Opus 4.8",
+        "benchmark_name": "Artificial Analysis Intelligence Index",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "Coding - Best: Claude Fable 5 / Runner-up: MiniMax M3",
+        "url": "https://www.morphllm.com/best-ai-model-for-coding",
+        "source": "SWE-bench Verified / SWE-bench Pro",
+        "summary": "Claude Fable 5 achieves 95% on SWE-bench Verified — the highest score from any public model. MiniMax M3 scores 59% on SWE-bench Pro, outperforming GPT-5.5 (58.6%) while costing 5-10% as much. Automation angle: Fable 5 is the right model for autonomous code-fix demos; M3 is the right choice for cost-sensitive client deployments.",
+        "category": "Coding",
+        "best": "Claude Fable 5",
+        "runner_up": "MiniMax M3",
+        "benchmark": "SWE-bench Verified (Fable 5: 95%) / SWE-bench Pro (M3: 59%)",
+        "model_name": "Claude Fable 5",
+        "benchmark_name": "SWE-bench Verified",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "Image Generation - Best: Grok Imagine 1.5 / Runner-up: ChatGPT Images 2.0",
+        "url": "https://www.swfte.com/ai/leaderboard",
+        "source": "Arena + editorial eval",
+        "summary": "Grok Imagine 1.5 (released June 4, 2026 via API) is earning strong early reviews for photorealism and style transfer, challenging ChatGPT Images 2.0. Midjourney v7 remains the community preference for artistic styles. Automation angle: Offer clients a multi-model image pipeline (Grok for photorealism, Midjourney for art) using n8n to route by use case — this is a differentiator over single-model shops.",
+        "category": "Image Generation",
+        "best": "Grok Imagine 1.5",
+        "runner_up": "ChatGPT Images 2.0",
+        "benchmark": "Arena + editorial eval (June 2026)",
+        "model_name": "Grok Imagine 1.5",
+        "benchmark_name": "Arena + editorial eval",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "Video Generation - Best: Sora 2 / Runner-up: Google Veo 3",
+        "url": "https://www.swfte.com/ai/leaderboard",
+        "source": "VBench 2.0 + human-eval",
+        "summary": "Sora 2 retains the top position for video generation quality, with Google Veo 3 closing the gap on coherence and prompt fidelity. Grok Imagine has entered video generation in preview but is not yet competitive on duration or quality. Automation angle: AI video generation is the next automation frontier for content teams — build a Sora 2 + n8n pipeline for short-form social video production as a portfolio project.",
+        "category": "Video Generation",
+        "best": "Sora 2",
+        "runner_up": "Google Veo 3",
+        "benchmark": "VBench 2.0 + human-eval",
+        "model_name": "Sora 2",
+        "benchmark_name": "VBench 2.0",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "Music / Audio - Best: Suno v5 / Runner-up: Udio v2.5",
+        "url": "https://jam.com/resources/ai-music-copyright-2026",
+        "source": "MusicArena",
+        "summary": "Suno v5 leads on audio quality and style variety; Udio v2.5 wins on vocal realism. Both face active copyright litigation (UMG v. Suno ruling expected summer 2026). Automation angle: Monitor the UMG ruling — a licensing mandate will either kill or formalize this category; builders positioned on either side of the outcome will benefit.",
+        "category": "Music / Audio",
+        "best": "Suno v5",
+        "runner_up": "Udio v2.5",
+        "benchmark": "MusicArena",
+        "model_name": "Suno v5",
+        "benchmark_name": "MusicArena",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "Reasoning / Math - Best: Claude Mythos Preview / Runner-up: GPT-5.5",
+        "url": "https://lmcouncil.ai/benchmarks",
+        "source": "GPQA / AIME",
+        "summary": "Claude Mythos Preview leads frontier reasoning on GPQA, though it is limited availability (Project Glasswing only). GPT-5.5 with extended thinking is the best publicly accessible reasoning model. Claude Fable 5 (fully public) is close behind on FrontierBench. Automation angle: For complex reasoning tasks in client automation (legal analysis, financial modeling, scientific synthesis), the Mythos/Fable 5 generation is production-ready — use Fable 5 for client deployments.",
+        "category": "Reasoning / Math",
+        "best": "Claude Mythos Preview (limited) / Fable 5 (public)",
+        "runner_up": "GPT-5.5 (extended thinking)",
+        "benchmark": "GPQA / FrontierBench",
+        "model_name": "Claude Mythos Preview",
+        "benchmark_name": "GPQA",
+        "standings": true,
+        "published": "2026-06-12",
+        "relevance": 6
+      },
+      {
+        "title": "MiniMax M3: Frontier Coding at 5-10% of GPT-5.5 Cost — Open Weights",
+        "url": "https://venturebeat.com/technology/minimax-m3-debuts-eclipsing-gpt-5-5-and-gemini-3-1-pro-on-key-benchmark-performance-for-just-5-10-of-the-cost",
+        "summary": "MiniMax M3 (launched June 1, 2026) is the first open-weights model to combine frontier coding performance, 1M-token context, and native multimodality at 5-10% of GPT-5.5's per-token cost. It scores 59% on SWE-bench Pro, 66% on Terminal-Bench 2.1, and 83.5 on BrowseComp. The pricing advantage makes it immediately relevant for cost-sensitive enterprise automation deployments. Automation angle: Self-host M3 or use its API for high-volume automation tasks — the cost delta vs GPT-5.5 is a strong client pitch when ROI calculations matter.",
+        "source": "VentureBeat",
+        "published": "2026-06-01",
+        "relevance": 5
+      }
+    ],
+    "new_ai_tools": [
+      {
+        "title": "Claude Code 2.1.170: Post-Session Hooks, Safe Mode, /cd, Fable 5 Native Access",
+        "url": "https://code.claude.com/docs/en/changelog",
+        "summary": "Claude Code 2.1.170 (June 11, 2026) adds a post-session hook (execute scripts after Claude finishes), a safe mode for diagnosing hook failures, and /cd for changing the working directory mid-session. It fixes Fable 5 model name normalization ([1m] suffix) and provides full Fable 5 access. MCP policy enforcement tightened. Cost: included in all existing Claude Code plans. Automation angle: Post-session hooks unlock fully automated commit-test-push pipelines triggered by Claude completions — wire it up as a portfolio demo.",
+        "source": "Claude Code Changelog",
+        "published": "2026-06-11",
+        "relevance": 5
+      },
+      {
+        "title": "n8n Gains Native MCP Support: MCP Server Trigger + MCP Client Tool Nodes",
+        "url": "https://blog.n8n.io/we-need-re-learn-what-ai-agent-development-tools-are-in-2026/",
+        "summary": "n8n now has built-in MCP (Model Context Protocol) support via two new nodes: MCP Server Trigger (expose n8n workflows as MCP tools) and MCP Client Tool (connect to any MCP server from within an agent workflow). With 5,800+ community AI workflows and 70 LangChain-dedicated nodes, n8n has become the serious developer choice for AI-powered automation. Cost: open-source self-hosted free; cloud from $24/month. Automation angle: MCP + n8n means you can expose any n8n workflow as a tool callable by Claude Code or any MCP-enabled agent — the foundation for agentic portfolio projects.",
+        "source": "n8n Blog",
+        "published": "2026-06-08",
+        "relevance": 5
+      },
+      {
+        "title": "MiniMax M3: Open-Weights Frontier Model — 1M Context, Native Multimodal, 5-10% Cost",
+        "url": "https://venturebeat.com/technology/minimax-m3-debuts-eclipsing-gpt-5-5-and-gemini-3-1-pro-on-key-benchmark-performance-for-just-5-10-of-the-cost",
+        "summary": "MiniMax M3 (June 1, 2026) is the first open-weights model to combine a 1M-token context window, native multimodality (text + image input), and coding performance that matches GPT-5.5 and Gemini 3.1 Pro — at 5-10% of their API cost. Self-hostable and available via API at promo pricing (~15x cheaper than Opus per token). Automation angle: M3's cost profile makes it viable for high-volume automation tasks that would be prohibitive with frontier-closed models — immediately relevant for data processing pipelines.",
+        "source": "VentureBeat",
+        "published": "2026-06-01",
+        "relevance": 5
+      },
+      {
+        "title": "Grok Build 0.1: xAI's Agentic Coding Model in Public Beta (API, 256K Context)",
+        "url": "https://www.basenor.com/blogs/news/5-grok-updates-you-should-know-about-right-now",
+        "summary": "Grok Build 0.1 entered public beta on May 29, 2026 via the xAI API. It is a dedicated coding model for agentic tasks with a 256,000-token context window, always-on reasoning, and text + image input — a direct competitor to Claude Code and Codex. Cost: early beta pricing not yet disclosed. Automation angle: A third strong agentic coding model means you can benchmark all three (Claude Code, Codex, Grok Build) and offer clients the fastest/cheapest option per task class — a concrete service differentiation.",
+        "source": "xAI / Basenor",
+        "published": "2026-05-29",
+        "relevance": 5
+      },
+      {
+        "title": "Claude for Law: 20+ Legal MCP Connectors + 12 Practice-Area Plugins Now in Beta",
+        "url": "https://releasebot.io/updates/anthropic",
+        "summary": "Anthropic released 20+ legal MCP connectors (covering legal research, contracts, discovery, matter management) and 12 practice-area plugins for law firms and in-house legal teams. Connector observability in public beta lets admins monitor adoption, errors, and latency across all Claude products in their organization. Cost: included in Enterprise plans. Automation angle: Legal-AI connectors are templates for any regulated-industry MCP build (healthcare, finance, HR) — study the connector architecture and replicate it for your target vertical.",
+        "source": "Releasebot / Anthropic",
+        "published": "2026-06-10",
+        "relevance": 4
+      },
+      {
+        "title": "n8n Human-in-the-Loop (HITL) Node: Pause, Review, Approve Mid-Agent-Run",
+        "url": "https://blog.n8n.io/best-ai-workflow-automation-tools/",
+        "summary": "n8n's Human-in-the-Loop feature (shipped January 2026, now widely adopted) lets you pause an agent mid-execution and require human approval before it takes an action — a critical safety mechanism for production automation. Integrates natively with Slack and email for approval notifications. Cost: available on all n8n plans. Automation angle: HITL is the key differentiator that makes client-facing automation deployments trustworthy — always demo it in portfolio projects to show you understand enterprise safety requirements.",
+        "source": "n8n Blog",
+        "published": "2026-01-15",
+        "relevance": 4
+      }
+    ],
+    "general_news": [
+      {
+        "title": "UK Defence Secretary John Healey Resigns, Warning Military Lacks Resources for Rising Threats",
+        "url": "https://www.foxnews.com/politics/top-us-allys-defense-chief-quits-warns-military-lacks-resources-rising-threats",
+        "summary": "British Defence Secretary John Healey resigned on June 12, 2026, accusing PM Keir Starmer's government of failing to adequately fund the military amid rising threats from Russia and NATO demands. His resignation letter warned that the UK's armed forces lack the resources to meet current commitments, a dramatic public break with the government's defence posture.",
+        "source": "Fox News",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "Trump Claims Tehran Deal 'Approved', Cancels New Strikes — Iran War Status Uncertain",
+        "url": "https://www.aljazeera.com/news/liveblog/2026/6/12/iran-war-live-trump-claims-tehran-deal-approved-cancels-new-strikes",
+        "summary": "President Trump claimed on June 12 that a Tehran deal has been 'approved' and announced the cancellation of planned new strikes against Iran. The situation remains fluid, with diplomatic contacts continuing while the International Rescue Committee warns of a humanitarian crisis from ongoing displacement in Lebanon.",
+        "source": "Al Jazeera",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "SpaceX IPO: Largest US Public Debut Ever at $1.75 Trillion Valuation",
+        "url": "https://unrot.co/blogs/ai-news-today-june-12-2026",
+        "summary": "SpaceX began trading on NASDAQ on June 12, 2026 under ticker SPCX at $135 per share, targeting $75 billion in proceeds at a $1.75 trillion valuation — the largest IPO in US stock market history. The debut was buoyed by Starlink's subscriber growth, the SpaceX-Google GPU deal, and AI infrastructure investment thesis.",
+        "source": "Multiple sources",
+        "published": "2026-06-12",
+        "relevance": 5
+      },
+      {
+        "title": "Minnesota Man Vance Boelter Pleads Guilty in Assassination of Rep. Melissa Hortman",
+        "url": "https://www.foxnews.com/us/vance-boelter-changes-plea-guilty-minn-lawmaker-shootings-killed-rep-melissa-hortman-husband",
+        "summary": "Vance Boelter entered a guilty plea in federal court on June 12, 2026 for the politically motivated assassination of Minnesota state Rep. Melissa Hortman and her husband — one of the most significant attacks on a US elected official in recent years. Sentencing is scheduled for later in 2026.",
+        "source": "Fox News",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Pentagon Shelter-in-Place: Hazmat Teams Respond to Air Quality Incident",
+        "url": "https://www.foxnews.com/politics/severe-pentagon-lockdown-sparks-emergency-response-hazmat-teams-sweep-area",
+        "summary": "The Pentagon declared a shelter-in-place order on June 12, 2026 after safety systems detected an air quality issue. Hazmat teams swept the building as officials investigated a reported chemical spill. The lockdown was lifted after a thorough inspection with no personnel injuries reported.",
+        "source": "Fox News",
+        "published": "2026-06-12",
+        "relevance": 4
+      },
+      {
+        "title": "Supreme Court Prohibits Alabama From Using Nitrogen Gas for Executions",
+        "url": "https://www.npr.org/2026/06/11/nx-s1-5855742/supreme-court-alabama-execution",
+        "summary": "The US Supreme Court ruled on June 11, 2026 that Alabama cannot use nitrogen gas for the execution of Jeffery Lee, blocking the state's planned execution method. The ruling sets a precedent on Eighth Amendment standards for novel execution techniques.",
+        "source": "NPR",
+        "published": "2026-06-11",
+        "relevance": 4
+      },
+      {
+        "title": "NBA Finals: Knicks Overcome 29-Point Deficit to Take 3-1 Series Lead Over Spurs",
+        "url": "https://www.foxnews.com/sports/nba-finals-game-4-recap",
+        "summary": "The New York Knicks mounted a miraculous 29-point comeback in Game 4 of the 2026 NBA Finals against the San Antonio Spurs, taking a commanding 3-1 series lead. The rally is already being called one of the greatest comebacks in Finals history.",
+        "source": "Fox News",
+        "published": "2026-06-12",
+        "relevance": 3
+      }
+    ]
+  },
+  "section_labels": {
+    "remote_jobs": "Remote AI Automation Jobs (Worldwide)",
+    "youtube_content_ideas": "YouTube Content Ideas (10M-View Pitches)",
+    "ai_search_trends": "What People in AI Are Searching For",
+    "viral_video_landscape": "Viral AI on YouTube (Last 7 Days)",
+    "instagram_viral_reels": "Viral Instagram Reels (AI)",
+    "anthropic_claude_news": "Anthropic & Claude Code Updates",
+    "ai_business_automation": "AI Automation & Businesses",
+    "quantum_ai_research": "Quantum + AI",
+    "product_showcase_opportunities": "AI Product Showcase Opportunities",
+    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
+    "elon_musk_ai_vision": "Elon Musk's AI Vision",
+    "unaddressed_ai_problems": "Unaddressed AI Problems",
+    "ai_business_opportunities": "AI Business Opportunities",
+    "global_ai_news": "Global AI News",
+    "indian_ai_industry": "Indian AI Industry",
+    "ai_self_improvement_rsi": "AI Self-Improvement (RSI)",
+    "ai_model_benchmarks": "AI Model Benchmarks",
+    "new_ai_tools": "New AI Tools",
+    "general_news": "General News (non-AI)"
+  }
+}

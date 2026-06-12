@@ -1,0 +1,521 @@
+[2026-06-12 22:48:45] ============================================================
+[2026-06-12 22:48:45] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-12 22:48:45] ============================================================
+[2026-06-12 22:48:45] START: Scrape RSS Feeds
+Scraping 32 RSS feeds (cutoff: 2026-06-05 17:18 UTC, 7d pool / 24h surfaced)...
+  [ERROR] The Verge AI: 403 Client Error: Forbidden for url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+  [  0 articles] The Verge AI
+  [ERROR] TechCrunch AI: 403 Client Error: Forbidden for url: https://techcrunch.com/category/artificial-intelligence/feed/
+  [  0 articles] TechCrunch AI
+  [ERROR] Ars Technica AI: 403 Client Error: Forbidden for url: https://feeds.arstechnica.com/arstechnica/technology-lab
+  [  0 articles] Ars Technica AI
+  [ERROR] MIT Technology Review: 403 Client Error: Forbidden for url: https://www.technologyreview.com/feed/
+  [  0 articles] MIT Technology Review
+  [ERROR] VentureBeat AI: 403 Client Error: Forbidden for url: https://venturebeat.com/category/ai/feed/
+  [  0 articles] VentureBeat AI
+  [ERROR] The Decoder: 403 Client Error: Forbidden for url: https://the-decoder.com/feed/
+  [  0 articles] The Decoder
+  [ERROR] AI News: 403 Client Error: Forbidden for url: https://www.artificialintelligence-news.com/feed/
+  [  0 articles] AI News
+  [ERROR] Wired AI: 403 Client Error: Forbidden for url: https://www.wired.com/feed/tag/ai/latest/rss
+  [  0 articles] Wired AI
+  [ERROR] ZDNet AI: 403 Client Error: Forbidden for url: https://www.zdnet.com/topic/artificial-intelligence/rss.xml
+  [  0 articles] ZDNet AI
+  [ERROR] The Register AI: 403 Client Error: Forbidden for url: https://www.theregister.com/software/ai_ml/headlines.atom
+  [  0 articles] The Register AI
+  [ERROR] OpenAI Blog: 403 Client Error: Forbidden for url: https://openai.com/blog/rss.xml
+  [  0 articles] OpenAI Blog
+  [ERROR] Google AI Blog: 403 Client Error: Forbidden for url: https://blog.google/technology/ai/rss/
+  [  0 articles] Google AI Blog
+  [ERROR] Hugging Face Blog: 403 Client Error: Forbidden for url: https://huggingface.co/blog/feed.xml
+  [  0 articles] Hugging Face Blog
+  [ERROR] Inc42: 403 Client Error: Forbidden for url: https://inc42.com/feed/
+  [  0 articles] Inc42
+  [ERROR] YourStory: 403 Client Error: Forbidden for url: https://yourstory.com/feed
+  [  0 articles] YourStory
+  [ERROR] Economic Times Tech: 403 Client Error: Forbidden for url: https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms
+  [  0 articles] Economic Times Tech
+  [ERROR] arXiv Quantum Physics: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/quant-ph
+  [  0 articles] arXiv Quantum Physics
+  [ERROR] arXiv AI: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/cs.AI
+  [  0 articles] arXiv AI
+  [ERROR] arXiv Machine Learning: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/cs.LG
+  [  0 articles] arXiv Machine Learning
+  [ERROR] arXiv CS & Society: 403 Client Error: Forbidden for url: https://rss.arxiv.org/rss/cs.CY
+  [  0 articles] arXiv CS & Society
+  [ERROR] Music Business Worldwide: 403 Client Error: Forbidden for url: https://www.musicbusinessworldwide.com/feed/
+  [  0 articles] Music Business Worldwide
+  [ERROR] Digital Music News: 403 Client Error: Forbidden for url: https://www.digitalmusicnews.com/feed/
+  [  0 articles] Digital Music News
+  [ERROR] Anthropic Claude Code Releases: 403 Client Error: Forbidden for url: https://docs.anthropic.com/en/release-notes/claude-code.rss
+  [  0 articles] Anthropic Claude Code Releases
+  [ERROR] xAI News (via Google News): 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=%22xAI%22+OR+%22Grok%22+(model+OR+launch+OR+update)&hl=en-US&gl=US&ceid=US:en
+  [  0 articles] xAI News (via Google News)
+  [ERROR] Elon Musk on X (via Google News): 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=%22elon+musk%22+(xAI+OR+Grok+OR+AI)+site:x.com%2Felonmusk&hl=en-US&gl=US&ceid=US:en
+  [  0 articles] Elon Musk on X (via Google News)
+  [ERROR] Product Hunt AI: 403 Client Error: Forbidden for url: https://www.producthunt.com/feed?category=artificial-intelligence
+  [  0 articles] Product Hunt AI
+  [ERROR] Futurism: 403 Client Error: Forbidden for url: https://futurism.com/feed
+  [  0 articles] Futurism
+  [ERROR] AI Hackathons (via Google News): 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=(%22AI+hackathon%22+OR+%22AI+agents+hackathon%22+OR+%22AI+agent+hackathon%22)+(submission+OR+deadline+OR+winners+OR+devpost+OR+launches+OR+announces)&hl=en-US&gl=US&ceid=US:en
+  [  0 articles] AI Hackathons (via Google News)
+  [ERROR] AI Competitions on Devpost (via Google News): 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=(devpost+OR+%22AI+competition%22+OR+%22AI+challenge%22)+(submission+OR+deadline+OR+winners+OR+%22cash+prize%22)+AI&hl=en-US&gl=US&ceid=US:en
+  [  0 articles] AI Competitions on Devpost (via Google News)
+  [ERROR] BBC World: 403 Client Error: Forbidden for url: http://feeds.bbci.co.uk/news/world/rss.xml
+  [  0 articles] BBC World
+  [ERROR] The Hindu - National: 403 Client Error: Forbidden for url: https://www.thehindu.com/news/national/feeder/default.rss
+  [  0 articles] The Hindu - National
+  [ERROR] NDTV Top Stories: 403 Client Error: Forbidden for url: https://feeds.feedburner.com/ndtvnews-top-stories
+  [  0 articles] NDTV Top Stories
+
+Done! 0 unique articles saved to /home/user/ai-news-remote-jobs/.tmp/rss_articles.json
+[2026-06-12 22:53:08] OK   : Scrape RSS Feeds (263.5s)
+[2026-06-12 22:53:08] START: Scrape Hackathons
+[devpost] ok=0 skipped=0 errors=1 (0.2s)
+[kaggle] ok=0 skipped=0 errors=1 (0.0s)
+[huggingface] ok=0 skipped=0 errors=1 (0.1s)
+[mlh] ok=0 skipped=0 errors=1 (0.3s)
+[lablab.ai] ok=0 skipped=0 errors=1 (0.2s)
+[aicrowd] ok=0 skipped=0 errors=1 (0.3s)
+[drivendata] ok=0 skipped=0 errors=1 (0.3s)
+[accelerators] ok=10 skipped=0 errors=0 (0.0s)
+[accelerator_news] AI startup accelerator applications open: 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=AI%20startup%20accelerator%20applications%20open&hl=en-US&gl=US&ceid=US:en
+[accelerator_news] AI acceleration program for startups deadline: 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=AI%20acceleration%20program%20for%20startups%20deadline&hl=en-US&gl=US&ceid=US:en
+[accelerator_news] India AI startup accelerator cohort: 403 Client Error: Forbidden for url: https://news.google.com/rss/search?q=India%20AI%20startup%20accelerator%20cohort&hl=en-US&gl=US&ceid=US:en
+[accelerator_news] ok=0 skipped=0 errors=3 (0.1s)
+[total] sources=9 raw=10 deduped=10 open=10
+[total] wrote /home/user/ai-news-remote-jobs/.tmp/hackathons.json
+[2026-06-12 22:53:10] OK   : Scrape Hackathons (1.5s)
+[2026-06-12 22:53:10] START: YouTube Viral Verify
+  [global_automation] 12,481,927 views — AI Ad Comb vs Reality🪮💇
+  [global_short] 1,407,386 views — Cái xúc xích cuối cùng thuộc về ai ? #shorts
+  [india_automation] no fresh pick (no candidate cleared the floor)
+
+Verified videos saved → /home/user/ai-news-remote-jobs/.tmp/youtube_verified.json (2/3 buckets filled)
+[2026-06-12 22:53:13] OK   : YouTube Viral Verify (2.5s)
+[2026-06-12 22:53:13] START: Scrape YouTube Trending
+Searching 19 queries...
+  [ERROR] Query 'AI automation tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI automation tutorial'
+  [ERROR] Query 'AI agent tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI agent tutorial'
+  [ERROR] Query 'build AI agent': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'build AI agent'
+  [ERROR] Query 'AI workflow automation': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI workflow automation'
+  [ERROR] Query 'how to automate with AI': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'how to automate with AI'
+  [ERROR] Query 'n8n tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'n8n tutorial'
+  [ERROR] Query 'n8n AI workflow': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'n8n AI workflow'
+  [ERROR] Query 'Make.com AI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Make.com AI tutorial'
+  [ERROR] Query 'Zapier AI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Zapier AI tutorial'
+  [ERROR] Query 'Claude Code tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude Code tutorial'
+  [ERROR] Query 'Cursor AI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cursor AI tutorial'
+  [ERROR] Query 'Windsurf AI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Windsurf AI tutorial'
+  [ERROR] Query 'Cline AI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cline AI tutorial'
+  [ERROR] Query 'LangGraph tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'LangGraph tutorial'
+  [ERROR] Query 'CrewAI tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'CrewAI tutorial'
+  [ERROR] Query 'AutoGen tutorial': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AutoGen tutorial'
+  [ERROR] Query 'AI automation business': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI automation business'
+  [ERROR] Query 'AI agency build': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI agency build'
+  [ERROR] Query 'AI SaaS automation': [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AI SaaS automation'
+
+Checking 5 AI channels...
+  [ERROR] Channel UCbfYPyITQ-7l4upoX8nvctg: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ERROR] Channel UCMLkMFtICEGOV46_mLm5bTg: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ERROR] Channel UCWN3xxRkmTPphYit_FYl6Ag: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ERROR] Channel UCUyeluBRhGPCW4rPe_UvBZQ: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ERROR] Channel UCsBjURrPoezykLs9EqgamOA: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+
+Fetching viral trending charts...
+  [ERROR] Chart trending (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] Chart trending — Global
+  [ERROR] Chart trending (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] Chart trending — India
+
+Searching viral AI-platform videos (Global)...
+  [ERROR] Platform search 'Claude Code' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude Code' — Global [platform=Claude Code]
+  [ERROR] Platform search 'Cursor AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cursor AI' — Global [platform=Cursor AI]
+  [ERROR] Platform search 'Windsurf AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Windsurf AI' — Global [platform=Windsurf AI]
+  [ERROR] Platform search 'Cline AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cline AI' — Global [platform=Cline AI]
+  [ERROR] Platform search 'Aider AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Aider AI' — Global [platform=Aider AI]
+  [ERROR] Platform search 'Devin AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Devin AI' — Global [platform=Devin AI]
+  [ERROR] Platform search 'Replit Agent' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Replit Agent' — Global [platform=Replit Agent]
+  [ERROR] Platform search 'Manus AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Manus AI' — Global [platform=Manus AI]
+  [ERROR] Platform search 'v0 Vercel' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'v0 Vercel' — Global [platform=v0 Vercel]
+  [ERROR] Platform search 'Bolt.new' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Bolt.new' — Global [platform=Bolt.new]
+  [ERROR] Platform search 'Lovable AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Lovable AI' — Global [platform=Lovable AI]
+  [ERROR] Platform search 'GitHub Copilot agent' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'GitHub Copilot agent' — Global [platform=GitHub Copilot agent]
+  [ERROR] Platform search 'ChatGPT agent' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'ChatGPT agent' — Global [platform=ChatGPT agent]
+  [ERROR] Platform search 'Claude agents' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude agents' — Global [platform=Claude agents]
+  [ERROR] Platform search 'Jules Google' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Jules Google' — Global [platform=Jules Google]
+  [ERROR] Platform search 'OpenAI Codex' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'OpenAI Codex' — Global [platform=OpenAI Codex]
+  [ERROR] Platform search 'CrewAI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'CrewAI' — Global [platform=CrewAI]
+  [ERROR] Platform search 'LangGraph' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'LangGraph' — Global [platform=LangGraph]
+  [ERROR] Platform search 'AutoGen agent' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AutoGen agent' — Global [platform=AutoGen agent]
+  [ERROR] Platform search 'Mastra AI' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Mastra AI' — Global [platform=Mastra AI]
+
+Searching viral AI-platform videos (India)...
+  [ERROR] Platform search 'Claude Code India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude Code India' — India [platform=Claude Code]
+  [ERROR] Platform search 'Cursor AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cursor AI India' — India [platform=Cursor AI]
+  [ERROR] Platform search 'Windsurf AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Windsurf AI India' — India [platform=Windsurf AI]
+  [ERROR] Platform search 'Cline AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cline AI India' — India [platform=Cline AI]
+  [ERROR] Platform search 'Aider AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Aider AI India' — India [platform=Aider AI]
+  [ERROR] Platform search 'Devin AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Devin AI India' — India [platform=Devin AI]
+  [ERROR] Platform search 'Replit Agent India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Replit Agent India' — India [platform=Replit Agent]
+  [ERROR] Platform search 'Manus AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Manus AI India' — India [platform=Manus AI]
+  [ERROR] Platform search 'v0 Vercel India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'v0 Vercel India' — India [platform=v0 Vercel]
+  [ERROR] Platform search 'Bolt.new India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Bolt.new India' — India [platform=Bolt.new]
+  [ERROR] Platform search 'Lovable AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Lovable AI India' — India [platform=Lovable AI]
+  [ERROR] Platform search 'GitHub Copilot agent India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'GitHub Copilot agent India' — India [platform=GitHub Copilot agent]
+  [ERROR] Platform search 'ChatGPT agent India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'ChatGPT agent India' — India [platform=ChatGPT agent]
+  [ERROR] Platform search 'Claude agents India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude agents India' — India [platform=Claude agents]
+  [ERROR] Platform search 'Jules Google India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Jules Google India' — India [platform=Jules Google]
+  [ERROR] Platform search 'OpenAI Codex India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'OpenAI Codex India' — India [platform=OpenAI Codex]
+  [ERROR] Platform search 'CrewAI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'CrewAI India' — India [platform=CrewAI]
+  [ERROR] Platform search 'LangGraph India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'LangGraph India' — India [platform=LangGraph]
+  [ERROR] Platform search 'AutoGen agent India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'AutoGen agent India' — India [platform=AutoGen agent]
+  [ERROR] Platform search 'Mastra AI India' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Mastra AI India' — India [platform=Mastra AI]
+  [ERROR] Platform search 'Claude Code Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Claude Code Hindi' — India [platform=Claude Code]
+  [ERROR] Platform search 'Cursor AI Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cursor AI Hindi' — India [platform=Cursor AI]
+  [ERROR] Platform search 'Windsurf AI Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Windsurf AI Hindi' — India [platform=Windsurf AI]
+  [ERROR] Platform search 'Cline AI Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Cline AI Hindi' — India [platform=Cline AI]
+  [ERROR] Platform search 'Aider AI Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Aider AI Hindi' — India [platform=Aider AI]
+  [ERROR] Platform search 'Devin AI Hindi' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 videos] 'Devin AI Hindi' — India [platform=Devin AI]
+
+Searching viral AI Shorts...
+  [ERROR] Shorts search 'Claude Code shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Claude Code shorts' — Global
+  [ERROR] Shorts search 'Claude Code shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Claude Code shorts' — India
+  [ERROR] Shorts search 'Cursor AI shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Cursor AI shorts' — Global
+  [ERROR] Shorts search 'Cursor AI shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Cursor AI shorts' — India
+  [ERROR] Shorts search 'Devin AI shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Devin AI shorts' — Global
+  [ERROR] Shorts search 'Devin AI shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Devin AI shorts' — India
+  [ERROR] Shorts search 'Sora 2 shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Sora 2 shorts' — Global
+  [ERROR] Shorts search 'Sora 2 shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Sora 2 shorts' — India
+  [ERROR] Shorts search 'Veo shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Veo shorts' — Global
+  [ERROR] Shorts search 'Veo shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Veo shorts' — India
+  [ERROR] Shorts search 'ChatGPT shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'ChatGPT shorts' — Global
+  [ERROR] Shorts search 'ChatGPT shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'ChatGPT shorts' — India
+  [ERROR] Shorts search 'Gemini shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Gemini shorts' — Global
+  [ERROR] Shorts search 'Gemini shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'Gemini shorts' — India
+  [ERROR] Shorts search 'AI agent shorts' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'AI agent shorts' — Global
+  [ERROR] Shorts search 'AI agent shorts' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] 'AI agent shorts' — India
+
+Searching general viral Shorts...
+  [ERROR] Shorts search 'viral shorts today' (region=None): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] General viral — Global
+  [ERROR] Shorts search 'viral shorts today' (region=IN): [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1016)
+  [ 0 shorts] General viral — India
+
+Total viral videos fetched: 0
+
+Done! 0 unique videos saved to /home/user/ai-news-remote-jobs/.tmp/youtube_trending.json
+[2026-06-12 22:53:14] OK   : Scrape YouTube Trending (1.0s)
+[2026-06-12 22:53:14] START: Scrape Instagram Reels
+  [#aiautomation] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aiautomation] 0 reels
+  [#aiagents] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aiagents] 0 reels
+  [#aitools] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aitools] 0 reels
+  [#chatgpt] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#chatgpt] 0 reels
+  [#claudecode] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#claudecode] 0 reels
+  [#cursorai] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#cursorai] 0 reels
+  [#aitech] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aitech] 0 reels
+  [#aiart] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aiart] 0 reels
+  [#aiindia] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aiindia] 0 reels
+  [#indianai] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#indianai] 0 reels
+  [#aistartupindia] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aistartupindia] 0 reels
+  [#aitechindia] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#aitechindia] 0 reels
+  [#desi_ai] HTTP 403 - check RAPIDAPI_KEY / RAPIDAPI_INSTAGRAM_HOST
+  [#desi_ai] 0 reels
+[instagram] 0 raw -> 0 unique -> /home/user/ai-news-remote-jobs/.tmp/instagram_reels.json
+[2026-06-12 22:53:34] OK   : Scrape Instagram Reels (20.6s)
+[2026-06-12 22:53:34] START: Instagram Viral Verify
+  [global_ai] no AI reels in last 24h
+  [india_ai] no AI reels in last 24h
+[ig_verify] 0/2 buckets filled -> /home/user/ai-news-remote-jobs/.tmp/instagram_verified.json
+[2026-06-12 22:53:34] OK   : Instagram Viral Verify (0.0s)
+[2026-06-12 22:53:34] START: Scrape AI Trends
+[google_trends:global] error: The request failed: Google returned a response with code 403
+[google_trends:india] error: The request failed: Google returned a response with code 403
+[google_trends] 0 signals
+[hn:AI] HTTP 403
+[hn:LLM] HTTP 403
+[hn:agent] HTTP 403
+[hn:Claude] HTTP 403
+[hn:ChatGPT] HTTP 403
+[hn:OpenAI] HTTP 403
+[hn:Anthropic] HTTP 403
+[hn] 0 signals
+[reddit:MachineLearning] HTTP 403
+[reddit:LocalLLaMA] HTTP 403
+[reddit:singularity] HTTP 403
+[reddit:ArtificialIntelligence] HTTP 403
+[reddit:OpenAI] HTTP 403
+[reddit:Anthropic] HTTP 403
+[reddit:ClaudeAI] HTTP 403
+[reddit:AI_Agents] HTTP 403
+[reddit:anon] all subreddits returned 403 (IP-level block). Set REDDIT_CLIENT_ID/REDDIT_CLIENT_SECRET for the authenticated PRAW path.
+[reddit:anon] 0 signals
+[ai_trends] wrote 0 topics (from 0 signals) -> /home/user/ai-news-remote-jobs/.tmp/ai_trends.json
+[2026-06-12 22:53:35] OK   : Scrape AI Trends (1.1s)
+[2026-06-12 22:53:35] START: Scrape Jobs
+[config] JOBS_FRAGILE_SOURCES=off (cloud-safe)
+[fragile] Skipping LinkedIn/Wellfound/Indeed/Twitter — datacenter IPs hard-block these (set JOBS_FRAGILE_SOURCES=1 to override)
+[reliable] Remotive ...
+  [Remotive] AI automation: HTTP 403
+  [Remotive] AI automation engineer: HTTP 403
+  [Remotive] Claude Code: HTTP 403
+  [Remotive] n8n developer: HTTP 403
+  [Remotive] workflow automation: HTTP 403
+  [Remotive] LLM engineer: HTTP 403
+  [Remotive] prompt engineer: HTTP 403
+  [Remotive] AI agent developer: HTTP 403
+  [Remotive] AI agent engineer: HTTP 403
+  [Remotive] conversational AI developer: HTTP 403
+  [Remotive] voice AI developer: HTTP 403
+  [Remotive] AI chatbot developer: HTTP 403
+  [Remotive] AI integration engineer: HTTP 403
+  [Remotive] AI solutions engineer: HTTP 403
+  [Remotive] AI implementation specialist: HTTP 403
+  [Remotive] no-code AI developer: HTTP 403
+  [Remotive] forward deployed engineer: HTTP 403
+  [Remotive] Voiceflow developer: HTTP 403
+  [Remotive] RAG engineer: HTTP 403
+[reliable] We Work Remotely ...
+  [WWR] HTTP 403
+[reliable] Himalayas ...
+  [Himalayas] AI automation: HTTP 403
+  [Himalayas] AI automation engineer: HTTP 403
+  [Himalayas] Claude Code: HTTP 403
+  [Himalayas] n8n developer: HTTP 403
+  [Himalayas] workflow automation: HTTP 403
+  [Himalayas] LLM engineer: HTTP 403
+  [Himalayas] prompt engineer: HTTP 403
+  [Himalayas] AI agent developer: HTTP 403
+  [Himalayas] AI agent engineer: HTTP 403
+  [Himalayas] conversational AI developer: HTTP 403
+  [Himalayas] voice AI developer: HTTP 403
+  [Himalayas] AI chatbot developer: HTTP 403
+  [Himalayas] AI integration engineer: HTTP 403
+  [Himalayas] AI solutions engineer: HTTP 403
+  [Himalayas] AI implementation specialist: HTTP 403
+  [Himalayas] no-code AI developer: HTTP 403
+  [Himalayas] forward deployed engineer: HTTP 403
+  [Himalayas] Voiceflow developer: HTTP 403
+  [Himalayas] RAG engineer: HTTP 403
+[reliable] RemoteOK ...
+  [RemoteOK] HTTP 403
+[reliable] Hacker News hiring ...
+  [HN] HTTP 403
+[ATS] Greenhouse public boards ...
+  [Greenhouse:anthropic] HTTP 403
+  [Greenhouse:scaleai] HTTP 403
+  [Greenhouse:databricks] HTTP 403
+  [Greenhouse:gleanwork] HTTP 403
+  [Greenhouse:datadog] HTTP 403
+  [Greenhouse:stripe] HTTP 403
+  [Greenhouse:figma] HTTP 403
+  [Greenhouse:asana] HTTP 403
+  [Greenhouse:vercel] HTTP 403
+  [Greenhouse:discord] HTTP 403
+  [Greenhouse:wayve] HTTP 403
+  [Greenhouse:togetherai] HTTP 403
+  [Greenhouse:imbue] HTTP 403
+  [Greenhouse:magic] HTTP 403
+  [Greenhouse:n8n] HTTP 403
+  [Greenhouse:voiceflow] HTTP 403
+  [Greenhouse:bardeen] HTTP 403
+  [Greenhouse:pipedream] HTTP 403
+  [Greenhouse:make] HTTP 403
+  [Greenhouse:zapier] HTTP 403
+  [Greenhouse:replit] HTTP 403
+  [Greenhouse:lindy] HTTP 403
+  [Greenhouse:cursor] HTTP 403
+[ATS] Lever public boards ...
+  [Lever:mistral] HTTP 403
+  [Lever:anyscale] HTTP 403
+  [Lever:neon] HTTP 403
+  [Lever:binance] HTTP 403
+  [Lever:toptal] HTTP 403
+  [Lever:relevanceai] HTTP 403
+  [Lever:crewai] HTTP 403
+  [Lever:clay] HTTP 403
+  [Lever:tana] HTTP 403
+[ATS] Ashby public boards ...
+  [Ashby:harvey] HTTP 403
+  [Ashby:mistral] HTTP 403
+  [Ashby:vanta] HTTP 403
+  [Ashby:elevenlabs] HTTP 403
+  [Ashby:sierra] HTTP 403
+  [Ashby:cohere] HTTP 403
+  [Ashby:ramp] HTTP 403
+  [Ashby:decagon] HTTP 403
+  [Ashby:perplexity] HTTP 403
+  [Ashby:writer] HTTP 403
+  [Ashby:modal] HTTP 403
+  [Ashby:linear] HTTP 403
+[filter] 0 unique → 0 worldwide-remote → 0 entry-level
+[freshness] 0 -> 0 within 45d (dropped 0 stale); dedup held back 0 role(s) shown in last 7d
+  WARN: only 0 jobs survive worldwide-remote + entry-level filters. Heuristics may be too strict — review _WORLDWIDE_TOKENS / _SENIOR_TITLE_TOKENS in tools/scrape_jobs.py.
+
+Done. 0 jobs after filter → /home/user/ai-news-remote-jobs/.tmp/jobs.json
+CSV → /home/user/ai-news-remote-jobs/.tmp/jobs.csv
+[2026-06-12 23:02:46] OK   : Scrape Jobs (550.6s)
+[2026-06-12 23:02:46] START: Rank Jobs (profile-aware)
+[job_match] 0 input -> 0 ranked (top 25) -> /home/user/ai-news-remote-jobs/.tmp/jobs_ranked.json
+[2026-06-12 23:02:46] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-12 23:02:46] START: Agent Self-Analysis
+Loaded 0 profile-ranked jobs
+Loaded 0 job postings (raw)
+Loaded 2 verified Instagram reels
+Loaded 0 AI search-trend topics
+Loaded 0 RSS articles
+Loaded 3 verified viral videos
+Loaded 0 YouTube trending videos
+
+Analysis saved to /home/user/ai-news-remote-jobs/.tmp/analyzed_content.json
+Section breakdown:
+  [ 0] [ 0 items] Remote AI Automation Jobs (Worldwide)
+  [ 1] [ 0 items] YouTube Content Ideas (10M-View Pitches)
+  [ 2] [ 0 items] What People in AI Are Searching For
+  [ 3] [ 3 items] Viral AI on YouTube (Last 7 Days)
+  [ 4] [ 2 items] Viral Instagram Reels (AI)
+  [ 5] [ 0 items] Anthropic & Claude Code Updates
+  [ 6] [ 0 items] AI Automation & Businesses
+  [ 7] [ 0 items] Quantum + AI
+  [ 8] [ 0 items] AI Product Showcase Opportunities
+  [ 9] [ 0 items] Copyright & Laws in AI Music Business
+  [10] [ 0 items] Elon Musk's AI Vision
+  [11] [ 0 items] Unaddressed AI Problems
+  [12] [ 0 items] AI Business Opportunities
+  [13] [ 0 items] Global AI News
+  [14] [ 0 items] Indian AI Industry
+  [15] [ 0 items] AI Self-Improvement (RSI)
+  [16] [ 0 items] AI Model Benchmarks
+  [17] [ 0 items] New AI Tools
+  [18] [ 0 items] General News (non-AI)
+
+Agent self-analysis complete in 0.0s — 5 items
+[2026-06-12 23:02:46] OK   : Agent Self-Analysis (0.0s)
+[2026-06-12 23:02:46] START: Merge Native Hackathons
+[2026-06-12 23:02:46] Merged showcase: hackathons=0 accelerators=8 (native_hack=0 native_accel=10 kept_existing=0)
+[2026-06-12 23:02:46] OK   : Merge Native Hackathons (0.0s)
+[2026-06-12 23:02:46] START: Dedup + Backfill Sections
+[dedupe_backfill] dropped 0 repeat(s), backfilled 0, scrubbed 0 non-AI + 0 stale (>24h), recorded 8 URL(s) in 'news' history
+[2026-06-12 23:02:46] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-12 23:02:46] START: Generate YouTube Ideas (fallback)
+youtube_content_ideas.json: created placeholder
+youtube_section_analysis.json: created placeholder
+[2026-06-12 23:02:46] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-12 23:02:46] Telemetry written → /home/user/ai-news-remote-jobs/.tmp/run_telemetry.json
+[2026-06-12 23:02:46] START: Generate PDF
+Generating magazine PDF...
+Font MPDFAA+Inter is missing the following glyphs: '🪮' (\U0001faae), '💇' (\U0001f487)
+Font MPDFAA+Inter is missing the following glyphs: '🪮' (\U0001faae), '💇' (\U0001f487)
+[generate_pdf] wrote /home/user/ai-news-remote-jobs/.tmp/ai_news_remote_jobs_2026-06-12.pdf (25 pages, 59 KB, 22 items)
+[2026-06-12 23:02:46] OK   : Generate PDF (0.2s)
+[2026-06-12 23:02:46] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-12 23:02:46] ------------------------------------------------------------
+[2026-06-12 23:02:46] SUMMARY:
+[2026-06-12 23:02:46]   [True] rss
+[2026-06-12 23:02:46]   [True] hackathons
+[2026-06-12 23:02:46]   [True] viral
+[2026-06-12 23:02:46]   [True] yt_trending
+[2026-06-12 23:02:46]   [True] ig_scrape
+[2026-06-12 23:02:46]   [True] ig_verify
+[2026-06-12 23:02:46]   [True] ai_trends
+[2026-06-12 23:02:46]   [True] jobs
+[2026-06-12 23:02:46]   [True] jobs_ranked
+[2026-06-12 23:02:46]   [True] analyze
+[2026-06-12 23:02:46]   [True] pdf
+[2026-06-12 23:02:46]   [skipped] upload
+[2026-06-12 23:02:46] Total: 841.6s
+[2026-06-12 23:02:46] ============================================================
+[2026-06-12 23:02:46] ============================================================

@@ -82,31 +82,34 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 ## Project Goals
 
-- **Primary**: land a remote AI Automation job from India (no prior experience, portfolio-based). Built with Claude Code.
+- **Primary**: land a worldwide-remote AI Automation job (no prior experience, portfolio-based). Built with Claude Code.
 - **Secondary**: launch a YouTube channel teaching AI automation methods.
-- **Daily ritual**: 18-section AI news + remote jobs PDF delivered (Slack DM + GitHub dated branch) at **00:00 IST** every day, running in the cloud via a **claude.ai scheduled agent** — independent of laptop state.
+- **Daily ritual**: 20-section AI news + remote jobs PDF delivered (Slack DM + GitHub dated branch) at **00:00 IST** every day, running in the cloud via a **claude.ai scheduled agent** — independent of laptop state.
 
 ## Cloud schedule failure rule (always-on)
 
 If a cloud-scheduled run of this pipeline fails (non-zero exit from `run_daily_pipeline.py`, missing PDF, Drive upload error, or every scraper failed), the agent **must** send a Slack message via the connected Slack connector before exiting. The user has Slack wired up in claude.ai connectors. Format + full rules: see `workflows/daily_ai_news_remote.md` → "Slack failure rule (cloud schedule)". Silence = success; only notify on failure.
 
-## The 18 Sections
+## The 19 Sections (PDF order)
 
-0. Remote AI Automation jobs (India-eligible) — LinkedIn, Wellfound/YC, Indeed/Naukri, X/Discord
-1. AI Music Business News
-2. Copyright & Laws in AI Music Business
-3. Global AI News
-4. Indian AI Industry
-5. AI Product Showcase Opportunities
-6. Claude Model Updates
-7. Elon Musk's AI Vision
-8. Unaddressed AI Problems
-9. AI Business Opportunities
-10. Quantum + AI
-11. New AI Tools (with cost/feature comparisons)
-12. AI Model Benchmarks (best per category)
-13. AI Automation & Businesses
-14. AI Self-Improvement / RSI
-15. Viral Video Landscape — exactly 3 videos, **verified via YouTube Data API v3** (URL resolves + 24h view count above threshold)
-16. YouTube AI Landscape (trending topics + fastest-growing channels)
-17. General News (non-AI) — top world & India headlines
+Order is enforced by `SECTION_ORDER` in `tools/generate_pdf.py`. **News is last-24h only** (RSS cutoff = 24h); low-volume sections widen to ≤7 days via backfill only when below the per-section minimum.
+
+1. Remote AI Jobs — **worldwide-remote, AI-only, entry-level / junior**. Ranked against workflows/user_profile.md (n8n / Voiceflow / Relevance AI / Claude Code). Senior/lead/principal + region-locked dropped. Greenhouse + Lever + Ashby + Remotive + RemoteOK + WWR + Himalayas + HN.
+2. AI Product Showcase Opportunities — AI hackathons & competitions **plus accelerators / incubators / acceleration programs** (incl. govt/India schemes like "IndiaAI Startups Global"). Each item must carry a direct apply link + deadline.
+3. YouTube Content Ideas — 3 video pitches the Claude agent writes after synthesising the rest of this PDF, engineered to plausibly hit 10M views. Title + 8-second hook + why-it-hits-10M + thumbnail concept + 5-beat outline per idea.
+4. Viral AI on YouTube (Last 7 Days) — **merged YouTube section.** 2 long videos (Global + India AI) + 1 Global AI Short, last-7-days only, virality floors (long ≥ 100K, short ≥ 500K), URL HEAD-verified. Must be **fresh vs. recent runs** — if no new video clears the floor, print a "no new viral this period" note rather than repeat. Agent-written landscape + patterns + gaps + per-video "why it went viral". **No view counts. No automation angle.**
+5. Viral Instagram Reels (AI) — 1 viral AI reel India + 1 Global, max engagement (likes+comments) in last 24h, RapidAPI sourced. Fresh vs. recent runs; "no new reel" note if none.
+6. Quantum + AI.
+7. AI Self-Improvement / RSI.
+8. Elon Musk's AI Vision — all **Grok** product updates + Elon's stated views on AI (xAI direction, AGI/safety takes, notable statements).
+9. AI Model Benchmarks — **top model per category as a TABLE** (Task | Best | Runner-up | Benchmark: Text/LLM, Coding, Image, Video, Music/Audio, Reasoning) + benchmark news below.
+10. New AI Tools — bias to the user's stack: **Claude Code / n8n / Voiceflow / Relevance AI / MCP / agent builders** first, with cost/feature notes.
+11. Indian AI Industry — **AI-only** India news.
+12. Anthropic & Claude Code Updates — Anthropic company news + Claude Code product updates.
+13. AI Automation & Businesses — **how AI automation is changing work across industries** (not just tool launches): real deployments, ROI, sector-by-sector updates.
+14. Global AI News — **AI-only** worldwide news (no general tech).
+15. What People in AI Are Searching For — hottest AI topics now: Google Trends rising queries (global + India) + Hacker News + Reddit AI subreddits, last 24h.
+16. Unaddressed AI Problems — **real problems people hit with AI that no one is solving** (gaps/pain points), not generic deepfake headlines.
+17. AI Business Opportunities — concrete businesses the user could start now + top current global opportunities.
+18. Copyright & Laws in AI Music Business.
+19. General News (non-AI) — **top worldwide trending headlines** (broad world coverage, not region-narrow).

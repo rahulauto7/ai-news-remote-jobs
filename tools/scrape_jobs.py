@@ -1,11 +1,20 @@
 """
-Scrape global remote AI Automation jobs from multiple sources.
+Scrape worldwide-remote, entry-level AI jobs from multiple sources.
+
+Targeting:
+  * worldwide-remote only (no US-only / country-locked "remote" listings)
+  * AI-only (KEYWORDS gate + per-source keyword filter)
+  * entry-level / junior (no senior / lead / principal / 5+yrs)
+  * any employment type (full-time, part-time, contract, freelance, intern)
+
+Filtering happens in two layers:
+  1. per-source location + keyword gates (Greenhouse, Lever, Ashby, etc.)
+  2. post-scrape `is_worldwide_remote` + `is_entry_level` pass in
+     `scrape_all_jobs()` for boards that don't surface location cleanly.
 
 Reliable sources (work from datacenter IPs — used in cloud routine):
   Remotive, RemoteOK, We Work Remotely (RSS), Himalayas, Hacker News (Algolia),
-  Greenhouse public boards (Anthropic, Scale, Hugging Face, Cohere, Databricks,
-  Zapier, Glean, Writer, Pinecone, etc.), Lever public boards (Replit,
-  Perplexity, Mistral, Harvey, ElevenLabs).
+  Greenhouse public boards, Lever public boards, Ashby public boards.
 
 Fragile sources (block datacenter IPs with 403/CAPTCHA — opt-in via env):
   LinkedIn, Wellfound, Indeed, X/Twitter.
@@ -23,6 +32,7 @@ import json
 import os
 import time
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus
 
 import requests
@@ -35,15 +45,31 @@ TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 JOBS_JSON = os.path.join(TMP_DIR, "jobs.json")
 JOBS_CSV = os.path.join(TMP_DIR, "jobs.csv")
 
+# Search terms driving every keyword-based source. Expanded from 8 -> 19, derived
+# from workflows/user_profile.md (target roles + top-weighted skills) so the daily
+# candidate pool is deep enough to surface DIFFERENT roles each day instead of
+# recycling the same handful after cross-run dedup. job_match.py re-ranks the wider
+# pool against the profile, so broader sourcing here doesn't dilute relevance.
 KEYWORDS = [
     "AI automation",
-    "AI automator",
+    "AI automation engineer",
     "Claude Code",
     "n8n developer",
+    "workflow automation",
     "LLM engineer",
     "prompt engineer",
     "AI agent developer",
-    "automation engineer AI",
+    "AI agent engineer",
+    "conversational AI developer",
+    "voice AI developer",
+    "AI chatbot developer",
+    "AI integration engineer",
+    "AI solutions engineer",
+    "AI implementation specialist",
+    "no-code AI developer",
+    "forward deployed engineer",
+    "Voiceflow developer",
+    "RAG engineer",
 ]
 
 import random
@@ -239,12 +265,12 @@ def scrape_indeed(keywords=KEYWORDS, max_per_keyword=8):
 
 
 # ── Remotive (public JSON API, no auth) ───────────────────────────────────────
-def scrape_remotive(keywords=KEYWORDS, max_per_keyword=8):
+def scrape_remotive(keywords=KEYWORDS, max_per_keyword=12):
     """Remotive's public API: https://remotive.com/api/remote-jobs?search=<kw>"""
     jobs = []
     for kw in keywords:
         try:
-            url = f"https://remotive.com/api/remote-jobs?search={quote_plus(kw)}&limit=20"
+            url = f"https://remotive.com/api/remote-jobs?search={quote_plus(kw)}&limit=40"
             r = fetch(url, accept_json=True, referer="https://remotive.com/")
             if r is None or r.status_code != 200:
                 code = r.status_code if r is not None else "ERR"
@@ -273,7 +299,7 @@ def scrape_remotive(keywords=KEYWORDS, max_per_keyword=8):
 
 
 # ── We Work Remotely (RSS feed for remote programming) ───────────────────────
-def scrape_weworkremotely(keywords=KEYWORDS, max_total=25):
+def scrape_weworkremotely(keywords=KEYWORDS, max_total=40):
     """RSS feed; filter titles by AI/automation keywords."""
     jobs = []
     try:
@@ -316,12 +342,12 @@ def scrape_weworkremotely(keywords=KEYWORDS, max_total=25):
 
 
 # ── Himalayas (public JSON listings) ──────────────────────────────────────────
-def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=6):
+def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=10):
     """Himalayas public job listings JSON."""
     jobs = []
     for kw in keywords:
         try:
-            url = f"https://himalayas.app/jobs/api?title={quote_plus(kw)}&limit=20"
+            url = f"https://himalayas.app/jobs/api?title={quote_plus(kw)}&limit=50"
             r = fetch(url, accept_json=True, referer="https://himalayas.app/jobs")
             if r is None or r.status_code != 200:
                 code = r.status_code if r is not None else "ERR"
@@ -406,7 +432,7 @@ def scrape_twitter(keywords=KEYWORDS, max_per_keyword=5):
 
 
 # ── RemoteOK (public JSON API, no auth) ───────────────────────────────────────
-def scrape_remoteok(keywords=KEYWORDS, max_total=40):
+def scrape_remoteok(keywords=KEYWORDS, max_total=70):
     """RemoteOK exposes a public JSON feed. Filter by AI/automation keywords."""
     jobs = []
     try:
@@ -452,15 +478,22 @@ GREENHOUSE_BOARDS = [
     "anthropic", "scaleai", "databricks", "gleanwork", "datadog",
     "stripe", "figma", "asana", "vercel", "discord", "wayve",
     "togetherai", "imbue", "magic",
+    # AI-automation companies the user is targeting (n8n, Voiceflow, Bardeen,
+    # Pipedream, Make, Zapier, Lindy, Replit, Cursor). Slugs that 404 are
+    # gracefully skipped by fetch() retry/log path; harmless to include.
+    "n8n", "voiceflow", "bardeen", "pipedream", "make", "zapier",
+    "replit", "lindy", "cursor",
 ]
 
 GREENHOUSE_KEYWORDS = [
     "ai", "ml", " llm", "automation", "agent", "applied",
-    "claude", "n8n", "prompt", "workflow",
+    "claude", "n8n", "prompt", "workflow", "voiceflow", "relevance",
+    "forward deployed", "solutions engineer", "implementation",
+    "rag", "voice ai", "chatbot", "no-code", "low-code",
 ]
 
 
-def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=10):
+def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=15):
     """Pull AI/automation roles from public Greenhouse boards. Direct apply URLs."""
     jobs = []
     for slug in boards:
@@ -479,11 +512,11 @@ def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=10):
                 if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
                     continue
                 loc = (j.get("location") or {}).get("name", "") or ""
-                if loc and "remote" not in loc.lower() and "anywhere" not in loc.lower() \
-                        and "global" not in loc.lower() and "worldwide" not in loc.lower():
-                    # Allow US-based listings as fallback (still legitimately remote-friendly)
-                    if "united states" not in loc.lower() and "us" != loc.lower().strip().rstrip(",").strip():
-                        continue
+                loc_l = loc.lower()
+                if not any(tok in loc_l for tok in _WORLDWIDE_TOKENS):
+                    continue
+                if any(tok in loc_l for tok in _REGION_LOCK_TOKENS):
+                    continue
                 jobs.append({
                     "title": title[:200],
                     "company": slug.title(),
@@ -491,6 +524,7 @@ def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=10):
                     "posted": j.get("updated_at") or "",
                     "salary": "",
                     "source": f"Greenhouse:{slug}",
+                    "location": loc,
                     "summary": f"{loc or 'Remote'} | direct apply",
                 })
                 count += 1
@@ -508,10 +542,13 @@ LEVER_BOARDS = [
     # Verified 2026-05: 200 OK from api.lever.co. Many AI orgs (Harvey, ElevenLabs,
     # Sierra, Cresta, Decagon, Perplexity) migrated to Ashby — see scrape_ashby below.
     "mistral", "anyscale", "neon", "binance", "toptal",
+    # AI-automation targets (Relevance AI, Crew AI, Clay, Tana). Bad slugs are
+    # logged and skipped gracefully by the per-board try/except in scrape_lever.
+    "relevanceai", "crewai", "clay", "tana",
 ]
 
 
-def scrape_lever(boards=LEVER_BOARDS, max_per_board=10):
+def scrape_lever(boards=LEVER_BOARDS, max_per_board=15):
     """Pull AI/automation roles from public Lever boards."""
     jobs = []
     for slug in boards:
@@ -533,10 +570,11 @@ def scrape_lever(boards=LEVER_BOARDS, max_per_board=10):
                 loc = cats.get("location", "") or ""
                 commitment = cats.get("commitment", "") or ""
                 team = cats.get("team", "") or ""
-                if loc and "remote" not in loc.lower() and "anywhere" not in loc.lower() \
-                        and "global" not in loc.lower():
-                    if "united states" not in loc.lower() and "us" not in loc.lower().split():
-                        continue
+                loc_l = loc.lower()
+                if not any(tok in loc_l for tok in _WORLDWIDE_TOKENS):
+                    continue
+                if any(tok in loc_l for tok in _REGION_LOCK_TOKENS):
+                    continue
                 jobs.append({
                     "title": title[:200],
                     "company": slug.title(),
@@ -544,6 +582,7 @@ def scrape_lever(boards=LEVER_BOARDS, max_per_board=10):
                     "posted": "",
                     "salary": "",
                     "source": f"Lever:{slug}",
+                    "location": loc,
                     "summary": f"{team or ''} | {loc or 'Remote'} | {commitment or ''} | direct apply".strip(" |"),
                 })
                 count += 1
@@ -565,7 +604,7 @@ ASHBY_BOARDS = [
 ]
 
 
-def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=10):
+def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=15):
     """Pull AI/automation roles from public Ashby job boards.
 
     Note: we bypass fetch() here because Ashby's CDN returns brotli-encoded
@@ -594,13 +633,15 @@ def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=10):
                     continue
                 if not j.get("isListed", True):
                     continue
-                # Prefer remote / global; allow US fallback
+                # Worldwide-remote only — drop US-only & region-locked listings.
                 loc = (j.get("location") or "").strip()
                 workplace = (j.get("workplaceType") or "").lower()
-                is_remote = bool(j.get("isRemote")) or "remote" in workplace or "remote" in loc.lower()
+                blob_l = f"{loc} {workplace}".lower()
+                is_remote = bool(j.get("isRemote")) or any(tok in blob_l for tok in _WORLDWIDE_TOKENS)
                 if not is_remote:
-                    if "united states" not in loc.lower() and "us" != loc.lower().strip():
-                        continue
+                    continue
+                if any(tok in blob_l for tok in _REGION_LOCK_TOKENS):
+                    continue
                 jobs.append({
                     "title": title[:200],
                     "company": slug.title(),
@@ -608,6 +649,7 @@ def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=10):
                     "posted": j.get("publishedAt") or "",
                     "salary": "",
                     "source": f"Ashby:{slug}",
+                    "location": loc,
                     "summary": f"{j.get('department','') or ''} | {loc or 'Remote'} | {j.get('employmentType','') or ''} | direct apply".strip(" |"),
                 })
                 count += 1
@@ -621,7 +663,7 @@ def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=10):
 
 
 # ── Hacker News "Who is hiring" via Algolia API ───────────────────────────────
-def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
+def scrape_hn_hiring(keywords=KEYWORDS, max_total=35):
     """Algolia HN search — public, no auth. Pulls recent hiring comments."""
     jobs = []
     try:
@@ -636,19 +678,42 @@ def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
             code = r.status_code if r is not None else "ERR"
             print(f"  [HN] HTTP {code}")
             return jobs
+        import re as _re
+        # Signals that a comment is an actual hiring post (not chatter or a
+        # "Seeking work" reply). HN "Who is hiring" entries are either prose with
+        # one of these, or the "Company | Role | LOCATION | REMOTE | ..." template.
+        hiring_signals = (
+            "hiring", "we're looking", "we are looking", "looking for",
+            "join our", "join us", "apply at", "apply here", "careers",
+            "now hiring", "is hiring", "we need", "open role", "open position",
+        )
         for h in r.json().get("hits", []):
             text = (h.get("comment_text") or "")
-            if "remote" not in text.lower():
+            low0 = text.lower()
+            if "remote" not in low0:
                 continue
             # Strip HTML
-            import re as _re
             clean = _re.sub(r"<[^>]+>", " ", text)
             clean = _re.sub(r"\s+", " ", clean).strip()
-            if len(clean) < 60:
+            if len(clean) < 80:
                 continue
+            low = clean.lower()
+            # Drop "Seeking work" / freelancer-available replies (wrong thread).
+            if "seeking work" in low[:60] or "want to be hired" in low:
+                continue
+            has_signal = any(s in low for s in hiring_signals)
+            has_template = clean.count("|") >= 2
+            if not (has_signal or has_template):
+                continue
+            # Pull company + role from the pipe template when present.
+            parts = [p.strip() for p in clean.split("|") if p.strip()]
+            if len(parts) >= 2:
+                company, title = parts[0][:80], parts[1][:140]
+            else:
+                company, title = "", clean[:140]
             jobs.append({
-                "title": clean[:140],
-                "company": "",
+                "title": title,
+                "company": company,
                 "url": f"https://news.ycombinator.com/item?id={h.get('objectID')}",
                 "posted": h.get("created_at", ""),
                 "salary": "",
@@ -661,6 +726,89 @@ def scrape_hn_hiring(keywords=KEYWORDS, max_total=20):
     except Exception as e:
         print(f"  [HN ERROR] {e}")
     return jobs
+
+
+# ── Post-scrape filters ───────────────────────────────────────────────────────
+# Tokens that *positively* indicate a worldwide-remote listing.
+_WORLDWIDE_TOKENS = ("remote", "anywhere", "global", "worldwide")
+
+# Tokens that mark a listing as country/region-locked. If any appear in the
+# location string, the listing is rejected even if it also contains a
+# worldwide token (e.g. "Remote (US only)").
+_REGION_LOCK_TOKENS = (
+    "us only", "usa only", "united states only", "us-only", "us residents",
+    "us-based", "us based", "must be based in", "based in the us",
+    "must reside in", "must live in", "residents of",
+    "(us)", "(usa)", "- usa", "- us", "us/canada only",
+    "americas only", "north america only",
+    "emea only", "europe only", "eu only", "uk only", "uk-only",
+    "apac only", "asia only", "india only", "canada only", "australia only",
+    "latam only", "latin america only",
+)
+
+
+def is_worldwide_remote(job):
+    """True iff the job's location/region indicates remote-anywhere.
+
+    Used post-scrape to drop US-only or otherwise country-locked "remote"
+    listings. If no location signal is present at all (some boards omit it),
+    the job is rejected — we cannot prove it's worldwide-remote.
+    """
+    parts = [
+        (job.get("location") or ""),
+        (job.get("summary") or "")[:400],
+        (job.get("title") or ""),
+    ]
+    blob = " ".join(parts).lower()
+    if not blob.strip():
+        return False
+    if any(tok in blob for tok in _REGION_LOCK_TOKENS):
+        return False
+    return any(tok in blob for tok in _WORLDWIDE_TOKENS)
+
+
+_SENIOR_TITLE_TOKENS = (
+    "senior", " sr.", " sr ", "sr.", "lead ", " lead", "principal",
+    "staff ", " staff", "director", "head of", "manager", "architect",
+    "vp ", "vp,", "chief ",
+)
+_SENIOR_DESC_PHRASES = (
+    "5+ years", "6+ years", "7+ years", "8+ years", "9+ years", "10+ years",
+    "minimum 5 years", "minimum 6 years", "minimum 7 years", "minimum 8 years",
+    "at least 5 years", "at least 6 years", "at least 7 years",
+    "5-7 years", "5-10 years", "7-10 years",
+)
+_JUNIOR_TOKENS = (
+    "entry", "junior", " jr.", " jr ", "jr.", "new grad", "associate",
+    "intern", "no experience", "0-1 year", "0-2 year", "0 to 1 year",
+    "0 to 2 year", "graduate program", "early career",
+)
+
+
+def is_entry_level(job):
+    """True if title/description looks entry-level / junior / no-experience.
+
+    Reject hits (returns False) for explicit senior, lead, principal, staff,
+    manager, director, or 5+-year-experience descriptions. Accept hits when
+    junior signals are present, or when nothing in either field flags
+    seniority (default-accept: many listings simply don't state level).
+    """
+    title = (job.get("title") or "").lower()
+    desc = (job.get("summary") or "").lower()
+    # Hard reject on senior-title markers.
+    for tok in _SENIOR_TITLE_TOKENS:
+        if tok in f" {title} ":
+            return False
+    # Hard reject on "5+ years" style descriptions.
+    for phrase in _SENIOR_DESC_PHRASES:
+        if phrase in desc:
+            return False
+    # Junior tokens always pass.
+    for tok in _JUNIOR_TOKENS:
+        if tok in f" {title} {desc} ":
+            return True
+    # No seniority signal in either field → accept.
+    return True
 
 
 # ── Orchestration ─────────────────────────────────────────────────────────────
@@ -684,9 +832,82 @@ def dedupe(jobs):
     return out
 
 
+def _posted_dt(job):
+    """Best-effort parse of a job's `posted` field to an aware datetime.
+
+    Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
+    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
+    field is empty or unparseable (Lever omits it) — callers treat None as
+    'undated, keep it'.
+    """
+    s = (job.get("posted") or "").strip()
+    if not s:
+        return None
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+        return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    except ValueError:
+        pass
+    try:
+        dt = parsedate_to_datetime(s)
+        if dt is not None:
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        pass
+    return None
+
+
+def apply_freshness_and_dedup(jobs):
+    """Drop stale postings and rotate out roles already shown recently.
+
+    1. Freshness: drop jobs whose posting date is older than JOBS_FRESH_DAYS.
+       Undated jobs (no parseable `posted`) are kept — can't prove they're stale.
+    2. Cross-run dedup: prefer jobs not surfaced in the last JOBS_SEEN_DAYS days
+       (per data/jobs_seen.json). If that leaves fewer than JOBS_MIN_POOL, backfill
+       with recently-shown ones so a slow scrape day never starves the section.
+    """
+    fresh_days = int(os.environ.get("JOBS_FRESH_DAYS", "45"))
+    seen_days = int(os.environ.get("JOBS_SEEN_DAYS", "7"))
+    min_pool = int(os.environ.get("JOBS_MIN_POOL", "15"))
+    now = datetime.now(timezone.utc)
+
+    fresh, dropped_stale = [], 0
+    for j in jobs:
+        dt = _posted_dt(j)
+        if dt is not None and (now - dt).days > fresh_days:
+            dropped_stale += 1
+            continue
+        fresh.append(j)
+
+    try:
+        from tools.job_history import recently_seen_urls, load_history
+        recent = recently_seen_urls(seen_days)
+        last_shown = load_history()                      # {url: "YYYY-MM-DD"}
+    except Exception as e:
+        print(f"  [dedup] history unavailable ({e}) — skipping cross-run dedup")
+        recent, last_shown = set(), {}
+
+    new_jobs = [j for j in fresh if (j.get("url") or "") not in recent]
+    repeat_jobs = [j for j in fresh if (j.get("url") or "") in recent]
+    if len(new_jobs) < min_pool and repeat_jobs:
+        # Thin scrape day: backfill with recently-shown roles, but surface the
+        # LEAST-recently-seen first so the section rotates the back-catalog
+        # instead of replaying the same roles every run.
+        repeat_jobs.sort(key=lambda j: last_shown.get(j.get("url") or "", ""))
+        backfill = repeat_jobs[: max(0, min_pool - len(new_jobs))]
+        new_jobs += backfill
+    print(
+        f"[freshness] {len(jobs)} -> {len(fresh)} within {fresh_days}d "
+        f"(dropped {dropped_stale} stale); dedup held back "
+        f"{len(fresh) - len(new_jobs)} role(s) shown in last {seen_days}d"
+    )
+    return new_jobs
+
+
 def score(j):
     """Higher = more relevant. Prioritize AI automation matches in title."""
     t = (j.get("title", "") or "").lower()
+    blob = f"{t} {(j.get('location') or '').lower()} {(j.get('summary') or '').lower()[:200]}"
     s = 0
     if "automat" in t:
         s += 3
@@ -696,9 +917,9 @@ def score(j):
         s += 2
     if "remote" in t:
         s += 1
-    if "senior" in t or "lead" in t:
-        s -= 2  # user has no experience yet — favor IC roles
     if "intern" in t:
+        s += 1
+    if "worldwide" in blob or "anywhere" in blob or "global" in blob:
         s += 1
     return s
 
@@ -785,13 +1006,33 @@ def scrape_all_jobs():
         print(f"  Ashby fatal: {e}")
 
     deduped = dedupe(all_jobs)
-    deduped.sort(key=score, reverse=True)
+
+    # Worldwide-remote + entry-level filter pass.
+    pre_filter = len(deduped)
+    after_remote = [j for j in deduped if is_worldwide_remote(j)]
+    filtered = [j for j in after_remote if is_entry_level(j)]
+    print(
+        f"[filter] {pre_filter} unique → {len(after_remote)} worldwide-remote → "
+        f"{len(filtered)} entry-level"
+    )
+
+    # Freshness + cross-run dedup so the daily list rotates instead of repeating.
+    filtered = apply_freshness_and_dedup(filtered)
+    if len(filtered) < 5:
+        print(
+            f"  WARN: only {len(filtered)} jobs survive worldwide-remote + entry-level "
+            "filters. Heuristics may be too strict — review _WORLDWIDE_TOKENS / "
+            "_SENIOR_TITLE_TOKENS in tools/scrape_jobs.py."
+        )
+
+    filtered.sort(key=score, reverse=True)
 
     out = {
         "scraped_at": datetime.now(timezone.utc).isoformat(),
         "total_raw": len(all_jobs),
-        "total_unique": len(deduped),
-        "jobs": deduped,
+        "total_unique": pre_filter,
+        "total_after_filter": len(filtered),
+        "jobs": filtered,
     }
 
     with open(JOBS_JSON, "w", encoding="utf-8") as f:
@@ -800,7 +1041,7 @@ def scrape_all_jobs():
     with open(JOBS_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(["title", "company", "url", "source", "posted", "salary"])
-        for j in deduped:
+        for j in filtered:
             w.writerow([
                 j.get("title", ""),
                 j.get("company", ""),
@@ -810,9 +1051,9 @@ def scrape_all_jobs():
                 j.get("salary", ""),
             ])
 
-    print(f"\nDone. {len(deduped)} unique jobs → {JOBS_JSON}")
+    print(f"\nDone. {len(filtered)} jobs after filter → {JOBS_JSON}")
     print(f"CSV → {JOBS_CSV}")
-    return deduped
+    return filtered
 
 
 if __name__ == "__main__":

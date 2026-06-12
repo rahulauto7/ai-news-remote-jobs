@@ -1,9 +1,11 @@
 """
-Section 15: Viral Video Landscape — verified.
-Picks exactly 3 videos using YouTube Data API v3:
-  bucket A: global AI Automation video (>= VIRAL_GLOBAL_VIEWS in last 24h)
-  bucket B: India AI Automation video (>= VIRAL_INDIA_VIEWS in last 24h)
-  bucket C: global AI Short (<= 60s, >= VIRAL_SHORT_VIEWS in last 24h)
+Viral AI on YouTube — verified (last 7 days).
+Picks up to 3 videos using YouTube Data API v3, ordered by viewCount,
+restricted to videos published in the last 7 days, AND filtered by a
+virality floor so only genuinely viral picks survive:
+  bucket A: global AI long video        — >= LONG_VIEW_FLOOR views
+  bucket B: global AI Short (<= 60s)    — >= SHORT_VIEW_FLOOR views
+  bucket C: India  AI long video        — >= LONG_VIEW_FLOOR views
 
 For each pick, verifies the watch URL is reachable.
 Writes .tmp/youtube_verified.json
@@ -20,8 +22,14 @@ from dotenv import load_dotenv
 import isodate
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 OUTPUT = os.path.join(TMP_DIR, "youtube_verified.json")
+
+from tools import content_history
+
+YT_NS = "youtube"
+DEDUP_DAYS = 7
 
 load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 
@@ -29,24 +37,27 @@ API_KEY = os.environ.get("YOUTUBE_API_KEY", "")
 SEARCH_URL = "https://www.googleapis.com/youtube/v3/search"
 VIDEOS_URL = "https://www.googleapis.com/youtube/v3/videos"
 
-THRESH_GLOBAL = int(os.environ.get("VIRAL_GLOBAL_VIEWS", "100000"))
-THRESH_INDIA = int(os.environ.get("VIRAL_INDIA_VIEWS", "25000"))
-THRESH_SHORT = int(os.environ.get("VIRAL_SHORT_VIEWS", "250000"))
+WINDOW_DAYS = 7
+LONG_VIEW_FLOOR = 100_000      # long-form virality threshold (per bucket)
+SHORT_VIEW_FLOOR = 500_000     # Shorts virality threshold
 
 
-def search_candidates(query, region_code=None, max_results=25):
-    """Search videos published in last 24h, ordered by viewCount."""
+def _published_after_iso(days_back=WINDOW_DAYS):
+    return (datetime.now(timezone.utc) - timedelta(days=days_back)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def search_candidates(query, region_code=None, max_results=25, published_after=None):
+    """Search videos ordered by viewCount, restricted to the last 7 days by default."""
     if not API_KEY:
         raise RuntimeError("YOUTUBE_API_KEY missing")
-    published_after = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%SZ")
     params = {
         "key": API_KEY,
         "part": "snippet",
         "type": "video",
         "q": query,
         "order": "viewCount",
-        "publishedAfter": published_after,
         "maxResults": max_results,
+        "publishedAfter": published_after or _published_after_iso(),
     }
     if region_code:
         params["regionCode"] = region_code
@@ -76,32 +87,109 @@ def verify_url(url):
         return False
 
 
-def pick_top(items, min_views, must_be_short=False):
-    """Pick top item passing thresholds."""
-    best = None
-    best_views = -1
+def is_short_video(video_id, title="", description=""):
+    """True if the video is a YouTube Short.
+
+    Duration alone lies — Shorts now run up to 180s, so a 90s Short would pass a
+    naive `duration > 60` long-form filter and land in the long-video slot.
+    Authoritative signal: GET youtube.com/shorts/<id> with redirects OFF — a real
+    Short returns 200, a regular video 30x-redirects to /watch. Secondary signal:
+    an explicit #shorts tag in the title/description.
+    """
+    blob = f"{title} {description}".lower()
+    if "#short" in blob:
+        return True
+    if not video_id:
+        return False
+    try:
+        r = requests.get(
+            f"https://www.youtube.com/shorts/{video_id}",
+            timeout=10, allow_redirects=False,
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def pick_top(items, must_be_short=False, view_floor=0, seen=None):
+    """Pick the max-views item in the bucket that clears the virality floor AND
+    was not shown in the last 7 days. Returns (it, views, duration, status):
+      status "fresh"     — an unseen qualifying pick (use it)
+      status "seen_only" — qualifying items exist but all were shown recently
+                           (caller should WIDEN the search before settling)
+      status "none"      — nothing cleared the floor at all
+    Never fabricates: the floor must always be cleared."""
+    seen = seen or set()
+    qualified = []  # (views, it, duration)
     for it in items:
         try:
             views = int(it.get("statistics", {}).get("viewCount", "0"))
             duration = isodate.parse_duration(it.get("contentDetails", {}).get("duration", "PT0S")).total_seconds()
         except Exception:
             continue
-        if views < min_views:
+        if views < view_floor:
             continue
-        if must_be_short and duration > 60:
+        # Cheap duration pre-filter only (Shorts run up to 180s). The authoritative
+        # short/long decision is is_short_video() on the candidate we actually pick,
+        # so we don't pay an HTTP call for every item — just the ones we'd surface.
+        if must_be_short and duration > 180:
             continue
-        if not must_be_short and duration <= 60:
-            continue  # exclude shorts from non-short bucket
-        if views > best_views:
-            best_views = views
-            best = (it, views, duration)
-    return best
+        if not must_be_short and duration <= 30:
+            continue
+        qualified.append((views, it, duration))
+    if not qualified:
+        return (None, 0, 0, "none")
+    qualified.sort(key=lambda x: x[0], reverse=True)
+
+    seen_fallback = None
+    for views, it, duration in qualified:
+        sn = it.get("snippet", {})
+        actually_short = is_short_video(it.get("id"), sn.get("title", ""), sn.get("description", ""))
+        if actually_short != must_be_short:
+            continue  # wrong format for this bucket (e.g. a Short in the long slot)
+        if it.get("id") not in seen:
+            return (it, views, duration, "fresh")
+        if seen_fallback is None:
+            seen_fallback = (it, views, duration)
+    if seen_fallback is not None:
+        it, views, duration = seen_fallback
+        return (it, views, duration, "seen_only")
+    return (None, 0, 0, "none")
 
 
-def to_record(item, views, duration, bucket):
+def fill_bucket(bucket, query, widen_query, region_code, must_be_short, view_floor, seen):
+    """Return a verified-video record for one bucket, preferring a FRESH (unseen)
+    pick. If the primary query only yields recently-shown videos, widen the search
+    (broader query + more results) once before giving up. If still nothing fresh
+    clears the floor, return a `no_fresh` marker so the PDF prints a note instead
+    of repeating yesterday's pick."""
+    items = fetch_video_details(search_candidates(query, region_code=region_code))
+    it, views, duration, status = pick_top(items, must_be_short, view_floor, seen)
+    if status != "fresh":
+        # Widen: broader phrasing + a bigger candidate pool, then re-pick on the
+        # combined set so a fresh viral video gets a real chance to surface.
+        more = fetch_video_details(search_candidates(widen_query, region_code=region_code, max_results=50))
+        merged = {i.get("id"): i for i in items + more if i.get("id")}.values()
+        it, views, duration, status = pick_top(list(merged), must_be_short, view_floor, seen)
+    if status == "fresh":
+        rec = to_record(it, views, duration, bucket=bucket, is_short=must_be_short)
+        print(f"  [{bucket}] {views:,} views — {it['snippet']['title'][:60]}")
+        return rec
+    why = "no candidate cleared the floor" if status == "none" else "only already-shown videos qualified"
+    print(f"  [{bucket}] no fresh pick ({why})")
+    return {"bucket": bucket, "no_fresh": True, "reason": why,
+            "format": "short" if must_be_short else "video",
+            "view_floor": view_floor}
+
+
+def to_record(item, views, duration, bucket, is_short=None):
     vid = item.get("id")
     sn = item.get("snippet", {})
     url = f"https://www.youtube.com/watch?v={vid}"
+    # Format reflects the bucket's verified short/long decision (pick_top enforced
+    # is_short == must_be_short), not the unreliable duration<=60 heuristic.
+    fmt = "short" if (is_short if is_short is not None else duration <= 60) else "video"
     return {
         "video_id": vid,
         "url": url,
@@ -111,7 +199,7 @@ def to_record(item, views, duration, bucket):
         "published": sn.get("publishedAt", ""),
         "views": views,
         "duration_sec": int(duration),
-        "format": "short" if duration <= 60 else "video",
+        "format": fmt,
         "bucket": bucket,
         "url_verified": verify_url(url),
     }
@@ -126,58 +214,44 @@ def run():
         return []
 
     out = []
+    seen = content_history.recently_seen(YT_NS, DEDUP_DAYS)
 
-    # Bucket 1: global AI automation long video
-    try:
-        ids = search_candidates("AI automation tutorial OR n8n OR Make.com OR Zapier OR \"AI agent\"", region_code=None)
-        items = fetch_video_details(ids)
-        pick = pick_top(items, THRESH_GLOBAL, must_be_short=False)
-        if pick:
-            out.append(to_record(*pick, bucket="global_automation"))
-            print(f"  [global_automation] {pick[1]:,} views — {pick[0]['snippet']['title'][:60]}")
-        else:
-            print("  [global_automation] none qualified")
-    except Exception as e:
-        print(f"  [global_automation ERROR] {e}")
+    buckets = [
+        # (bucket, query, widen_query, region, must_be_short, floor)
+        ("global_automation",
+         '"AI" OR "ChatGPT" OR "Claude" OR "Gemini" OR "AI agent"',
+         '"AI news" OR "artificial intelligence" OR "OpenAI" OR "Gemini" OR "AI tools" OR "AI breakthrough"',
+         None, False, LONG_VIEW_FLOOR),
+        ("global_short",
+         '"AI #shorts" OR "ChatGPT #shorts" OR "AI tools #shorts"',
+         '"AI #shorts" OR "ChatGPT #shorts" OR "Gemini #shorts" OR "AI hack #shorts" OR "AI prompt #shorts"',
+         None, True, SHORT_VIEW_FLOOR),
+        ("india_automation",
+         '"AI India" OR "ChatGPT Hindi" OR "AI tools India"',
+         '"AI India" OR "ChatGPT India" OR "Gemini India" OR "AI Hindi" OR "AI news India"',
+         "IN", False, LONG_VIEW_FLOOR),
+    ]
+    for bucket, query, widen_query, region, is_short, floor in buckets:
+        try:
+            out.append(fill_bucket(bucket, query, widen_query, region, is_short, floor, seen))
+        except Exception as e:
+            print(f"  [{bucket} ERROR] {e}")
 
-    # Bucket 2: global AI Short
-    try:
-        ids = search_candidates("AI #shorts OR ChatGPT #shorts OR Claude #shorts", region_code=None)
-        items = fetch_video_details(ids)
-        pick = pick_top(items, THRESH_SHORT, must_be_short=True)
-        if pick:
-            out.append(to_record(*pick, bucket="global_short"))
-            print(f"  [global_short] {pick[1]:,} views — {pick[0]['snippet']['title'][:60]}")
-        else:
-            print("  [global_short] none qualified")
-    except Exception as e:
-        print(f"  [global_short ERROR] {e}")
-
-    # Bucket 3: India AI automation long video
-    try:
-        ids = search_candidates("AI automation India OR \"n8n India\" OR \"AI agent India\"", region_code="IN")
-        items = fetch_video_details(ids)
-        pick = pick_top(items, THRESH_INDIA, must_be_short=False)
-        if pick:
-            out.append(to_record(*pick, bucket="india_automation"))
-            print(f"  [india_automation] {pick[1]:,} views — {pick[0]['snippet']['title'][:60]}")
-        else:
-            print("  [india_automation] none qualified")
-    except Exception as e:
-        print(f"  [india_automation ERROR] {e}")
+    # Record only the REAL picks so tomorrow prefers fresh videos over these.
+    content_history.record_shown(
+        YT_NS, [v.get("video_id") for v in out if v.get("video_id") and not v.get("no_fresh")]
+    )
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump({
             "checked_at": datetime.now(timezone.utc).isoformat(),
-            "thresholds": {
-                "global_views": THRESH_GLOBAL,
-                "india_views": THRESH_INDIA,
-                "short_views": THRESH_SHORT,
-            },
+            "window_days": WINDOW_DAYS,
+            "thresholds": {"long_views": LONG_VIEW_FLOOR, "short_views": SHORT_VIEW_FLOOR},
             "videos": out,
         }, f, indent=2, ensure_ascii=False)
 
-    print(f"\nVerified videos saved → {OUTPUT} ({len(out)}/3 buckets filled)")
+    filled = sum(1 for v in out if not v.get("no_fresh"))
+    print(f"\nVerified videos saved → {OUTPUT} ({filled}/3 buckets filled)")
     return out
 
 

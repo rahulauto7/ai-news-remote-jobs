@@ -86,7 +86,11 @@ def _sanitize_sections(sections: dict) -> tuple[int, int]:
                 kept.append(it)
                 continue
             text = f"{it.get('title', '')} {it.get('summary', '')}"
-            if sec in AI_ONLY_SECTIONS and not is_ai(text):
+            # The appended "Automation angle: …" hook is always AI-flavored, so
+            # testing the full summary would mask a misrouted non-AI headline.
+            # Check the head (title + real summary) only, before that hook.
+            head = text.lower().split("automation angle:", 1)[0]
+            if sec in AI_ONLY_SECTIONS and not is_ai(head):
                 non_ai += 1
                 continue
             if sec in NEWS_24H_SECTIONS and not _within_hours(

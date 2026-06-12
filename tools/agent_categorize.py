@@ -113,6 +113,21 @@ def is_ai_related(text: str) -> bool:
     return False
 
 
+# Mirrors tools/agent_analyze.py — keep these in sync.
+# AI music tools stay OUT of New AI Tools; bare "benchmark" needs an eval co-signal.
+MUSIC_TERMS = ["suno", "udio", "ai music", "ai song", "music generat",
+               "song generat", "lyrics", "text-to-music", "music model",
+               "beat maker", "ai composer", "ai-generated music", "music ai",
+               "songwriting ai", "ai vocal"]
+STRONG_BENCH_TOKENS = ["mmlu", "humaneval", "gpqa", "swe-bench", "lmsys", "arena",
+                       "eval suite", "leaderboard", "model ranking", "mt-bench",
+                       "livebench", "aider polyglot", "mmmu", "gsm8k",
+                       "math benchmark", "benchmark score", "evals"]
+BENCH_CONTEXT = ["model", "llm", "score", "outperform", "eval", "rank", "accuracy",
+                 "state-of-the-art", "sota", "beats", "tokens/s", "parameters",
+                 "context window", "reasoning"]
+
+
 # ------- Job filtering -------
 def is_seeking_work(j: dict) -> bool:
     t = (j.get("title", "") + " " + (j.get("summary") or "")).upper()
@@ -176,10 +191,6 @@ def route_article(art: dict) -> str | None:
             and has_any(text, ["ai", "music", "song", "deepfake", "voice", "image generator"]):
         return "ai_music_copyright_laws"
 
-    # Section 11 — AI music business
-    if "music business worldwide" in src or has_any(text, ["suno", "udio", "ai music", "music ai"]):
-        return "ai_music_business_news"
-
     # Section 3 — Quantum + AI
     if "quantum" in src or "quantum" in text:
         return "quantum_ai_research"
@@ -188,16 +199,30 @@ def route_article(art: dict) -> str | None:
     if has_any(text, ["agi", "superintelligence", "alignment", "self-improv", "recursive self", "rsi"]):
         return "ai_self_improvement_rsi"
 
-    # Section 15 — Benchmarks
-    if has_any(text, ["benchmark", "leaderboard", "mmlu", "humaneval", "gpqa", "swe-bench", "arena", "evals"]):
+    # Section 15 — Benchmarks. Strong eval tokens pass; a bare "benchmark" needs an
+    # AI + eval co-signal so casual "new benchmark for X" headlines drop out.
+    if has_any(text, STRONG_BENCH_TOKENS) or (
+        "benchmark" in text and is_ai_related(text) and has_any(text, BENCH_CONTEXT)
+    ):
         return "ai_model_benchmarks"
 
-    # Section 4 — Product showcase / Product Hunt
-    if "product hunt" in src or has_any(text, ["product hunt", "showcase", "directory", "submit your"]):
+    # Section 4 — Product showcase / Hackathons & competitions
+    # Source-based routing: dedicated hackathon feeds always land here.
+    if "hackathon" in src or "competition" in src or "devpost" in src:
+        return "product_showcase_opportunities"
+    if has_any(text, [
+        "ai hackathon", "ai agents hackathon", "ai agent hackathon",
+        "agent platform hackathon", "ai competition", "ai challenge",
+        "devpost", "submission deadline", "hackathon winners",
+        "hackathon launches", "cash prize", "prize pool",
+        "product hunt", "showcase", "directory", "submit your",
+    ]):
         return "product_showcase_opportunities"
 
-    # Section 16 — New AI tools (launch / release / introduces)
-    if has_any(text, ["launches", "launched", "launch ", "releases", "released", "introduces", "unveils", "rolls out", " new ai ", "open-sources", "open sources"]) and is_ai_related(text):
+    # Section 16 — New AI tools (launch / release / introduces). Excludes AI music
+    # tools (Suno/Udio/song generators) — those fall through to global_ai_news.
+    if has_any(text, ["launches", "launched", "launch ", "releases", "released", "introduces", "unveils", "rolls out", " new ai ", "open-sources", "open sources"]) \
+            and is_ai_related(text) and not has_any(text, MUSIC_TERMS):
         return "new_ai_tools"
 
     # Section 2 — AI business automation tooling
@@ -259,8 +284,8 @@ def relevance_for(section: str, art: dict, idx: int) -> int:
     if section == "indian_ai_industry":
         return 4 if idx < 3 else 3
 
-    # Music business / copyright: 3 by default, 4 if a major label / regulator
-    if section in {"ai_music_business_news", "ai_music_copyright_laws"}:
+    # Music copyright: 3 by default, 4 if a major label / regulator
+    if section == "ai_music_copyright_laws":
         if has_any(text, ["warner", "sony", "universal", "spotify", "supreme court", "eu ai act"]):
             return 4
         return 3
@@ -286,30 +311,6 @@ def relevance_for(section: str, art: dict, idx: int) -> int:
         return 4 if idx < 3 else 3
 
     return 3
-
-
-# ------- YouTube trending → section 6 -------
-def pick_youtube_ai_videos(videos: list[dict], n: int = 10) -> list[dict]:
-    """Filter trending videos to AI-related and pick top-N by views."""
-    scored = []
-    for v in videos:
-        text = (v.get("title", "") + " " + v.get("description", "")).lower()
-        if not is_ai_related(text):
-            continue
-        scored.append(v)
-    # Sort by views desc
-    scored.sort(key=lambda v: v.get("views", 0) or 0, reverse=True)
-    out = []
-    for v in scored[:n]:
-        out.append({
-            "title": clean_text(v.get("title", "")),
-            "url": v.get("url", ""),
-            "channel": clean_text(v.get("channel", "")),
-            "views": v.get("views", 0),
-            "summary": summary_from(v.get("title", ""), v.get("description", "")),
-            "relevance": 5 if (v.get("views", 0) or 0) >= 1_000_000 else 4,
-        })
-    return out
 
 
 def main() -> None:
@@ -342,7 +343,7 @@ def main() -> None:
         j.pop("_score", None)
     sections["remote_jobs"] = cleaned[:25]
 
-    # ---- Section 5: Viral videos (passthrough; empty bucket OK) ----
+    # ---- Merged YouTube section (passthrough; 2 long + 1 short, 7d verified) ----
     sections["viral_video_landscape"] = [
         {
             "title": clean_text(v.get("title", "")),
@@ -352,15 +353,13 @@ def main() -> None:
             "format": v.get("format", "video"),
             "summary": summary_from(v.get("title", ""), v.get("description", "")),
             "bucket": v.get("bucket", ""),
+            "video_id": v.get("video_id", ""),
             "relevance": 5,
         }
         for v in loaded.get("youtube_verified", [])
     ]
 
-    # ---- Section 6: YouTube AI landscape (top 10 AI-related trending) ----
-    sections["youtube_ai_landscape"] = pick_youtube_ai_videos(loaded.get("youtube_videos", []), n=10)
-
-    # ---- Sections 1-4, 7-17: route RSS articles ----
+    # ---- RSS-routed sections ----
     rss = loaded.get("rss_articles", [])
     rss_sorted = sorted(rss, key=lambda a: parse_dt(a.get("published", "")), reverse=True)
     seen_urls = set()
@@ -384,7 +383,6 @@ def main() -> None:
     total = (
         len(sections["remote_jobs"])
         + len(sections["viral_video_landscape"])
-        + len(sections["youtube_ai_landscape"])
         + routed_count
     )
     save_analyzed_content(sections, total)

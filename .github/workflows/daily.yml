@@ -7,12 +7,14 @@ name: Daily AI News — primary scraper
 # runners have unrestricted outbound and no interception, so ALL scraping happens
 # here. This job runs the full pipeline (scrape → analyze → dedup → fallback PDF),
 # then publishes .tmp/*.json + the fallback PDF to the rolling `pipeline-state`
-# branch and persists dedup state to main. Stage 2 (the claude.ai routine at
+# branch and persists dedup state to main. It fires at 22:30 IST — 90 min ahead of
+# Stage 2 so GitHub's scheduled-run latency (often 30-60+ min) can't push the scrape
+# past the routine. Stage 2 (the claude.ai routine at
 # 00:00 IST) pulls that branch and only does agent enrichment → PDF → Slack, which
 # need just github.com + the Anthropic API (both reachable in the sandbox).
 on:
   schedule:
-    - cron: '45 17 * * *'  # 17:45 UTC = 23:15 IST — 45 min before the 00:00 IST routine
+    - cron: '0 17 * * *'  # 17:00 UTC = 22:30 IST — 90 min before the 00:00 IST routine (cushion for GH schedule latency)
   workflow_dispatch:
 
 permissions:

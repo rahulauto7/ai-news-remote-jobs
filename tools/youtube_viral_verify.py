@@ -14,6 +14,7 @@ Requires: YOUTUBE_API_KEY env var.
 
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -40,6 +41,49 @@ VIDEOS_URL = "https://www.googleapis.com/youtube/v3/videos"
 WINDOW_DAYS = 7
 LONG_VIEW_FLOOR = 100_000      # long-form virality threshold (per bucket)
 SHORT_VIEW_FLOOR = 500_000     # Shorts virality threshold
+
+# --- AI-video gate -----------------------------------------------------------
+# The Search API returns loose matches, so bare "ai"/"ml" is NOT a sufficient
+# signal: it fired inside foreign-language titles where "Ai" is an ordinary word
+# ("Bikin Kasur Ulang Tahun Ai", "Thùng Hộp ... của Ai") and shipped non-AI
+# clips. A pick must carry a real AI signal: a brand/product, an AI phrase, or a
+# bare "ai"/"ml" token sitting next to an English AI cue.
+_AI_BRANDS = (
+    "openai", "chatgpt", "gpt-4", "gpt4", "gpt-5", "gpt5", "anthropic", "claude",
+    "gemini", "deepmind", "grok", "xai", "midjourney", "dall-e", "dalle",
+    "stable diffusion", "deepseek", "qwen", "llama", "mistral", "perplexity",
+    "copilot", "runway", "sora", "elevenlabs", "suno", "udio", "huggingface",
+    "hugging face", "nvidia", "nano banana",
+)
+_AI_PHRASES = (
+    "artificial intelligence", "machine learning", "deep learning",
+    "neural network", "large language model", "language model", "generative ai",
+    "ai agent", "ai agents", "agentic", "ai tool", "ai news", "ai model",
+    "ai video", "ai image", "a.i.", "ai automation", "llm", "chatbot",
+)
+_AI_CONTEXT = (
+    "tool", "tools", "model", "models", "news", "agent", "robot", "tech",
+    "prompt", "automation", "coding", "code", "generate", "generated",
+    "generator", "video", "image", "app", "software", "assistant",
+)
+_AI_WORD_RE = re.compile(r"(?<![a-z0-9])(ai|ml)(?![a-z0-9])")
+
+
+def is_ai_video(title, description=""):
+    """True only when the title/description carries a genuine AI signal.
+
+    Word-boundary + English-AI matching: a brand or AI phrase passes outright; a
+    bare "ai"/"ml" token passes only with a nearby English AI cue, so foreign
+    words that merely spell "ai" no longer leak non-AI videos into the section.
+    """
+    blob = f"{title} {description}".lower()
+    if any(b in blob for b in _AI_BRANDS):
+        return True
+    if any(p in blob for p in _AI_PHRASES):
+        return True
+    if _AI_WORD_RE.search(blob) and any(c in blob for c in _AI_CONTEXT):
+        return True
+    return False
 
 
 def _published_after_iso(days_back=WINDOW_DAYS):
@@ -145,9 +189,20 @@ def pick_top(items, must_be_short=False, view_floor=0, seen=None):
     seen_fallback = None
     for views, it, duration in qualified:
         sn = it.get("snippet", {})
-        actually_short = is_short_video(it.get("id"), sn.get("title", ""), sn.get("description", ""))
+        title, desc = sn.get("title", ""), sn.get("description", "")
+        # Reject clips that aren't actually about AI. The Search API returns loose
+        # matches; bare "Ai" inside foreign-language titles ("của Ai", "Tahun Ai")
+        # used to slip through and ship non-AI videos.
+        if not is_ai_video(title, desc):
+            continue
+        actually_short = is_short_video(it.get("id"), title, desc)
         if actually_short != must_be_short:
             continue  # wrong format for this bucket (e.g. a Short in the long slot)
+        # Never surface a pick whose watch URL we can't verify (HTTP 200). A failed
+        # HEAD means dead/blocked/unverifiable — drop it rather than ship an
+        # unverified link, instead of keeping it with url_verified:false.
+        if not verify_url(f"https://www.youtube.com/watch?v={it.get('id')}"):
+            continue
         if it.get("id") not in seen:
             return (it, views, duration, "fresh")
         if seen_fallback is None:

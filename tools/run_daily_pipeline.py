@@ -379,7 +379,16 @@ def run(dry_run=False, force_fallback=False, analyzer="agent"):
         log(f"  [{v}] {k}")
     log(f"Total: {elapsed:.1f}s")
     log("=" * 60)
-    return all(v is True or v == "skipped" for v in results.values())
+    # Success = the deliverable (PDF) was produced. Optional scrapers failing
+    # (e.g. YouTube/Instagram without an API key, a rate-limited job board) leave
+    # a section thin but must NOT fail the whole run — every genuinely fatal
+    # condition (all scrapers dead, zero RSS, analysis failed, PDF failed) already
+    # returned False above. A strict all(results) here wrongly exited 1 on a valid
+    # PDF and skipped the publish-state step.
+    failed = [k for k, v in results.items() if not (v is True or v == "skipped")]
+    if failed:
+        log(f"Non-fatal step failures (PDF still shipped): {', '.join(failed)}")
+    return results.get("pdf") is True
 
 
 if __name__ == "__main__":

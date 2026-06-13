@@ -41,13 +41,18 @@ FEEDS = {
     "YourStory": "https://yourstory.com/feed",
     "Economic Times Tech": "https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms",
 
-    # Quantum Computing + AI
-    "arXiv Quantum Physics": "https://rss.arxiv.org/rss/quant-ph",
-    "arXiv AI": "https://rss.arxiv.org/rss/cs.AI",
-    "arXiv Machine Learning": "https://rss.arxiv.org/rss/cs.LG",
+    # Quantum Computing + AI.
+    # Use the arXiv *API* (export.arxiv.org/api/query) sorted by submittedDate, NOT
+    # the rss.arxiv.org daily feed: the RSS feed only carries the latest announcement
+    # batch and is EMPTY on weekends/holidays (no new submissions announced), which
+    # silently starved Quantum + RSI every Sat/Sun (2026-06-13). The API returns the
+    # most recent N papers across the whole window regardless of announcement day.
+    "arXiv Quantum Physics": "http://export.arxiv.org/api/query?search_query=cat:quant-ph&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    "arXiv AI": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    "arXiv Machine Learning": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=40",
     # AI safety / alignment / policy research — feeds the RSI section, which the
     # general-AI news feeds rarely surface (alignment papers live on arXiv cs.CY).
-    "arXiv CS & Society": "https://rss.arxiv.org/rss/cs.CY",
+    "arXiv CS & Society": "http://export.arxiv.org/api/query?search_query=cat:cs.CY&sortBy=submittedDate&sortOrder=descending&max_results=40",
 
     # Music Industry / Copyright
     # Hypebot's hosted feed went 404 in 2026-04 — dropped. MBW + DMN cover the same beat.
@@ -105,7 +110,13 @@ def _rss_headers(referer=None):
         "User-Agent": _random.choice(UA_POOL),
         "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.5",
         "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
+        # NB: do NOT advertise "br" (brotli) — the `brotli` package isn't a hard
+        # dependency, and when a server replies Content-Encoding: br requests hands
+        # back the raw compressed bytes (it only auto-decodes br if brotli is
+        # installed), so feedparser sees garbage and returns 0 entries. This
+        # silently killed The Decoder / TechCrunch / Verge / VentureBeat / OpenAI /
+        # Futurism (2026-06-13). gzip+deflate are always decoded natively.
+        "Accept-Encoding": "gzip, deflate",
         "Cache-Control": "no-cache",
         "Pragma": "no-cache",
         "Sec-Fetch-Dest": "document",

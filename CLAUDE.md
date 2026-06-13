@@ -92,7 +92,7 @@ If a cloud-scheduled run of this pipeline fails (non-zero exit from `run_daily_p
 
 ## The 19 Sections (PDF order)
 
-Order is enforced by `SECTION_ORDER` in `tools/generate_pdf.py`. **News is last-24h only** (RSS cutoff = 24h); low-volume sections widen to ≤7 days via backfill only when below the per-section minimum.
+Order is enforced by `SECTION_ORDER` in `tools/generate_pdf.py`. **News is strictly last-24h only, no minimum floor** (user rule 2026-06-13): every section shows only what cleared the 24h gate and ships thin/empty on a quiet day — no backfilling thin sections from the older 7-day pool.
 
 1. Remote AI Jobs — **worldwide-remote, AI-only, entry-level / junior**. Ranked against workflows/user_profile.md (n8n / Voiceflow / Relevance AI / Claude Code). Senior/lead/principal + region-locked dropped. Greenhouse + Lever + Ashby + Remotive + RemoteOK + WWR + Himalayas + HN.
 2. AI Product Showcase Opportunities — AI hackathons & competitions **plus accelerators / incubators / acceleration programs** (incl. govt/India schemes like "IndiaAI Startups Global"). Each item must carry a direct apply link + deadline.

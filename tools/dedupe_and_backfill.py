@@ -1,7 +1,7 @@
-"""Post-analysis cleanup: cross-day de-duplication + min-3 backfill.
+"""Post-analysis cleanup: cross-day de-duplication (no min-floor backfill).
 
 Runs AFTER the analyzer writes .tmp/analyzed_content.json and BEFORE the YouTube
-ideas + PDF steps. Two jobs:
+ideas + PDF steps. Jobs:
 
   1. Cross-day dedup (news) — drop items in RSS-routed sections whose URL was
      surfaced in the last DEDUP_DAYS days (history in data/content_seen.json via
@@ -9,10 +9,11 @@ ideas + PDF steps. Two jobs:
      stories the 7-day RSS window otherwise re-serves. `ai_model_benchmarks` is
      EXEMPT — it's a standings snapshot, intentionally stable day to day.
 
-  2. Min-3 backfill — any RSS-routed section left below SECTION_MIN is topped up
-     from the unrouted RSS pool (articles not already placed and not recently
-     seen), re-classified with the same gates as the main pass (so quantum/RSI
-     keep their AND-AI requirement).
+  2. Min-3 backfill — DISABLED (user rule 2026-06-13: "just the 24-hour rule, no
+     minimum floor"). Sections show ONLY what the strict last-24h classifier
+     routed; a thin/empty section is left honest rather than padded from the
+     older pool. The fix for genuinely empty sections is healthy feeds, not
+     backfill.
 
 Finally records every surfaced RSS URL under the "news" namespace so the next
 run can rotate them out.
@@ -199,41 +200,14 @@ def main() -> int:
         dropped += len(sections[sec]) - len(kept)
         sections[sec] = kept
 
-    # --- 2. Min-3 backfill from the unrouted pool ---
-    # Classify every unrouted, not-recently-seen article once; bucket by section.
-    buckets: dict[str, list] = {s: [] for s in rss_sections}
-    for art in rss_articles:
-        url = art.get("url", "") or art.get("link", "")
-        if not url or url in placed_urls or url in seen:
-            continue
-        # Strict last-24h: never widen news sections with older pool items.
-        # (User rule overrides the legacy "widen to <=7 days" backfill.)
-        if not _within_hours(art.get("published"), NEWS_FRESH_HOURS):
-            continue
-        sec, rel, summary = classify(art)
-        if sec in buckets:
-            buckets[sec].append(_item_from_article(art, sec, rel, summary))
-
+    # --- 2. Min-3 backfill: DISABLED (user rule 2026-06-13) ---
+    # The user's standing rule is "just the 24-hour rule, no minimum floor":
+    # every section shows ONLY what the strict last-24h classifier routed, even if
+    # that leaves a section below 3 items or empty. We no longer top sections up to
+    # SECTION_MIN from the unrouted pool — an honest thin/empty section beats padding
+    # with marginal items pulled in just to hit a floor. (The fix for genuinely empty
+    # sections is healthy feeds, not backfill — see the brotli/arXiv feed fixes.)
     added = 0
-    for sec in rss_sections:
-        need = SECTION_MIN - len(sections[sec])
-        if need <= 0:
-            continue
-        # relevance desc, then most-recent first (published is an ISO string)
-        pool = sorted(
-            buckets.get(sec, []),
-            key=lambda x: (x.get("relevance", 0), x.get("published", "")),
-            reverse=True,
-        )
-        have = {it.get("url") for it in sections[sec]}
-        for cand in pool:
-            if len(sections[sec]) >= SECTION_MIN:
-                break
-            if cand.get("url") in have:
-                continue
-            sections[sec].append(cand)
-            have.add(cand.get("url"))
-            added += 1
 
     # --- 2b. Seed benchmarks standings table (exempt from dedup) ---
     _seed_benchmark_standings(sections)

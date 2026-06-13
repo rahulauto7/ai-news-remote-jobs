@@ -1,51 +1,86 @@
-name: Daily AI News + Remote Jobs (backup runner)
+name: Daily AI News — primary scraper
 
-# Backup for the claude.ai cloud routine (00:00 IST). Runs 75 min later and
-# exits early if the routine already pushed today's daily/<date> branch.
+# Stage 1 of the two-stage daily pipeline.
+#
+# WHY this runs on Actions, not the claude.ai routine: the cloud sandbox's egress
+# proxy 403s almost every scraper host and TLS-MITMs Python HTTPS. GitHub-hosted
+# runners have unrestricted outbound and no interception, so ALL scraping happens
+# here. This job runs the full pipeline (scrape → analyze → dedup → fallback PDF),
+# then publishes .tmp/*.json + the fallback PDF to the rolling `pipeline-state`
+# branch and persists dedup state to main. Stage 2 (the claude.ai routine at
+# 00:00 IST) pulls that branch and only does agent enrichment → PDF → Slack, which
+# need just github.com + the Anthropic API (both reachable in the sandbox).
 on:
   schedule:
-    - cron: '45 19 * * *'  # 19:45 UTC = 01:15 IST
+    - cron: '45 17 * * *'  # 17:45 UTC = 23:15 IST — 45 min before the 00:00 IST routine
   workflow_dispatch:
 
+permissions:
+  contents: write          # push pipeline-state branch + dedup state to main
+
+concurrency:
+  group: daily-scraper
+  cancel-in-progress: true
+
 jobs:
-  digest:
+  scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
-      - name: Skip if cloud routine already delivered today
-        id: guard
-        run: |
-          DATE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
-          if git ls-remote --exit-code origin "refs/heads/daily/${DATE}" >/dev/null 2>&1; then
-            echo "Routine already pushed daily/${DATE} — skipping backup run."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-          fi
+        with:
+          fetch-depth: 0   # need full history to push main + a rolling branch
 
       - uses: actions/setup-python@v5
-        if: steps.guard.outputs.skip != 'true'
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - name: Install dependencies
-        if: steps.guard.outputs.skip != 'true'
         run: pip install -r requirements.txt
 
-      - name: Run pipeline
-        if: steps.guard.outputs.skip != 'true'
+      - name: Run pipeline (scrape → analyze → dedup → fallback PDF)
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          RAPIDAPI_INSTAGRAM_HOST: ${{ secrets.RAPIDAPI_INSTAGRAM_HOST }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
           TRENDS_BUDGET_SECONDS: '240'
         run: python tools/run_daily_pipeline.py
 
+      - name: Persist dedup state to main
+        run: |
+          DATE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
+          git config user.name "daily-agent[bot]"
+          git config user.email "daily-agent@users.noreply.github.com"
+          git add data/content_seen.json data/jobs_seen.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "dedup state unchanged"
+          else
+            git commit -m "Update dedup state ${DATE} [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Publish pipeline state for the cloud routine
+        run: |
+          DATE=$(TZ=Asia/Kolkata date +%Y-%m-%d)
+          # Rolling branch = current main + one commit carrying today's .tmp state.
+          # The routine pulls .tmp/*.json + the fallback PDF from here.
+          git checkout -B pipeline-state
+          git add -f .tmp/*.json .tmp/ai_news_remote_jobs_*.pdf 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no pipeline state to publish" && exit 1
+          fi
+          git commit -m "pipeline state ${DATE} [skip ci]"
+          git push -f origin pipeline-state
+
       - name: Upload artifacts (kept 7 days)
-        if: always() && steps.guard.outputs.skip != 'true'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: daily-pdf
@@ -56,7 +91,7 @@ jobs:
           retention-days: 7
           if-no-files-found: warn
 
-      - name: Notify Slack on workflow failure
+      - name: Notify Slack on failure
         if: failure()
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -72,7 +107,8 @@ jobs:
           from datetime import date
           payload = json.dumps({
               "channel": os.environ["SLACK_USER_ID"],
-              "text": f"🚨 Daily AI News BACKUP Actions run FAILED — {date.today()}\n```{tail}```",
+              "text": f"🚨 Daily AI News SCRAPER (Actions stage 1) FAILED — {date.today()}\n"
+                      f"The cloud routine will have no fresh pipeline-state to consume.\n```{tail}```",
           }).encode()
           req = urllib.request.Request(
               "https://slack.com/api/chat.postMessage",

@@ -181,6 +181,21 @@ def run(dry_run=False, force_fallback=False, analyzer="agent"):
         log("ABORT: every scraper failed")
         return False
 
+    # "No exception thrown" is not the same as "got content". A fully
+    # network-blocked run returns empty from every scraper WITHOUT raising, so the
+    # any()-based guard above passes while the PDF would ship empty (only the
+    # hardcoded accelerator + benchmark seeds survive). RSS is the backbone of 14+
+    # sections and pulls a rolling 7-day pool, so rss_articles == 0 is the canonical
+    # signature of a blocked/broken run, not a quiet news day. Treat it as fatal so
+    # the cloud agent fires the Slack failure alert instead of delivering a hollow PDF.
+    rss_n = _scraper_count("rss_articles.json", "articles") or 0
+    jobs_n = _scraper_count("jobs.json", "jobs") or 0
+    log(f"Content gate: rss_articles={rss_n} jobs={jobs_n}")
+    if rss_n == 0:
+        log("ABORT: zero RSS articles — network blocked or all feeds dead "
+            "(would ship an empty PDF). Failing so the cloud Slack alert fires.")
+        return False
+
     analyzed_file = os.path.join(TMP_DIR, "analyzed_content.json")
     # Drop stale analyzed_content.json so each run is fresh.
     if not force_fallback and os.path.exists(analyzed_file):

@@ -1,0 +1,56 @@
+name: Deliver daily PDF to Slack
+
+# Stage-2 delivery. The cloud routine builds the ENRICHED PDF and pushes it to a
+# daily/<YYYY-MM-DD> branch, but the routine sandbox can't reach slack.com and the
+# claude.ai Slack connector can only send text (no file attachment). So the actual
+# PDF file is delivered here: Actions has unrestricted egress, so files_upload_v2
+# DMs the real file to the user. Fires on any push to a daily/** branch (the
+# routine's force-push counts), or manually for testing.
+on:
+  push:
+    branches:
+      - 'daily/**'
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'daily/<date> branch to deliver (e.g. daily/2026-06-14)'
+        required: true
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deliver-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install slack_sdk
+        run: pip install 'slack_sdk>=3.27.0' python-dotenv
+
+      - name: Deliver PDF to Slack DM
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+        run: |
+          PDF=$(ls daily/ai_news_remote_jobs_*.pdf 2>/dev/null | sort | tail -1)
+          if [ -z "$PDF" ]; then
+            echo "::error::No daily/ai_news_remote_jobs_*.pdf on this branch — nothing to deliver"
+            exit 1
+          fi
+          CSV=""
+          [ -f daily/jobs.csv ] && CSV="daily/jobs.csv"
+          echo "Delivering $PDF $CSV"
+          python tools/send_to_slack.py "$PDF" $CSV

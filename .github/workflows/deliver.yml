@@ -38,8 +38,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install slack_sdk
-        run: pip install 'slack_sdk>=3.27.0' python-dotenv
+        run: pip install 'slack_sdk>=3.27.0'
 
+      # Uploader is inlined (not tools/send_to_slack.py) so delivery depends only
+      # on the PDF being on the checked-out branch — older daily/<date> branches
+      # were cut before that tool existed. tools/send_to_slack.py stays for local
+      # runs.
       - name: Deliver PDF to Slack DM
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -53,4 +57,51 @@ jobs:
           CSV=""
           [ -f daily/jobs.csv ] && CSV="daily/jobs.csv"
           echo "Delivering $PDF $CSV"
-          python tools/send_to_slack.py "$PDF" $CSV
+          python - "$PDF" $CSV <<'PY'
+          import os, sys
+          from datetime import datetime
+          from slack_sdk import WebClient
+          from slack_sdk.errors import SlackApiError
+
+          pdf = sys.argv[1]
+          csv = sys.argv[2] if len(sys.argv) > 2 else None
+          token = os.environ["SLACK_BOT_TOKEN"].strip()
+          uid = os.environ["SLACK_USER_ID"].strip()
+          today = datetime.now().strftime("%Y-%m-%d")
+          c = WebClient(token=token)
+
+          ch = uid
+          if uid.startswith("U"):
+              try:
+                  ch = c.conversations_open(users=uid)["channel"]["id"]
+              except SlackApiError as e:
+                  print("conversations_open failed:", e.response.get("error"))
+
+          last = None
+          for attempt in (1, 2):
+              try:
+                  r = c.files_upload_v2(
+                      channel=ch, file=pdf, filename=os.path.basename(pdf),
+                      title=f"AI News + Remote Jobs — {today}",
+                      initial_comment=f":newspaper: Daily AI News digest for {today}")
+                  print("uploaded PDF:", (r.get("file") or {}).get("permalink"))
+                  break
+              except SlackApiError as e:
+                  last = e.response.get("error")
+                  print(f"PDF upload attempt {attempt} failed: {last}")
+                  if attempt == 1:
+                      import time; time.sleep(3)
+          else:
+              print("FAILED — last error:", last,
+                    "(check scopes files:write, chat:write, im:write)")
+              sys.exit(1)
+
+          if csv and os.path.exists(csv) and os.path.getsize(csv) > 0:
+              try:
+                  c.files_upload_v2(channel=ch, file=csv,
+                                    filename=os.path.basename(csv),
+                                    title=f"Remote AI jobs — {today}")
+                  print("uploaded jobs.csv")
+              except SlackApiError as e:
+                  print("CSV upload failed:", e.response.get("error"))
+          PY

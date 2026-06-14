@@ -4,7 +4,7 @@
 
 Every day at **00:00 IST** (laptop off OK — runs as a claude.ai cloud scheduled agent), produce a 19-section PDF summarizing the last 7 days of AI news + currently-open global remote AI Automation jobs (profile-matched), **push it to a dated GitHub branch** (`daily/YYYY-MM-DD`) and **DM it to the user on Slack**.
 
-> Schedule: TWO cooperating jobs (see "Execution architecture — TWO STAGES" below). **Stage 1** = `.github/workflows/daily.yml` on GitHub Actions, cron `0 17 * * *` = 22:30 IST (90 min ahead of Stage 2 to absorb GitHub's scheduled-run latency) — runs the full scrape→analyze→dedup and publishes the `pipeline-state` branch. **Stage 2** = the **claude.ai routine** (`trig_018UFpSohtbZ9fvHQRJmaPtR`), cron `30 18 * * *` = 00:00 IST (00:03 fire) — pulls `pipeline-state`, enriches, renders the PDF, and delivers (Slack DM + `daily/<date>` branch). Stage 2 does **NO scraping** (the sandbox 403s every host). The routine prompt is the Stage-2 prompt below; when you change the two-stage flow, update the live routine via the `schedule` skill in the SAME change (the routine prompt, not this file, is what the cloud agent executes).
+> Schedule: TWO cooperating jobs (see "Execution architecture — TWO STAGES" below). **Stage 1** = `.github/workflows/daily.yml` on GitHub Actions, cron `0 17 * * *` = 22:30 IST (90 min ahead of Stage 2 to absorb GitHub's scheduled-run latency) — runs the full scrape→analyze→dedup and publishes the `pipeline-state` branch. **Stage 2** = the **claude.ai routine** (`trig_018UFpSohtbZ9fvHQRJmaPtR`), cron `30 18 * * *` = 00:00 IST (00:03 fire) — pulls `pipeline-state`, enriches, renders the PDF, and pushes the `daily/<date>` branch (that push triggers `deliver.yml` on Actions, which DMs the actual PDF file). Stage 2 does **NO scraping** and does **NOT** send the PDF over Slack itself (the sandbox 403s every host). The routine prompt is the Stage-2 prompt below; when you change the two-stage flow, update the live routine via the `schedule` skill in the SAME change (the routine prompt, not this file, is what the cloud agent executes).
 
 ## Inputs
 
@@ -70,7 +70,7 @@ Every story summary in the RSS-routed AI sections ends with an extra sentence th
 Scraping does **not** run in the claude.ai cloud sandbox: its egress proxy 403s almost every scraper host and TLS-MITMs Python HTTPS (see Lessons Learned 2026-06-13). So the pipeline is split:
 
 - **Stage 1 — GitHub Actions scraper** (`.github/workflows/daily.yml`, ~23:15 IST). Unrestricted egress, no MITM. Runs the **full** pipeline (scrape → analyze → dedup → fallback PDF), then publishes `.tmp/*.json` + the fallback PDF to the rolling **`pipeline-state`** branch and commits dedup state to `main`. Slacks on failure.
-- **Stage 2 — claude.ai routine** (00:00 IST). Does **no scraping**. Pulls `pipeline-state`, runs AGENT ENRICHMENT on the already-scraped JSON, regenerates YouTube ideas + PDF, and delivers (Slack DM + dated branch). It only ever talks to github.com + the Anthropic API, both reachable in the sandbox.
+- **Stage 2 — claude.ai routine** (00:00 IST). Does **no scraping**. Pulls `pipeline-state`, runs AGENT ENRICHMENT on the already-scraped JSON, regenerates YouTube ideas + PDF, and pushes the dated branch. It only ever talks to github.com + the Anthropic API, both reachable in the sandbox. The dated-branch push triggers **Stage 3 — `.github/workflows/deliver.yml`** (Actions) which DMs the actual PDF file to Slack via `files_upload_v2`; the routine does NOT send the PDF itself (no slack.com egress, and the connector can't attach files).
 
 The step list below is the **full** pipeline as Stage 1 runs it. Stage 2 starts at the **AGENT ENRICHMENT** step using the JSON Stage 1 produced.
 
@@ -88,7 +88,7 @@ You are running the daily AI-news pipeline STAGE 2 (enrichment + delivery only).
 4. Regenerate ideas + PDF:
    .venv/bin/python tools/generate_youtube_ideas.py
    .venv/bin/python tools/generate_pdf.py
-5. Deliver: Slack DM the PDF (connector) + push a daily/<YYYY-MM-DD> branch carrying the PDF.
+5. Deliver: push a daily/<YYYY-MM-DD> branch carrying the PDF — that push triggers `.github/workflows/deliver.yml`, which DMs the actual PDF file to the user on Slack (Actions has egress; the routine sandbox does not).
 6. If ANY step above fails, send the Slack failure message before exiting. Silence = success.
 ```
 
@@ -150,7 +150,7 @@ Order is **RSS → Hackathons → YouTube viral verify → YouTube trending → 
    - Copy PDF + `jobs.csv` + `analyzed_content.json` + `pipeline.log` into `daily/`
    - `git checkout -B daily/<DATE>` → `git add daily/` → `git commit` → `git push -f origin daily/<DATE>`
    - Routine uses `GH_TOKEN` injected into the remote URL
-9. **DM the user on Slack** via the claude.ai Slack connector (`slack_send_message` to `SLACK_USER_ID`) with the dated-branch URL + raw PDF URL. Local/Actions runs skip this (no connector); the routine is the delivery path.
+9. **Slack delivery is automatic via GitHub Actions** — do NOT use the claude.ai Slack connector for the PDF. The connector can only send text (no file attachment) and the routine sandbox can't reach slack.com. Instead, the `daily/<DATE>` push from step 8 triggers `.github/workflows/deliver.yml`, which checks out that branch and uploads the real PDF file (+ jobs.csv) to the user's DM via `files_upload_v2` (repo secrets `SLACK_BOT_TOKEN` / `SLACK_USER_ID`). The routine's only job is to push the branch; the file lands in Slack ~30–60s later. The Slack **failure** rule still uses the connector (the routine can't reach slack.com to alert otherwise).
 10. Print both URLs in the routine output:
     - Branch: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/tree/daily/<DATE>`
     - Raw PDF: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/raw/daily/<DATE>/daily/ai_news_remote_jobs_<DATE>.pdf`

@@ -54,8 +54,7 @@ jobs:
             echo "::error::No daily/ai_news_remote_jobs_*.pdf on this branch — nothing to deliver"
             exit 1
           fi
-          CSV=""
-          [ -f daily/jobs.csv ] && CSV="daily/jobs.csv"
+          CSV=$(ls daily/jobs*.csv 2>/dev/null | sort | tail -1)
           echo "Delivering $PDF $CSV"
           python - "$PDF" $CSV <<'PY'
           import os, sys

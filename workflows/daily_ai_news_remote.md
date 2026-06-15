@@ -152,8 +152,8 @@ Order is **RSS → Hackathons → YouTube viral verify → YouTube trending → 
    - Routine uses `GH_TOKEN` injected into the remote URL
 9. **Slack delivery is automatic via GitHub Actions** — do NOT use the claude.ai Slack connector for the PDF. The connector can only send text (no file attachment) and the routine sandbox can't reach slack.com. Instead, the `daily/<DATE>` push from step 8 triggers `.github/workflows/deliver.yml`, which checks out that branch and uploads the real PDF file (+ jobs.csv) to the user's DM via `files_upload_v2` (repo secrets `SLACK_BOT_TOKEN` / `SLACK_USER_ID`). The routine's only job is to push the branch; the file lands in Slack ~30–60s later. The Slack **failure** rule still uses the connector (the routine can't reach slack.com to alert otherwise).
 10. Print both URLs in the routine output:
-    - Branch: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/tree/daily/<DATE>`
-    - Raw PDF: `https://github.com/rahulmeenaailead-commits/ai-news-remote-jobs/raw/daily/<DATE>/daily/ai_news_remote_jobs_<DATE>.pdf`
+    - Branch: `https://github.com/rahulaachaaaaa/ai-news-remote-jobs/tree/daily/<DATE>`
+    - Raw PDF: `https://github.com/rahulaachaaaaa/ai-news-remote-jobs/raw/daily/<DATE>/daily/ai_news_remote_jobs_<DATE>.pdf`
 
 ## Viral AI on YouTube verification rules (PDF section 4, critical)
 

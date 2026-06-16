@@ -1,0 +1,95 @@
+name: Re-deliver enriched PDF (Stage 2 recovery)
+
+# Triggered manually when git push in Stage 2 fails due to PAT permission issues.
+# Checks out the daily/<date> branch (which has the staging JSON artifacts),
+# regenerates the PDF from the enriched analyzed_content.json, and DMs it to Slack.
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deliver (e.g. daily/2026-06-16)'
+        required: true
+        default: 'daily/2026-06-16'
+
+permissions:
+  contents: read
+
+jobs:
+  redeliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Bootstrap Python venv
+        run: |
+          ./bootstrap.sh
+          echo "Bootstrap done"
+
+      - name: Stage enriched JSON files
+        run: |
+          mkdir -p .tmp
+          if [ -f "staging/analyzed_content.json" ]; then
+            cp staging/analyzed_content.json .tmp/analyzed_content.json
+            echo "Copied analyzed_content.json"
+          fi
+          if [ -f "staging/youtube_content_ideas.json" ]; then
+            cp staging/youtube_content_ideas.json .tmp/youtube_content_ideas.json
+            echo "Copied youtube_content_ideas.json"
+          fi
+          # Create minimal stubs for files generate_pdf.py might optionally check
+          echo '{"checked_at":"","videos":[]}' > .tmp/youtube_verified.json
+          ls -la .tmp/
+
+      - name: Generate PDF
+        run: |
+          .venv/bin/python tools/generate_pdf.py 2>&1 | tail -5
+          DATE=$(date +%Y-%m-%d)
+          test -f ".tmp/ai_news_remote_jobs_${DATE}.pdf" && echo "PDF OK" || (echo "FATAL: no PDF" && exit 1)
+
+      - name: Deliver PDF to Slack DM
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          PDF=".tmp/ai_news_remote_jobs_${DATE}.pdf"
+          pip install 'slack_sdk>=3.27.0' -q
+          python - "$PDF" <<'PY'
+          import os, sys
+          from datetime import datetime
+          from slack_sdk import WebClient
+          from slack_sdk.errors import SlackApiError
+
+          pdf = sys.argv[1]
+          token = os.environ["SLACK_BOT_TOKEN"].strip()
+          uid = os.environ["SLACK_USER_ID"].strip()
+          today = datetime.now().strftime("%Y-%m-%d")
+          c = WebClient(token=token)
+
+          ch = uid
+          if uid.startswith("U"):
+              try:
+                  ch = c.conversations_open(users=uid)["channel"]["id"]
+              except SlackApiError as e:
+                  print("conversations_open failed:", e.response.get("error"))
+
+          for attempt in (1, 2):
+              try:
+                  r = c.files_upload_v2(
+                      channel=ch, file=pdf, filename=os.path.basename(pdf),
+                      title=f"AI News + Remote Jobs — {today} (re-delivered)",
+                      initial_comment=f":newspaper: Daily AI News digest for {today} (re-delivered via redeliver.yml after PAT fix)")
+                  print("uploaded PDF:", (r.get("file") or {}).get("permalink"))
+                  break
+              except SlackApiError as e:
+                  last = e.response.get("error")
+                  print(f"PDF upload attempt {attempt} failed: {last}")
+                  if attempt == 1:
+                      import time; time.sleep(3)
+          else:
+              print("FAILED — check SLACK_BOT_TOKEN scope and SLACK_USER_ID")
+              sys.exit(1)
+          PY

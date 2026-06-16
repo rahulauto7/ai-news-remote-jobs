@@ -41,6 +41,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Validate required secrets
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+        run: |
+          for secret in YOUTUBE_API_KEY SLACK_BOT_TOKEN SLACK_USER_ID; do
+            if [ -z "${!secret}" ]; then
+              echo "::warning::Secret $secret is empty — affected scrapers will degrade or Slack alerts will fail"
+            fi
+          done
+
       - name: Run pipeline (scrape → analyze → dedup → fallback PDF)
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -100,7 +112,11 @@ jobs:
           SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
         run: |
           python - <<'PY'
-          import json, os, urllib.request
+          import json, os, sys, urllib.request
+          token = os.environ.get("SLACK_BOT_TOKEN", "")
+          if not token:
+              print("SLACK_BOT_TOKEN is empty — cannot send Slack failure alert")
+              sys.exit(1)
           try:
               with open(".tmp/pipeline.log", encoding="utf-8") as f:
                   tail = f.read()[-1400:]
@@ -109,16 +125,22 @@ jobs:
           from datetime import date
           payload = json.dumps({
               "channel": os.environ["SLACK_USER_ID"],
-              "text": f"🚨 Daily AI News SCRAPER (Actions stage 1) FAILED — {date.today()}\n"
-                      f"The cloud routine will have no fresh pipeline-state to consume.\n```{tail}```",
+              "text": (
+                  f"🚨 Daily AI News SCRAPER (Actions stage 1) FAILED — {date.today()}\n"
+                  f"The cloud routine will have no fresh pipeline-state to consume.\n```{tail}```"
+              ),
           }).encode()
           req = urllib.request.Request(
               "https://slack.com/api/chat.postMessage",
               data=payload,
               headers={
-                  "Authorization": "Bearer " + os.environ["SLACK_BOT_TOKEN"],
+                  "Authorization": "Bearer " + token,
                   "Content-Type": "application/json; charset=utf-8",
               },
           )
-          print(urllib.request.urlopen(req).read().decode()[:300])
+          resp = json.loads(urllib.request.urlopen(req).read().decode())
+          if not resp.get("ok"):
+              print(f"Slack API error: {resp.get('error')} — {resp}")
+              sys.exit(1)
+          print("Slack failure alert sent OK")
           PY

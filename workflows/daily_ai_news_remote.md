@@ -79,10 +79,45 @@ The step list below is the **full** pipeline as Stage 1 runs it. Stage 2 starts 
 ```
 You are running the daily AI-news pipeline STAGE 2 (enrichment + delivery only). Do NOT scrape — the GitHub Actions scraper already published today's data to the `pipeline-state` branch.
 
-1. Pull the scraped state:
+1. Pull the scraped state and verify it is fresh:
    git fetch origin pipeline-state
    git checkout origin/pipeline-state -- .tmp
-   If the fetch/checkout fails or .tmp/analyzed_content.json is missing or older than today (IST), the scraper stage failed — send the Slack failure message (see workflow "Slack failure rule") and STOP. You cannot scrape from this sandbox.
+
+   Check staleness (18 h = 64800 s):
+   python3 -c "
+   import os, time, sys
+   f = '.tmp/analyzed_content.json'
+   if not os.path.exists(f):
+       print('MISSING'); sys.exit(1)
+   age = time.time() - os.path.getmtime(f)
+   print(f'{age/3600:.1f}h old')
+   sys.exit(0 if age < 64800 else 1)
+   "
+
+   If the check exits non-zero (stale or missing), attempt self-recovery before giving up:
+
+   a. Try to re-trigger Stage 1 via GitHub API:
+      HTTP=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+        -H "Authorization: Bearer $GH_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        "https://api.github.com/repos/rahulaachaaaaa/ai-news-remote-jobs/actions/workflows/daily.yml/dispatches" \
+        -d '{"ref":"main"}')
+
+   b. If HTTP == 204 (dispatch accepted):
+      Poll pipeline-state every 90 s for up to 20 min:
+      for i in 1..14:
+        sleep 90
+        git fetch origin pipeline-state
+        git checkout origin/pipeline-state -- .tmp
+        python3 -c "import os,time,sys; f='.tmp/analyzed_content.json'; sys.exit(0 if os.path.exists(f) and time.time()-os.path.getmtime(f)<64800 else 1)"
+        if exit 0: RECOVERED=1; break
+      If still stale after 14 polls: send Slack failure — "Stage 1 was re-dispatched but did not finish within 20 min. Check https://github.com/rahulaachaaaaa/ai-news-remote-jobs/actions" — and STOP.
+
+   c. If HTTP != 204 (dispatch failed — GH_TOKEN may lack 'workflow' scope):
+      Send Slack failure — "Pipeline state stale and Stage 1 auto-dispatch failed (HTTP $HTTP). Trigger daily.yml manually: https://github.com/rahulaachaaaaa/ai-news-remote-jobs/actions/workflows/daily.yml" — and STOP.
+
+   If the initial staleness check passes (exit 0), skip steps a–c and continue normally.
+
 2. Bootstrap: ./bootstrap.sh  (then use .venv/bin/python for every step)
 3. AGENT ENRICHMENT on .tmp/analyzed_content.json using .tmp/rss_articles.json — follow the "AGENT ENRICHMENT STEP" in workflows/daily_ai_news_remote.md (rewrite summaries, repopulate quantum/RSI, keep Automation angle on non-exempt sections, write the YouTube section analysis + 3 ideas).
 4. Regenerate ideas + PDF:
@@ -258,4 +293,5 @@ The rule: if you fix a bug, also update this file (or the code it points to) so 
   5. **YouTube "viral" false positives (latent code bug, now fixed)** — `youtube_viral_verify.py` had no AI gate, so the Search API's loose matches shipped non-AI foreign-language clips that merely spelled "Ai" ("…Tahun Ai", "…của Ai"), AND it kept picks with `url_verified:false` (HEAD failed because youtube.com was proxy-blocked). Fix: added `is_ai_video()` (brand/AI-phrase, or bare "ai"/"ml" only with an English AI cue — a bare word-boundary match is NOT enough because "Ai" is a real word in Indonesian/Vietnamese) and made `pick_top()` **drop any candidate that fails URL verification** instead of surfacing it. Tests: `tests/test_youtube_ai_gate.py`.
   6. **Empty PDF still exited 0** — every scraper returned empty without raising, so the runner's `any([...])` "all scrapers failed" guard (true on no-exception) passed and a hollow PDF shipped, no Slack alert. Fix: `run_daily_pipeline.py` now adds a **content gate after scraping** — `rss_articles == 0` (the backbone of 14+ sections, a rolling 7-day pool, so zero ⇒ blocked/broken, not a quiet day) aborts with `return False`, which fires the cloud Slack failure alert. *Rule: assert real content landed, never just "no exception."*
 - **2026-06-13 — routine kept scraping in the sandbox despite the two-stage split (403 abort, no PDF)**: the two-stage code shipped to `main` (Stage 1 Actions scraper + `pipeline-state` branch + enrichment-only Stage 2), but the **claude.ai routine prompt was never switched over** — it still ran `python3 tools/run_daily_pipeline.py`, which scrapes RSS + jobs inside the cloud sandbox → every host 403'd → `ABORT: zero RSS articles`, `analyzed_content.json` never written, no PDF. Stage 1's fresh `pipeline-state` was sitting unused. Fix: replaced the live routine (`trig_018UFpSohtbZ9fvHQRJmaPtR`) prompt with the Stage-2 enrichment-only prompt — it `git checkout origin/pipeline-state -- .tmp`, verifies the state is <18h old (an age check, NOT date-equality: Stage 1 runs 23:15 IST = "yesterday" in IST vs the 00:00 IST routine day, so equality would false-positive), then enriches→PDF→delivers and NEVER scrapes. **Rule: the routine prompt — not this workflow file or `main` — is what the cloud agent actually executes; any change to the two-stage flow MUST update the live routine via the `schedule` skill in the same change, or the cloud keeps running the old prompt.**
+- **2026-06-15 — Stage 1 silent failure after repo migration (no PDF, no Slack alert)**: After migrating from `rahulmeenaailead-commits` to `rahulaachaaaaa`, GitHub Actions secrets don't carry over. `daily.yml` cron fired at 22:30 IST with empty `SLACK_BOT_TOKEN` — the Slack failure step sent `Authorization: Bearer ` (no token), got `{"ok":false,"error":"not_authed"}` from Slack, printed it but didn't raise, so the step appeared to succeed and the user received no alert. `pipeline-state` was never updated. Stage 2 correctly detected the 24h-stale state and sent a failure via the claude.ai Slack connector, but no PDF was delivered. Fixes: (1) `daily.yml` now emits `::warning::` annotations for each empty critical secret at run start; (2) Slack failure notification step raises on empty token or `ok:false` so the step is marked failed in the Actions log; (3) Stage 2 routine now attempts `workflow_dispatch` on `daily.yml` when stale state is detected, polls every 90 s for up to 20 min, and only sends the failure Slack if recovery times out or the dispatch is rejected. **Rule: after any repo migration, immediately go to GitHub → Settings → Secrets and re-add all secrets before the next cron window fires.**
 - **2026-06-03 — section reorder + content-intent refresh**: reordered `SECTION_ORDER`; benchmarks now render as a real grid (`build_benchmark_table_section`); hackathons gained accelerator/acceleration-program sources; New AI Tools floats the user's build stack; per-section synthesis intent for Elon/Grok, Unaddressed Problems, Business Opportunities, AI Automation, General News documented above for the enrichment step. Rule: PDF order lives ONLY in `generate_pdf.SECTION_ORDER`; CLAUDE.md + this table are the human spec — keep all three in sync when reordering.

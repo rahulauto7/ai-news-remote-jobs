@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-16T20:13:25.535071",
+  "updated_at": "2026-06-18T00:20:26.940281",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -696,6 +696,16 @@
       "https://www.thehindu.com/news/national/delhi-police-arrest-seven-bust-pakistan-backed-terror-syndicate/article71110399.ece": "2026-06-16",
       "https://www.thehindu.com/news/national/supreme-court-seeks-responses-of-centre-states-on-plea-for-use-of-aadhaar-as-identity-proof-only/article71108039.ece": "2026-06-16",
       "https://www.thehindu.com/news/national/rice-dhal-and-unanswered-distress-calls-death-of-a-mariner-onboard-celestial-sea/article71110014.ece": "2026-06-16"
+    },
+    "qrsi": {
+      "https://arxiv.org/abs/2606.18019v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.12344v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.15020v1": "2026-06-18",
+      "https://the-decoder.com/openai-researchers-want-to-predict-how-often-ai-models-will-fail-before-launch/": "2026-06-18",
+      "https://arxiv.org/abs/2606.18155v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.17500v1": "2026-06-18",
+      "https://economictimes.indiatimes.com/tech/artificial-intelligence/g7-leaders-vow-closer-ties-on-ai-as-they-hash-out-trusted-partners-scheme/articleshow/131804928.cms": "2026-06-18",
+      "https://arxiv.org/abs/2606.17001v1": "2026-06-18"
     }
   }
 }

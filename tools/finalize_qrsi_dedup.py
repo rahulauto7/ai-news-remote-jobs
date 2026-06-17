@@ -8,22 +8,25 @@ getting recorded, so they could repeat indefinitely. This script runs the
 deferred dedup+record pass for just those two sections, once their contents are
 final.
 
+Why a separate "qrsi" namespace (not shared "news"):
+Articles qualifying for quantum/RSI frequently appear in global_ai_news first
+(Stage 1 routes everything it can't classify there). Sharing the "news" namespace
+means those URLs are recorded when they appear in global_ai_news, then blocked
+from ever entering quantum/RSI. Using a dedicated "qrsi" namespace means only
+articles that have PREVIOUSLY APPEARED IN QUANTUM/RSI are blocked — an article
+that appeared in global_ai_news yesterday is still eligible to get proper
+treatment in the quantum or RSI section today.
+
 Run this:
   - In `run_daily_pipeline.py`, right after `dedupe_and_backfill.main()` (no
-    enrichment happens in that script, so this is the only pass those two
-    sections get there).
+    enrichment happens in that script, so this is a no-op when sections are
+    still empty from Stage 1).
   - Again in the Stage 2 cloud routine, after AGENT ENRICHMENT and before the
     YouTube-ideas + PDF steps — this is the call that actually matters, since
     enrichment is what repopulates these sections.
 
-Safe to call twice in the same day's pipeline: both calls reuse the seen-set
-snapshot `dedupe_and_backfill.py` wrote BEFORE it recorded anything, so an
-item Stage 1 already kept won't be mistaken for "already seen" by Stage 2's
-call just because Stage 1 stamped it minutes earlier.
-
 Reads/writes: .tmp/analyzed_content.json (in place)
-Reads:        .tmp/_qrsi_dedup_seen.json (snapshot; falls back to a fresh
-              content_history.recently_seen() call if missing)
+Reads:        data/content_history.json (via content_history module, "qrsi" namespace)
 """
 
 from __future__ import annotations
@@ -35,21 +38,13 @@ import sys
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
-from tools.dedupe_and_backfill import (
-    OUTPUT_FILE, NEWS_NS, DEDUP_DAYS, DEFERRED_DEDUP_SECTIONS, SEEN_SNAPSHOT_FILE,
-)
 from tools import content_history
 
+OUTPUT_FILE = os.path.join(PROJECT_ROOT, ".tmp", "analyzed_content.json")
 
-def _load_seen_snapshot() -> set:
-    if os.path.exists(SEEN_SNAPSHOT_FILE):
-        try:
-            with open(SEEN_SNAPSHOT_FILE, "r", encoding="utf-8") as f:
-                return set(json.load(f))
-        except Exception:
-            pass
-    # Standalone invocation with no prior dedupe_and_backfill run this session.
-    return content_history.recently_seen(NEWS_NS, DEDUP_DAYS)
+QRSI_NS = "qrsi"
+QRSI_DEDUP_DAYS = 7
+DEFERRED_DEDUP_SECTIONS = {"quantum_ai_research", "ai_self_improvement_rsi"}
 
 
 def main() -> int:
@@ -64,7 +59,8 @@ def main() -> int:
         print("[finalize_qrsi_dedup] malformed analyzed_content.json — skipping")
         return 0
 
-    seen = _load_seen_snapshot()
+    # Articles previously shown IN quantum/RSI sections (own namespace, not shared news).
+    seen = content_history.recently_seen(QRSI_NS, QRSI_DEDUP_DAYS)
 
     dropped = 0
     surfaced: list[str] = []
@@ -77,7 +73,7 @@ def main() -> int:
         sections[sec] = kept
         surfaced.extend(it.get("url") or "" for it in kept if it.get("url"))
 
-    content_history.record_shown(NEWS_NS, surfaced)
+    content_history.record_shown(QRSI_NS, surfaced)
 
     doc["sections"] = sections
     doc["total_items_analyzed"] = sum(
@@ -88,7 +84,8 @@ def main() -> int:
 
     print(
         f"[finalize_qrsi_dedup] dropped {dropped} repeat(s) from "
-        f"{sorted(DEFERRED_DEDUP_SECTIONS)}, recorded {len(set(surfaced))} URL(s)"
+        f"{sorted(DEFERRED_DEDUP_SECTIONS)}, recorded {len(set(surfaced))} URL(s) "
+        f"in '{QRSI_NS}' history"
     )
     return 0
 

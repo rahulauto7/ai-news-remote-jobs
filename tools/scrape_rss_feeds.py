@@ -53,6 +53,12 @@ FEEDS = {
     # AI safety / alignment / policy research — feeds the RSI section, which the
     # general-AI news feeds rarely surface (alignment papers live on arXiv cs.CY).
     "arXiv CS & Society": "http://export.arxiv.org/api/query?search_query=cat:cs.CY&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    # Software engineering with AI — LLM-assisted dev, coding agents, code generation,
+    # MCP, agent frameworks. Primary source for solo Claude Code developer research.
+    "arXiv Software Engineering": "http://export.arxiv.org/api/query?search_query=cat:cs.SE&sortBy=submittedDate&sortOrder=descending&max_results=25",
+    # Simon Willison — best independent daily commentary on LLM developer tools,
+    # Claude Code patterns, MCP, agent architectures, and practical AI engineering.
+    "Simon Willison's Blog": "https://simonwillison.net/atom/everything/",
 
     # Music Industry / Copyright
     # Hypebot's hosted feed went 404 in 2026-04 — dropped. MBW + DMN cover the same beat.

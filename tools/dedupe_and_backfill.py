@@ -49,6 +49,16 @@ DEDUP_DAYS = 7
 #    section. This is the user's most important section — it must never empty.
 DEDUP_EXEMPT = {"ai_model_benchmarks", "product_showcase_opportunities"}
 
+# Sections whose dedup is DEFERRED to tools/finalize_qrsi_dedup.py, run after
+# AGENT ENRICHMENT. Enrichment is the step that "confirms/repopulates" these two
+# sections by reasoning over the unrouted pool — if we dedup+record them here
+# (before enrichment runs), any item the agent adds afterward skips the
+# seen-history check entirely and never gets recorded either, so it can repeat
+# indefinitely. Deferring means they're checked exactly once, against the final
+# post-enrichment contents. See SEEN_SNAPSHOT_FILE below.
+DEFERRED_DEDUP_SECTIONS = {"quantum_ai_research", "ai_self_improvement_rsi"}
+SEEN_SNAPSHOT_FILE = os.path.join(TMP_DIR, "_qrsi_dedup_seen.json")
+
 # ── Final deterministic guard over the categorized sections ───────────────────
 # Probabilistic categorization (the Claude agent OR the keyword fallback) can
 # misroute non-AI headlines into AI-only sections and leave >24h items behind.
@@ -182,6 +192,14 @@ def main() -> int:
 
     seen = content_history.recently_seen(NEWS_NS, DEDUP_DAYS)
 
+    # Snapshot the pre-record seen set for finalize_qrsi_dedup.py, which dedups
+    # DEFERRED_DEDUP_SECTIONS after AGENT ENRICHMENT. Using this snapshot (rather
+    # than recomputing from disk later) means a same-day double-call (Stage 1's
+    # own finalize pass, then Stage 2's after enrichment) won't self-collide with
+    # stamps this run is about to write below.
+    with open(SEEN_SNAPSHOT_FILE, "w", encoding="utf-8") as f:
+        json.dump(sorted(seen), f)
+
     # URLs already placed anywhere (used to compute the unrouted pool).
     placed_urls = {
         (it.get("url") or "")
@@ -194,7 +212,7 @@ def main() -> int:
     # --- 1. Cross-day dedup (non-exempt RSS sections) ---
     dropped = 0
     for sec in rss_sections:
-        if sec in DEDUP_EXEMPT:
+        if sec in DEDUP_EXEMPT or sec in DEFERRED_DEDUP_SECTIONS:
             continue
         kept = [it for it in sections[sec] if (it.get("url") or "") not in seen]
         dropped += len(sections[sec]) - len(kept)
@@ -216,9 +234,12 @@ def main() -> int:
     non_ai_dropped, stale_dropped = _sanitize_sections(sections)
 
     # --- 3. Record surfaced RSS URLs so tomorrow rotates them out ---
+    # DEFERRED_DEDUP_SECTIONS are recorded later by finalize_qrsi_dedup.py, once
+    # their post-enrichment contents are final.
     surfaced = [
         (it.get("url") or "")
         for sec in rss_sections
+        if sec not in DEFERRED_DEDUP_SECTIONS
         for it in sections[sec]
         if (it.get("url") or "")
     ]

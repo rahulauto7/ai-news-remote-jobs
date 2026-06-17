@@ -6,10 +6,11 @@ sections instead of re-showing the same items every day (the 7-day RSS window
 otherwise overlaps ~6 of 7 days between consecutive runs).
 
 Stored in data/content_seen.json — NOT .tmp/, which is disposable and wiped
-between runs. Top-level namespaces ("news", "youtube", "instagram") each map an
-item id (URL / video_id / reel shortcode) -> the last date (YYYY-MM-DD) it was
-shown. Entries older than PRUNE_DAYS are dropped on each write so the file stays
-small. Jobs keep their own store (data/jobs_seen.json) and are untouched.
+between runs. Top-level namespaces ("news", "youtube", "instagram", "trends")
+each map an item id (URL / video_id / reel shortcode / normalized topic key) ->
+the last date (YYYY-MM-DD) it was shown. Entries older than PRUNE_DAYS are
+dropped on each write so the file stays small. Jobs keep their own store
+(data/jobs_seen.json) and are untouched.
 """
 
 import json
@@ -21,7 +22,7 @@ DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 HISTORY_FILE = os.path.join(DATA_DIR, "content_seen.json")
 PRUNE_DAYS = 30
 
-VALID_NAMESPACES = ("news", "youtube", "instagram")
+VALID_NAMESPACES = ("news", "youtube", "instagram", "trends")
 
 
 def _load_all() -> dict:

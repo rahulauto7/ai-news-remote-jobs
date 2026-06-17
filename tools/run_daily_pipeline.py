@@ -351,6 +351,14 @@ def run(dry_run=False, force_fallback=False, analyzer="agent"):
     from tools.dedupe_and_backfill import main as dedupe_backfill
     step("Dedup + Backfill Sections", dedupe_backfill, telemetry_steps)
 
+    # Finalize the deferred quantum/RSI dedup (see finalize_qrsi_dedup.py
+    # docstring). No AGENT ENRICHMENT runs in this script, so this is the only
+    # dedup pass those two sections get when this is the whole pipeline (Stage 1
+    # / local runs). The cloud routine (Stage 2) calls this again after its own
+    # enrichment step, which is what actually repopulates these sections.
+    from tools.finalize_qrsi_dedup import main as finalize_qrsi_dedup
+    step("Finalize Quantum/RSI Dedup", finalize_qrsi_dedup, telemetry_steps)
+
     # Ensure YouTube ideas + section analysis files exist before the PDF step.
     # generate_youtube_ideas now writes a deterministic 3-idea fallback from the
     # finalised analyzed_content.json; on cloud runs the Claude agent overwrites

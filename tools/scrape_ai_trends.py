@@ -11,8 +11,12 @@ three free sources:
 
 Each source contributes "signals". The aggregator buckets signals by a
 normalized topic key (lowercase, stop-words stripped) and scores each topic
-by combined signal strength. Output: .tmp/ai_trends.json with the top 20
-topics, sample URLs per topic, and a `sources` tag list per topic.
+by combined signal strength. A prefer-fresh rotation pass (namespace "trends"
+in data/content_seen.json, TREND_COOLDOWN_DAYS window) then fills the top 20
+from topics not shown in the last 2 days first, falling back to repeats only
+if there aren't enough fresh ones — so a topic that's merely still trending
+isn't dropped, but it stops crowding out fresher ones. Output: .tmp/ai_trends.json
+with the top 20 topics, sample URLs per topic, and a `sources` tag list per topic.
 
 Env vars (optional — each source degrades gracefully if missing or fails):
   REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT
@@ -39,7 +43,18 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 OUTPUT_FILE = os.path.join(TMP_DIR, "ai_trends.json")
 
+sys.path.insert(0, PROJECT_ROOT)
+from tools import content_history
+
 load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
+
+# Namespace + cooldown for cross-day topic rotation (see aggregate_topics /
+# run()). Shorter than the 7-day news dedup window because trending topics are
+# expected to legitimately persist longer than news articles — this only
+# de-prioritizes repeats in favor of fresher ones, it never hard-drops a topic
+# that's still genuinely the only thing trending.
+TRENDS_NS = "trends"
+TREND_COOLDOWN_DAYS = 2
 
 USER_AGENT = "Mozilla/5.0 (compatible; ai-news-trends-bot/1.0)"
 
@@ -353,8 +368,12 @@ def fetch_reddit_ai() -> list[dict]:
 
 
 # ── Aggregation ──────────────────────────────────────────────────────────────
-def aggregate_topics(signals: list[dict], top_n: int = 20) -> list[dict]:
-    """Cluster signals by normalized topic key. Score = sum of log-scaled signals."""
+def aggregate_topics(signals: list[dict], top_n: int = 40) -> list[dict]:
+    """Cluster signals by normalized topic key. Score = sum of log-scaled signals.
+
+    Returns a candidate pool larger than the final section size (default 40,
+    vs. the 20 actually shown) so run() can apply prefer-fresh rotation before
+    slicing down to the top 20."""
     buckets: dict[str, dict] = {}
     for sig in signals:
         topic_raw = (sig.get("topic") or "").strip()
@@ -406,7 +425,17 @@ def run() -> bool:
     signals.extend(fetch_hn_ai())
     signals.extend(fetch_reddit_ai())
 
-    topics = aggregate_topics(signals)
+    candidates = aggregate_topics(signals)
+
+    # Prefer-fresh rotation: fill the top 20 from topics not recently shown
+    # first, only falling back to repeats when there aren't enough fresh ones
+    # to fill the section (mirrors the viral video/reel "widen-then-note"
+    # dedup pattern used elsewhere in this pipeline).
+    seen = content_history.recently_seen(TRENDS_NS, TREND_COOLDOWN_DAYS)
+    fresh = [t for t in candidates if t["norm_key"] not in seen]
+    repeat = [t for t in candidates if t["norm_key"] in seen]
+    topics = (fresh + repeat)[:20]
+    content_history.record_shown(TRENDS_NS, [t["norm_key"] for t in topics])
 
     payload = {
         "generated_at": started,

@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,9 +56,46 @@ DEDUP_EXEMPT = {"ai_model_benchmarks", "product_showcase_opportunities"}
 # (before enrichment runs), any item the agent adds afterward skips the
 # seen-history check entirely and never gets recorded either, so it can repeat
 # indefinitely. Deferring means they're checked exactly once, against the final
-# post-enrichment contents. See SEEN_SNAPSHOT_FILE below.
+# post-enrichment contents. finalize_qrsi_dedup.py uses its own "qrsi" namespace
+# (not "news"), so articles that appeared in other sections on previous days are
+# still eligible to receive dedicated quantum/RSI treatment.
 DEFERRED_DEDUP_SECTIONS = {"quantum_ai_research", "ai_self_improvement_rsi"}
-SEEN_SNAPSHOT_FILE = os.path.join(TMP_DIR, "_qrsi_dedup_seen.json")
+
+# ── Title-similarity dedup within a section ───────────────────────────────────
+_STOP = {"a", "an", "the", "and", "or", "of", "for", "to", "in", "on", "at",
+         "with", "is", "are", "was", "were", "by", "its", "this", "that", "new"}
+
+def _title_key(title: str) -> frozenset:
+    words = re.findall(r"[a-z]+", title.lower())
+    return frozenset(w for w in words if w not in _STOP and len(w) > 2)
+
+
+def _dedup_section_by_title(items: list) -> list:
+    """Drop articles whose title shares >55% Jaccard overlap with a prior item.
+
+    Collapses multi-source same-story coverage (e.g. TechCrunch + Verge + VentureBeat
+    all covering the same release). Keeps the highest-relevance item per story.
+    """
+    sorted_items = sorted(
+        items,
+        key=lambda x: x.get("relevance_score", x.get("relevance", 0)),
+        reverse=True,
+    )
+    kept: list = []
+    seen_keys: list[frozenset] = []
+    for item in sorted_items:
+        key = _title_key(item.get("title", ""))
+        if not key:
+            kept.append(item)
+            continue
+        if any(
+            len(key & sk) / max(len(key | sk), 1) > 0.55
+            for sk in seen_keys
+        ):
+            continue
+        seen_keys.append(key)
+        kept.append(item)
+    return kept
 
 # ── Final deterministic guard over the categorized sections ───────────────────
 # Probabilistic categorization (the Claude agent OR the keyword fallback) can
@@ -192,14 +230,6 @@ def main() -> int:
 
     seen = content_history.recently_seen(NEWS_NS, DEDUP_DAYS)
 
-    # Snapshot the pre-record seen set for finalize_qrsi_dedup.py, which dedups
-    # DEFERRED_DEDUP_SECTIONS after AGENT ENRICHMENT. Using this snapshot (rather
-    # than recomputing from disk later) means a same-day double-call (Stage 1's
-    # own finalize pass, then Stage 2's after enrichment) won't self-collide with
-    # stamps this run is about to write below.
-    with open(SEEN_SNAPSHOT_FILE, "w", encoding="utf-8") as f:
-        json.dump(sorted(seen), f)
-
     # URLs already placed anywhere (used to compute the unrouted pool).
     placed_urls = {
         (it.get("url") or "")
@@ -217,6 +247,22 @@ def main() -> int:
         kept = [it for it in sections[sec] if (it.get("url") or "") not in seen]
         dropped += len(sections[sec]) - len(kept)
         sections[sec] = kept
+
+    # --- 1b. Title-similarity dedup within each section ---
+    # Multiple RSS sources often cover the same story with different URLs.
+    # Collapse same-story duplicates, keeping the highest-relevance item.
+    title_dropped = 0
+    _title_exempt = DEDUP_EXEMPT | DEFERRED_DEDUP_SECTIONS | {
+        "remote_jobs", "ai_search_trends", "viral_video_landscape",
+        "instagram_viral_reels", "youtube_content_ideas", "ai_model_benchmarks",
+        "product_showcase_opportunities",
+    }
+    for sec in rss_sections:
+        if sec in _title_exempt:
+            continue
+        before = len(sections[sec])
+        sections[sec] = _dedup_section_by_title(sections[sec])
+        title_dropped += before - len(sections[sec])
 
     # --- 2. Min-3 backfill: DISABLED (user rule 2026-06-13) ---
     # The user's standing rule is "just the 24-hour rule, no minimum floor":
@@ -253,9 +299,9 @@ def main() -> int:
         json.dump(doc, f, indent=2, ensure_ascii=False)
 
     print(
-        f"[dedupe_backfill] dropped {dropped} repeat(s), backfilled {added}, "
-        f"scrubbed {non_ai_dropped} non-AI + {stale_dropped} stale (>24h), "
-        f"recorded {len(set(surfaced))} URL(s) in '{NEWS_NS}' history"
+        f"[dedupe_backfill] dropped {dropped} URL-repeat(s) + {title_dropped} same-story "
+        f"duplicate(s), backfilled {added}, scrubbed {non_ai_dropped} non-AI + "
+        f"{stale_dropped} stale (>24h), recorded {len(set(surfaced))} URL(s) in '{NEWS_NS}' history"
     )
     return 0
 

@@ -54,7 +54,7 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 # de-prioritizes repeats in favor of fresher ones, it never hard-drops a topic
 # that's still genuinely the only thing trending.
 TRENDS_NS = "trends"
-TREND_COOLDOWN_DAYS = 3
+TREND_COOLDOWN_DAYS = 4
 
 USER_AGENT = "Mozilla/5.0 (compatible; ai-news-trends-bot/1.0)"
 
@@ -67,6 +67,7 @@ GOOGLE_TRENDS_SEEDS = [
 AI_SUBREDDITS = [
     "MachineLearning", "LocalLLaMA", "singularity", "ArtificialIntelligence",
     "OpenAI", "Anthropic", "ClaudeAI", "AI_Agents",
+    "AIAssistants", "ChatGPT", "StableDiffusion", "PromptEngineering",
 ]
 
 # English stop-words stripped during topic normalization.
@@ -253,7 +254,7 @@ def fetch_hn_ai() -> list[dict]:
                 "https://hn.algolia.com/api/v1/search"
                 f"?query={quote_plus(q)}&tags=story"
                 f"&numericFilters=created_at_i>{cutoff}"
-                "&hitsPerPage=20"
+                "&hitsPerPage=30"
             )
             r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=_HTTP_TIMEOUT)
             if r.status_code != 200:

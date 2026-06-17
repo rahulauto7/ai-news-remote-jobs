@@ -48,8 +48,14 @@ def _strip_html(s):
     return _TAG_RE.sub("", str(s)).strip()
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, PROJECT_ROOT)
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 OUTPUT_FILE = os.path.join(TMP_DIR, "hackathons.json")
+
+from tools import content_history  # noqa: E402 — must come after sys.path insert
+
+ACCEL_NS = "accelerators"
+ACCEL_COOLDOWN_DAYS = 4  # rotate curated list; each entry shows max every 4 days
 
 TIMEOUT = 20
 
@@ -751,43 +757,92 @@ CURATED_ACCELERATORS = [
 
 
 def fetch_accelerators(stats):
-    """Curated recurring AI accelerator / acceleration programs (always-available)."""
-    out = []
-    for title, url, region, tags, desc, eligibility, benefits in CURATED_ACCELERATORS:
+    """Curated recurring AI accelerator programs with 4-day rotation.
+
+    Prefer entries not shown in the last ACCEL_COOLDOWN_DAYS so the section
+    surfaces different programs each day. Always returns ≥3 items (fallback)
+    so the section never goes empty. Records shown titles after building the list.
+    """
+    recently_shown = content_history.recently_seen(ACCEL_NS, ACCEL_COOLDOWN_DAYS)
+
+    fresh, repeat = [], []
+    for entry in CURATED_ACCELERATORS:
+        title = entry[0]
+        norm = title.lower().strip()
+        target = repeat if norm in recently_shown else fresh
         item = normalize_item(
-            title=title, apply_url=url, platform="Accelerator",
-            deadline_iso=None, prize_summary=None, tags=tags,
-            description=desc, region=region,
-            eligibility=eligibility, benefits=benefits,
+            title=title, apply_url=entry[1], platform="Accelerator",
+            deadline_iso=None, prize_summary=None, tags=entry[3],
+            description=entry[4], region=entry[2],
+            eligibility=entry[5], benefits=entry[6],
         )
         if item:
-            out.append(item)
+            target.append(item)
             stats["ok"] += 1
-    return out
+
+    # Fresh first, then repeats; cap at 6 so there's room for live news picks.
+    candidates = (fresh + repeat)[:6]
+
+    # Never-empty guarantee: if rotation emptied us below 3, top up from full list.
+    if len(candidates) < 3:
+        for entry in CURATED_ACCELERATORS:
+            if len(candidates) >= 3:
+                break
+            item = normalize_item(
+                title=entry[0], apply_url=entry[1], platform="Accelerator",
+                deadline_iso=None, prize_summary=None, tags=entry[3],
+                description=entry[4], region=entry[2],
+                eligibility=entry[5], benefits=entry[6],
+            )
+            if item and item not in candidates:
+                candidates.append(item)
+
+    # Record titles so next run rotates them out.
+    content_history.record_shown(ACCEL_NS, [it["title"].lower().strip() for it in candidates])
+    return candidates
 
 
 def fetch_accelerator_news(stats):
-    """Surface freshly-announced AI accelerators/acceleration programs via Google
-    News RSS so the curated list is topped up with timely, dated opportunities."""
+    """Surface freshly-announced AI accelerators/acceleration programs worldwide
+    via Google News RSS so the curated list is topped up with timely opportunities."""
     out = []
     queries = [
-        "AI startup accelerator applications open",
+        # India-focused
+        "India AI startup accelerator program 2026 apply",
+        "IndiaAI Mission accelerator cohort 2026",
+        "NASSCOM AI startup acceleration program",
+        # Global
+        "AI startup accelerator applications open 2026",
+        "AI startup incubator application open 2026",
         "AI acceleration program for startups deadline",
-        "India AI startup accelerator cohort",
+        # Regional diversity
+        "Southeast Asia AI accelerator cohort 2026",
+        "Europe AI startup accelerator deadline 2026",
+        "AI founders program grant application 2026",
+        "Middle East Africa AI startup accelerator",
     ]
+    seen_links: set = set()
     for q in queries:
         url = "https://news.google.com/rss/search?q=" + requests.utils.quote(q) + "&hl=en-US&gl=US&ceid=US:en"
         try:
             r = requests.get(url, timeout=TIMEOUT, headers=_headers())
             r.raise_for_status()
             soup = BeautifulSoup(r.content, "xml")
-            for it in soup.find_all("item")[:6]:
+            for it in soup.find_all("item")[:10]:
                 title = _strip_html(it.title.text if it.title else "")
                 link = it.link.text if it.link else ""
-                if not title or not link:
+                if not title or not link or link in seen_links:
                     continue
                 if not passes_ai_filter(title):
                     continue
+                # Must signal an open opportunity (apply/deadline/cohort/program/grant/open)
+                title_low = title.lower()
+                if not any(kw in title_low for kw in (
+                    "apply", "deadline", "cohort", "application", "program",
+                    "accelerat", "incubat", "grant", "open", "launch",
+                )):
+                    continue
+                seen_links.add(link)
                 deadline = _parse_deadline(title)
                 item = normalize_item(
                     title=title, apply_url=link, platform="Accelerator (news)",

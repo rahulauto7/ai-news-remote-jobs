@@ -54,7 +54,7 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 # de-prioritizes repeats in favor of fresher ones, it never hard-drops a topic
 # that's still genuinely the only thing trending.
 TRENDS_NS = "trends"
-TREND_COOLDOWN_DAYS = 2
+TREND_COOLDOWN_DAYS = 3
 
 USER_AGENT = "Mozilla/5.0 (compatible; ai-news-trends-bot/1.0)"
 
@@ -165,11 +165,27 @@ def fetch_google_trends() -> list[dict]:
                     _log(f"[google_trends:{geo_label}] budget {budget:.0f}s exhausted - stopping early")
                     break
                 batch = GOOGLE_TRENDS_SEEDS[batch_start:batch_start + 5]
-                pytrends.build_payload(kw_list=batch, timeframe="now 7-d", geo=geo_code)
-                try:
-                    related = pytrends.related_queries() or {}
-                except Exception as e:
-                    _log(f"[google_trends:{geo_label}] related_queries failed batch {batch_start}: {e}")
+                # Try 1-day for truly fresh daily signal; fall back to 4-hour if empty.
+                related = {}
+                for tf in ("now 1-d", "now 4-H"):
+                    pytrends.build_payload(kw_list=batch, timeframe=tf, geo=geo_code)
+                    try:
+                        _related = pytrends.related_queries() or {}
+                    except Exception as e:
+                        _log(f"[google_trends:{geo_label}] related_queries failed batch {batch_start} tf={tf}: {e}")
+                        _related = {}
+                    has_data = any(
+                        isinstance(v, dict) and (
+                            (v.get("rising") is not None and not v["rising"].empty) or
+                            (v.get("top") is not None and not v["top"].empty)
+                        )
+                        for v in _related.values()
+                    )
+                    if has_data:
+                        related = _related
+                        break
+                    _log(f"[google_trends:{geo_label}] no data for tf={tf} batch {batch_start}, trying fallback")
+                if not related:
                     continue
 
                 for seed, blocks in related.items():
@@ -190,7 +206,7 @@ def fetch_google_trends() -> list[dict]:
                                 "geo": geo_label,
                                 "sample_url": (
                                     f"https://trends.google.com/trends/explore?"
-                                    f"q={quote_plus(q)}&date=now+7-d"
+                                    f"q={quote_plus(q)}&date=now+1-d"
                                     + (f"&geo={geo_code}" if geo_code else "")
                                 ),
                             })
@@ -210,7 +226,7 @@ def fetch_google_trends() -> list[dict]:
                                 "geo": geo_label,
                                 "sample_url": (
                                     f"https://trends.google.com/trends/explore?"
-                                    f"q={quote_plus(q)}&date=now+7-d"
+                                    f"q={quote_plus(q)}&date=now+1-d"
                                     + (f"&geo={geo_code}" if geo_code else "")
                                 ),
                             })

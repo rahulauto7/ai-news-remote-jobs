@@ -280,13 +280,9 @@ RULES: list[tuple[list[str], str, int]] = [
     (["deepfake", "ai fake", "fake ai", "ai scam", "ai hallucin", "ai bias",
       "ai risk", "ai safety failure", "ai misuse", "synthetic media",
       "ai avatar boost", "fake avatar"], "unaddressed_ai_problems", 4),
-    # Quantum + AI. Broad quantum keywords here cast a wide net; the strict gate
-    # below (require BOTH quantum AND AI/ML signal) is what keeps pure-quantum and
-    # pure-AI items out. Narrow bigrams alone (the old list) missed nearly every
-    # real quantum story because they rarely contain the literal phrase "quantum ai".
-    (["quantum", "qubit", "qpu", "quantum computing", "quantum machine learning",
-      "quantum neural", "quantum algorithm", "quantum error correction"],
-     "quantum_ai_research", 4),
+    # quantum_ai_research is omitted from RULES — Stage 2 cloud agent owns it via
+    # semantic evaluation (no keyword matching). See workflows/daily_ai_news_remote.md
+    # step 6.7 for the per-article reading + judgment procedure.
     # Product showcase / hackathons & competitions
     # NOTE: Native-scraped hackathons (.tmp/hackathons.json) are merged into
     # product_showcase_opportunities after this stage. These keyword matches
@@ -301,9 +297,9 @@ RULES: list[tuple[list[str], str, int]] = [
     # AI benchmarks
     (["benchmark", "leaderboard", "mmlu", "humaneval", "gpqa", "swe-bench",
       "arena ranking", "eval suite", "model ranking"], "ai_model_benchmarks", 4),
-    # AI self-improvement / RSI
-    (["agi", "alignment", "self-improv", "recursive self", "superintelligence",
-      "rsi", "ai safety research", "openai safety", "anthropic alignment"], "ai_self_improvement_rsi", 4),
+    # ai_self_improvement_rsi is omitted from RULES — Stage 2 cloud agent owns it
+    # via semantic evaluation (no keyword matching). See workflows/daily_ai_news_remote.md
+    # step 6.7 for the per-article reading + judgment procedure.
     # AI automation & businesses (tools / workflows)
     (["n8n", "zapier", "make.com", "rpa", "workflow automation", "agentic workflow",
       "automation platform", "no-code ai", "low-code ai"], "ai_business_automation", 4),
@@ -380,18 +376,6 @@ def classify(article: dict) -> tuple[str, int, str]:
     # Rule-based classification
     for keywords, section, base_rel in RULES:
         if kw_match(text, keywords):
-            # Strict gate for Quantum + AI: require BOTH quantum and AI/ML signals.
-            # The AI test uses is_ai() (full AI_TERMS, word-safe) rather
-            # than has_any(AI_ML_TERMS) whose literal " ai " substring dropped nearly
-            # every real arXiv "quantum machine learning" paper on a spacing technicality.
-            if section == "quantum_ai_research":
-                if not (has_any(text, QUANTUM_TERMS) and is_ai(text)):
-                    continue
-            # RSI section is AI-self-improvement ONLY: require an AI/ML signal so
-            # generic "alignment"/"agi" hits without AI context don't leak in.
-            if section == "ai_self_improvement_rsi":
-                if not is_ai(text):
-                    continue
             # India section is AI-ONLY: drop non-AI Indian business/tech headlines.
             if section == "indian_ai_industry":
                 if not is_ai(text):

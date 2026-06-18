@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-17T19:25:41.847864",
+  "updated_at": "2026-06-18T18:46:41.615848",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -804,6 +804,17 @@
       "automation course": "2026-06-17",
       "launch hn adam yc w25 open-source cad": "2026-06-17"
     },
-    "qrsi": {}
+    "qrsi": {
+      "https://arxiv.org/abs/2606.18188v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.17852v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.18247v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.18193v1": "2026-06-18",
+      "https://arxiv.org/abs/2606.18142v1": "2026-06-18",
+      "https://openai.com/index/deployment-simulation": "2026-06-18",
+      "https://arxiv.org/abs/2606.18129v1": "2026-06-18",
+      "https://www.theverge.com/ai-artificial-intelligence/951653/pew-research-ai-survey": "2026-06-18",
+      "https://arxiv.org/abs/2606.18057v1": "2026-06-18",
+      "https://simonwillison.net/2026/Jun/16/fable-5-export-controls/": "2026-06-18"
+    }
   }
 }

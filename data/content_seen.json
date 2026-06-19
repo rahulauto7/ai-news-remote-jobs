@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T18:53:23.675683",
+  "updated_at": "2026-06-20T03:39:57.634805",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -919,6 +919,18 @@
       "generative services": "2026-06-19",
       "openai chatgpt": "2026-06-19"
     },
-    "qrsi": {}
+    "qrsi": {
+      "https://arxiv.org/abs/measuring-biological-capabilities-ai": "2026-06-20",
+      "https://arxiv.org/abs/llm-agent-safety-red-teaming": "2026-06-20",
+      "https://the-decoder.com/openai-researchers-show-small-doses-of-beneficial-trait-training/": "2026-06-20",
+      "https://arxiv.org/abs/contagion-evaluator-bias-multiagent": "2026-06-20",
+      "https://arxiv.org/abs/challenges-ai-policy-grassroots": "2026-06-20",
+      "https://arxiv.org/abs/over-privileged-tool-selection-llm": "2026-06-20",
+      "https://arxiv.org/abs/quantum-ring-all-reduce": "2026-06-20",
+      "https://arxiv.org/abs/qiskit-llm-migration": "2026-06-20",
+      "https://arxiv.org/abs/entropy-qutrit-neural": "2026-06-20",
+      "https://arxiv.org/abs/quantum-kernels-spectral": "2026-06-20",
+      "https://arxiv.org/abs/neutral-atom-circuit-mapping": "2026-06-20"
+    }
   }
 }

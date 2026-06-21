@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-21T18:17:46.016226",
+  "updated_at": "2026-06-21T18:41:55.856163",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -1012,6 +1012,16 @@
       "ogura": "2026-06-21",
       "council": "2026-06-21"
     },
-    "qrsi": {}
+    "qrsi": {
+      "https://arxiv.org/abs/2606.20344v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.20504v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.20402v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.20128v1": "2026-06-21",
+      "https://openai.com/index/deployment-simulation": "2026-06-21",
+      "https://arxiv.org/abs/2606.20508v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.20408v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.20493v1": "2026-06-21",
+      "https://arxiv.org/abs/2606.19816v1": "2026-06-21"
+    }
   }
 }

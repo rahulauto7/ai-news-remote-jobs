@@ -359,6 +359,15 @@ def run(dry_run=False, force_fallback=False, analyzer="agent"):
     from tools.finalize_qrsi_dedup import main as finalize_qrsi_dedup
     step("Finalize Quantum/RSI Dedup", finalize_qrsi_dedup, telemetry_steps)
 
+    # Re-run the strict last-24h + AI-only guard. In this script it's a harmless
+    # second pass (main() already sanitized), but it's the SAME entry the Stage 2
+    # cloud routine must call AFTER its AGENT ENRICHMENT step — enrichment adds/
+    # rewrites news items the early sanitize never sees, so without a post-
+    # enrichment pass >24h items leak into the PDF. Strict mode drops any news
+    # item that can't be proven within 24h (missing/unparseable date included).
+    from tools.dedupe_and_backfill import sanitize_only
+    step("Re-sanitize (strict 24h)", sanitize_only, telemetry_steps)
+
     # Ensure YouTube ideas + section analysis files exist before the PDF step.
     # generate_youtube_ideas now writes a deterministic 3-idea fallback from the
     # finalised analyzed_content.json; on cloud runs the Claude agent overwrites

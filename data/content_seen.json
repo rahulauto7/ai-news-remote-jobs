@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-21T18:17:46.016226",
+  "updated_at": "2026-06-23T00:17:58.764553",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -1012,6 +1012,10 @@
       "ogura": "2026-06-21",
       "council": "2026-06-21"
     },
-    "qrsi": {}
+    "qrsi": {
+      "https://x.com/elonmusk": "2026-06-23",
+      "https://the-decoder.com/five-eyes-intelligence-alliance-says-frontier-ai-models-could-reshape-offensive-cyber-ops-in-months/": "2026-06-23",
+      "https://economictimes.indiatimes.com/tech/technology/us-curbs-on-ai-spur-european-firms-to-spread-the-risk/articleshow/131913000.cms": "2026-06-23"
+    }
   }
 }

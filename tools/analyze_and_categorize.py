@@ -198,17 +198,48 @@ _STACK_TOOLS = (
 )
 
 
-def _within_hours(published_iso, hours):
-    """True if an ISO8601 `published` timestamp is within the last `hours`.
-    Missing/unparseable dates count as fresh (better to over-include than drop)."""
+def _parse_dt(published_iso):
+    """Best-effort parse of a published timestamp into an aware UTC datetime.
+    Handles ISO8601, RFC822 (RSS/email), and a few common human formats.
+    Returns None if nothing parses."""
     if not published_iso:
-        return True
+        return None
+    s = str(published_iso).strip()
     try:
-        dt = datetime.fromisoformat(published_iso)
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
+        dt = datetime.fromisoformat(s)
+        return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
     except Exception:
-        return True
+        pass
+    try:
+        from email.utils import parsedate_to_datetime
+        dt = parsedate_to_datetime(s)
+        if dt is not None:
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    except Exception:
+        pass
+    for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d",
+                "%B %d, %Y", "%b %d, %Y", "%d %B %Y", "%d %b %Y"):
+        try:
+            dt = datetime.strptime(s, fmt)
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+        except Exception:
+            continue
+    return None
+
+
+def _within_hours(published_iso, hours, strict=False):
+    """True if a `published` timestamp is within the last `hours`.
+
+    Lenient default (strict=False): missing/unparseable dates count as fresh —
+    better to over-include than drop in non-news contexts.
+
+    strict=True (news sections — user's hard last-24h rule): an item we cannot
+    PROVE is within the window is dropped. Missing or unparseable dates count as
+    NOT fresh, so agent-enriched items lacking an ISO date can't leak >24h news
+    into the PDF."""
+    dt = _parse_dt(published_iso)
+    if dt is None:
+        return not strict
     return dt >= datetime.now(timezone.utc) - timedelta(hours=hours)
 
 

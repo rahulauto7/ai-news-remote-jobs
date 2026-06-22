@@ -9,12 +9,15 @@ caught the misroute.
 
 import os
 import sys
+from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from tools.agent_analyze import is_ai
 from tools.dedupe_and_backfill import _sanitize_sections
+
+_FRESH = datetime.now(timezone.utc).isoformat()  # within the strict 24h gate
 
 
 def test_is_ai_rejects_non_ai_india_headlines():
@@ -43,10 +46,12 @@ def test_sanitize_drops_non_ai_india_item_despite_automation_angle():
             {  # non-AI headline; only the appended hook mentions AI
                 "title": "Air India crash probe begins in Ahmedabad",
                 "summary": "Investigators start probing the tragedy." + angle,
+                "published": _FRESH,
             },
             {  # genuinely AI
                 "title": "Anthropic opens an India engineering office",
                 "summary": "Anthropic expands its Claude team to Bengaluru." + angle,
+                "published": _FRESH,
             },
         ]
     }

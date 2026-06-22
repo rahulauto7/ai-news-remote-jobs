@@ -143,7 +143,8 @@ def _sanitize_sections(sections: dict) -> tuple[int, int]:
                 non_ai += 1
                 continue
             if sec in NEWS_24H_SECTIONS and not _within_hours(
-                    it.get("published") or it.get("posted"), NEWS_FRESH_HOURS):
+                    it.get("published") or it.get("posted"), NEWS_FRESH_HOURS,
+                    strict=True):
                 stale += 1
                 continue
             kept.append(it)
@@ -209,6 +210,37 @@ def _item_from_article(art: dict, section: str, rel: int, summary: str) -> dict:
         "published": art.get("published", "") or art.get("pubDate", ""),
         "relevance": rel,
     }
+
+
+def sanitize_only() -> int:
+    """Re-run ONLY the deterministic AI-only + strict-24h guard over the final
+    analyzed_content.json — no dedup, no history recording, no backfill.
+
+    The normal main() sanitize (step 6.6) runs BEFORE Stage 2 AGENT ENRICHMENT
+    (step 6.7), which rewrites/adds news items the early gate never sees. Without
+    a re-run, agent-enriched items older than 24h (or carrying a non-ISO date)
+    leak into the PDF — the "news from the last two days" bug. Call this AFTER
+    enrichment (step 6.7c) so the hard last-24h rule is enforced on the items the
+    PDF actually renders. Idempotent and side-effect-free; safe to call twice."""
+    if not os.path.exists(OUTPUT_FILE):
+        print(f"[sanitize] no {OUTPUT_FILE} — nothing to do")
+        return 0
+    with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+        doc = json.load(f)
+    sections = doc.get("sections", {})
+    if not isinstance(sections, dict):
+        print("[sanitize] malformed analyzed_content.json — skipping")
+        return 0
+    non_ai_dropped, stale_dropped = _sanitize_sections(sections)
+    doc["sections"] = sections
+    doc["total_items_analyzed"] = sum(
+        len(v) for v in sections.values() if isinstance(v, list)
+    )
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(doc, f, indent=2, ensure_ascii=False)
+    print(f"[sanitize] scrubbed {non_ai_dropped} non-AI + {stale_dropped} "
+          f"stale (>24h) item(s) post-enrichment")
+    return 0
 
 
 def main() -> int:
@@ -307,4 +339,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if "--sanitize-only" in sys.argv:
+        raise SystemExit(sanitize_only())
     raise SystemExit(main())

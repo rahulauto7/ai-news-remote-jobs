@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-26T18:28:27.790796",
+  "updated_at": "2026-06-26T18:45:50.897914",
   "seen": {
     "youtube": {
       "dGOke_VRwYY": "2026-06-02",
@@ -1279,6 +1279,12 @@
       "aws generative certification": "2026-06-26",
       "industry pouring millions into us elections": "2026-06-26"
     },
-    "qrsi": {}
+    "qrsi": {
+      "https://www.wired.com/story/anthropic-thinks-ai-can-only-be-safe-under-its-control/": "2026-06-26",
+      "https://techcrunch.com/2026/06/26/its-not-about-anthropic-vs-openai-anymore/": "2026-06-26",
+      "https://the-decoder.com/anthropic-doesnt-need-junior-engineers-anymore-thanks-to-ai-and-warns-of-an-economic-shock-when-other-industries-follow/": "2026-06-26",
+      "https://economictimes.indiatimes.com/tech/technology/living-on-borrowed-ai-won-t-end-well-for-india-warn-experts/articleshow/132000000.cms": "2026-06-26",
+      "https://inc42.com/features/project-kill-switch-can-rbi-protect-banks-nbfcs-from-rogue-ai-actors/": "2026-06-26"
+    }
   }
 }

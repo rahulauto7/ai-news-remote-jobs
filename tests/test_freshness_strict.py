@@ -64,3 +64,60 @@ def test_sanitize_drops_stale_and_undated_from_news():
     titles = [it["title"] for it in sections["global_ai_news"]]
     assert titles == ["OpenAI ships new AI model today"]
     assert stale == 2
+
+
+def test_quantum_rsi_get_seven_day_window():
+    # User rule 2026-07-02: niche research sections keep a 7-day window
+    # (dedup prevents repeats); everything else stays strictly 24h.
+    sections = {
+        "quantum_ai_research": [
+            {"title": "Quantum ML breakthrough in AI error correction",
+             "summary": "quantum neural network research", "published": _iso(72)},
+            {"title": "Old quantum AI story",
+             "summary": "quantum machine learning", "published": _iso(200)},
+        ],
+        "ai_self_improvement_rsi": [
+            {"title": "Self-improving AI agent rewrites its own model",
+             "summary": "recursive self-improvement LLM research", "published": _iso(100)},
+        ],
+        "global_ai_news": [
+            {"title": "AI model launch", "summary": "new LLM", "published": _iso(72)},
+        ],
+    }
+    _sanitize_sections(sections)
+    assert len(sections["quantum_ai_research"]) == 1      # 72h kept, 200h dropped
+    assert len(sections["ai_self_improvement_rsi"]) == 1  # 100h kept (<168h)
+    assert sections["global_ai_news"] == []               # 72h > 24h → dropped
+
+
+def test_general_news_drops_ai_items():
+    # general_news is the intentionally NON-AI section; AI stories are dupes.
+    sections = {
+        "general_news": [
+            {"title": "Earthquake damages 58,000 buildings",
+             "summary": "disaster relief underway", "published": _iso(3)},
+            {"title": "OpenAI launches new AI model",
+             "summary": "the LLM outperforms rivals", "published": _iso(3)},
+        ],
+    }
+    _sanitize_sections(sections)
+    titles = [it["title"] for it in sections["general_news"]]
+    assert titles == ["Earthquake damages 58,000 buildings"]
+
+
+def test_sanitize_only_collapses_same_story_duplicates(tmp_path, monkeypatch):
+    import json
+    from tools import dedupe_and_backfill as dnb
+    doc = {"sections": {"global_ai_news": [
+        {"title": "Anthropic releases Claude Fable 5 model today",
+         "summary": "AI model launch", "published": _iso(2), "relevance": 9},
+        {"title": "Anthropic releases Claude Fable 5 model",
+         "summary": "AI model launch again", "published": _iso(3), "relevance": 5},
+    ]}}
+    f = tmp_path / "analyzed_content.json"
+    f.write_text(json.dumps(doc))
+    monkeypatch.setattr(dnb, "OUTPUT_FILE", str(f))
+    dnb.sanitize_only()
+    out = json.loads(f.read_text())
+    assert len(out["sections"]["global_ai_news"]) == 1
+    assert "today" in out["sections"]["global_ai_news"][0]["title"]

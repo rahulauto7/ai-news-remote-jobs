@@ -290,6 +290,7 @@ def run(dry_run=False, force_fallback=False, analyzer="agent"):
                 "platform_type": platform,
                 "region": h.get("region", "Worldwide"),
                 "deadline_iso": h.get("deadline_iso"),
+                "is_new": bool(h.get("is_new")),
                 "prize_summary": h.get("prize_summary"),
                 "eligibility": h.get("eligibility"),
                 "benefits": h.get("benefits"),

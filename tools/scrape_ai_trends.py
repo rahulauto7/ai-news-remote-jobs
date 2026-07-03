@@ -102,6 +102,26 @@ def _normalize_topic(text: str) -> str:
     return " ".join(tokens[:8])  # cap at 8 meaningful tokens
 
 
+# AI-relevance gate for topics. Google Trends related-queries drift off-topic
+# (an AI seed can surface generic queries), and HN/Reddit titles merely
+# mentioning "ai" as a substring sneak in — user rule 2026-07-02: this section
+# is AI-only. Word-boundary keyword match, not substring.
+_AI_TOPIC_RE = re.compile(
+    r"\b(ai|a\.i\.|artificial intelligence|llm|llms|gpt|chatgpt|openai|claude|"
+    r"anthropic|gemini|copilot|midjourney|stable diffusion|diffusion model|"
+    r"machine learning|deep learning|neural|transformer|agent|agentic|agents|"
+    r"chatbot|prompt|rag|fine.?tun\w*|mcp|n8n|langchain|hugging.?face|"
+    r"deepseek|mistral|llama|grok|xai|sora|veo|genai|generative|automation|"
+    r"fable|mythos|opus|sonnet|haiku|qwen|nano.?banana|"
+    r"model|inference|multimodal|superintelligence|agi)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_ai_topic(text: str) -> bool:
+    return bool(_AI_TOPIC_RE.search(text or ""))
+
+
 # ── Google Trends ────────────────────────────────────────────────────────────
 def _patch_urllib3_for_pytrends() -> None:
     """pytrends 4.9.2 passes the old `method_whitelist` kwarg to urllib3's Retry,
@@ -396,6 +416,8 @@ def aggregate_topics(signals: list[dict], top_n: int = 40) -> list[dict]:
         topic_raw = (sig.get("topic") or "").strip()
         key = _normalize_topic(topic_raw)
         if not key or len(key) < 4:
+            continue
+        if not _is_ai_topic(topic_raw):
             continue
         b = buckets.setdefault(key, {
             "topic": topic_raw[:140],

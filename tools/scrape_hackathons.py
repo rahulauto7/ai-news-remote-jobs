@@ -57,6 +57,9 @@ from tools import content_history  # noqa: E402 — must come after sys.path ins
 ACCEL_NS = "accelerators"
 ACCEL_COOLDOWN_DAYS = 4  # rotate curated list; each entry shows max every 4 days
 
+SHOWCASE_SEEN_NS = "showcase_seen"
+SHOWCASE_SEEN_DAYS = 45  # titles first seen within this window keep history; new = never recorded
+
 TIMEOUT = 20
 
 UA_POOL = [
@@ -929,6 +932,17 @@ def main():
 
     deduped = dedupe(all_items)
     open_only = filter_open(deduped)
+
+    # Flag first-time entries so the PDF can badge them NEW; open items stay
+    # listed until their deadline passes, so the badge is how freshness reads.
+    seen_titles = content_history.recently_seen(SHOWCASE_SEEN_NS, SHOWCASE_SEEN_DAYS)
+    for it in open_only:
+        it["is_new"] = it["title"].lower().strip() not in seen_titles
+    content_history.record_shown(
+        SHOWCASE_SEEN_NS, [it["title"].lower().strip() for it in open_only]
+    )
+    _log(f"[new-flag] {sum(1 for it in open_only if it['is_new'])}/{len(open_only)} first-time items")
+
     sorted_items = sort_by_deadline(open_only)
 
     payload = {

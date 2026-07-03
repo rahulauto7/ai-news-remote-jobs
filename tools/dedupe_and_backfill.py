@@ -121,6 +121,15 @@ AI_ONLY_SECTIONS = {
 #   youtube_content_ideas (synthesized), ai_search_trends (no published date).
 NEWS_24H_SECTIONS = AI_ONLY_SECTIONS | {"general_news"}
 
+# Niche research sections rarely produce true last-24h items (quantum+AI and
+# RSI stories land a few times a week). User rule 2026-07-02: these two get a
+# 7-day window instead of 24h; the qrsi cross-day dedup namespace still stops
+# the same item repeating, so the wider window never re-serves yesterday's item.
+SECTION_FRESH_HOURS = {
+    "quantum_ai_research": 168,
+    "ai_self_improvement_rsi": 168,
+}
+
 
 def _sanitize_sections(sections: dict) -> tuple[int, int]:
     """Drop non-AI items from AI-only sections and >24h items from news
@@ -142,8 +151,14 @@ def _sanitize_sections(sections: dict) -> tuple[int, int]:
             if sec in AI_ONLY_SECTIONS and not is_ai(head):
                 non_ai += 1
                 continue
+            # general_news is the one intentionally NON-AI section — AI stories
+            # belong in the AI sections and read as dupes here (user rule 2026-07-02).
+            if sec == "general_news" and is_ai(head):
+                non_ai += 1
+                continue
             if sec in NEWS_24H_SECTIONS and not _within_hours(
-                    it.get("published") or it.get("posted"), NEWS_FRESH_HOURS,
+                    it.get("published") or it.get("posted"),
+                    SECTION_FRESH_HOURS.get(sec, NEWS_FRESH_HOURS),
                     strict=True):
                 stale += 1
                 continue
@@ -232,6 +247,20 @@ def sanitize_only() -> int:
         print("[sanitize] malformed analyzed_content.json — skipping")
         return 0
     non_ai_dropped, stale_dropped = _sanitize_sections(sections)
+    # Same-story duplicates re-enter via AGENT ENRICHMENT (it adds items after
+    # the step-6.6 title dedup ran) — collapse them again on the final contents.
+    title_dropped = 0
+    _title_exempt = {
+        "remote_jobs", "ai_search_trends", "viral_video_landscape",
+        "instagram_viral_reels", "youtube_content_ideas", "ai_model_benchmarks",
+        "product_showcase_opportunities",
+    }
+    for sec, items in sections.items():
+        if sec in _title_exempt or not isinstance(items, list):
+            continue
+        before = len(items)
+        sections[sec] = _dedup_section_by_title(items)
+        title_dropped += before - len(sections[sec])
     doc["sections"] = sections
     doc["total_items_analyzed"] = sum(
         len(v) for v in sections.values() if isinstance(v, list)
@@ -239,7 +268,7 @@ def sanitize_only() -> int:
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(doc, f, indent=2, ensure_ascii=False)
     print(f"[sanitize] scrubbed {non_ai_dropped} non-AI + {stale_dropped} "
-          f"stale (>24h) item(s) post-enrichment")
+          f"stale item(s) + {title_dropped} same-story duplicate(s) post-enrichment")
     return 0
 
 

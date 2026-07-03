@@ -48,6 +48,13 @@ FEEDS = {
     # silently starved Quantum + RSI every Sat/Sun (2026-06-13). The API returns the
     # most recent N papers across the whole window regardless of announcement day.
     "arXiv Quantum Physics": "http://export.arxiv.org/api/query?search_query=cat:quant-ph&sortBy=submittedDate&sortOrder=descending&max_results=40",
+    # News-style quantum coverage — arXiv alone rarely yields quantum+AI items
+    # that read like news, which left the section empty for weeks (2026-07-02).
+    "The Quantum Insider": "https://thequantuminsider.com/feed/",
+    "Quantum + AI (via Google News)": "https://news.google.com/rss/search?q=quantum+(%22AI%22+OR+%22machine+learning%22+OR+%22artificial+intelligence%22)+(computing+OR+algorithm+OR+model+OR+chip+OR+breakthrough)&hl=en-US&gl=US&ceid=US:en",
+    # RSI-specific news proxy — recursive self-improvement / self-improving AI
+    # stories almost never surface in the general AI feeds.
+    "AI Self-Improvement (via Google News)": "https://news.google.com/rss/search?q=(%22recursive+self-improvement%22+OR+%22self-improving+AI%22+OR+%22AI+that+improves+itself%22+OR+%22automated+AI+research%22+OR+%22AI+designing+AI%22+OR+%22self-evolving+AI%22)&hl=en-US&gl=US&ceid=US:en",
     "arXiv AI": "http://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=40",
     "arXiv Machine Learning": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=40",
     # AI safety / alignment / policy research — feeds the RSI section, which the

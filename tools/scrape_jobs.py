@@ -298,6 +298,80 @@ def scrape_remotive(keywords=KEYWORDS, max_per_keyword=12):
     return jobs
 
 
+# ── Jobicy (public JSON API, no auth) ─────────────────────────────────────────
+def scrape_jobicy(max_total=40):
+    """Jobicy API: https://jobicy.com/api/v2/remote-jobs?count=50&tag=<kw>"""
+    jobs = []
+    for tag in ("data science", "machine learning", "automation"):
+        try:
+            url = f"https://jobicy.com/api/v2/remote-jobs?count=50&tag={quote_plus(tag)}"
+            r = fetch(url, accept_json=True, referer="https://jobicy.com/")
+            if r is None or r.status_code != 200:
+                code = r.status_code if r is not None else "ERR"
+                print(f"  [Jobicy] {tag}: HTTP {code}")
+                continue
+            count = 0
+            for d in r.json().get("jobs", []):
+                jobs.append({
+                    "title": (d.get("jobTitle") or "")[:200],
+                    "company": d.get("companyName") or "",
+                    "url": d.get("url") or "",
+                    "posted": d.get("pubDate") or "",
+                    "salary": "",
+                    "location": d.get("jobGeo") or "",
+                    "source": "Jobicy",
+                    "summary": (d.get("jobExcerpt") or "")[:300],
+                })
+                count += 1
+                if count >= max_total:
+                    break
+            print(f"  [Jobicy] {tag}: {count} jobs")
+            time.sleep(0.6)
+        except Exception as e:
+            print(f"  [Jobicy ERROR] {tag}: {e}")
+    return jobs
+
+
+# ── Arbeitnow (public JSON API, no auth) ──────────────────────────────────────
+def scrape_arbeitnow(keywords=KEYWORDS, max_total=40):
+    """Arbeitnow job board API: https://www.arbeitnow.com/api/job-board-api"""
+    jobs = []
+    try:
+        r = fetch("https://www.arbeitnow.com/api/job-board-api?remote=true",
+                  accept_json=True, referer="https://www.arbeitnow.com/")
+        if r is None or r.status_code != 200:
+            code = r.status_code if r is not None else "ERR"
+            print(f"  [Arbeitnow] HTTP {code}")
+            return jobs
+        kws = [k.lower() for k in keywords]
+        count = 0
+        for d in r.json().get("data", []):
+            blob = f"{d.get('title','')} {(d.get('description') or '')[:400]} {' '.join(d.get('tags') or [])}".lower()
+            if not any(k in blob for k in kws):
+                continue
+            created = d.get("created_at")
+            posted = ""
+            if isinstance(created, (int, float)):
+                posted = datetime.fromtimestamp(created, tz=timezone.utc).isoformat()
+            jobs.append({
+                "title": (d.get("title") or "")[:200],
+                "company": d.get("company_name") or "",
+                "url": d.get("url") or "",
+                "posted": posted,
+                "salary": "",
+                "location": d.get("location") or "",
+                "source": "Arbeitnow",
+                "summary": (d.get("description") or "")[:300],
+            })
+            count += 1
+            if count >= max_total:
+                break
+        print(f"  [Arbeitnow] {count} jobs")
+    except Exception as e:
+        print(f"  [Arbeitnow ERROR] {e}")
+    return jobs
+
+
 # ── We Work Remotely (RSS feed for remote programming) ───────────────────────
 def scrape_weworkremotely(keywords=KEYWORDS, max_total=40):
     """RSS feed; filter titles by AI/automation keywords."""
@@ -862,13 +936,14 @@ def apply_freshness_and_dedup(jobs):
 
     1. Freshness: drop jobs whose posting date is older than JOBS_FRESH_DAYS.
        Undated jobs (no parseable `posted`) are kept — can't prove they're stale.
-    2. Cross-run dedup: prefer jobs not surfaced in the last JOBS_SEEN_DAYS days
-       (per data/jobs_seen.json). If that leaves fewer than JOBS_MIN_POOL, backfill
-       with recently-shown ones so a slow scrape day never starves the section.
+    2. Cross-run dedup: drop jobs surfaced in the last JOBS_SEEN_DAYS days
+       (per data/jobs_seen.json). No backfill by default (JOBS_MIN_POOL=0):
+       the user wants only-new roles even if the section runs thin; set
+       JOBS_MIN_POOL>0 to restore least-recently-shown backfill.
     """
     fresh_days = int(os.environ.get("JOBS_FRESH_DAYS", "45"))
     seen_days = int(os.environ.get("JOBS_SEEN_DAYS", "7"))
-    min_pool = int(os.environ.get("JOBS_MIN_POOL", "15"))
+    min_pool = int(os.environ.get("JOBS_MIN_POOL", "0"))
     now = datetime.now(timezone.utc)
 
     fresh, dropped_stale = [], 0
@@ -980,6 +1055,18 @@ def scrape_all_jobs():
         all_jobs += scrape_remoteok()
     except Exception as e:
         print(f"  RemoteOK fatal: {e}")
+
+    print("[reliable] Jobicy ...")
+    try:
+        all_jobs += scrape_jobicy()
+    except Exception as e:
+        print(f"  Jobicy fatal: {e}")
+
+    print("[reliable] Arbeitnow ...")
+    try:
+        all_jobs += scrape_arbeitnow()
+    except Exception as e:
+        print(f"  Arbeitnow fatal: {e}")
 
     print("[reliable] Hacker News hiring ...")
     try:

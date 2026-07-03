@@ -844,14 +844,16 @@ def build_showcase(pdf, section_key, items, idx):
         return
 
     def _dl_key(it):
+        # First-time entries lead the block; within each tier, soonest deadline first.
         d = it.get("deadline_iso")
-        return (1, "") if not d else (0, str(d)[:10])
+        return (0 if it.get("is_new") else 1, 1 if not d else 0, str(d or "")[:10])
 
     hackathons = sorted([it for it in items if _showcase_group(it) == "hackathon"], key=_dl_key)
     accelerators = sorted([it for it in items if _showcase_group(it) == "accelerator"], key=_dl_key)
 
     def _title(it):
-        return clean(it.get("title") or "Untitled")
+        t = clean(it.get("title") or "Untitled")
+        return f"NEW · {t}" if it.get("is_new") else t
 
     def _apply_url(it):
         return (it.get("url") or it.get("submission_url") or it.get("apply_url") or "").strip()

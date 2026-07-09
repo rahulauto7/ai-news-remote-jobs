@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09T18:48:51.736929",
+  "updated_at": "2026-07-09T22:47:52.404711",
   "seen": {
     "youtube": {
       "3lmLw0hsjoQ": "2026-06-09",
@@ -1545,7 +1545,22 @@
       "https://techcrunch.com/2026/06/26/its-not-about-anthropic-vs-openai-anymore/": "2026-06-26",
       "https://the-decoder.com/anthropic-doesnt-need-junior-engineers-anymore-thanks-to-ai-and-warns-of-an-economic-shock-when-other-industries-follow/": "2026-06-26",
       "https://economictimes.indiatimes.com/tech/technology/living-on-borrowed-ai-won-t-end-well-for-india-warn-experts/articleshow/132000000.cms": "2026-06-26",
-      "https://inc42.com/features/project-kill-switch-can-rbi-protect-banks-nbfcs-from-rogue-ai-actors/": "2026-06-26"
+      "https://inc42.com/features/project-kill-switch-can-rbi-protect-banks-nbfcs-from-rogue-ai-actors/": "2026-06-26",
+      "https://news.google.com/rss/articles/CBMiogFBVV95cUxOUlZmVFhTWjZuLUZPd0k5THdya3l4LVZ5NE5uVUlQWHVVU2FQRjN5bzluWnhxYlZEOE1nY21KaDdQZ2hZcE9EVTc3WTRmSWpraF9SMVNWc3N3Rl8wUnp3WUtxcGZKeDVWWk1FTTM1SExsSV9ISzFtRVZTV1E1M28wNUFDSWZKTjZCd2N6c0kxQnU5U1YySG53SWZaTnVhZWtqOGc?oc=5": "2026-07-09",
+      "https://www.wired.com/story/frontier-labs-arent-the-only-ones-pursuing-self-improving-ai/": "2026-07-09",
+      "https://arxiv.org/abs/2607.07663v1": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOQ3ozOWpISVpScmNpVHp4RHRaNVMyejdXY0pfVnI5eUEzTDFPd0gwdGlqS2lRT1pkMnBlQUVhQ05heUtoVHpVSW12STVuSzF4RndHdWZhYk1jQnV4ckt5ell6UjFJN0g3UEdDeFhSV0FVMGxiOXRzQ3MwemZfNjRkUE9PUi0zMVpqVm1R?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMid0FVX3lxTE0yRXAxSGh4U3libEFxRlVaWk1xcUpBMTNaWnJ0WEd5MVpqbjFnUHBkdVRZc0FoSXY4NlM5bExtN2ZZMVNVeUxtR0QwUkdLRWFSRWxhY1NxQjhYUHpHVWpORXpqcWh4WTIzbm00eDVHSzR4aUM0RkRZ?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdHNGMVNEREZ0UXd1VkR1bGNtbGNheXJRMFdELVYyOENKRzJBZUp6Yk41MVUwSmd4NzFPMTl1MTFEWlFTRHJnZ04yYnBaRmttOGh2aFFlVXA5THNvc0dCRkx2WmNHeXR3NDNLTURHa1VMbnFIUThvWTRzZm1LS1RMTWItY3U3UHpmVWfSAY8BQVVfeXFMUHAwZEE0emRRdVYxa0lSRXpERlJELW5UZ0hnTEZpNmpBSWhFMHhIeUZxODk0ZGxDbW9tYVlaWUNVSGdFVHFDNnZVRU5TTXpZRG13SFIzN3RRNU1mbmFCeWFXNmpKM2t2enMzSjVfaVAta3IxYmUwMlUtUXZfS3lzTzVuX1M5RV9HZjF0ZjVTYlk?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9UY0dqNkk1Y3RaWmFEMUtqUklBX194dGdxSTFEWjR1RHpSUHhYLVFFeTZLYVp3elpyVEJlTUVkS0dzUW8tOFVOU3pXb1Z5cFI0bG5mclJFQmgtMnR1Yy13Xw?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiowFBVV95cUxNN19NdnJzWGV0QUdDVWZHX0RwVXltaVhPUW5vZzVGVHotQTA1R18zRHc1MldnNjd4dkE2LU4xX2JoWEcwNWk1LXlCbWNLbXVfYzQ1ZGk0MjNRZjBnQmdpT0otQWwzMjFqbU94UXQ3RDBWRWtPQkZxclNXSngzb1RuNXJycllNY0ZFdmpvdEdSWFBCSlhDQTJDR1lMS2w0bkdRMEln?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPMmF1a281ejU3QzZoLWEtLXBSdW9ibktHU1FkLUt0Wnp0WDk0THZkM0x0dXVuYjZ1bHNIQnlkM1BoaTZ1NGlfenk2UC1MaVBqMEQwY1h1RFROdVlnOGc0amEzQlV2dGpiLXNoX25GQmZZSVNYdk9iWXd2aTh4bWNsdUJDMVMtVWhNenZJeUs1aF8zUExINVpQS1dJYm11UEVpempJZWVOWmk2UURsX1FiV1IzQ05uSGZVcXpHekVZdVFfZVJQRkZNTGhBV2VYU2xDQ1IzT2psb0VnZ3dS?oc=5": "2026-07-09",
+      "https://arxiv.org/abs/2607.07634v1": "2026-07-09",
+      "https://arxiv.org/abs/2607.07554v1": "2026-07-09",
+      "https://arxiv.org/abs/2607.07550v1": "2026-07-09",
+      "https://arxiv.org/abs/2607.07597v1": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbFcwWnpTN1dGcTBOaGJzQ0xMQlltaTFvRk5BdXowOGwtSllzNlZpV1MyUm84MWNMRFlrSzNwbExsYzBwVmlIeEY5ZUlfQ0RrNTVOYUdIeTJZaVJwakRzdjNjMXlpU1lyVVFzSTBqWGV3RjFMNGlMTXRla0Y2QzFxNnFXNzctVkpPMTVHdE5LQk5tWFhPZ0VnS1cxelhHSEZQM1E?oc=5": "2026-07-09",
+      "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSjVCTXBOUDFiYnBuZ3lQb2lfbVhZSmMwUTlOQWpPaklUNkE1RFlqR2tLYndDS3hPWnd6cUFxbDNqRE1uZ29mU1lBZlExa3NOZFVZVE5zWDRhcDVFWkd6VUhYM1JtMzNQSVJXcXloR2U5RE9VbUQ3Z0o5WVhOaVlVdldiQy04NFVjRlR2Q0xLVXE4OV9lSGxBTGlxRjRDYzdOeE9DZVh3c1NNakNyRjRpUlhwRmRKeXAxNHQ1bDRUU1MwUQ?oc=5": "2026-07-09"
     },
     "showcase_seen": {
       "build with gemini xprize": "2026-07-09",

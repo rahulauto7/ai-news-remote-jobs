@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-18T17:53:53.750610",
+  "updated_at": "2026-07-18T22:44:42.652590",
   "seen": {
     "youtube": {},
     "instagram": {},
@@ -1608,7 +1608,22 @@
       "https://techcrunch.com/2026/06/26/its-not-about-anthropic-vs-openai-anymore/": "2026-06-26",
       "https://the-decoder.com/anthropic-doesnt-need-junior-engineers-anymore-thanks-to-ai-and-warns-of-an-economic-shock-when-other-industries-follow/": "2026-06-26",
       "https://economictimes.indiatimes.com/tech/technology/living-on-borrowed-ai-won-t-end-well-for-india-warn-experts/articleshow/132000000.cms": "2026-06-26",
-      "https://inc42.com/features/project-kill-switch-can-rbi-protect-banks-nbfcs-from-rogue-ai-actors/": "2026-06-26"
+      "https://inc42.com/features/project-kill-switch-can-rbi-protect-banks-nbfcs-from-rogue-ai-actors/": "2026-06-26",
+      "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbEdOYk5HQ3BSWmRsa3JyNUFBM0V1ckJZSklxYi12N1ZnN3dmYm41QlItcVlkNWhwX25Zamw4NU50Sks1QW1vSFFvNVR2Vm4wUVMtQ2psMXgwc29NblBIYk90WENkOUI5OW1sUzBUMGI3VVJwSzF6RmpfdEtuejF3UU5YZloyVlRONjNIcG1ESm5obTNEcGltUlpR0gGfAUFVX3lxTE52dmVtU1Rwb05fbjJ3Z2lXeDRZSHVmaEQwd3pNaExfeURscm14THVrcW9sSzM4dGJYMFB0LVZYME5ESkJhTURYOXRSa2VVWFdXOWdFNW5ORkE3V2tRdlUtWW04WHd3UE0yTTR3dVM2Q052OGtMZ0U4Z0xIWkpjb0ctakFPRi1IRnhpUkxDYWZqM3NaNWVHRGptOWZYWjNsYw?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdjFiczZZSUo2WHM5Q1phSW1ncDhrZGhkdjQ2U09kNzRaZ0dCZ1B6djUyYTV6VktNd01tWFhVOEFVbWhIcGJudW1lNjZWMllkYXFEeVpmR2xGNjJ3VjlHWFBnYXZmXy1id2U2NXFyRzB6RGJVWURQREViTGVQTkNwcDJoa3BCLWdl?oc=5": "2026-07-18",
+      "https://arxiv.org/abs/2607.15040v1": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMiswFBVV95cUxOZGlyTVptYjNIV1UxMGFDZjBmOWdBcUpiYjJHa0x2RkZOZ21PRU5vSmRZTVBLMVpXSDR5VWFSbHRhU3dZWi0zNG5XSThrRjZ5dUszSERDSFZtaWJiMEQwbG5yNE12dHBrc21rS0Rpajk5N0RkRUdIVjFrSk9TR3VFcXR4ejhwdWNvQWlDcHRMaks4TVZvUmx5aXY1aG02ajlFSWk3MG5oRWZVdWgyTllYam1XONIBuAFBVV95cUxPV1VXeXMweU9UUnVsek9NMks5MlFYcDlaYS1YeldRMGZGTXdCZWRKV0hSTmo1T1BGTjJ5emxTRVlYU2hLeHlOVUpPVWU0ZWJiRkt2Y3U3UXJqYkczSkdMcFdKemFzVWZOam5OVHFFOG9QUVpMcnoxOHBsT2piVUNBa2lGSmR2N0F0aGpFZVFrT01yVE5JZWd5ZHM5WlRBeEhCSW1NcWwzRmFrX1dFdUJycVpRUEgxTl84?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMijgFBVV95cUxOanpGZ1pjOTRaMEtadUxEM1d0c2U2R0tJLUhsWkhsQmdlaUhIVXpyZGRLRVZBclJCR2I2U051ZS16NE1Bc0dXU3dNZnBCTTJmREd4UGlERDhrNG5WNzBEZmc0Tms5Y192MmJmRXFxdWh0dU1xVjBrNFZfRE9RREd5TW5SbXVmYnRRY2paLWhn?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMilAFBVV95cUxQcGdpNEo3ZFJzUGVSUmJDOVVLemxsY3BydTJUV1ZfeDJRWF9vanhGRGJWcVBsZ1VPZTFlYXNKelpUMDd1MFFXbFJVcTU0QmNEeTVqdzRXOVNYR3J4SUpZenJNTTlWaXZ4RkxKTnNRZWV5YXBmV0pCQUdGRHlzU2tMWXduVW82TUJoWEVUYnJBREtnd2FR?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMimwFBVV95cUxOTGNhVUdrb29VaDdaWGVJdGhMZi1TWVpVX2VhR1F1V2FEb0pIVjhIeUR1bWVkSF9XdWU1YzhLOUxOU1VHcmxVTmhWWHFnNWR1eUM3LUxlT0RlZWgtRHhhNjlZSzQyd3JSRk1CVnBqUVl0UmZnUjdPRlJrdU1PUzg5Y3VpR0RvSGxpa3JkLUF2QnNxQ3RkSWdmZDVPNA?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMirAFBVV95cUxOLWh4T0VUZnAyOUhjNjBvS2ZzbV9PQjFKaHNnckNnVHdGUVV5dHJVYnRzZUtWTnJ3WnRPTEF0MG4zaWhUczlaSDNTWF82LXBqTFZ2UEFRbjl0eW1FcWNwVV9Ib1VXVnFGODRTelk3Vk1aZl84VC04d2YyU0RFbHBFOGR4V1hycmQtclh5WUpRanJvLUNHdHVqcDJaX1JpenRpTHVUdTMtZ2lqU2ox?oc=5": "2026-07-18",
+      "https://openai.com/index/unlocking-self-improvement-gpt-red": "2026-07-18",
+      "https://www.technologyreview.com/2026/07/15/1140514/meet-gpt-red-an-llm-super-hacker-openai-built-to-make-its-models-safer/": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTE9OLWRXNWpyQkktQzFEZzVkbTVIYnZ4X2hNRHkyTWh5bnB4UXlkamxGQmJKcmpCSXBJLV9vQm92aWNBNUVucG5qU3hLd1lZeVRvTUdadmx3X0hhQWNCMGhqalZ4WkxGb05sX2Mtc284bU1lOFNFc0E?oc=5": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMiU0FVX3lxTE4yNUlUX0tacGpGeHhFNm44N0JhSEliejRHVGRvN3AwcFdLVy00dk5ZSFNPQ2gyTGRvYk9FQ2ZnY0Y5RUNPZVNLbXR5S3JldVE2SG9j?oc=5": "2026-07-18",
+      "https://arxiv.org/abs/2607.15164v1": "2026-07-18",
+      "https://arxiv.org/abs/2607.15247v1": "2026-07-18",
+      "https://news.google.com/rss/articles/CBMihwFBVV95cUxNMjlycnlOSXpwRE83TGN5aTdjMzdaNVgwNDdtaE5jTVgwcGJ1TkdZaXN1MERRcS05eVlpT2lTRmNVbFFvSmg2UDRyd3VsTHRIcEVHNGhTX3duWUZtd3kwRU5RZ1E4em8yWm5JaUxDaUFOR05weDJtS1lxV3pob1ZReG05SWZKTVE?oc=5": "2026-07-18"
     },
     "showcase_seen": {
       "build with gemini xprize": "2026-07-18",

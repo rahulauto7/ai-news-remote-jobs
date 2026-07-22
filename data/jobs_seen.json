@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-07-21T18:16:50.764640",
+  "updated_at": "2026-07-22T18:07:13.227887",
   "seen": {
     "https://stripe.com/jobs/search?gh_jid=7377101": "2026-07-18",
-    "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-07-14",
-    "https://job-boards.greenhouse.io/anthropic/jobs/5030244008": "2026-07-14",
-    "https://job-boards.greenhouse.io/anthropic/jobs/5183044008": "2026-07-14",
+    "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-07-22",
+    "https://job-boards.greenhouse.io/anthropic/jobs/5030244008": "2026-07-22",
+    "https://job-boards.greenhouse.io/anthropic/jobs/5183044008": "2026-07-22",
     "https://stripe.com/jobs/search?gh_jid=7826765": "2026-07-18",
     "https://news.ycombinator.com/item?id=48360223": "2026-07-10",
     "https://www.asana.com/jobs/apply/7976662?gh_jid=7976662": "2026-06-26",
@@ -76,7 +76,7 @@
     "https://weworkremotely.com/remote-jobs/highlevel-product-solutions-engineer-creator-platform": "2026-07-13",
     "https://jobicy.com/jobs/146231-payroll-specialist-belgium": "2026-07-14",
     "https://stripe.com/jobs/search?gh_jid=8060391": "2026-07-14",
-    "https://stripe.com/jobs/search?gh_jid=8055930": "2026-07-14",
+    "https://stripe.com/jobs/search?gh_jid=8055930": "2026-07-22",
     "https://databricks.com/company/careers/open-positions/job?gh_jid=8593713002": "2026-07-15",
     "https://weworkremotely.com/remote-jobs/chemin-product-translation-reviewer-mandarin-english": "2026-07-16",
     "https://jobicy.com/jobs/146194-electrical-engineer": "2026-07-16",
@@ -99,6 +99,23 @@
     "https://jobicy.com/jobs/146855-graduate-sales-engineer": "2026-07-19",
     "https://jobicy.com/jobs/143887-cloud-engineer-vmware": "2026-07-20",
     "https://jobs.ashbyhq.com/vanta/dad058bc-c45a-4723-9e22-405b65c07a3a": "2026-07-21",
-    "https://jobicy.com/jobs/144246-ai-engineer-latam-remote": "2026-07-21"
+    "https://jobicy.com/jobs/144246-ai-engineer-latam-remote": "2026-07-21",
+    "https://jobicy.com/jobs/149560-software-engineer-solutions-engineering": "2026-07-22",
+    "https://jobicy.com/jobs/149563-python-and-kubernetes-software-engineer-data-workflows-ai-ml-analytics": "2026-07-22",
+    "https://weworkremotely.com/remote-jobs/supportyourapp-native-finnish-customer-support-consultant-remotely": "2026-07-22",
+    "https://weworkremotely.com/remote-jobs/supportyourapp-native-danish-customer-support-consultant-remotely": "2026-07-22",
+    "https://weworkremotely.com/remote-jobs/supportyourapp-native-swedish-customer-support-consultant-remotely": "2026-07-22",
+    "https://weworkremotely.com/remote-jobs/elevenlabs-product-marketing-agents": "2026-07-22",
+    "https://jobicy.com/jobs/144343-brand-writer": "2026-07-22",
+    "https://jobs.ashbyhq.com/ramp/1b6a5a22-d6ed-4591-987d-6cc5b7bca8e1": "2026-07-22",
+    "https://jobicy.com/jobs/145556-marketing-specialist-2": "2026-07-22",
+    "https://jobicy.com/jobs/149553-site-reliability-gitops-engineer": "2026-07-22",
+    "https://jobicy.com/jobs/149550-security-software-engineer": "2026-07-22",
+    "https://jobicy.com/jobs/149547-site-reliability-engineer": "2026-07-22",
+    "https://jobicy.com/jobs/149545-ubuntu-sales-engineer-entry-level": "2026-07-22",
+    "https://jobicy.com/jobs/149534-alliances-field-engineer": "2026-07-22",
+    "https://jobicy.com/jobs/149533-ubuntu-linux-kernel-engineer-silicon-enablement": "2026-07-22",
+    "https://jobicy.com/jobs/149530-enterprise-account-executive": "2026-07-22",
+    "https://jobicy.com/jobs/149520-junior-linux-kernel-engineer-ubuntu": "2026-07-22"
   }
 }

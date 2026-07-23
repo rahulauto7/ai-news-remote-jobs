@@ -1,0 +1,47 @@
+{
+  "scraped_at": "2026-07-23T18:10:49.771323+00:00",
+  "total_raw": 294,
+  "total_unique": 275,
+  "total_after_filter": 4,
+  "jobs": [
+    {
+      "title": "Research Engineer/Research Scientist, Pre-training",
+      "company": "Anthropic",
+      "url": "https://job-boards.greenhouse.io/anthropic/jobs/4616971008",
+      "posted": "2026-07-14T18:35:00-04:00",
+      "salary": "",
+      "source": "Greenhouse:anthropic",
+      "location": "Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY",
+      "summary": "Remote-Friendly (Travel-Required) | San Francisco, CA | Seattle, WA | New York City, NY | direct apply"
+    },
+    {
+      "title": "AI Engineer - FDE (Forward Deployed Engineer)",
+      "company": "Databricks",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8593713002",
+      "posted": "2026-07-21T13:21:54-04:00",
+      "salary": "",
+      "source": "Greenhouse:databricks",
+      "location": "Remote - United Kingdom",
+      "summary": "Remote - United Kingdom | direct apply"
+    },
+    {
+      "title": "Vice President, Software Engineering",
+      "company": "Experian",
+      "url": "https://jobicy.com/jobs/149597-vice-president-software-engineering",
+      "posted": "2026-07-22T04:43:55+00:00",
+      "salary": "",
+      "location": "USA",
+      "source": "Jobicy",
+      "summary": "Company DescriptionExperian is a global data and technology company, powering opportunities for people and businesses around the world. We operate across a range of markets, from financial services to healthcare, automotive, agribusiness, insurance, and many more. Experian invests in people and new "
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Win Home Inspection",
+      "url": "https://weworkremotely.com/remote-jobs/win-home-inspection-devops-engineer",
+      "posted": "Tue, 30 Jun 2026 20:31:18 +0000",
+      "salary": "",
+      "source": "We Work Remotely",
+      "summary": "<p>\n  <strong>Headquarters:</strong> Delhi\n</p>\n\n<div class=\"job__description body\"><div><p><strong>Senior DevOps Engineer</strong></p><br><p><strong>Location: 100% Remote</strong></p><br><p>&nbsp;</p><br><p><strong>About the Role</strong></p><br><p>WIN is building modern, scalable technology platfo"
+    }
+  ]
+}

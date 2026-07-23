@@ -1,0 +1,312 @@
+{
+  "generated_at": "2026-07-23T18:09:19.638745+00:00",
+  "finished_at": "2026-07-23T18:10:02.745946+00:00",
+  "raw_signal_count": 160,
+  "topic_count": 20,
+  "topics": [
+    {
+      "topic": "what is generative ai",
+      "norm_key": "generative",
+      "score": 8.77,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=what+is+generative+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=generative+ai+vs+ai&date=now+1-d"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "what is claude",
+      "norm_key": "claude",
+      "score": 6.69,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=claude+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=what+is+claude&date=now+1-d"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Startup founders urge U.S. government not to shut off Chinese open weight AI",
+      "norm_key": "startup founders urge government not shut off chinese",
+      "score": 6.17,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.politico.com/news/2026/07/22/startup-founders-urge-trump-not-to-shut-off-chinese-open-weight-ai-01008992"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "AI Companies Are Trying to Hide a Staggering Amount of Debt",
+      "norm_key": "companies trying hide staggering amount debt",
+      "score": 6.09,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://futurism.com/artificial-intelligence/ai-companies-hide-debt-off-balance-sheet"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "OpenAI and Anthropic unite against open-weight AI risks to their bottom line",
+      "norm_key": "openai anthropic unite against open-weight risks their bottom",
+      "score": 5.83,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.axios.com/2026/07/22/openai-anthropic-open-models-trump-china"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "OpenAI’s accidental attack against Hugging Face is science fiction that happened",
+      "norm_key": "openai accidental attack against hugging face science fiction",
+      "score": 5.78,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://simonwillison.net/2026/Jul/22/openai-cyberattack/"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Alphabet's cash burn raises alarm for Big Tech as AI spending climbs",
+      "norm_key": "alphabet cash burn raises alarm big tech spending",
+      "score": 5.73,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/business/retail-consumer/alphabets-cash-burn-raises-alarm-big-tech-ai-spending-climbs-2026-07-23/"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "claude opus 5",
+      "norm_key": "claude opus",
+      "score": 5.63,
+      "sources": [
+        "google_trends_rising",
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=claude+opus+5&date=now+1-d",
+        "https://artificialanalysis.ai/models/claude-opus-5"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Protecting our FLOSS commons from LLMs",
+      "norm_key": "protecting our floss commons llms",
+      "score": 5.35,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://blog.codeberg.org/protecting-our-floss-commons-from-llms.html"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Petals: Run LLMs at home, BitTorrent-style",
+      "norm_key": "petals run llms home bittorrent-style",
+      "score": 4.94,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://petals.dev/"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Chinese AI's role in stopping rogue OpenAI agent shows cost of US guardrails",
+      "norm_key": "chinese role stopping rogue openai agent shows cost",
+      "score": 4.88,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/legal/litigation/chinese-ais-role-stopping-rogue-openai-agent-shows-cost-us-guardrails-2026-07-22/"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Understanding the AI Economy",
+      "norm_key": "understanding economy",
+      "score": 4.72,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://blog.google/innovation-and-ai/technology/research/understanding-the-ai-economy/"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "I Think You Might Be Fooling Yourself with AI",
+      "norm_key": "think might fooling yourself",
+      "score": 4.69,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://louwrentius.com/i-think-you-might-be-fooling-yourself-with-ai.html"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "New Framework Desktop Option with AMD Ryzen AI Max+ Pro 495 and 192GB Memory",
+      "norm_key": "framework desktop option amd ryzen max pro gb",
+      "score": 4.63,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://frame.work/desktop?tab=192gb-coming-soon"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "google generative ai",
+      "norm_key": "google generative",
+      "score": 4.37,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=google+generative+ai&date=now+1-d"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "DARPA, U.S. Air Force fly AI-controlled F-16",
+      "norm_key": "darpa air force fly ai-controlled f-16",
+      "score": 4.25,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.darpa.mil/news/2026/darpa-us-air-force-fly-ai-controlled-f-16"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Anthropomorphism in Children's Interactions with LLM Chatbots",
+      "norm_key": "anthropomorphism children interactions chatbots",
+      "score": 3.82,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://arxiv.org/abs/2607.18250"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Writing fingerprint analysis of responses reveals Kimi's similarity to Claude",
+      "norm_key": "writing fingerprint analysis responses reveals kimi similarity claude",
+      "score": 3.8,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://typebulb.com/u/lab/you-re-relatively-right/full"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Free way to get your data out of ChatGPT Business accounts",
+      "norm_key": "free way get your data out chatgpt business",
+      "score": 3.8,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://github.com/Conradqh/scrapemychats"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "The arguments against open source AI are bad",
+      "norm_key": "arguments against open source bad",
+      "score": 3.72,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://tombedor.dev/arguments-against-open-source-ai-are-very-bad/"
+      ],
+      "signal_count": 1
+    }
+  ]
+}

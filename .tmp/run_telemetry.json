@@ -1,0 +1,88 @@
+{
+  "started_at": "2026-07-23T18:08:34.470921+00:00",
+  "finished_at": "2026-07-23T18:10:49.895862+00:00",
+  "total_elapsed_s": 135.42,
+  "steps": {
+    "Scrape RSS Feeds": {
+      "ok": true,
+      "elapsed_s": 30.36,
+      "items": 705
+    },
+    "Scrape Hackathons": {
+      "ok": true,
+      "elapsed_s": 14.15,
+      "items": 88
+    },
+    "YouTube Viral Verify": {
+      "ok": true,
+      "elapsed_s": 0.0,
+      "items": 0
+    },
+    "Scrape YouTube Trending": {
+      "ok": false,
+      "elapsed_s": 0.0,
+      "error": "exit 1"
+    },
+    "Scrape Instagram Reels": {
+      "ok": true,
+      "elapsed_s": 0.0,
+      "items": 0
+    },
+    "Instagram Viral Verify": {
+      "ok": true,
+      "elapsed_s": 0.0,
+      "items": 2
+    },
+    "Scrape AI Trends": {
+      "ok": true,
+      "elapsed_s": 43.11,
+      "items": 20
+    },
+    "Scrape Jobs": {
+      "ok": true,
+      "elapsed_s": 47.01,
+      "items": 4
+    },
+    "Rank Jobs (profile-aware)": {
+      "ok": true,
+      "elapsed_s": 0.0,
+      "items": 1
+    },
+    "Agent Self-Analysis": {
+      "ok": true,
+      "elapsed_s": 0.07
+    },
+    "Merge Native Hackathons": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Dedup + Backfill Sections": {
+      "ok": true,
+      "elapsed_s": 0.01
+    },
+    "Finalize Quantum/RSI Dedup": {
+      "ok": true,
+      "elapsed_s": 0.01
+    },
+    "Re-sanitize (strict 24h)": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Generate YouTube Ideas (fallback)": {
+      "ok": true,
+      "elapsed_s": 0.0
+    }
+  },
+  "agent_tokens": {
+    "available": true,
+    "provider": "agent_self",
+    "model": "claude-agent-direct",
+    "calls": 1,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "elapsed_s": 0.07,
+    "note": "Agent self-analysis: 93 items classified in 0.1s"
+  }
+}

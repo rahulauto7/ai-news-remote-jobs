@@ -1,0 +1,37 @@
+{
+  "ranked_at": "2026-07-23T18:10:49.775080+00:00",
+  "profile_path": "workflows/user_profile.md",
+  "input_count": 4,
+  "ranked_count": 1,
+  "target_roles": [
+    "ai automation engineer",
+    "n8n developer",
+    "workflow automation engineer",
+    "ai implementation specialist",
+    "voice ai developer",
+    "conversational ai developer",
+    "ai agent engineer",
+    "ai solutions engineer",
+    "revops automation",
+    "ai chatbot developer",
+    "no-code ai developer",
+    "ai integration engineer",
+    "forward deployed engineer"
+  ],
+  "jobs": [
+    {
+      "title": "AI Engineer - FDE (Forward Deployed Engineer)",
+      "company": "Databricks",
+      "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8593713002",
+      "posted": "2026-07-21T13:21:54-04:00",
+      "salary": "",
+      "source": "Greenhouse:databricks",
+      "location": "Remote - United Kingdom",
+      "summary": "Remote - United Kingdom | direct apply",
+      "_score": 4,
+      "matched_skills": [],
+      "title_role_hit": "forward deployed engineer",
+      "strong_match": false
+    }
+  ]
+}

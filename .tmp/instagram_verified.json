@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-07-23T18:09:19.634014+00:00",
+  "window_hours": 24,
+  "reels": [
+    {
+      "bucket": "global_ai",
+      "no_fresh": true
+    },
+    {
+      "bucket": "india_ai",
+      "no_fresh": true
+    }
+  ]
+}

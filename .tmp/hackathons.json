@@ -1,0 +1,1511 @@
+{
+  "scraped_at": "2026-07-23T18:09:19.208207+00:00",
+  "hackathons": [
+    {
+      "title": "HTCJ Aviation Futures Innovation Challenge",
+      "apply_url": "https://htcj-aviation-futures.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-07-27",
+      "prize_summary": "$0",
+      "tags": [
+        "Enterprise",
+        "Machine Learning/AI",
+        "Social Good"
+      ],
+      "description": "Jun 25 - Jul 27, 2026",
+      "region": "Casa Vertigo",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236199+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Impact Creation",
+      "apply_url": "https://impact-creation.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-07-28",
+      "prize_summary": "$0",
+      "tags": [
+        "Blockchain",
+        "Machine Learning/AI",
+        "Open Ended"
+      ],
+      "description": "Jun 13 - Jul 28, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:08.602510+00:00",
+      "is_new": false
+    },
+    {
+      "title": "India High School Exoplanet Data Challenge",
+      "apply_url": "https://celesta-exoplanet-challenge.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-07-31",
+      "prize_summary": "$10,300",
+      "tags": [
+        "Beginner Friendly",
+        "Low/No Code",
+        "Machine Learning/AI"
+      ],
+      "description": "Jun 15 - Jul 31, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.847738+00:00",
+      "is_new": false
+    },
+    {
+      "title": "ARC White-Box Estimation Challenge 2026",
+      "apply_url": "https://www.aicrowd.com/challenges/arc-white-box-estimation-challenge-2026",
+      "platform": "AIcrowd",
+      "deadline_iso": "2026-07-31",
+      "prize_summary": null,
+      "tags": [],
+      "description": "Given the weights of a neural network, can you predict its expected per-neuron activations more accurately than running it many times?",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:14.135150+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Backblaze Generative Media Hackathon: Build with Genblaze on B2",
+      "apply_url": "https://backblaze-generative-media.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-03",
+      "prize_summary": "$10,000",
+      "tags": [
+        "Machine Learning/AI",
+        "Music/Art",
+        "Voice skills"
+      ],
+      "description": "Jun 22 - Aug 03, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233171+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Creation Code",
+      "apply_url": "https://creation-code-30750.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-04",
+      "prize_summary": "$0",
+      "tags": [
+        "Machine Learning/AI",
+        "Open Ended"
+      ],
+      "description": "Jul 17 - Aug 04, 2026",
+      "region": "Jaipur, India",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.846488+00:00",
+      "is_new": false
+    },
+    {
+      "title": "OrionHackathon",
+      "apply_url": "https://orionhackathon.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-05",
+      "prize_summary": "$1,000",
+      "tags": [
+        "E-commerce/Retail",
+        "Fintech",
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 17 - Aug 05, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.874184+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Build with Paritok: The Token-Efficiency Hackathon",
+      "apply_url": "https://build-with-paritok.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-05",
+      "prize_summary": "$630",
+      "tags": [
+        "Machine Learning/AI",
+        "Open Ended",
+        "Productivity"
+      ],
+      "description": "Jul 20 - Aug 05, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:08.602534+00:00",
+      "is_new": false
+    },
+    {
+      "title": "NextGen Innovation2026",
+      "apply_url": "https://nextgen-innovation-2026.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-08",
+      "prize_summary": "$0",
+      "tags": [
+        "Health",
+        "Machine Learning/AI",
+        "Web"
+      ],
+      "description": "Jul 11 - Aug 08, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.123356+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Build with DataHub: The Agent Hackathon",
+      "apply_url": "https://datahub.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-10",
+      "prize_summary": "$20,500",
+      "tags": [
+        "Machine Learning/AI",
+        "DevOps",
+        "Open Ended"
+      ],
+      "description": "Jul 06 - Aug 10, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233142+00:00",
+      "is_new": false
+    },
+    {
+      "title": "AI Factory",
+      "apply_url": "https://lablab.ai/event/nativebuilder-build-without-limits",
+      "platform": "lablab.ai",
+      "deadline_iso": "2026-08-10",
+      "prize_summary": null,
+      "tags": [],
+      "description": "🌎 Online Hackathon | 📅 August 3–10, 2026| 💻 Powered by native.builder\n\nThe official native.builder hackathon, hosted by NativelyAI and lablab.ai.\n\nJoin founders, developers, designers, and builders to create real AI-native applications powered by native.builder: from idea to deployed product, fully in the cloud.\n\n💻 This hackathon is fully online. No travel required.",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:13.220741+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Arm Create: AI Optimization Challenge",
+      "apply_url": "https://arm-ai-optimization-challenge.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-14",
+      "prize_summary": "$8,000",
+      "tags": [
+        "Machine Learning/AI"
+      ],
+      "description": "Jun 04 - Aug 14, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233157+00:00",
+      "is_new": false
+    },
+    {
+      "title": "ML Empowerment Build Challenge 2.0",
+      "apply_url": "https://ml-empowerment-2.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-15",
+      "prize_summary": "$1,000",
+      "tags": [
+        "Beginner Friendly",
+        "Machine Learning/AI",
+        "Social Good"
+      ],
+      "description": "Jun 30 - Aug 15, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.847651+00:00",
+      "is_new": false
+    },
+    {
+      "title": "AceSAT Education AI-Agent",
+      "apply_url": "https://acesat-ai-agent.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-15",
+      "prize_summary": "$100",
+      "tags": [
+        "Education",
+        "Machine Learning/AI"
+      ],
+      "description": "Jun 12 - Aug 15, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.123324+00:00",
+      "is_new": false
+    },
+    {
+      "title": "INNOVIK 6.0 : International Hackathon 2026",
+      "apply_url": "https://innovik-6-0-hackathon-2026.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-15",
+      "prize_summary": "₹ 200,000",
+      "tags": [
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 15 - Aug 15, 2026",
+      "region": "VITM, Indore",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236174+00:00",
+      "is_new": false
+    },
+    {
+      "title": "NEXORA Global Hackathon",
+      "apply_url": "https://nexora-global-hackathon.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-15",
+      "prize_summary": "$0",
+      "tags": [
+        "Education",
+        "Health",
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 23 - Aug 15, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.846474+00:00",
+      "is_new": true
+    },
+    {
+      "title": "Build with Gemini XPRIZE",
+      "apply_url": "https://xprize.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-17",
+      "prize_summary": "$2,000,000",
+      "tags": [
+        "Machine Learning/AI",
+        "Education",
+        "Productivity"
+      ],
+      "description": "May 19 - Aug 17, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233085+00:00",
+      "is_new": false
+    },
+    {
+      "title": "YouCam API Skin AI & Apparel VTO Hackathon",
+      "apply_url": "https://youcam-api.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-17",
+      "prize_summary": "$6,000",
+      "tags": [
+        "Machine Learning/AI",
+        "AR/VR",
+        "E-commerce/Retail"
+      ],
+      "description": "Jul 06 - Aug 17, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233197+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Win4AISafety - Open Research Summer Challenge",
+      "apply_url": "https://win4aisafety-sain-utrecht.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-17",
+      "prize_summary": "$0",
+      "tags": [
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 06 - Aug 17, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236143+00:00",
+      "is_new": false
+    },
+    {
+      "title": "CockroachDB × AWS Hackathon - Build with Agentic Memory",
+      "apply_url": "https://cockroachdb-ai.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-18",
+      "prize_summary": "$8,750",
+      "tags": [
+        "Machine Learning/AI",
+        "Databases",
+        "DevOps"
+      ],
+      "description": "Jun 30 - Aug 18, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233123+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Code Carnage",
+      "apply_url": "https://code-carnage.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-18",
+      "prize_summary": "$10,000",
+      "tags": [
+        "Beginner Friendly",
+        "Education",
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 18 - Aug 18, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:06.523732+00:00",
+      "is_new": false
+    },
+    {
+      "title": "SK Telecom Launches 'SKTCH with AI' Startup Accelerator; Applications Open Through August 18 - finance.biggo.com",
+      "apply_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5McWNEcWttTGU2X0w2SW1pV0QteDZKVk9fdHA5SjgtenJnS2FqcVRBTWtJSG9DTUN6XzE2dGtYRWt1RWx3cjdOY3hiZWVHY0hGdm96aTdUX2tHVHBmVVBUN1U5a2ExQ3lqNmRNdE5YUGVleTE0NEE?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": "2026-08-18",
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "SK Telecom Launches 'SKTCH with AI' Startup Accelerator; Applications Open Through August 18 - finance.biggo.com",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.473720+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Rampamble",
+      "apply_url": "https://rampamble.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-20",
+      "prize_summary": "$50,000",
+      "tags": [
+        "Blockchain",
+        "Fintech",
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 22 - Aug 20, 2026",
+      "region": "KIT main building",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.123369+00:00",
+      "is_new": false
+    },
+    {
+      "title": "GenZ Can Hack 2026",
+      "apply_url": "https://genz-can-hack-2026.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-22",
+      "prize_summary": "$1,000",
+      "tags": [
+        "Education",
+        "Machine Learning/AI",
+        "Robotic Process Automation"
+      ],
+      "description": "Apr 01 - Aug 22, 2026",
+      "region": "Toronto",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.123344+00:00",
+      "is_new": false
+    },
+    {
+      "title": "BuunieX Hackathon",
+      "apply_url": "https://buuniex-hackathon.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-22",
+      "prize_summary": "$0",
+      "tags": [
+        "Machine Learning/AI",
+        "Open Ended",
+        "Productivity"
+      ],
+      "description": "Jun 22 - Aug 22, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:08.602483+00:00",
+      "is_new": false
+    },
+    {
+      "title": "NeuralSprint",
+      "apply_url": "https://neuralsprint.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-24",
+      "prize_summary": "$150",
+      "tags": [
+        "Machine Learning/AI",
+        "Social Good",
+        "Web"
+      ],
+      "description": "Jun 18 - Aug 24, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:06.523660+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Africa Deep Tech Challenge 2026",
+      "apply_url": "https://adtc-2026.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-25",
+      "prize_summary": "$16,500",
+      "tags": [
+        "Machine Learning/AI",
+        "Productivity"
+      ],
+      "description": "Jun 17 - Aug 25, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233184+00:00",
+      "is_new": false
+    },
+    {
+      "title": "The Great Agent Hackathon",
+      "apply_url": "https://the-great-agent-hackathon.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-25",
+      "prize_summary": "₹ 100,000",
+      "tags": [
+        "Enterprise",
+        "Machine Learning/AI",
+        "Open Ended"
+      ],
+      "description": "Jul 23 - Aug 25, 2026",
+      "region": "Freshworks",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.846515+00:00",
+      "is_new": true
+    },
+    {
+      "title": "Galuxium Nexus V2",
+      "apply_url": "https://galuxium-nexus-v2-29411.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-08-31",
+      "prize_summary": "$2,600",
+      "tags": [
+        "Enterprise",
+        "Machine Learning/AI",
+        "Productivity"
+      ],
+      "description": "Jul 15 - Aug 31, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.123260+00:00",
+      "is_new": false
+    },
+    {
+      "title": "AI YES :International Youth AI Competition",
+      "apply_url": "https://ai-yes-competition-30441.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-01",
+      "prize_summary": "$0",
+      "tags": [
+        "Beginner Friendly",
+        "Education",
+        "Machine Learning/AI"
+      ],
+      "description": "Jun 17 - Sep 01, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:07.874221+00:00",
+      "is_new": false
+    },
+    {
+      "title": "VoltHacks",
+      "apply_url": "https://volthacks.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-05",
+      "prize_summary": "$32,585",
+      "tags": [
+        "IoT",
+        "Machine Learning/AI",
+        "Beginner Friendly"
+      ],
+      "description": "May 22 - Sep 05, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:05.233225+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Syntax Summit",
+      "apply_url": "https://syntax-summit.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-05",
+      "prize_summary": "$0",
+      "tags": [
+        "DevOps",
+        "Machine Learning/AI",
+        "Robotic Process Automation"
+      ],
+      "description": "Jul 18 - Sep 05, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.846458+00:00",
+      "is_new": false
+    },
+    {
+      "title": "CALL-E: Your Code Is Calling",
+      "apply_url": "https://call-e.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-14",
+      "prize_summary": "$10,000",
+      "tags": [
+        "Communication",
+        "Enterprise",
+        "Machine Learning/AI"
+      ],
+      "description": "Jul 23 - Sep 14, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:06.523690+00:00",
+      "is_new": true
+    },
+    {
+      "title": "AI Infra Summit Hackathon",
+      "apply_url": "https://lablab.ai/event/ai-infra-summit-hackathon",
+      "platform": "lablab.ai",
+      "deadline_iso": "2026-09-17",
+      "prize_summary": null,
+      "tags": [],
+      "description": "🌎 Hybrid Hackathon | 💻 Online Build: September 10–16, 2026 | 📍 On-site: September 15–17, 2026\n\nThe official hackathon of AI Infra Summit — co-organized by Kisaco Research and lablab.ai.\n\nBuild production-grade AI applications on the modern AI infrastructure stack, alongside 8,000+ attendees, researchers, founders, and infra leaders.\n\n📍 On-site Venue (September 15–17):\nSanta Clara Convention Center\n5001 Great America Pkwy, Santa Clara, CA\n\n📍 On-site participation is by invitation only. Travel and",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:13.220780+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Evorozen Apex: NextGen AI Buildathon",
+      "apply_url": "https://evorozen-apex.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-20",
+      "prize_summary": "$0",
+      "tags": [
+        "Databases",
+        "Machine Learning/AI",
+        "Web"
+      ],
+      "description": "Jul 17 - Sep 20, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.846428+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Global Innovation Build Challenge V2",
+      "apply_url": "https://gibc-v2.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-21",
+      "prize_summary": "$0",
+      "tags": [
+        "Machine Learning/AI",
+        "Social Good",
+        "Beginner Friendly"
+      ],
+      "description": "Jul 11 - Sep 21, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236159+00:00",
+      "is_new": false
+    },
+    {
+      "title": "LUMA Hackathon (September 20th - 28th)",
+      "apply_url": "https://luma-hackathon-fall.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2026-09-28",
+      "prize_summary": "$0",
+      "tags": [
+        "Beginner Friendly",
+        "Machine Learning/AI",
+        "Open Ended"
+      ],
+      "description": "Jun 26 - Sep 28, 2026",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236188+00:00",
+      "is_new": false
+    },
+    {
+      "title": "TechEx Amsterdam Hackathon - AI & Big Data Expo Europe",
+      "apply_url": "https://lablab.ai/event/techex-amsterdam-hackathon",
+      "platform": "lablab.ai",
+      "deadline_iso": "2026-10-19",
+      "prize_summary": null,
+      "tags": [],
+      "description": "🌎 Hybrid Hackathon | 💻 Online Build: October 16–19, 2026 | 📍 On-site: October 19–20, 2026\n\nThe official hackathon of AI & Big Data Expo Europe, organized by TechEx Events and lablab.ai.\n\nBuild AI applications and agents across AI, cybersecurity, cloud, IoT, automation, edge computing, digital transformation, and data infrastructure, then showcase your project live at one of Europe's largest enterprise technology events.\n\n📍 On-site Venue (October 19–20):\nRAI Amsterdam\nEuropaplein 24, 1078 GZ Amst",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:13.220804+00:00",
+      "is_new": false
+    },
+    {
+      "title": "AI GENESIS",
+      "apply_url": "https://lablab.ai/event/ai-genesis-2026",
+      "platform": "lablab.ai",
+      "deadline_iso": "2026-11-02",
+      "prize_summary": null,
+      "tags": [],
+      "description": "AI Genesis is a global hybrid hackathon that brings AI builders together from around the world — starting online and culminating live at /function1 AI Conference & Exhibition 2026 in Dubai.\n\n📅Oct 26 – Nov 3, 2026\n• Oct 26 – Nov 2: Online build & collaboration\nAll projects must be submitted by end of day on November 2. \n• Nov 2 (Online + Dubai): An exclusive on-site build day in Dubai for selected participants.\n• Nov 3 (Dubai): Live on-stage pitching & winners announcement at the /function1 Confe",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:13.220827+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Code for Humanity",
+      "apply_url": "https://code-for-humanity.devpost.com/challenges/start_a_submission",
+      "platform": "Devpost",
+      "deadline_iso": "2027-01-15",
+      "prize_summary": "$0",
+      "tags": [
+        "Education",
+        "Machine Learning/AI",
+        "Web"
+      ],
+      "description": "Jul 16, 2026 - Jan 15, 2027",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:09.236094+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Multi-Agent Reinforcement Learning for Iterative Reasoning",
+      "apply_url": "https://www.aicrowd.com/challenges/multi-agent-reinforcement-learning-for-iterative-reasoning",
+      "platform": "AIcrowd",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [],
+      "description": "",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:14.136018+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Competition",
+      "apply_url": "https://www.drivendata.org/competitions/search/",
+      "platform": "DrivenData",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [],
+      "description": "Competition Trace the Ace Join us on the K-12 AI Infrastructure Platform and predict the learning gains from a tutoring session measured by quiz performance in this tutoring outcomes prediction challenge",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:14.890850+00:00",
+      "is_new": false
+    },
+    {
+      "title": "IndiaAI Startups Global - International Acceleration Programs for Indian AI Startups",
+      "apply_url": "https://indiaai.gov.in/",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "government",
+        "india",
+        "ai-startups"
+      ],
+      "description": "MeitY / IndiaAI international acceleration tracks placing Indian AI startups into global programs. Rolling cohorts.",
+      "region": "India",
+      "eligibility": "Indian-registered AI startups (DPIIT-recognised).",
+      "benefits": "Placement into international acceleration tracks, plus government backing and global market access.",
+      "discovered_at": "2026-07-23T18:09:14.893215+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Y Combinator (AI startups)",
+      "apply_url": "https://www.ycombinator.com/apply",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "yc",
+        "seed"
+      ],
+      "description": "Twice-yearly batches; AI-heavy. ~$500k standard deal.",
+      "region": "Worldwide",
+      "eligibility": "Any early-stage startup with a founding team; pre-launch and idea-stage are welcome.",
+      "benefits": "~$500K on the standard deal, a 3-month program, and the lifelong YC network + Demo Day.",
+      "discovered_at": "2026-07-23T18:09:14.893226+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Antler Residency (AI)",
+      "apply_url": "https://www.antler.co/apply",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "residency",
+        "pre-seed"
+      ],
+      "description": "Day-zero residency for founders incl. AI; rolling cohorts across 30+ cities.",
+      "region": "Worldwide",
+      "eligibility": "Solo founders welcome — no company or co-founder needed.",
+      "benefits": "Pre-seed cash, a co-founder matching residency, and hands-on mentorship.",
+      "discovered_at": "2026-07-23T18:09:14.893232+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Techstars AI Accelerators",
+      "apply_url": "https://www.techstars.com/accelerators",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "techstars"
+      ],
+      "description": "Multiple AI-focused Techstars programs; rolling applications by location.",
+      "region": "Worldwide",
+      "eligibility": "Early-stage startups; apply to the city/track that fits your team.",
+      "benefits": "Seed investment, a 3-month mentor-driven program, and a global investor network.",
+      "discovered_at": "2026-07-23T18:09:14.893235+00:00",
+      "is_new": false
+    },
+    {
+      "title": "NVIDIA Inception",
+      "apply_url": "https://www.nvidia.com/en-us/startups/",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "incubator",
+        "compute-credits",
+        "gpu"
+      ],
+      "description": "Free program for AI/ML startups: GPU credits, go-to-market, VC intros. Rolling.",
+      "region": "Worldwide",
+      "eligibility": "Any AI/ML startup at any stage — free to join.",
+      "benefits": "GPU and cloud credits, go-to-market support, and introductions to VCs.",
+      "discovered_at": "2026-07-23T18:09:14.893239+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google for Startups AI Accelerator",
+      "apply_url": "https://startup.google.com/programs/accelerator/",
+      "platform": "Accelerator",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "google",
+        "equity-free"
+      ],
+      "description": "Equity-free AI accelerator with seasonal cohorts and regional tracks (incl. India).",
+      "region": "Worldwide",
+      "eligibility": "Seed-to-Series-A AI startups; regional tracks including India.",
+      "benefits": "An equity-free program, Google mentorship, and cloud credits.",
+      "discovered_at": "2026-07-23T18:09:14.893243+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Apply Now: Google Accelerator Support for AI Startups in India - ICTworks",
+      "apply_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1Zb0gwYWd5TGxiODhzN1pySmMxaHc3dGlzUmpRNVBoM2x6VEFzcDZ1UmlUb0tZb2xwaFRvS0NJYjVvamRFbDZnM2RTRnhpM1hQd3dxekdWVXNWZzdoMnN4VndR?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Apply Now: Google Accelerator Support for AI Startups in India - ICTworks",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.338794+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Startups Accelerator: Google picks 20 Indian AI firms for 2026 batch - Deccan Herald",
+      "apply_url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNNTZLZnR2b1pGb0lQUzNnYXZDNUpxZFU2U2Y3QUVPbHcwQ1pmdDlmZFJNdUE0SHZqTzVsVTZQdjlaMm9rSUhKQm1aQ2MycGNKYzFGQnRsMnAyV2J1X0d6c0dMNFlRX2dlTGpVWGpkeGJqb1huOEtIY0F5WWdOMDczb3d6cVh0MlFnQ0N6LTJibFg1UVQ0V1VsOC1BZFgwRmNZS1Y4VzhmV2hNMllWRFduNEFZM0Q4ZXU3czhCM1VFZDhBbE1menh5SjJuaDBndWxibHJzemtB?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Startups Accelerator: Google picks 20 Indian AI firms for 2026 batch - Deccan Herald",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.338898+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Inviting AI-first startups to apply for Google for Startups Accelerator: India - blog.google",
+      "apply_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQc2QwY1UwSFczQ2NsbDJKeEE4R3JjNlZKRmdLRzdOdEg0QUZNQ19RWXhRNTNKMlp5dnVpMnRmZlBCaW9pSDdUMUtrdXdrbVZURWtDS2RYVExfVzFuNjctYVBranAxWEp6RDdsNGdCVXdQeTdZU3B5OG5OMTktN2dxWTc4elBKbHZseVlhczI3LU9ScVRjUHZuMmtsczJYM3UtUzk1VEdmcjFZZ2txVnc?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Inviting AI-first startups to apply for Google for Startups Accelerator: India - blog.google",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.338991+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google, Accel India accelerator chooses 5 startups and none are ‘AI wrappers’ - TechCrunch",
+      "apply_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOVTlXcnUtZEtjcVVlQ2FPZTdtODVJU2dobS1tNE83UUdRNXRnTUhTWkJHemhnREZXTUxXRzhqVnEyeTRpVE5LUWgxR0RVSldtM29nRVFkTXBrSVY0NF8xNnRHOVNoQVNBN3o1MVVtN2VtbzZpWlRVUjB4dGhNeHNFTm10anhfQUhFdW5uLXBlOXd3ZGwwZW5ma2ZzUk9lYjJLdFhXVDZIcy13dUJmN1c2X05RTEtPcnpfLUh5Y2l3dVZJaW9Y?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google, Accel India accelerator chooses 5 startups and none are ‘AI wrappers’ - TechCrunch",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339077+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google selects 20 Indian AI startups for 2026 accelerator programme - Rediff",
+      "apply_url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQNHJhUVM0ejN3VHJJSU9rM0dQZ3JjVHRqQlhjeS05Z2dQME5ZUkk5NXl1NFByRHFQR2pKT3ZjV1p5d3AzOHp6aUZSOHF0V08xTG01LXJzMGR5VDR3TVlvWEhrTVIxeEFJUFFaVmxIdHc0MWlCVTd6MG9YYTFsVEF4ekR6RFZjZEtQLVptY1RBeU9Ua0drVmdTS0NYeTBzdDNWNElhb1NJYjNUdU8yUTNQNHZaR1dCdGNqdVRkajlMQkFXa2JyY01JSE1R0gHMAUFVX3lxTE1kbWo2SUN6Y2poZGE5d1RtMklaY0JkTzVTOHhCM0loa3RSaVRBSEVHb01qTWdrZWhXMldkMGRadVBDMUZsYU00eHJDX2JITV9MWFZBNnJ1bEZINXpudkZLOHdlaTdvNmJZcGRiTjZnc2FFSW1tcTh4LTlMVTlmYUFhdjVQUTEwMUo1VVJaUTN2U0ZaaDZseTEteFphZ3ppSjZDOUswbGJUbkpIQ2tzSDd2a0VGUy1qYzhGTEFLbnp2aVFFMmFKYzI3MFFMQw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google selects 20 Indian AI startups for 2026 accelerator programme - Rediff",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339144+00:00",
+      "is_new": false
+    },
+    {
+      "title": "IndiaAI Startups Global: International Acceleration Programs for Indian AI Startups - 2026 2nd Cohort - IndiaAI",
+      "apply_url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOdGFyZjFNcXRDT2lya09uaGFvMmRJeGl6M3ZCRWtITVVZd09hZEpfdHBPYnVKNVVQMUxtb05VTS1YdUtuTlZ2NzJJa0M4eFdSSWFLMmhBQTNyTFFpNWJ6UG10czJfb0xrN0doZTJlY3lzcnZVLUNDbmF3Qi1EdC1xQXI5TFhzRU12dGFDX0J2LUtxMWt0Z21OYnR4MFNDQXBTWEN5ZC12WGJhNUJiMkR1MXJtWENUTVUtcWJFcG90NzVmbmJKaVo5Wg?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "IndiaAI Startups Global: International Acceleration Programs for Indian AI Startups - 2026 2nd Cohort - IndiaAI",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339211+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google picks 20 Indian AI startups for 2026 accelerator programme - Business Standard",
+      "apply_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdmFycGx2TGJIcmFkMC1oYm5EMkhYMUdxOWVvU0RPVzUxcTAySFlCbDlqdVRrN3ZPTlNFRUtyVGhqUkM1UnlYOEVHemJDanU4UVpkWHg1aHdVMjdyNDNtUFB4bUJjYUh4VWRVWUNvWWZqRkZwT1JWamU0QTludXd3aW1faW1SNkRVbi1NSU9oNmlacmhCVVJwR0NLVnpxd0NHM25UU0cwR3psR0g0Q2xZQ2MzTFZwNnljaFN5cjJvTmktdVRvU0VQaXpyZ3lQS2_SAdQBQVVfeXFMUGhIdmxrd09yS0JfN1ktWk9YQV85RkhlUzdfa0FKYnhydG1hRnZlRWlvb1c3LUxSalhBbnU1QjJKT1VTYzJiTUtrYjJ6MXpWX2lxdlF0bWRQR21QVnEyTGpHa2dhcGFhZERQbDVtdXFkY3c4ZF91RDlYanN1RUZ5YVVtZERjRERPdVhOWTZuQThCV2J0VlJGUXdDZ3VDUF9yclRuX1VWNVMxZE9tYUFsaksxYWNjR0tzYUM2WF9pTkZTNW9NZlpocUNIVDFqcGQtUEpBb0o?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google picks 20 Indian AI startups for 2026 accelerator programme - Business Standard",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339283+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google names 20 AI-first startups for 2026 India Accelerator - YourStory.com",
+      "apply_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNaFduY3ZFZWdGd0JGV3pWZTJZdVp0UGtWSXA1a19fXzZESXZwa3lLSDBTY1dSOEdWQlhDenhqWEItSzRFQzF2SnNpTl8zbGRLb3o4OWxWT0ZIT2xYMW1wb0NsRnNoLUFxeDlOYXQxWVRJaGwxR3dzc19vUlpCVHhmeDVxenNRVzhxOTdFSUNqaW14anZnZ1E?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google names 20 AI-first startups for 2026 India Accelerator - YourStory.com",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339347+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Apply Now: PW AI Startup Challenge 2026 (India) - fundsforNGOs",
+      "apply_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQMzUyVVJoQ0lwbUpnV3ZVOWtkVXlUZ3hXdzJLN1E3QjE1VUpkR0ktQl9FM3VlREdYRnhoQkdYRUw2X2tiZXliZDhUNE5XTjd1S3pUS3BVQURiNXdKN0tzRjVReEhFdk1McnE2a1ZjUVFtMjNLVXhuZVNBYnFFUjJVcXdKeFgxNkhOODBPUEs1c9IBlAFBVV95cUxQOWV5UkdCSlN1OERxdG5RMmZNUmczSHltRXJTalFfQWgwSHFXU2EtUmFsaG0zNVduZHVCZE9GZHdrakhWOWNMNUdReGlrZHBobG5UQmpHRXBOQkl1M2o3cmYtRm9YZVY4S1lYVDJYQks5N0IybTBMRk1rNm9fb0c5TXRLeVVRY19jRDBvb1Y0Z3owWjcw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Apply Now: PW AI Startup Challenge 2026 (India) - fundsforNGOs",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.339425+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google selects 20 AI-first startups for India Accelerator 2026 cohort - Storyboard18",
+      "apply_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQU285TGZrQ0tFN3pSVU1xcjJFNnE0NXJCTFYxRUtOTFNncjU2cVV6cHpURWplRkpHSkpsQ2ZqcmlISFFzdUdhX1Y2Mkc5MzBTbWRHRldxaTdVNnI2bTlhM2RzTGlhSktfOVhBYy1tMG5Rc1J0SEFZMTJNVkItUlNKdnQ2X25WREp6UW4zSHNFTjFRUEdobkhkRDlDWUVaaEdaWkVXNGp4UWJKbFo5ZThqckd0Zjc1Y3NBMHfSAb8BQVVfeXFMTjNUV1hzLUxvM09IMFUyOUxtQkl5RUtwOFpaOXNWQVVFSHgtX0R5NUFHZGd0OUUzd1JGSFFoczljUzZqTi0zUW5xaGx4S2gzLXpxWVZ5ZEdlcDFjWmdnSkVwZFpvT1ZpbHEyekZ6dkZadzJYaHpmY1hFMC1JU21vbTk4dFhOdWxxaDA4Z3M4Mml0dnZQT1hHMHdfZlNGU2p3a3pCcEVDLUlWdnFfenNVSS1iRmh5eHVJWEwxbjFSVzA?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google selects 20 AI-first startups for India Accelerator 2026 cohort - Storyboard18",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.682130+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Selects 20 AI-First Startups for 2026 India Accelerator Cohort - CXO Digitalpulse",
+      "apply_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObVNkaUI0MFVuZ0s0RVA0T3lqLXlqRGRKYjZpNXN3NDlMejNYMEpNV1FSeWJUcEt1YWV6YlViRDlodGp1emRDSXNjbUNuY3NqcGtlUnJhaEc3LUw0X0tYWmU4QU5rUFdXREh6QWdSREozVW5pd1k2LTFUSi1SRmZJZk9fRHd2UWFWSlVkRmt5RVRGd2lMVDlUVW9hSHBiTUlRTTRCRg?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Selects 20 AI-First Startups for 2026 India Accelerator Cohort - CXO Digitalpulse",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:15.682295+00:00",
+      "is_new": false
+    },
+    {
+      "title": "India’s GenAI startups surge but face funding, talent gaps: Nasscom - Outsource Accelerator",
+      "apply_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBKMDZVWTlKMUpnRUdKUDIxci04RW5WVy1qekFFQ1VEVUwxV0VUaDc0Z2FOYm9tODdkMHRCMnJ4LU9CSkVBbExSOFVnaF9TNUdSUW95Sk84SkdOQQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "India’s GenAI startups surge but face funding, talent gaps: Nasscom - Outsource Accelerator",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.036446+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Introducing the 2024 Class of Google for Startups Accelerator: AI First - blog.google",
+      "apply_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQYkl1TFFDdjhUNlB5eFhLWjNNaC1OWWVEQnBfNS1RQnhUSkxvN3g0VThfYV9BbVJ3SDgyYkxfMlhTQ05LZ2tkbXBGZGdwQmxjVDV2NTVDc2lxeFo5elotZ0FndVZyRXVVc2l0Y0NJdWZCSjRrd1JrYW9NYnJZeUFpa1JYeXk0OTg5dl9SdjZBenJ5SDdlbmxPQjNiVVExWmpHaHBvUQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Introducing the 2024 Class of Google for Startups Accelerator: AI First - blog.google",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.036630+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Telangana AI Mission launches 'Revv Up' Accelerator Program for AI Startups - ET Government",
+      "apply_url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxONWRhVmpBNDdPUFJ0eWZ0LTNUTFRqV0VGR2ZOeF8zSkgzc25seWlzdlV1Q0MweEVwUVg4bzhDX2dLZmdmTjcxcmx5b0lsYVo2TzUzcXJzbXQ1bDlvdTFnX3VEOTM3MkJtUkd3bWpIZ1FvZ2FzenplX205cmRJY1FpZ19HMW9VSFpuUVdEdDlXRVEtdUdXc3hROWhLRF9pRUxaekhUeVRvZTh4STVXaXg2OWNyYUMtMG9wSUNNNTMzNjhKVU92Um84NHNyOGVURFNVQVdKdF96UEZaSS1aTFk00gHkAUFVX3lxTFAzSVlpMHh3WGRpV3ZtY05vUURabXFsNDBLTXFTaFlnd2V6eWtpYk5NdTFwYjlmbG1xOGRUaFZHYWZrUDJteHdISTdEYmR0emNYbklDZGloYTZtTFFIbHhKZzdfMGJUN1JZNFV2MUZTMi1YSmx1ci1VZWNmODJNdGd4dHJTNlkwaHUySlVLdXV6REJydng3X0NsUHpjbXpXSjMwb3BGVGRTQUpMSkFoSmdnOXYxdHo4MmhicExIYk1Qbm43X2REYkNVWkN5YU1CWDFMcDcyeVlCLW5QYzF3bGZ4SlVoUQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Telangana AI Mission launches 'Revv Up' Accelerator Program for AI Startups - ET Government",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.036840+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Apply to OpenAI Grove - OpenAI",
+      "apply_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5uVnhfdkZRMkl1SFhMNWlUelJURWw2ZUxoS2haN0FPRVJhRG01VXpoZnpCOUdjSzFHSXVwbDU5Qmx1THJxSWZWR2t5aW1DVXc?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Apply to OpenAI Grove - OpenAI",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.473976+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google and Oregon’s Leading Innovation Partners Launch Oregon AI Accelerator to Fuel the Next Wave of AI Entrepreneurship - oregonbusiness.com",
+      "apply_url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOeHBLOFBoMEVOYW9NMThWaFVSYTFVd0tsTVJheVVKeVNydDBwSW9UZjN5TTg1eFlCQkNkQXB4cmhxSHBSRGNPYjZRckJ5V0djT2dyb2ZxYmpuTzZqdFJOWG9paVVDVDFYbmtQbUlyMVZ2aVdYeF9HeTJwX2NQQkJDOEVoLWdjVHNEM3M2ZnNRVWh6SWlKeTRFWFFxLWxhaHhqTWNXZ1N6S2tacUhJN0g3ZVBvREFNWFlGTEIwbzF4ZlpkN3pTWElZOHJNYXpLUV9SQjVWMEEzbU9RQzdvZ3FBVEN3?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google and Oregon’s Leading Innovation Partners Launch Oregon AI Accelerator to Fuel the Next Wave of AI Entrepreneurship - oregonbusiness.com",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.474111+00:00",
+      "is_new": false
+    },
+    {
+      "title": "California Milk Advisory Board Opens Applications for 2026 Real California Milk Excelerator With a Focus on Commercialization, Retail Growth and AI-Enabled Scaling - PR Newswire",
+      "apply_url": "https://news.google.com/rss/articles/CBMivwJBVV95cUxPQkV6RTZBTlMxVGdXUHRnaEttdG45S0hLdWhzSmJySGFlYzI1NWVDclhMTVYwNy1IN2NYOFU0X2QtTDF4ak84WmxVUGM4ZHNsNmx6c2dFMnVNc1NnS1dZUkRlSGJhN2swNmNXeElCcE54WVZvM1I3SXhaYks5c0prNXFKUDFnXzlaYVNuMF9oakg2ZlVQc0I0azBEbEtKNm1LNno0RkQ3NGNjaGZ0WmtZd3JTUzlhdk5YdVgxeVMwNWdTSmM3NEdjSEJLeDhUUWVXd2hBVHNmWk0wenpLamhycjRWRFJTYVNlX2FTM0N5SWM4WnU3ZXNkNmluMElXV0lwbmJjb0lWa3d0SmVYSlNCOUlIdnZmaU9oa2RqQkJzcUk0WjFQOGFLYWNWTUJKb2x1UTJXTjhEdTlkeVdUNk4w?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "California Milk Advisory Board Opens Applications for 2026 Real California Milk Excelerator With a Focus on Commercialization, Retail Growth and AI-Enabled Scaling - PR Newswire",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.474195+00:00",
+      "is_new": false
+    },
+    {
+      "title": "The Meltwater Entrepreneurial School of Technology (MEST) AI Startup Program 2027 for young African Entrepreneurs (Fully-Sponsored, 12-month Residential Program ) - Opportunities For Africans",
+      "apply_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNZHhqTzhuZnpoR1AxWWRfSGhzRDdZRk9NX0k2Z09UVjZBR01fZGR3d1ZwWmVLTUFPakdkYk0wVi1UUWtlN3gxbGlUcVo1WVpmdjdzLTRXNDZMNHRaZ2YwY0c3OVpqbGxpVnJfTTlLOVM3REUtbDhINW9PSmFOOVlGNTM3WFlpUC1FZjBxVVpPTDdQbEdxdDFGV0JxV3lSQXBQVTRrb2k1MUVCdy1XVUhGamxnc2VNMjV2WVVZdE13?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "The Meltwater Entrepreneurial School of Technology (MEST) AI Startup Program 2027 for young African Entrepreneurs (Fully-Sponsored, 12-month Residential Program ) - Opportunities For Africans",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.928689+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Backed by Google new Oregon AI Accelerator launches, startup applications open - The Business Journals",
+      "apply_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSDVFeUlHVXplU1lUTkVJd1pRSzRWd0RJbHZ5YTljQUxqcXVTZUFjRFlVLVVfTkNORDU0X000TE5xY0NXdzdGSHAwbEF2VUx5S1lzcjFlWE1JWEh6NTlScHNjVWhOTF9jb0tFZW95YzVyRVJWOUNtcXhVdGt6aHQ3NlBXOFFzRU1ZMW8ySFgwNDVoeFhPU3lSQQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Backed by Google new Oregon AI Accelerator launches, startup applications open - The Business Journals",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.928777+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Cloud opens SEA AI startup accelerator - Tech in Asia",
+      "apply_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNS2haS1hjSlBEY1dYWUN6MlBfbGFvSUFBem5WWmMyaW5RNUstTzBEN01uOENJclAwYUJTSVBzeDUteGFva0owTkEyMFlhRzdLRWtETlJWRk01NUpXV20wM1hJb2REQVdla1hYSU5BLUFjRXM5RVk2Tm9FRHg5MW9qM2VRWQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Cloud opens SEA AI startup accelerator - Tech in Asia",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:16.928836+00:00",
+      "is_new": false
+    },
+    {
+      "title": "OpenAI, Anthropic, and Google Are Joining Forces on an AI Startup Accelerator - inc.com",
+      "apply_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOZHZnbDlZV1NEWGR2b1FhU0JSbTAtXzNVSGVQM2t6cUdzZU5Vay1rUFpxVUhSdENYVlFlSmxfTlBGaHIyZmNrTDh0dW1xYmlZbkdIcWhLUmRWbkJiTVJnYWJ5YUQycTA5NjI2dkxJM2xGNV9BMTBGcnMxU2JibVY3MHkzdU00WC0zd1lKVDBZdGFpSW5MbHl3WXZpSUVpXzhXTHc?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "OpenAI, Anthropic, and Google Are Joining Forces on an AI Startup Accelerator - inc.com",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.371633+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google opens applications for AI-focused startups accelerator in India - Here is how to apply - The Economic Times",
+      "apply_url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNMUpHVjZvYXREYUNWdmFEVEYyUU8xeHR6UzZSXzdBbE0tclVabDdDaUxkaE9XR2gyMFo3Qmp5YVMyN1lQSDc5Nm5NZGt5NmUzNnRpbHBXbk5GMWltSk1MTUQ4SVBsTWJqWjB1YUVnazY3a21pbzRzbHk2SEZuX0ZMSTMxc051MkNJd0NsUzhqdHVGUTBIaFlvWHJUcy1aZTF5ZjdicWdWZjlOUTlPQVFMcnFTbThUUjFGajZFakpWekcwM3laR2lOV2h2Um5wR0ZkTjR1LWQwRnBXbmpzSkhJY2E1UHh0UmFiVnhGWlNza2JweXJpckHSAfsBQVVfeXFMUFRtczRObmtLNDh0M1RBOEYyMHVvSjJvLXY0VXprWENyMFVHWkUzdkJVa2tPZ3hzUWVRcjJqYVJvMy1SR1NpODF4NlhoMlFMUXYyMWc4dDRiSTBtalZCUGhzU3RVb1hKS05JelBGT2FMY3ZQRTc5S0xtakJSNzgxRXNCSW5GYnNoaUROZ0ZrRVltZnpPZ3lBV2pGWV9XbU5Rck1aNmFiZkczMXB4UkYtd0wwd1JiSXk1U2FSMHhQUklNb2RhSGFYRTc2VzgxLXBFeEkwZXZLOW54dUFJVFYyZ0Zidk9VenFCVDlEbFVBckpfajVFdFRlNF9nMkk?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google opens applications for AI-focused startups accelerator in India - Here is how to apply - The Economic Times",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.371978+00:00",
+      "is_new": false
+    },
+    {
+      "title": "IPI’s AI Accelerator for Media: Building Sustainable Newsrooms in the Global Majority - fundsforNGOs",
+      "apply_url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSE9NQzNIdTBPMk93YXFXOTE5QUMxZFBEa3REcnZxbG9iM0ZybzB5TEtXNDJqTUxSUU9JQ2FXaTVIazh4LVJDU1p3S1h4MHlJWU5vQzZKRHhBbmh2TjNMdVU3SlotZ29vZElEM3NNVVJ6ejNjTDNoRXQ3RGFhYnU3SG0zRDV4VEsxYnNkZmZwcnJXNUo0WU1pX0I5NDBlaHVNQ0pJM2V0ODRfbUd3VFVoYXFrd3FEWUVON1dRS0VXREZ0d9IBxwFBVV95cUxNRXNGNW5EdjZpTmNOTUkxdjg3WmdtRENhV0djel81clQxaVFsV3NrVW5CVm9CVEl4dVgyb21nSW9RTWF4Z2dzQXBremE0NFJ3UlFDMHFfRFlJazh1aURmOG5obkYwb2IwaGxVeFJDRDk4VFhXMFhtVFl5eFNuS1RHS2huSmJGUXhHdjVCRi04TnE1RVVyZ0c5U200UURlMEFPdGNEQU8wX0l2d1MzRUlsTjNSUFg2UzZvWUp5cy1sUnJTMnNJajF3?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "IPI’s AI Accelerator for Media: Building Sustainable Newsrooms in the Global Majority - fundsforNGOs",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.372103+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Cloud opens Southeast Asia-to-Silicon Valley start-up AI corridor through Singapore - Yahoo Finance Singapore",
+      "apply_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPblpJNUlEaDkxbDNCb0lHb2tJMEw3bWVhQUVZS1ZDR1d5SEhlYVVmamczV1psRXpLQlpOZURiRjV4clB5ZjNxaUczbEI1M2JKU1lUY1czTm16d3dPenRmZ1VZV1JCYXJ5blVtaWdnZXBSZ0dTeDhBd3BqazNJZWpYckNTa3BOSGNzTFE?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Cloud opens Southeast Asia-to-Silicon Valley start-up AI corridor through Singapore - Yahoo Finance Singapore",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.741000+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Cloud opens Southeast Asia AI corridor - TNGlobal",
+      "apply_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPODJacTNzdlltY2ptSWtuMmw2TDQydTRUNWRaYnNDakhVdkR3SUdVd0dIeFRFU2w4NW1CeGxUOXI1WjNkb2VqZkV6T0NuRVYwWU04M1NYbDFDQ3ozUDktNWQtMlNRNm10WEdUeVp0TWVqN0d1a0pDMGprbE5yb3AzOHpDTDVBN3kxYW5hYkpfcmZRak1YY3Juejl2d3hWSEg0WWNsNC1sbVRUMnJRWXc?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Cloud opens Southeast Asia AI corridor - TNGlobal",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.741086+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Cloud launches AI startup corridor to Silicon Valley - IT Brief Asia",
+      "apply_url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZ0JaMmJVV21tOE1vX3I5d3Fvd0xFaGxsN1VEOXlYR0c4SnVlM1J6d2Y2S1pjVThqYWlSWUl2MENEb015bExLMHI5cExJOTl4NEtvRjV5YlNXbEtwNXpPVWRIdFVyMjlfeFhhZTJPOFVXMlUxdFJSTmt6WENmMDdBU2NndzNFbnVhTkJESGFJaw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Cloud launches AI startup corridor to Silicon Valley - IT Brief Asia",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.741287+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Cloud, partners launch SE Asia-Silicon Valley AI start-up innovation corridor - Frontier Enterprise",
+      "apply_url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNZU1Ga0U4aElNZTR6T1lVYjk5MkRmLWpaZU40NXBrbGJHUmRXenl4WVNzclFabnZKdWlfQmdxZUFDamk4THA0amJkTDJKZlJPYmhOUDdFaHB0WGx1ckl4NXVTT3JIUzl3OEJqa3ZWWFIySFVpbm14R2pNQ0xLZXJIVjFKaDFqSGhTZzRCa253TGJDYnNqOUZvd3pJZjBmRVZab0RfT0lUTTVpckRFZVdValJHcy02Z3hXT0hZ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Cloud, partners launch SE Asia-Silicon Valley AI start-up innovation corridor - Frontier Enterprise",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.741351+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Press Release: Turn.io Launches the Chat for Health Accelerator 2026, Scaling AI and Voice for Primary Healthcare - nextbillion.net",
+      "apply_url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOUlYtSVkzUHJqUVJPT0FsS09RU2h6WjVBWG1RVWNmWnh1eGJjeHV0QUNkU21TbkpHX3Bjd25oeU9GajdqSmhoZS05SmNRNnRvSk1Bb0dsX2F3MVQzNEJtWEc3OXN4cWFCYUVOM05QYkJ3XzZzVUg3cDF1N21RZVg0alRSRlJzNGdFY0g1MGJIVEk2UGZfaHp2dE94WmdrOWI1WlZCVFNsVU9OdFhSYXdjazlrRGV6VEpwQXpOYldzcU03a3RQVGFBcTFGS2xtMzBRa1RsdEUyXzI?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Press Release: Turn.io Launches the Chat for Health Accelerator 2026, Scaling AI and Voice for Primary Healthcare - nextbillion.net",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:17.741438+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google DeepMind launches first robotics accelerator for European startups - EdTech Innovation Hub",
+      "apply_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOSW9GM0hMWlloNV84VHpDRHRDWXQtTk5iT0VTWHNTMmRNU2NHZmZiYVZTdmNPUzFjdm9QdWJ6OVc2NkREWVVQMmRfVkdwZjhiTnZMNko3cENPaHZvb0psN0pvNmZkemVzblp3RTRsc0daQ2ZaUzY2ZzhBZEtwZ093emRjQ0FIaHpYZEZjVk44anJsZng5bVNaOWc4NnlWSHM2NHhVOWxQZHd3YjhUVDJrM1JUR28?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google DeepMind launches first robotics accelerator for European startups - EdTech Innovation Hub",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:18.237063+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Apply Now: $100,000 for African AI Startup Founders - ICTworks",
+      "apply_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9sRFRySkVNc2hTZFVHRmFrT1ZXdG12VU1BcFRjbzJoc2pyT3p5YklhQ0hDdHJUaFpDMG94eGdEd1haVTltTG1Hbks2ZHQ5OTM2VkZ0SDVLS2RXTEpKdlY2ZDJOR3h6b0pod1BBZUdxSnJRWlZwYTZUXzN1aWluWkE?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Apply Now: $100,000 for African AI Startup Founders - ICTworks",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:18.746413+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Exclusive: Runway launches $10M fund, Builders program to support early-stage AI startups - TechCrunch",
+      "apply_url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOUVVzOUR1V05hSWZGQ20yMk93eFNaV0JZaUp4WU1aR1dWVGVhZWRCZDF1SVR1V01jWER3T3VRdkRGNzRjN3dmVmVUekE4YTZQOTJhckg3SlBmMWlkbkwtN2J2SUlOT0JaeGF5UUkxSzdwcHUwaGZBaVl5bTRhRG9WWGU3VU1vRGZSeW4zOFk5TExhMGQxcWlhYjc2N3lJNjZzREFLUFJQYmQtSVAxN1NONDBIRlEzWlBoZVpoeU1B?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Exclusive: Runway launches $10M fund, Builders program to support early-stage AI startups - TechCrunch",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:18.746691+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google Africa Applied AI Lab Program for African AI entrepreneurs and researchers. - Opportunities For Africans",
+      "apply_url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPY2FSdUVsczZ5cTlWcnFWZEdtM2UwTTR3VXk2VnNteGdOaFg0N1JiUWVzV1hPNkxfUXdydUZ4RjVJTUpnelZWQmdsR3I1UXR6ek12LVBnLVExUnFEWmlIQTU2dkpBVWFaZGg4TU0xbEs5MDNoWktjNV9JN3ZaQVdzRVBFQTVjZzU3S3hNbGxjWFFra0pZT2lhcGtWNXFBeWk2U3VpZ3JqQVJacVBod3RZRjgydVRsZDNYWnRGcVhFbEE?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google Africa Applied AI Lab Program for African AI entrepreneurs and researchers. - Opportunities For Africans",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:18.746798+00:00",
+      "is_new": false
+    },
+    {
+      "title": "NVIDIA Brings Global AI Startup Program to Egypt - Dabafinance",
+      "apply_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9ON0VsZUlfTGEyd1cwZUdqSWdRelpRM3JJdm02di1vd0NLeFMtTl8xSHpIZUJrcW1iRzljNXlMVm1VVWljT1BhY1FOUDh1a3lBdVd6dzJpeDlKS0xRVERtLXotTjhpUDJZMG9OWlY1SWg4dw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "NVIDIA Brings Global AI Startup Program to Egypt - Dabafinance",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.201945+00:00",
+      "is_new": true
+    },
+    {
+      "title": "Techstars Partners with Emirates NBD to Accelerate Enterprise-Grade AI and Fintech Solutions Across MENAT - Techstars",
+      "apply_url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPYkFsRk9jTUZtOFo4MmRvMlZ1eVlOV21WWk9FS1BGQ1FQbWFIcFcyVDB4amtEbEJkUmVBRldUR0JILVh6ZzNxLUUyazVCWF9RX2hrYWtqRjQ5VW9Va3VIMWI4eEh1cmpSYVVyeFZlYnRRQWFEOVo2eDJvaktFUDZZR01rRlN2SHZwTWJjOEtXSVJkTG1aa3BhNTBJb3A4YnRPM21FeXB1WEFJX2lGU1pWNnUyU2M5b2xCTVkwNkQ0QXRMa20xekZjZThCQ3F2WUtiZW5kYXZlcw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Techstars Partners with Emirates NBD to Accelerate Enterprise-Grade AI and Fintech Solutions Across MENAT - Techstars",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202038+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google launches \"AI First\" accelerator for AI startups - jawlah.co",
+      "apply_url": "https://news.google.com/rss/articles/CBMiP0FVX3lxTE1BVEVteDQzeWg5X3hXaTM2R29uZjZQU2FVNnIwMXJvMmFQVm5WWmFURlFyUGpSUW9TcG9sQTdWSQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google launches \"AI First\" accelerator for AI startups - jawlah.co",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202195+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Techstars and Emirates NBD partner to accelerate enterprise-grade AI and FinTech solutions across the MENAT region - The Manila Times",
+      "apply_url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOb3pEX3ZCazM1ZkV6U2U0dUxWZG1xU2FZYUtQNkVIQlRMZHowTE1qQ3ZIeDhHVUdQRW5GMjJvSXhUdk5vZG44YThCMmctYnJ5SjZyT1hvUllldnBEaG5QcTlXZ1dlZXE5UnJEd21CZjk2RzZ4alhIdTY0amJJVGJPQmFkV1RkaWM1ZjBZWEtYVUpYNXFreV9wQVRhd0YtVlFxaEZCbWJwYXpZN3prZEFuT3VrYVIzeTQ4ZEVhZGdibVp0M0xVTU9zZVFFVjV0d2dMZ2plU0dRY3ZMYUd5Yl9LU3FmSnJ4dk0zTWdmVjBZa051Mkl6WkhzSUd1RFppWmlKTmUxaC1MWDVNbTY2Wm5MdUl3RTjSAZoCQVVfeXFMUGN5R2g4cC1LN2Y5Nzh1M3RJQTBBamlDWUg3SzlCVnNueHRZdFFUZ045UWFvM2pZUTkxajNVSkhmd19BWmQ4dUZ5OGZCa1V4YkxVU01CX3Bvb3JQeDlfbTJyQVFrUVdLekpGb2I4Tm9Kell1T01meWVVZVlIUy05Q2gxcGNITmhJUmNJS2xEVU1qZkItb2hQc05HTWc5T2otY0F3NzF3UGdIdV93V0E5OGpDM0hkV1VjY05OWGEzdGdHNm9wV2tHaFpCTnl1QThjOUd1MXhNclRHR3lEaE1KYnp1STJWdExiWHFfaDBzUl9SSllyOGRqSFdQNHJZZElSdF9jV2VyWUJOX01nS3ZOTlNlSF93WDAzMTdB?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Techstars and Emirates NBD partner to accelerate enterprise-grade AI and FinTech solutions across the MENAT region - The Manila Times",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202272+00:00",
+      "is_new": false
+    },
+    {
+      "title": "AWS selects 40 startups for 2025 Generative AI accelerator program - The Times of India",
+      "apply_url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQZTVDUF9iLWR3U2pvWkVHVnJjekJuUU5SNENjT0tYM0ZwVVJxMDcxeFpiOHpkNlY3MWQ3WVFfTHVXZ1NWNHFBeGdZUktUT2lrQlhvY3F0S0pWQ250N1M3ZkhWY29lR25ybnJsSldMRmRrQXJ5Zk9aUmpBWnNIUWdnRGdvRFJDU3htOWNOZExKZEhfX1B5V1BMZmluQWlmSWVFM09rWVVhT0ZwUjFMNHJlUEJtZUxJX3NyYTdoYXlESVB4U29EaXlwOTZOMTlxbmpQaGY5emRzckhVdVNIenJxd0RlQdIB6AFBVV95cUxOMVhoVHctT3B3aF9fYzJ3a0JsN05aLTRmeVF6S1pJUV9ZYUR4WS1oX2VjRkZhbmlTajNldm5mQnJXZ0IxVGZaWjdXMnlPaUw5SDMzMXpIbGdEMnk1TGpXMF9LcXhQTzRURzd3OU5MaUJTU3FDTTNDQnMwYnRyRV9Ic3JBUmFONDR6NkMwODVtWkl5cFd5WGJNM2I1amhSb3lRLXZZU0t4MFI2YzlhVkRhU3RmVllaRWxCYkNLU1BIYjJuS1FleVpKZVNyRHNkSF95Z2ZZcnFBcnhCdDhiMzJUaHZmVUU5a2pw?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "AWS selects 40 startups for 2025 Generative AI accelerator program - The Times of India",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202343+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Empowering the Future: Announcing the Google for Startups Accelerator: AI First for MENA-T startups - blog.google",
+      "apply_url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxORnJyQ25WRHhQbF93aU5ORmdXNE0xRHJfQklpQnpfWWZ1N2RRdVRMcFhTX3NTbEtQZ2RadE1ZS2l6SFNWQWljZG9oQ1cxY1E3dmttM2NsNURvQjU1VndMdXRxUEQ3VjlyZWVGZU1IZEZLZVZBR2huZjVITGFIbkdwdFRPZWZiUU5oRGR1ckU1bTl2NHVSZjFJOW1fMy1LSTM5MkhlUF9sZDVYTFcwTmwzall3NEZMUU9EM1pJOGhPem9lQmRBa3RxU2gyb1RMeHN4eTJFZmpzRVRvZ1pCME45RXhjeVN3Mkw3Z2pSVlhsaU9SM29aZWZhOQ?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Empowering the Future: Announcing the Google for Startups Accelerator: AI First for MENA-T startups - blog.google",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202449+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Australian startups join AWS AI accelerator, gaining USD $1m in credits - SecurityBrief Australia",
+      "apply_url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOMWlrU0VVYUMtY3llU0hydlpscHJHWkVUdGRWMTZCdVZrSU5WRDdBLUtOcWs1TUg2NkhvaG5XQUdYSGI4R3g3VzdodldpYjdITVVYS1hhUlRWNnREcWxLbExId0ZfVXpOS1RRMmhXQzFjVkRmY3VmM3FTUFRKdkZVVUpZa0tYNlJXZFlXSGs3STQ3RHg0YjBfLVBCOExjb0o4YWRsclM5NA?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Australian startups join AWS AI accelerator, gaining USD $1m in credits - SecurityBrief Australia",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202515+00:00",
+      "is_new": false
+    },
+    {
+      "title": "Google taps Nigeria’s Infinity Health Africa for first AI for GovTech accelerator - TechCabal",
+      "apply_url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOVFg4bjNqMFBwWFRoeC1PcXFuTVFnNXJMcWVmcEdnVXNlZXVQNndDQld2YVJyaDdUNzNkTWZRWlRKOVozYzhpV1lpN0dvalF1aHlpS3VjT1FYanJsS0lfRy1VX1RGZDZVOUdGaDMzTkktbWttS0NqYkFwSDNKWVRvcGlPVGlnV2hLQzBrY01pbFp1QmRu?oc=5",
+      "platform": "Accelerator (news)",
+      "deadline_iso": null,
+      "prize_summary": null,
+      "tags": [
+        "accelerator",
+        "news"
+      ],
+      "description": "Google taps Nigeria’s Infinity Health Africa for first AI for GovTech accelerator - TechCabal",
+      "region": "Worldwide",
+      "eligibility": null,
+      "benefits": null,
+      "discovered_at": "2026-07-23T18:09:19.202590+00:00",
+      "is_new": false
+    }
+  ]
+}

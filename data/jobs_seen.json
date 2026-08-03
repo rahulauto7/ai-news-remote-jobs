@@ -1,19 +1,18 @@
 {
-  "updated_at": "2026-08-02T17:59:10.331585",
+  "updated_at": "2026-08-03T18:47:21.600242",
   "seen": {
-    "https://stripe.com/jobs/search?gh_jid=7377101": "2026-07-26",
+    "https://stripe.com/jobs/search?gh_jid=7377101": "2026-08-03",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-07-30",
     "https://job-boards.greenhouse.io/anthropic/jobs/5030244008": "2026-07-30",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183044008": "2026-07-30",
-    "https://stripe.com/jobs/search?gh_jid=7826765": "2026-07-26",
+    "https://stripe.com/jobs/search?gh_jid=7826765": "2026-08-03",
     "https://news.ycombinator.com/item?id=48360223": "2026-07-10",
     "https://news.ycombinator.com/item?id=48483858": "2026-07-26",
     "https://databricks.com/company/careers/open-positions/job?gh_jid=8099751002": "2026-08-02",
     "https://jobs.ashbyhq.com/vanta/581791d7-c63d-45fe-b6a7-f2d8f6532af7": "2026-07-18",
-    "https://jobs.ashbyhq.com/vanta/f987d41a-d0e1-4260-9129-f64aee6122ae": "2026-07-26",
+    "https://jobs.ashbyhq.com/vanta/f987d41a-d0e1-4260-9129-f64aee6122ae": "2026-08-03",
     "https://jobs.ashbyhq.com/decagon/6431a6f9-2ebe-4b68-beb6-200b42aeeca8": "2026-08-02",
-    "https://databricks.com/company/careers/open-positions/job?gh_jid=8432827002": "2026-07-19",
-    "https://jobicy.com/jobs/142522-machine-learning-engineer": "2026-07-03",
+    "https://databricks.com/company/careers/open-positions/job?gh_jid=8432827002": "2026-08-03",
     "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-07-27",
     "https://jobicy.com/jobs/145128-agentic-ai-developer": "2026-07-04",
     "https://weworkremotely.com/remote-jobs/ninjaone-localization-web-developer": "2026-07-04",
@@ -135,6 +134,12 @@
     "https://jobicy.com/jobs/148113-accounts-receivable-clerk": "2026-08-01",
     "https://jobicy.com/jobs/150058-digital-channels-specialist-chatbot": "2026-08-01",
     "https://jobicy.com/jobs/149992-graduate-talent-scientist": "2026-08-01",
-    "https://jobicy.com/jobs/149978-software-engineer-cloud-images": "2026-08-01"
+    "https://jobicy.com/jobs/149978-software-engineer-cloud-images": "2026-08-01",
+    "https://news.ycombinator.com/item?id=49158009": "2026-08-03",
+    "https://jobicy.com/jobs/150131-software-engineer-in-network-infrastructure": "2026-08-03",
+    "https://jobicy.com/jobs/150130-site-reliability-engineer-in-network-infrastructure": "2026-08-03",
+    "https://jobicy.com/jobs/150128-c-golang-software-engineer-working-on-dqlite-a-raft-extension-for-sqlite": "2026-08-03",
+    "https://jobicy.com/jobs/150126-revenue-accountant": "2026-08-03",
+    "https://jobicy.com/jobs/150124-systems-controls-accountant": "2026-08-03"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T18:47:21.600242",
+  "updated_at": "2026-08-04T18:27:05.856717",
   "seen": {
     "https://stripe.com/jobs/search?gh_jid=7377101": "2026-08-03",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-07-30",
@@ -13,10 +13,7 @@
     "https://jobs.ashbyhq.com/vanta/f987d41a-d0e1-4260-9129-f64aee6122ae": "2026-08-03",
     "https://jobs.ashbyhq.com/decagon/6431a6f9-2ebe-4b68-beb6-200b42aeeca8": "2026-08-02",
     "https://databricks.com/company/careers/open-positions/job?gh_jid=8432827002": "2026-08-03",
-    "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-07-27",
-    "https://jobicy.com/jobs/145128-agentic-ai-developer": "2026-07-04",
-    "https://weworkremotely.com/remote-jobs/ninjaone-localization-web-developer": "2026-07-04",
-    "https://jobicy.com/jobs/148663-managing-counsel-commercial-partnerships": "2026-07-04",
+    "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-08-04",
     "https://jobicy.com/jobs/148621-help-desk-support-services-specialist": "2026-07-24",
     "https://jobicy.com/jobs/148199-data-engineer-engineering-operations": "2026-07-28",
     "https://jobicy.com/jobs/143585-adjunct-faculty-information-sciences-and-technology": "2026-07-20",
@@ -140,6 +137,10 @@
     "https://jobicy.com/jobs/150130-site-reliability-engineer-in-network-infrastructure": "2026-08-03",
     "https://jobicy.com/jobs/150128-c-golang-software-engineer-working-on-dqlite-a-raft-extension-for-sqlite": "2026-08-03",
     "https://jobicy.com/jobs/150126-revenue-accountant": "2026-08-03",
-    "https://jobicy.com/jobs/150124-systems-controls-accountant": "2026-08-03"
+    "https://jobicy.com/jobs/150124-systems-controls-accountant": "2026-08-03",
+    "https://news.ycombinator.com/item?id=49166653": "2026-08-04",
+    "https://news.ycombinator.com/item?id=49164147": "2026-08-04",
+    "https://news.ycombinator.com/item?id=49165317": "2026-08-04",
+    "https://news.ycombinator.com/item?id=49172407": "2026-08-04"
   }
 }

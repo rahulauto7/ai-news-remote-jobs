@@ -16,6 +16,10 @@ on:
   schedule:
     - cron: '0 17 * * *'  # 17:00 UTC = 22:30 IST — 90 min before the 00:00 IST routine (cushion for GH schedule latency)
   workflow_dispatch:
+  push:
+    branches: [trigger-scrape]  # Stage 2 self-recovery: the claude.ai sandbox blocks
+                                # api.github.com (no workflow_dispatch) but CAN git-push,
+                                # so a push to this branch re-triggers the scrape
 
 permissions:
   contents: write          # push pipeline-state branch + dedup state to main
@@ -31,6 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main        # always scrape from main, even when fired via the trigger-scrape push
           fetch-depth: 0   # need full history to push main + a rolling branch
 
       - uses: actions/setup-python@v5

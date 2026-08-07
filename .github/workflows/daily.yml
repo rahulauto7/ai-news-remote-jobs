@@ -105,11 +105,14 @@ jobs:
           retention-days: 7
           if-no-files-found: warn
 
-      - name: Notify Slack on failure
-        if: failure()
+      - name: Notify Slack on failure or cancellation
+        # cancelled() is required: a cancelled job skips failure()-gated steps,
+        # which is exactly how the 2026-08-06 cancellation went silent.
+        if: failure() || cancelled()
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_USER_ID: ${{ secrets.SLACK_USER_ID }}
+          JOB_STATUS: ${{ job.status }}
         run: |
           python - <<'PY'
           import json, os, sys, urllib.request
@@ -123,10 +126,11 @@ jobs:
           except OSError:
               tail = "no pipeline.log"
           from datetime import date
+          status = os.environ.get("JOB_STATUS", "failure").upper()
           payload = json.dumps({
               "channel": os.environ["SLACK_USER_ID"],
               "text": (
-                  f"🚨 Daily AI News SCRAPER (Actions stage 1) FAILED — {date.today()}\n"
+                  f"🚨 Daily AI News SCRAPER (Actions stage 1) {status} — {date.today()}\n"
                   f"The cloud routine will have no fresh pipeline-state to consume.\n```{tail}```"
               ),
           }).encode()

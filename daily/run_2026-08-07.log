@@ -1,0 +1,401 @@
+[2026-06-06 11:24:30] ============================================================
+[2026-06-06 11:24:30] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-06 11:24:30] ============================================================
+[2026-06-06 11:24:31] START: Scrape RSS Feeds
+[2026-06-06 11:25:19] OK   : Scrape RSS Feeds (47.9s)
+[2026-06-06 11:25:19] START: Scrape Hackathons
+[2026-06-06 11:26:11] OK   : Scrape Hackathons (52.1s)
+[2026-06-06 11:26:11] START: YouTube Viral Verify
+[2026-06-06 11:26:33] OK   : YouTube Viral Verify (21.7s)
+[2026-06-06 11:26:33] START: Scrape YouTube Trending
+[2026-06-06 11:30:32] OK   : Scrape YouTube Trending (239.6s)
+[2026-06-06 11:30:32] START: Scrape Instagram Reels
+[2026-06-06 11:30:33] OK   : Scrape Instagram Reels (0.5s)
+[2026-06-06 11:30:33] START: Instagram Viral Verify
+[2026-06-06 11:30:33] OK   : Instagram Viral Verify (0.0s)
+[2026-06-06 11:30:33] START: Scrape AI Trends
+[2026-06-06 11:32:46] OK   : Scrape AI Trends (133.5s)
+[2026-06-06 11:32:46] START: Scrape Jobs
+[2026-06-06 11:41:57] OK   : Scrape Jobs (550.5s)
+[2026-06-06 11:41:57] START: Rank Jobs (profile-aware)
+[2026-06-06 11:41:57] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-06 11:41:57] START: Agent Self-Analysis
+[2026-06-06 11:41:57] OK   : Agent Self-Analysis (0.0s)
+[2026-06-06 11:41:57] START: Merge Native Hackathons
+[2026-06-06 11:41:57] Merged showcase: hackathons=15 accelerators=8 (native_hack=8 native_accel=23 kept_existing=8)
+[2026-06-06 11:41:57] OK   : Merge Native Hackathons (0.0s)
+[2026-06-06 11:41:57] START: Dedup + Backfill Sections
+[2026-06-06 11:41:57] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-06 11:41:57] START: Generate YouTube Ideas (fallback)
+[2026-06-06 11:41:57] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-06 11:41:57] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-06 11:41:57] START: Generate PDF
+[2026-06-06 11:41:58] OK   : Generate PDF (0.5s)
+[2026-06-06 11:41:58] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-06 11:41:58] ------------------------------------------------------------
+[2026-06-06 11:41:58] SUMMARY:
+[2026-06-06 11:41:58]   [True] rss
+[2026-06-06 11:41:58]   [True] hackathons
+[2026-06-06 11:41:58]   [True] viral
+[2026-06-06 11:41:58]   [True] yt_trending
+[2026-06-06 11:41:58]   [True] ig_scrape
+[2026-06-06 11:41:58]   [True] ig_verify
+[2026-06-06 11:41:58]   [True] ai_trends
+[2026-06-06 11:41:58]   [True] jobs
+[2026-06-06 11:41:58]   [True] jobs_ranked
+[2026-06-06 11:41:58]   [True] analyze
+[2026-06-06 11:41:58]   [True] pdf
+[2026-06-06 11:41:58]   [skipped] upload
+[2026-06-06 11:41:58] Total: 1047.4s
+[2026-06-06 11:41:58] ============================================================
+[2026-06-09 19:42:26] ============================================================
+[2026-06-09 19:42:26] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-09 19:42:26] ============================================================
+[2026-06-09 19:42:27] START: Scrape RSS Feeds
+[2026-06-09 19:43:10] OK   : Scrape RSS Feeds (43.7s)
+[2026-06-09 19:43:10] START: Scrape Hackathons
+[2026-06-09 19:43:36] OK   : Scrape Hackathons (26.0s)
+[2026-06-09 19:43:36] START: YouTube Viral Verify
+[2026-06-09 19:43:58] OK   : YouTube Viral Verify (21.8s)
+[2026-06-09 19:43:58] START: Scrape YouTube Trending
+[2026-06-09 19:44:42] OK   : Scrape YouTube Trending (43.8s)
+[2026-06-09 19:44:42] START: Scrape Instagram Reels
+[2026-06-09 19:44:43] OK   : Scrape Instagram Reels (0.5s)
+[2026-06-09 19:44:43] START: Instagram Viral Verify
+[2026-06-09 19:44:43] OK   : Instagram Viral Verify (0.0s)
+[2026-06-09 19:44:43] START: Scrape AI Trends
+[2026-06-09 19:45:16] OK   : Scrape AI Trends (33.4s)
+[2026-06-09 19:45:16] START: Scrape Jobs
+[2026-06-09 19:47:35] OK   : Scrape Jobs (138.9s)
+[2026-06-09 19:47:35] START: Rank Jobs (profile-aware)
+[2026-06-09 19:47:35] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-09 19:47:35] START: Agent Self-Analysis
+[2026-06-09 19:47:35] OK   : Agent Self-Analysis (0.1s)
+[2026-06-09 19:47:35] START: Merge Native Hackathons
+[2026-06-09 19:47:35] Merged showcase: hackathons=15 accelerators=8 (native_hack=35 native_accel=23 kept_existing=8)
+[2026-06-09 19:47:35] OK   : Merge Native Hackathons (0.0s)
+[2026-06-09 19:47:35] START: Dedup + Backfill Sections
+[2026-06-09 19:47:35] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-09 19:47:35] START: Generate YouTube Ideas (fallback)
+[2026-06-09 19:47:35] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-09 19:47:35] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-09 19:47:35] START: Generate PDF
+[2026-06-09 19:47:36] OK   : Generate PDF (0.6s)
+[2026-06-09 19:47:36] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-09 19:47:36] ------------------------------------------------------------
+[2026-06-09 19:47:36] SUMMARY:
+[2026-06-09 19:47:36]   [True] rss
+[2026-06-09 19:47:36]   [True] hackathons
+[2026-06-09 19:47:36]   [True] viral
+[2026-06-09 19:47:36]   [True] yt_trending
+[2026-06-09 19:47:36]   [True] ig_scrape
+[2026-06-09 19:47:36]   [True] ig_verify
+[2026-06-09 19:47:36]   [True] ai_trends
+[2026-06-09 19:47:36]   [True] jobs
+[2026-06-09 19:47:36]   [True] jobs_ranked
+[2026-06-09 19:47:36]   [True] analyze
+[2026-06-09 19:47:36]   [True] pdf
+[2026-06-09 19:47:36]   [skipped] upload
+[2026-06-09 19:47:36] Total: 309.5s
+[2026-06-09 19:47:36] ============================================================
+[2026-06-10 13:32:43] ============================================================
+[2026-06-10 13:32:43] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-10 13:32:43] ============================================================
+[2026-06-10 13:32:43] START: Scrape RSS Feeds
+[2026-06-10 13:34:28] OK   : Scrape RSS Feeds (105.0s)
+[2026-06-10 13:34:28] START: Scrape Hackathons
+[2026-06-10 13:35:08] OK   : Scrape Hackathons (39.2s)
+[2026-06-10 13:35:08] START: YouTube Viral Verify
+[2026-06-10 13:35:25] OK   : YouTube Viral Verify (17.9s)
+[2026-06-10 13:35:26] START: Scrape YouTube Trending
+[2026-06-10 13:36:13] OK   : Scrape YouTube Trending (47.5s)
+[2026-06-10 13:36:13] START: Scrape Instagram Reels
+[2026-06-10 13:36:14] OK   : Scrape Instagram Reels (0.7s)
+[2026-06-10 13:36:14] START: Instagram Viral Verify
+[2026-06-10 13:36:14] OK   : Instagram Viral Verify (0.0s)
+[2026-06-10 13:36:14] START: Scrape AI Trends
+[2026-06-10 13:36:46] OK   : Scrape AI Trends (32.3s)
+[2026-06-10 13:36:46] START: Scrape Jobs
+[2026-06-10 13:39:51] OK   : Scrape Jobs (185.3s)
+[2026-06-10 13:39:51] START: Rank Jobs (profile-aware)
+[2026-06-10 13:39:51] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-10 13:39:51] START: Agent Self-Analysis
+[2026-06-10 13:39:51] OK   : Agent Self-Analysis (0.1s)
+[2026-06-10 13:39:51] START: Merge Native Hackathons
+[2026-06-10 13:39:51] Merged showcase: hackathons=15 accelerators=8 (native_hack=35 native_accel=22 kept_existing=8)
+[2026-06-10 13:39:51] OK   : Merge Native Hackathons (0.0s)
+[2026-06-10 13:39:51] START: Dedup + Backfill Sections
+[2026-06-10 13:39:51] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-10 13:39:51] START: Generate YouTube Ideas (fallback)
+[2026-06-10 13:39:51] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-10 13:39:51] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-10 13:39:52] START: Generate PDF
+[2026-06-10 13:39:52] OK   : Generate PDF (0.6s)
+[2026-06-10 13:39:52] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-10 13:39:52] ------------------------------------------------------------
+[2026-06-10 13:39:52] SUMMARY:
+[2026-06-10 13:39:52]   [True] rss
+[2026-06-10 13:39:52]   [True] hackathons
+[2026-06-10 13:39:52]   [True] viral
+[2026-06-10 13:39:52]   [True] yt_trending
+[2026-06-10 13:39:52]   [True] ig_scrape
+[2026-06-10 13:39:52]   [True] ig_verify
+[2026-06-10 13:39:52]   [True] ai_trends
+[2026-06-10 13:39:52]   [True] jobs
+[2026-06-10 13:39:52]   [True] jobs_ranked
+[2026-06-10 13:39:52]   [True] analyze
+[2026-06-10 13:39:52]   [True] pdf
+[2026-06-10 13:39:52]   [skipped] upload
+[2026-06-10 13:39:52] Total: 429.3s
+[2026-06-10 13:39:52] ============================================================
+[2026-06-12 06:35:09] ============================================================
+[2026-06-12 06:35:09] DAILY PIPELINE START   dry_run=True  force_fallback=False  analyzer=agent
+[2026-06-12 06:35:09] ============================================================
+[2026-06-12 06:35:09] START: Scrape RSS Feeds
+[2026-06-12 06:36:07] OK   : Scrape RSS Feeds (58.0s)
+[2026-06-12 06:36:07] START: Scrape Hackathons
+[2026-06-12 06:36:34] OK   : Scrape Hackathons (26.7s)
+[2026-06-12 06:36:34] START: YouTube Viral Verify
+[2026-06-12 06:36:48] OK   : YouTube Viral Verify (13.3s)
+[2026-06-12 06:36:48] START: Scrape YouTube Trending
+[2026-06-12 06:37:22] OK   : Scrape YouTube Trending (34.1s)
+[2026-06-12 06:37:22] START: Scrape Instagram Reels
+[2026-06-12 06:37:22] OK   : Scrape Instagram Reels (0.4s)
+[2026-06-12 06:37:22] START: Instagram Viral Verify
+[2026-06-12 06:37:22] OK   : Instagram Viral Verify (0.0s)
+[2026-06-12 06:37:22] START: Scrape AI Trends
+[2026-06-12 07:38:51] OK   : Scrape AI Trends (3688.4s)
+[2026-06-12 07:38:51] START: Scrape Jobs
+[2026-06-12 07:46:50] OK   : Scrape Jobs (479.9s)
+[2026-06-12 07:46:50] START: Rank Jobs (profile-aware)
+[2026-06-12 07:46:50] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-12 07:46:50] START: Agent Self-Analysis
+[2026-06-12 07:46:51] OK   : Agent Self-Analysis (0.1s)
+[2026-06-12 07:46:51] START: Merge Native Hackathons
+[2026-06-12 07:46:51] Merged showcase: hackathons=15 accelerators=8 (native_hack=31 native_accel=22 kept_existing=8)
+[2026-06-12 07:46:51] OK   : Merge Native Hackathons (0.0s)
+[2026-06-12 07:46:51] START: Dedup + Backfill Sections
+[2026-06-12 07:46:51] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-12 07:46:51] START: Generate YouTube Ideas (fallback)
+[2026-06-12 07:46:51] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-12 07:46:51] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-12 07:46:51] START: Generate PDF
+[2026-06-12 07:46:52] OK   : Generate PDF (0.6s)
+[2026-06-12 07:46:52] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-12 07:46:52] ------------------------------------------------------------
+[2026-06-12 07:46:52] SUMMARY:
+[2026-06-12 07:46:52]   [True] rss
+[2026-06-12 07:46:52]   [True] hackathons
+[2026-06-12 07:46:52]   [True] viral
+[2026-06-12 07:46:52]   [True] yt_trending
+[2026-06-12 07:46:52]   [True] ig_scrape
+[2026-06-12 07:46:52]   [True] ig_verify
+[2026-06-12 07:46:52]   [True] ai_trends
+[2026-06-12 07:46:52]   [True] jobs
+[2026-06-12 07:46:52]   [True] jobs_ranked
+[2026-06-12 07:46:52]   [True] analyze
+[2026-06-12 07:46:52]   [True] pdf
+[2026-06-12 07:46:52]   [skipped] upload
+[2026-06-12 07:46:52] Total: 4302.3s
+[2026-06-12 07:46:52] ============================================================
+[2026-06-13 11:03:44] ============================================================
+[2026-06-13 11:03:44] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-13 11:03:44] ============================================================
+[2026-06-13 11:03:44] START: Scrape RSS Feeds
+[2026-06-13 11:04:41] OK   : Scrape RSS Feeds (57.4s)
+[2026-06-13 11:04:41] START: Scrape Hackathons
+[2026-06-13 11:05:13] OK   : Scrape Hackathons (31.9s)
+[2026-06-13 11:05:13] START: YouTube Viral Verify
+[2026-06-13 11:05:20] OK   : YouTube Viral Verify (6.4s)
+[2026-06-13 11:05:20] START: Scrape YouTube Trending
+[2026-06-13 11:06:02] OK   : Scrape YouTube Trending (41.9s)
+[2026-06-13 11:06:02] START: Scrape Instagram Reels
+[2026-06-13 11:06:02] OK   : Scrape Instagram Reels (0.4s)
+[2026-06-13 11:06:02] START: Instagram Viral Verify
+[2026-06-13 11:06:02] OK   : Instagram Viral Verify (0.0s)
+[2026-06-13 11:06:02] START: Scrape AI Trends
+[2026-06-13 11:06:54] OK   : Scrape AI Trends (52.0s)
+[2026-06-13 11:06:54] START: Scrape Jobs
+[2026-06-13 11:09:39] OK   : Scrape Jobs (165.0s)
+[2026-06-13 11:09:39] START: Rank Jobs (profile-aware)
+[2026-06-13 11:09:39] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-13 11:09:39] START: Agent Self-Analysis
+[2026-06-13 11:09:39] OK   : Agent Self-Analysis (0.0s)
+[2026-06-13 11:09:39] START: Merge Native Hackathons
+[2026-06-13 11:09:39] Merged showcase: hackathons=15 accelerators=8 (native_hack=33 native_accel=21 kept_existing=8)
+[2026-06-13 11:09:39] OK   : Merge Native Hackathons (0.0s)
+[2026-06-13 11:09:39] START: Dedup + Backfill Sections
+[2026-06-13 11:09:39] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-13 11:09:39] START: Generate YouTube Ideas (fallback)
+[2026-06-13 11:09:39] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-13 11:09:39] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-13 11:09:40] START: Generate PDF
+[2026-06-13 11:09:40] OK   : Generate PDF (0.6s)
+[2026-06-13 11:09:40] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-13 11:09:40] ------------------------------------------------------------
+[2026-06-13 11:09:40] SUMMARY:
+[2026-06-13 11:09:40]   [True] rss
+[2026-06-13 11:09:40]   [True] hackathons
+[2026-06-13 11:09:40]   [True] viral
+[2026-06-13 11:09:40]   [True] yt_trending
+[2026-06-13 11:09:40]   [True] ig_scrape
+[2026-06-13 11:09:40]   [True] ig_verify
+[2026-06-13 11:09:40]   [True] ai_trends
+[2026-06-13 11:09:40]   [True] jobs
+[2026-06-13 11:09:40]   [True] jobs_ranked
+[2026-06-13 11:09:40]   [True] analyze
+[2026-06-13 11:09:40]   [True] pdf
+[2026-06-13 11:09:40]   [skipped] upload
+[2026-06-13 11:09:40] Total: 356.5s
+[2026-06-13 11:09:40] ============================================================
+[2026-06-13 11:18:12] ============================================================
+[2026-06-13 11:18:12] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-13 11:18:12] ============================================================
+[2026-06-13 11:18:12] START: Scrape RSS Feeds
+[2026-06-13 11:18:53] OK   : Scrape RSS Feeds (41.0s)
+[2026-06-13 11:18:53] START: Scrape Hackathons
+[2026-06-13 11:19:23] OK   : Scrape Hackathons (29.8s)
+[2026-06-13 11:19:23] START: YouTube Viral Verify
+[2026-06-13 11:19:40] OK   : YouTube Viral Verify (17.3s)
+[2026-06-13 11:19:40] START: Scrape YouTube Trending
+[2026-06-13 11:19:56] OK   : Scrape YouTube Trending (15.9s)
+[2026-06-13 11:19:56] START: Scrape Instagram Reels
+[2026-06-13 11:19:56] OK   : Scrape Instagram Reels (0.5s)
+[2026-06-13 11:19:56] START: Instagram Viral Verify
+[2026-06-13 11:19:56] OK   : Instagram Viral Verify (0.0s)
+[2026-06-13 11:19:56] START: Scrape AI Trends
+[2026-06-13 11:20:39] OK   : Scrape AI Trends (42.7s)
+[2026-06-13 11:20:39] START: Scrape Jobs
+[2026-06-13 11:22:36] OK   : Scrape Jobs (117.3s)
+[2026-06-13 11:22:36] START: Rank Jobs (profile-aware)
+[2026-06-13 11:22:36] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-13 11:22:36] START: Agent Self-Analysis
+[2026-06-13 11:22:37] OK   : Agent Self-Analysis (0.1s)
+[2026-06-13 11:22:37] START: Merge Native Hackathons
+[2026-06-13 11:22:37] Merged showcase: hackathons=15 accelerators=8 (native_hack=33 native_accel=21 kept_existing=8)
+[2026-06-13 11:22:37] OK   : Merge Native Hackathons (0.0s)
+[2026-06-13 11:22:37] START: Dedup + Backfill Sections
+[2026-06-13 11:22:37] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-13 11:22:37] START: Generate YouTube Ideas (fallback)
+[2026-06-13 11:22:37] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-13 11:22:37] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-13 11:22:37] START: Generate PDF
+[2026-06-13 11:22:37] OK   : Generate PDF (0.4s)
+[2026-06-13 11:22:37] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-13 11:22:37] ------------------------------------------------------------
+[2026-06-13 11:22:37] SUMMARY:
+[2026-06-13 11:22:37]   [True] rss
+[2026-06-13 11:22:37]   [True] hackathons
+[2026-06-13 11:22:37]   [True] viral
+[2026-06-13 11:22:37]   [True] yt_trending
+[2026-06-13 11:22:37]   [True] ig_scrape
+[2026-06-13 11:22:37]   [True] ig_verify
+[2026-06-13 11:22:37]   [True] ai_trends
+[2026-06-13 11:22:37]   [True] jobs
+[2026-06-13 11:22:37]   [True] jobs_ranked
+[2026-06-13 11:22:37]   [True] analyze
+[2026-06-13 11:22:37]   [True] pdf
+[2026-06-13 11:22:37]   [skipped] upload
+[2026-06-13 11:22:37] Total: 265.6s
+[2026-06-13 11:22:37] ============================================================
+[2026-06-13 11:23:54] ============================================================
+[2026-06-13 11:23:54] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-13 11:23:54] ============================================================
+[2026-06-13 11:23:54] START: Scrape RSS Feeds
+[2026-06-13 11:24:35] OK   : Scrape RSS Feeds (40.6s)
+[2026-06-13 11:24:35] START: Scrape Hackathons
+[2026-06-13 11:25:03] OK   : Scrape Hackathons (28.5s)
+[2026-06-13 11:25:03] START: YouTube Viral Verify
+[2026-06-13 11:25:04] OK   : YouTube Viral Verify (0.7s)
+[2026-06-13 11:25:04] START: Scrape YouTube Trending
+[2026-06-13 11:25:14] OK   : Scrape YouTube Trending (10.0s)
+[2026-06-13 11:25:14] START: Scrape Instagram Reels
+[2026-06-13 11:25:15] OK   : Scrape Instagram Reels (0.6s)
+[2026-06-13 11:25:15] START: Instagram Viral Verify
+[2026-06-13 11:25:15] OK   : Instagram Viral Verify (0.0s)
+[2026-06-13 11:25:15] START: Scrape AI Trends
+[2026-06-13 11:26:03] OK   : Scrape AI Trends (48.8s)
+[2026-06-13 11:26:03] START: Scrape Jobs
+[2026-06-13 11:27:32] OK   : Scrape Jobs (88.3s)
+[2026-06-13 11:27:32] START: Rank Jobs (profile-aware)
+[2026-06-13 11:27:32] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-13 11:27:32] START: Agent Self-Analysis
+[2026-06-13 11:27:32] OK   : Agent Self-Analysis (0.1s)
+[2026-06-13 11:27:32] START: Merge Native Hackathons
+[2026-06-13 11:27:32] Merged showcase: hackathons=15 accelerators=8 (native_hack=33 native_accel=21 kept_existing=8)
+[2026-06-13 11:27:32] OK   : Merge Native Hackathons (0.0s)
+[2026-06-13 11:27:32] START: Dedup + Backfill Sections
+[2026-06-13 11:27:32] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-13 11:27:32] START: Generate YouTube Ideas (fallback)
+[2026-06-13 11:27:32] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-13 11:27:32] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-13 11:27:32] START: Generate PDF
+[2026-06-13 11:27:32] OK   : Generate PDF (0.3s)
+[2026-06-13 11:27:32] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-13 11:27:32] ------------------------------------------------------------
+[2026-06-13 11:27:32] SUMMARY:
+[2026-06-13 11:27:32]   [True] rss
+[2026-06-13 11:27:32]   [True] hackathons
+[2026-06-13 11:27:32]   [True] viral
+[2026-06-13 11:27:32]   [True] yt_trending
+[2026-06-13 11:27:32]   [True] ig_scrape
+[2026-06-13 11:27:32]   [True] ig_verify
+[2026-06-13 11:27:32]   [True] ai_trends
+[2026-06-13 11:27:32]   [True] jobs
+[2026-06-13 11:27:32]   [True] jobs_ranked
+[2026-06-13 11:27:32]   [True] analyze
+[2026-06-13 11:27:32]   [True] pdf
+[2026-06-13 11:27:32]   [skipped] upload
+[2026-06-13 11:27:32] Total: 218.5s
+[2026-06-13 11:27:32] ============================================================
+[2026-06-13 11:29:50] ============================================================
+[2026-06-13 11:29:50] DAILY PIPELINE START   dry_run=False  force_fallback=False  analyzer=agent
+[2026-06-13 11:29:50] ============================================================
+[2026-06-13 11:29:50] START: Scrape RSS Feeds
+[2026-06-13 11:30:40] OK   : Scrape RSS Feeds (49.8s)
+[2026-06-13 11:30:40] START: Scrape Hackathons
+[2026-06-13 11:31:09] OK   : Scrape Hackathons (28.8s)
+[2026-06-13 11:31:09] START: YouTube Viral Verify
+[2026-06-13 11:31:10] OK   : YouTube Viral Verify (1.5s)
+[2026-06-13 11:31:10] START: Scrape YouTube Trending
+[2026-06-13 11:31:20] OK   : Scrape YouTube Trending (9.9s)
+[2026-06-13 11:31:20] START: Scrape Instagram Reels
+[2026-06-13 11:31:21] OK   : Scrape Instagram Reels (0.4s)
+[2026-06-13 11:31:21] START: Instagram Viral Verify
+[2026-06-13 11:31:21] OK   : Instagram Viral Verify (0.0s)
+[2026-06-13 11:31:21] START: Scrape AI Trends
+[2026-06-13 11:31:36] OK   : Scrape AI Trends (15.6s)
+[2026-06-13 11:31:36] START: Scrape Jobs
+[2026-06-13 11:33:27] OK   : Scrape Jobs (110.7s)
+[2026-06-13 11:33:27] START: Rank Jobs (profile-aware)
+[2026-06-13 11:33:27] OK   : Rank Jobs (profile-aware) (0.0s)
+[2026-06-13 11:33:27] Content gate: rss_articles=623 jobs=15
+[2026-06-13 11:33:27] START: Agent Self-Analysis
+[2026-06-13 11:33:27] OK   : Agent Self-Analysis (0.1s)
+[2026-06-13 11:33:27] START: Merge Native Hackathons
+[2026-06-13 11:33:27] Merged showcase: hackathons=15 accelerators=8 (native_hack=33 native_accel=21 kept_existing=8)
+[2026-06-13 11:33:27] OK   : Merge Native Hackathons (0.0s)
+[2026-06-13 11:33:27] START: Dedup + Backfill Sections
+[2026-06-13 11:33:27] OK   : Dedup + Backfill Sections (0.0s)
+[2026-06-13 11:33:27] START: Generate YouTube Ideas (fallback)
+[2026-06-13 11:33:27] OK   : Generate YouTube Ideas (fallback) (0.0s)
+[2026-06-13 11:33:27] Telemetry written → /Users/rahulmeena/final ai news/.tmp/run_telemetry.json
+[2026-06-13 11:33:27] START: Generate PDF
+[2026-06-13 11:33:28] OK   : Generate PDF (0.6s)
+[2026-06-13 11:33:28] Slack delivery: handled by cloud agent connector — skipping local send
+[2026-06-13 11:33:28] ------------------------------------------------------------
+[2026-06-13 11:33:28] SUMMARY:
+[2026-06-13 11:33:28]   [True] rss
+[2026-06-13 11:33:28]   [True] hackathons
+[2026-06-13 11:33:28]   [True] viral
+[2026-06-13 11:33:28]   [True] yt_trending
+[2026-06-13 11:33:28]   [True] ig_scrape
+[2026-06-13 11:33:28]   [True] ig_verify
+[2026-06-13 11:33:28]   [True] ai_trends
+[2026-06-13 11:33:28]   [True] jobs
+[2026-06-13 11:33:28]   [True] jobs_ranked
+[2026-06-13 11:33:28]   [True] analyze
+[2026-06-13 11:33:28]   [True] pdf
+[2026-06-13 11:33:28]   [skipped] upload
+[2026-06-13 11:33:28] Total: 218.2s
+[2026-06-13 11:33:28] ============================================================

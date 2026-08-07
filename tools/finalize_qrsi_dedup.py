@@ -34,6 +34,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+from datetime import date
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
@@ -41,10 +42,35 @@ sys.path.insert(0, PROJECT_ROOT)
 from tools import content_history
 
 OUTPUT_FILE = os.path.join(PROJECT_ROOT, ".tmp", "analyzed_content.json")
+# Snapshot of the seen-set as it stood BEFORE this run's first record_shown().
+# Reused by any later same-day call so the second call doesn't treat the URLs
+# the first call just recorded as "repeats" and wipe both sections.
+SEEN_SNAPSHOT = os.path.join(PROJECT_ROOT, ".tmp", "_qrsi_dedup_seen.json")
 
 QRSI_NS = "qrsi"
 QRSI_DEDUP_DAYS = 7
 DEFERRED_DEDUP_SECTIONS = {"quantum_ai_research", "ai_self_improvement_rsi"}
+
+
+def _load_snapshot():
+    """Today's pre-record seen-set, or None if this is the day's first call."""
+    try:
+        with open(SEEN_SNAPSHOT, "r", encoding="utf-8") as f:
+            snap = json.load(f)
+        if snap.get("date") != date.today().isoformat():
+            return None
+        return set(snap.get("seen") or [])
+    except Exception:
+        return None
+
+
+def _save_snapshot(seen) -> None:
+    try:
+        os.makedirs(os.path.dirname(SEEN_SNAPSHOT), exist_ok=True)
+        with open(SEEN_SNAPSHOT, "w", encoding="utf-8") as f:
+            json.dump({"date": date.today().isoformat(), "seen": sorted(seen)}, f)
+    except Exception as exc:  # snapshot is an optimisation, never fatal
+        print(f"[finalize_qrsi_dedup] could not write snapshot: {exc}")
 
 
 def main() -> int:
@@ -60,7 +86,14 @@ def main() -> int:
         return 0
 
     # Articles previously shown IN quantum/RSI sections (own namespace, not shared news).
-    seen = content_history.recently_seen(QRSI_NS, QRSI_DEDUP_DAYS)
+    # Prefer today's pre-record snapshot when one exists: this script is called
+    # twice on a cloud run (6.6b before enrichment, 6.7b after), and reading the
+    # live history on the second call would flag everything the first call
+    # recorded as a repeat and empty both sections.
+    seen = _load_snapshot()
+    if seen is None:
+        seen = content_history.recently_seen(QRSI_NS, QRSI_DEDUP_DAYS)
+        _save_snapshot(seen)
 
     dropped = 0
     surfaced: list[str] = []

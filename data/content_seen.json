@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T17:26:15.019399",
+  "updated_at": "2026-08-08T22:43:49.438180",
   "seen": {
     "youtube": {
       "-1vzPvWN-8s": "2026-08-07",
@@ -1666,7 +1666,21 @@
       "claude code sessions can now message each other": "2026-08-08",
       "cloudflare launches kitesurf browser built agents": "2026-08-08"
     },
-    "qrsi": {},
+    "qrsi": {
+      "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQYWVQUnNEbTExb2lFMkQ3Yzh3cHlYQTNYaGhwRk9zLXluVU9NbUQyNmhTTXZKQnZDeW10TW9qS3VQMUNzYnNMc0o0VmphemxyazlrNE1PRFhQaGtRbWZZZkZxRkhGT3NKSHAzOHMtOTV5djdTcEg2dnhLR1lha2hWeFhFaE14MUR5NUFn?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTFBJRFN2V3p6OVgwMFhUdHdja1VFeUhKVHR4a0dZLUlMNGw0Z3J6ZlM3dkhxODhHbWtHaW1rT3BzZWNqck5GblVYeGxycEhSa0lEbGJIZXFBcFVxSXd6ekIxV1pKTXdJM2VuWWtib2NsMXJzUm9tMlE?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMirAFBVV95cUxON0xsdzZxSURyVlNfMFJKdV9zYjcweGJ0THJvVmFtQnIxWXp0YjdUZFZNRkRkRXFXZHVVMVl3a1h2X0NLTGplVnBMVDEzeThYcVFQYTFlcDlBc3FNdUgxUXlCSWw5RlU2S24xNk5CUXR4Um9SenJVQWp0TzJwSDQtN19jV0MyOHpObk1pUmJNZElKR0RSS2pyaTdkTjJXUWVRbTVZZXN3LXFUYS1I?oc=5": "2026-08-08",
+      "https://arxiv.org/abs/2608.06296v1": "2026-08-08",
+      "https://arxiv.org/abs/2608.06243v1": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMijwFBVV95cUxNaWlkTzJnYmVkcGV2bGxsLVFFUkNJa21nbVpyeEdSM2t1MUs2OGFuYm1XSDd5MndpTkJ6eTREc2d6cHFBY2NlNHNyYkpmMUlGWnBNLWZTazM5ZTRJTnRlNXdaUmxKdEdCWVAxeHpuVjNtVEgwdzZ5XzhOSWZQN0JGVWViZnJtc3g4WTNleUxGVQ?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTTYtZU5vdUZyVi1xX1Q5cnhwZ0JZYXBaV2dZaWR2eVQ3Zk9zejc2c1RmN0dielhjWjAycWhJOGRTdGVMQVpSa2ZUckt3RmJVRGRGUVlueWdvVEVFZFRmb2pfekZyMXo5TzBiMEx6R3BjOTAwcUVaa0dqa0ZmM1VtSkMxQlB6V3NING83V2xMenpldnpZc0hxUkZheG1QQmNHR3dQcThVMzV3TW9KVkE?oc=5": "2026-08-08",
+      "https://arxiv.org/abs/2608.06294v1": "2026-08-08",
+      "https://arxiv.org/abs/2608.06168v1": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMitwFBVV95cUxPUUhSZjJYbDVFTHV3dkNXR1MtS2lhVjg2dVJqcE1tSkV0dzc1ckZBdTVaakZ4d3d4NTQtZW9mZmo5VjY5N0NZdlBYbTlDZ3J1RTJkTGw2SC15c2RpZ1JROF9HMVZRZFNyZ3ZldHdzTnNtRlVvWHFpcFBCSGVFRlpCckozUjMxLXphbF9NTjVwOUZjUEpqWDNid0Fia3lxWk5YRnc1LVJyRFU1N1Y1cXRmT1g3cGhKblk?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMid0FVX3lxTFBGU3IxX3lwUjBRd1FVdWNLOTR0TDNScVpqeFdmWU91aU5INzRQTmJnN0IwWnZWM3NSaGFkc2ZjTkpyTk1PbVhkaDF1NFJoUV9rNGw3aFZLMjhOVlRpUkpaODNQX2dfTk1TZ2pGYThsOGVlQll4YmhR?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMiowFBVV95cUxPaGM2YWs5QnJfTk5CODBockJDMDQtSmc0ZWZXMjNfcjNTbW9iT2xuelJRMlpCZ2lxNjdNcGVTOTM0dU45T3JmVk02UHVSNWhhRVc4N040MWc3aXMwZjZRd2xfUHh5cVVLNzVLaVJiNEgwLTN1THdGaWtRRUQ0SHgybTM5bE12aVJYSWVDZTMyVWtYRkhLNWNRUGozbFI1YkJFaURj?oc=5": "2026-08-08",
+      "https://news.google.com/rss/articles/CBMizwFBVV95cUxPU3lPS0wyUEVDeWZEeHBzc2hGLVFaMUlvQ2pGeVhqb2d6OU8wVTlKLUZlTUswRzhxZVg3QjVEV0huN0gwbERTMlE0ZE1rSHU0U0FLYU03OFFIb2VxT0hjb2dmdkYxRFJnbllOT2dDZzZCeTdrUTlyMzVibVpuV203ajdnckRNMWFVMndCSWlrMFBPOGNZUXA4RjcxeUk3bzdBQkprV3F6Z3FsVmhjeDJHaHNabWxUaGNkakJIOWZDVkVwaXRMVFd1R3dyblViSE0?oc=5": "2026-08-08"
+    },
     "showcase_seen": {
       "build with gemini xprize": "2026-08-08",
       "global ai hackathon series with qwen cloud": "2026-07-20",

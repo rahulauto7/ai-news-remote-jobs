@@ -1,0 +1,311 @@
+{
+  "generated_at": "2026-08-08T17:24:40.125674+00:00",
+  "finished_at": "2026-08-08T17:25:13.924065+00:00",
+  "raw_signal_count": 136,
+  "topic_count": 20,
+  "topics": [
+    {
+      "topic": "generative ai meaning",
+      "norm_key": "generative meaning",
+      "score": 8.52,
+      "sources": [
+        "google_trends_rising",
+        "google_trends_top"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=generative+ai+meaning&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "open generative ai",
+      "norm_key": "open generative",
+      "score": 7.69,
+      "sources": [
+        "google_trends_rising",
+        "google_trends_top"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=open+generative+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Oracle bans AI-generated code from OpenJDK",
+      "norm_key": "oracle bans ai-generated code openjdk",
+      "score": 6.42,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://app.dealroom.co/news/feed/oracle-bans-ai-generated-code-from-openjdk-despite-ellison-s-claim-oracle-isn-t-writing-its-own-code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "what is claude",
+      "norm_key": "claude",
+      "score": 6.22,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+claude&date=now+1-d&geo=IN",
+        "https://trends.google.com/trends/explore?q=what+is+claude&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Timeline of the OpenAI accidental attack against Hugging Face",
+      "norm_key": "timeline openai accidental attack against hugging face",
+      "score": 6.11,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://simonwillison.net/2026/Aug/7/openai-timeline/"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Managing AI Coding Costs at Scale",
+      "norm_key": "managing coding costs scale",
+      "score": 5.89,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.databricks.com/blog/managing-ai-coding-costs-scale"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Gentoo bugzilla closed due AI bot scraper overload",
+      "norm_key": "gentoo bugzilla closed due bot scraper overload",
+      "score": 4.7,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://social.treehouse.systems/@mgorny/117058483039362779"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Lost my phone at the office. Claude suggested tracking Bluetooth signal strength",
+      "norm_key": "lost my phone office claude suggested tracking bluetooth",
+      "score": 4.7,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://twitter.com/un1c0rnioz/status/2084686552299634805"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "what is generative ai",
+      "norm_key": "generative",
+      "score": 4.62,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=what+is+generative+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Mythos social engineering AISI INC-2026-07-28-01",
+      "norm_key": "mythos social engineering aisi inc-2026-07-28-01",
+      "score": 4.43,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://web.archive.org/web/20260731053721/http://github.com/ancaferro/myNetwork/pull/3"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "generative ai course",
+      "norm_key": "generative course",
+      "score": 4.29,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=generative+ai+course&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Should AI labs be treated like the owners of dangerous animals?",
+      "norm_key": "should labs treated like owners dangerous animals",
+      "score": 4.2,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://www.economist.com/science-and-technology/2026/08/06/should-ai-labs-be-treated-like-the-owners-of-dangerous-animals"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "The Claudyssey: A line-for-line translation of Homer's Odyssey by Claude Fable 5",
+      "norm_key": "claudyssey line-for-line translation homer odyssey claude fable",
+      "score": 4.09,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://theclaudyssey.com/"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "perplexity ai",
+      "norm_key": "perplexity",
+      "score": 3.93,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=perplexity+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Making an AI bid writer refuse to lie",
+      "norm_key": "making bid writer refuse lie",
+      "score": 3.91,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://ailucius.com/blog/making-an-ai-bid-writer-refuse-to-lie"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "claude ai app",
+      "norm_key": "claude app",
+      "score": 3.71,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=claude+ai+app&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Claude Code: Starting August 14, auto mode will be the default permission mode",
+      "norm_key": "claude code starting august auto mode will default",
+      "score": 3.33,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://twitter.com/ClaudeDevs/status/2085794862608318627"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "YouTube's AI Detection Kicked Us in the Face",
+      "norm_key": "youtube detection kicked us face",
+      "score": 3.13,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://twitter.com/Kurz_Gesagt/status/2083191397981561232"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Claude Code: sessions can now message each other",
+      "norm_key": "claude code sessions can now message each other",
+      "score": 3.13,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://twitter.com/ClaudeDevs/status/2085817074816070014"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Cloudflare launches Kitesurf, a browser built for AI agents",
+      "norm_key": "cloudflare launches kitesurf browser built agents",
+      "score": 2.84,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://techcrunch.com/2026/08/07/cloudflare-launches-kitesurf-a-browser-built-for-ai-agents/"
+      ],
+      "signal_count": 2
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-08-08T17:24:12.232704+00:00",
+  "window_days": 7,
+  "thresholds": {
+    "long_views": 100000,
+    "short_views": 500000
+  },
+  "videos": [
+    {
+      "video_id": "opLMb_oYfMI",
+      "url": "https://www.youtube.com/watch?v=opLMb_oYfMI",
+      "title": "OpenAI's Genius Comeback : How Altman Turned a $27B Loss Into an EMPIRE?",
+      "channel": "Think School",
+      "description": "⭐️ Think School’s flagship Communication course with live doubt sessions :\nhttps://thethinkschool.com/sp/communication-masterclass/\n\nIf you are a copyright owner and believe your work has been used improperly, please contact us at writers@thethinkschool.com for prompt removal or credit. \n\nVIDEO INTRODUCTION:\nLadies and gentlemen, for the last three years, OpenAI has been running one of the most confusing businesses on Earth. In 2026, the company is on track to lose around $28 billion, even thoug",
+      "published": "2026-08-03T14:04:26Z",
+      "views": 371945,
+      "duration_sec": 813,
+      "format": "video",
+      "bucket": "global_automation",
+      "url_verified": true
+    },
+    {
+      "video_id": "AYaFeeliLDQ",
+      "url": "https://www.youtube.com/watch?v=AYaFeeliLDQ",
+      "title": "A compilation of chaotic situations taken to the extreme #ai #shorts #chunkychaos Dream 10K Sub🎯",
+      "channel": "Chunky Chaos",
+      "description": "A compilation of chaotic situations taken to the extreme\nDream 10K Sub🎯\nThis content is AI-generated. No real events are depicted, and this content is purely for entertainment and creative expression.\n---------------\nWelcome to Chunky Chaos – your go-to place for hilarious, over-the-top moments! Join our playful, chunky heroine as she takes on wild challenges, epic fails, and shocking stunts that will keep you laughing nonstop. Pure fun, pure chaos, and plenty of ‘oh no!’ moments await! 🎉😂🍑\nHit ",
+      "published": "2026-08-05T08:44:56Z",
+      "views": 2260087,
+      "duration_sec": 62,
+      "format": "short",
+      "bucket": "global_short",
+      "url_verified": true
+    },
+    {
+      "bucket": "india_automation",
+      "no_fresh": true,
+      "reason": "no candidate cleared the floor",
+      "format": "video",
+      "view_floor": 100000
+    }
+  ]
+}

@@ -1,17 +1,16 @@
 {
-  "updated_at": "2026-08-09T17:28:04.726262",
+  "updated_at": "2026-08-10T17:47:53.813073",
   "seen": {
     "https://stripe.com/jobs/search?gh_jid=7377101": "2026-08-03",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-08-07",
     "https://job-boards.greenhouse.io/anthropic/jobs/5030244008": "2026-08-07",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183044008": "2026-08-07",
     "https://stripe.com/jobs/search?gh_jid=7826765": "2026-08-03",
-    "https://news.ycombinator.com/item?id=48360223": "2026-07-10",
     "https://news.ycombinator.com/item?id=48483858": "2026-07-26",
-    "https://databricks.com/company/careers/open-positions/job?gh_jid=8099751002": "2026-08-02",
+    "https://databricks.com/company/careers/open-positions/job?gh_jid=8099751002": "2026-08-10",
     "https://jobs.ashbyhq.com/vanta/581791d7-c63d-45fe-b6a7-f2d8f6532af7": "2026-07-18",
     "https://jobs.ashbyhq.com/vanta/f987d41a-d0e1-4260-9129-f64aee6122ae": "2026-08-03",
-    "https://jobs.ashbyhq.com/decagon/6431a6f9-2ebe-4b68-beb6-200b42aeeca8": "2026-08-02",
+    "https://jobs.ashbyhq.com/decagon/6431a6f9-2ebe-4b68-beb6-200b42aeeca8": "2026-08-10",
     "https://databricks.com/company/careers/open-positions/job?gh_jid=8432827002": "2026-08-03",
     "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-08-04",
     "https://jobicy.com/jobs/148621-help-desk-support-services-specialist": "2026-07-24",
@@ -25,12 +24,6 @@
     "https://jobicy.com/jobs/147807-customer-journey-specialist": "2026-08-01",
     "https://weworkremotely.com/remote-jobs/zensors-frontend-web-developer-react-typescript-remote": "2026-07-17",
     "https://weworkremotely.com/remote-jobs/kuna-eit-civil-anchorage-ak": "2026-07-17",
-    "https://weworkremotely.com/remote-jobs/remote-va-web-developer-ai-specialist": "2026-07-10",
-    "https://weworkremotely.com/remote-jobs/solar-secure-solutions-web-development-intern": "2026-07-10",
-    "https://weworkremotely.com/remote-jobs/mrioa-web-developer-remote": "2026-07-10",
-    "https://weworkremotely.com/remote-jobs/remote-va-web-developer-bigcommerce-experience-required": "2026-07-10",
-    "https://jobicy.com/jobs/149106-business-recruiter": "2026-07-10",
-    "https://jobicy.com/jobs/149090-edd-analyst": "2026-07-10",
     "https://jobicy.com/jobs/149128-benefits-operations-specialist-apac-2": "2026-07-11",
     "https://weworkremotely.com/remote-jobs/kai-partners-technical-solutions-engineer-web-developer": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/unqork-intern-web-application-penetration-tester": "2026-07-20",
@@ -146,6 +139,8 @@
     "https://jobicy.com/jobs/150364-software-engineer-python-container-images": "2026-08-09",
     "https://jobicy.com/jobs/150387-mobility-specialist-apac": "2026-08-09",
     "https://jobicy.com/jobs/150371-graduate-hr-generalist-apac": "2026-08-09",
-    "https://jobicy.com/jobs/150392-stingrai-part-time-remote-technical-writer-29693": "2026-08-09"
+    "https://jobicy.com/jobs/150392-stingrai-part-time-remote-technical-writer-29693": "2026-08-09",
+    "https://jobicy.com/jobs/149045-instructional-designer-nebius-academy": "2026-08-10",
+    "https://jobicy.com/jobs/149059-procurement-analyst-2": "2026-08-10"
   }
 }

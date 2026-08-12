@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T17:55:11.542049",
+  "updated_at": "2026-08-12T17:55:37.779451",
   "seen": {
     "https://stripe.com/jobs/search?gh_jid=7377101": "2026-08-11",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-08-07",
@@ -12,12 +12,11 @@
     "https://jobs.ashbyhq.com/vanta/f987d41a-d0e1-4260-9129-f64aee6122ae": "2026-08-03",
     "https://jobs.ashbyhq.com/decagon/6431a6f9-2ebe-4b68-beb6-200b42aeeca8": "2026-08-10",
     "https://databricks.com/company/careers/open-positions/job?gh_jid=8432827002": "2026-08-03",
-    "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-08-04",
+    "https://jobicy.com/jobs/144376-machine-learning-engineer-3": "2026-08-12",
     "https://jobicy.com/jobs/148621-help-desk-support-services-specialist": "2026-07-24",
     "https://jobicy.com/jobs/148199-data-engineer-engineering-operations": "2026-07-28",
     "https://jobicy.com/jobs/143585-adjunct-faculty-information-sciences-and-technology": "2026-07-20",
     "https://jobicy.com/jobs/147557-data-integrator": "2026-07-20",
-    "https://jobicy.com/jobs/147002-science-adjunct-instructor": "2026-07-12",
     "https://jobicy.com/jobs/147075-korean-into-english-copywriter": "2026-07-13",
     "https://jobicy.com/jobs/148723-sales-development-representative-us-b2b": "2026-08-07",
     "https://weworkremotely.com/remote-jobs/drivetrain-ui-ux-website-designer-copy": "2026-07-14",
@@ -27,10 +26,7 @@
     "https://weworkremotely.com/remote-jobs/kai-partners-technical-solutions-engineer-web-developer": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/unqork-intern-web-application-penetration-tester": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/aliqan-technologies-site-reliability-engineer": "2026-07-20",
-    "https://jobicy.com/jobs/145790-benefits-operations-specialist-emea": "2026-07-12",
     "https://jobicy.com/jobs/145940-genai-engineer": "2026-07-20",
-    "https://jobicy.com/jobs/145980-benefits-operations-specialist-apac": "2026-07-12",
-    "https://jobicy.com/jobs/146004-onboarding-operations-specialist-apac": "2026-07-12",
     "https://jobicy.com/jobs/146138-software-engineer-customer-success": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/highlevel-product-solutions-engineer-creator-platform": "2026-07-13",
     "https://jobicy.com/jobs/146231-payroll-specialist-belgium": "2026-07-14",
@@ -120,9 +116,9 @@
     "https://jobicy.com/jobs/150128-c-golang-software-engineer-working-on-dqlite-a-raft-extension-for-sqlite": "2026-08-03",
     "https://jobicy.com/jobs/150126-revenue-accountant": "2026-08-03",
     "https://jobicy.com/jobs/150124-systems-controls-accountant": "2026-08-03",
-    "https://news.ycombinator.com/item?id=49166653": "2026-08-04",
-    "https://news.ycombinator.com/item?id=49164147": "2026-08-04",
-    "https://news.ycombinator.com/item?id=49165317": "2026-08-04",
+    "https://news.ycombinator.com/item?id=49166653": "2026-08-12",
+    "https://news.ycombinator.com/item?id=49164147": "2026-08-12",
+    "https://news.ycombinator.com/item?id=49165317": "2026-08-12",
     "https://news.ycombinator.com/item?id=49172407": "2026-08-04",
     "https://news.ycombinator.com/item?id=49177532": "2026-08-05",
     "https://weworkremotely.com/remote-jobs/stripe-backend-engineer-core-technology": "2026-08-05",
@@ -143,6 +139,10 @@
     "https://jobicy.com/jobs/149059-procurement-analyst-2": "2026-08-10",
     "https://job-boards.greenhouse.io/gleanwork/jobs/4722386005": "2026-08-11",
     "https://weworkremotely.com/remote-jobs/stripe-credit-risk-analyst-commercial-underwriter-west-coast": "2026-08-11",
-    "https://jobicy.com/jobs/149090-edd-analyst": "2026-08-11"
+    "https://jobicy.com/jobs/149090-edd-analyst": "2026-08-11",
+    "https://www.arbeitnow.com/jobs/companies/quantum-systems-gmbh/remote-forward-deployed-engineer-gilching-471511": "2026-08-12",
+    "https://jobicy.com/jobs/150549-salesforce-business-analyst": "2026-08-12",
+    "https://weworkremotely.com/remote-jobs/stripe-credit-risk-analyst-north-american-underwriter": "2026-08-12",
+    "https://jobicy.com/jobs/149128-benefits-operations-specialist-apac-2": "2026-08-12"
   }
 }

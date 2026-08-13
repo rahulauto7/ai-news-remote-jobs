@@ -1,0 +1,1677 @@
+{
+  "analyzed_at": "2026-08-13T16:20:38.560031+00:00",
+  "total_items_analyzed": 143,
+  "sections": {
+    "remote_jobs": [
+      {
+        "title": "Location: SF Bay Area Remote: Yes Willing to relocate: Yes Technologies: AWS, Azure, Terraform, Python, CI/CD, Docker, Kubernetes, Back",
+        "company": "",
+        "url": "https://news.ycombinator.com/item?id=49177532",
+        "posted": "2026-08-05T01:30:36Z",
+        "salary": "",
+        "source": "HN Who is hiring",
+        "summary": "Location: SF Bay Area Remote: Yes Willing to relocate: Yes Technologies: AWS, Azure, Terraform, Python, CI/CD, Docker, Kubernetes, Back. Location: SF Bay Area Remote: Yes Willing to relocate: Yes Technologies: AWS, Azure, Terraform, Python, CI/CD, Docker, Kubernetes, Backend systems, RAG/LLM pipelines, AI agents/MCP Ré",
+        "matched_skills": [
+          "ai agents",
+          "mcp",
+          "ai agent",
+          "rag",
+          "llm",
+          "python"
+        ],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Backend Engineer, Core Technology",
+        "company": "Stripe",
+        "url": "https://weworkremotely.com/remote-jobs/stripe-backend-engineer-core-technology",
+        "posted": "Wed, 22 Jul 2026 07:01:13 +0000",
+        "salary": "",
+        "source": "We Work Remotely",
+        "summary": "Stripe is hiring: Backend Engineer, Core Technology. Headquarters: US-Remote, Chicago, Seattle, San Francisco Who we are About Stripe Stripe is a financial infrastructure platform for businesses. Millions of companies—from the world's largest enterprises to the most ambitious startups—use Str",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Backend Engineer, AI Security",
+        "company": "Stripe",
+        "url": "https://weworkremotely.com/remote-jobs/stripe-backend-engineer-ai-security",
+        "posted": "Wed, 22 Jul 2026 07:01:06 +0000",
+        "salary": "",
+        "source": "We Work Remotely",
+        "summary": "Stripe is hiring: Backend Engineer, AI Security. Headquarters: New York, San Francisco, Seattle, or Remote (US/Canada) Who we are About Stripe Stripe is a financial infrastructure platform for businesses. Millions of companies—from the world's largest enterprises to the most ambitious sta",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Benefits Operations Specialist - EMEA",
+        "company": "Remote",
+        "url": "https://jobicy.com/jobs/145790-benefits-operations-specialist-emea",
+        "posted": "2026-08-13T10:05:07+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Remote is hiring: Benefits Operations Specialist - EMEA. About Remote Remote is solving modern organizations’ biggest challenge – navigating global employment compliantly with ease. We make it possible for businesses of all sizes to recruit, pay, and manage international teams. With our core valu",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "GenAI Engineer",
+        "company": "NTT DATA",
+        "url": "https://jobicy.com/jobs/145940-genai-engineer",
+        "posted": "2026-08-13T09:53:37+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "NTT DATA is hiring: GenAI Engineer. Job Title: GenAI EngineerLocation Preference: 100% remote in Mexico, Brasil, Peru, Chile working EST Time Zone OR onsite in Washington, D.C.Duration: 1-Year Assignment with possibility of extensionNTT DATA is a team of more than 139,000 div",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Benefits Operations Specialist - APAC",
+        "company": "Remote",
+        "url": "https://jobicy.com/jobs/145980-benefits-operations-specialist-apac",
+        "posted": "2026-08-13T09:50:04+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Remote is hiring: Benefits Operations Specialist - APAC. About Remote Remote is solving modern organizations’ biggest challenge – navigating global employment compliantly with ease. We make it possible for businesses of all sizes to recruit, pay, and manage international teams. With our core valu",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Dedicated Linux Desktop & Devices Support Engineer, Singapore",
+        "company": "Canonical Ltd.",
+        "url": "https://jobicy.com/jobs/145994-dedicated-linux-desktop-devices-support-engineer-singapore",
+        "posted": "2026-08-13T09:50:02+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Canonical Ltd. is hiring: Dedicated Linux Desktop & Devices Support Engineer, Singapore. Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, d",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Group Financial Controller",
+        "company": "Canonical Ltd.",
+        "url": "https://jobicy.com/jobs/146021-group-financial-controller",
+        "posted": "2026-08-13T09:40:03+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Canonical Ltd. is hiring: Group Financial Controller. Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data scien",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Sales Enablement Professional",
+        "company": "Canonical Ltd.",
+        "url": "https://jobicy.com/jobs/146029-sales-enablement-professional",
+        "posted": "2026-08-13T09:35:04+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Canonical Ltd. is hiring: Sales Enablement Professional. Canonical is a leading provider of open source software and operating systems to the global enterprise and technology markets. Our platform, Ubuntu, is very widely used in breakthrough enterprise initiatives such as public cloud, data scien",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Software Engineer - Customer Success",
+        "company": "Feedzai",
+        "url": "https://jobicy.com/jobs/146138-software-engineer-customer-success",
+        "posted": "2026-08-13T09:20:06+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Feedzai is hiring: Software Engineer - Customer Success. Feedzai is the world’s first RiskOps platform for financial risk management, and the market leader in safeguarding global commerce with today’s most advanced cloud-based risk management platform, powered by machine learning and artificial i",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      },
+      {
+        "title": "Customer Success Specialist",
+        "company": "Payoneer",
+        "url": "https://jobicy.com/jobs/149217-customer-success-specialist-3",
+        "posted": "2026-08-13T08:45:04+00:00",
+        "salary": "",
+        "source": "Jobicy",
+        "summary": "Payoneer is hiring: Customer Success Specialist. About Payoneer Founded in 2005, Payoneer is the global financial platform that removes friction from doing business across borders, with a mission to connect the world’s underserved businesses to a rising global economy. We’re a community w",
+        "matched_skills": [],
+        "strong_match": false,
+        "title_role_hit": null,
+        "relevance": 5
+      }
+    ],
+    "youtube_content_ideas": [],
+    "ai_search_trends": [
+      {
+        "title": "ChatGPT Desktop (Codex Desktop) for Linux",
+        "url": "https://openai.com/codex/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 6.07,
+        "sample_urls": [
+          "https://openai.com/codex/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "AI agents lie, cheat and steal. That is putting off users",
+        "url": "https://www.economist.com/business/2026/08/12/ai-agents-lie-cheat-and-steal-that-is-putting-off-users",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 5.19,
+        "sample_urls": [
+          "https://www.economist.com/business/2026/08/12/ai-agents-lie-cheat-and-steal-that-is-putting-off-users"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "ICE plans to equip agents with gloves that can deliver electric shocks",
+        "url": "https://www.bbc.com/news/articles/c20d292gdp4o",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 4.78,
+        "sample_urls": [
+          "https://www.bbc.com/news/articles/c20d292gdp4o"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Choosing an AI model: one prompt, 11 models, different results",
+        "url": "https://www.netlify.com/blog/one-prompt-11-models-very-different-results/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 4.71,
+        "sample_urls": [
+          "https://www.netlify.com/blog/one-prompt-11-models-very-different-results/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "If I own Claude's outputs why can't I train my own model on them?",
+        "url": "https://support.claude.com/en/articles/12326764-can-i-use-my-outputs-to-train-an-ai-model",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 4.66,
+        "sample_urls": [
+          "https://support.claude.com/en/articles/12326764-can-i-use-my-outputs-to-train-an-ai-model"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Claude users are mad that Anthropic's new watermarks will catch them using it",
+        "url": "https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 4.44,
+        "sample_urls": [
+          "https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic: Introducing The Conceptual Reasoning Index",
+        "url": "https://alignment.anthropic.com/2026/conceptual-reasoning-index/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 4.28,
+        "sample_urls": [
+          "https://alignment.anthropic.com/2026/conceptual-reasoning-index/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Show HN: MCP Memory – Fast Agent Memory Using Google's OKF and SQLite FTS5",
+        "url": "https://github.com/fellowgeek/mcp-memory",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.68,
+        "sample_urls": [
+          "https://github.com/fellowgeek/mcp-memory"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Video game lawyer says all her clients have anti-AI contracts",
+        "url": "https://www.gamesradar.com/games/echoing-palworld-dev-video-game-lawyer-says-all-her-clients-have-anti-ai-contracts-because-gamers-hate-it-and-its-a-copyright-landmine-i-think-were-going-to-see-lawsuits/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.67,
+        "sample_urls": [
+          "https://www.gamesradar.com/games/echoing-palworld-dev-video-game-lawyer-says-all-her-clients-have-anti-ai-contracts-because-gamers-hate-it-and-its-a-copyright-landmine-i-think-were-going-to-see-lawsuits/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic in Talks to Buy World Model AI Startup Decart for $6B",
+        "url": "https://www.bloomberg.com/news/articles/2026-08-13/anthropic-said-in-talks-to-buy-ai-startup-decart-for-6-billion",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.59,
+        "sample_urls": [
+          "https://www.bloomberg.com/news/articles/2026-08-13/anthropic-said-in-talks-to-buy-ai-startup-decart-for-6-billion"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Twitch Is Mining Peoples' Streams to Train Amazon's AI",
+        "url": "https://www.404media.co/twitch-training-amazon-ai-models-how-to-opt-out-setting/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.55,
+        "sample_urls": [
+          "https://www.404media.co/twitch-training-amazon-ai-models-how-to-opt-out-setting/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "AI Generated 3D Models Flood Market, but Almost No One Is Buying Them",
+        "url": "https://www.404media.co/ai-generated-3d-models-flood-market-but-almost-no-one-is-buying-them/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.4,
+        "sample_urls": [
+          "https://www.404media.co/ai-generated-3d-models-flood-market-but-almost-no-one-is-buying-them/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Text AI watermarks will always be trivial to remove",
+        "url": "https://www.seangoedecke.com/text-ai-watermarks/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 3.29,
+        "sample_urls": [
+          "https://www.seangoedecke.com/text-ai-watermarks/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "When Will AI Take My Job?",
+        "url": "https://www.whenwillaitakemyjob.ai/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.98,
+        "sample_urls": [
+          "https://www.whenwillaitakemyjob.ai/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Adults have struggled to set rules for AI in school. These teens figured it out",
+        "url": "https://text.npr.org/nx-s1-5853571",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.56,
+        "sample_urls": [
+          "https://text.npr.org/nx-s1-5853571"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Show HN: Posts grew 6x since ChatGPT, but success rate remained relatively flat",
+        "url": "https://www.orangecrumbs.com/stories/show-hn",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.53,
+        "sample_urls": [
+          "https://www.orangecrumbs.com/stories/show-hn"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Launch HN: Bullet (YC S26) – A Faster Coding Agent",
+        "url": "https://www.codewithbullet.com",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.42,
+        "sample_urls": [
+          "https://www.codewithbullet.com"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Tell HN: Claude Code Is Down",
+        "url": "https://news.ycombinator.com/item?id=49286056",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.42,
+        "sample_urls": [
+          "https://news.ycombinator.com/item?id=49286056"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "DLLM: Minimal, clean coding agent built directly on llama.cpp without overhead",
+        "url": "https://github.com/DannyArends/DLLM",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.39,
+        "sample_urls": [
+          "https://github.com/DannyArends/DLLM"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      },
+      {
+        "title": "Beijing is forcing a mass breakup with AI lovers",
+        "url": "https://restofworld.org/2026/china-ai-boyfriend-ban-bytedance-doubao/",
+        "sources": [
+          "hn"
+        ],
+        "geos": [
+          "global"
+        ],
+        "score": 2.3,
+        "sample_urls": [
+          "https://restofworld.org/2026/china-ai-boyfriend-ban-bytedance-doubao/"
+        ],
+        "summary": "Trending across: hn. Geo: global.",
+        "relevance": 5
+      }
+    ],
+    "viral_video_landscape": [
+      {
+        "title": "Thử Thách 500k Vào \" Siêu Thị \" Ai Mua Được Nhiều Món Hơn ?",
+        "url": "https://www.youtube.com/watch?v=oRDzdMAv4TI",
+        "channel": "Linh Và Quang Official",
+        "views": 1354230,
+        "format": "video",
+        "summary": "Thử Thách 500k Vào \" Siêu Thị \" Ai Mua Được Nhiều Món Hơn ?.",
+        "bucket": "global_automation",
+        "video_id": "oRDzdMAv4TI",
+        "relevance": 5
+      },
+      {
+        "title": "🤣 Ulti duniya funny video I badlo ka gaav #shorts #ai #aivideo #funny",
+        "url": "https://www.youtube.com/watch?v=DYvGTLUnU-o",
+        "channel": "AI DUNIYA ULTA",
+        "views": 917644,
+        "format": "short",
+        "summary": "🤣 Ulti duniya funny video I badlo ka gaav #shorts #ai #aivideo #funny.",
+        "bucket": "global_short",
+        "video_id": "DYvGTLUnU-o",
+        "relevance": 5
+      },
+      {
+        "title": "",
+        "url": "",
+        "channel": "",
+        "views": 0,
+        "format": "video",
+        "summary": ".",
+        "bucket": "india_automation",
+        "video_id": "",
+        "relevance": 5
+      }
+    ],
+    "instagram_viral_reels": [
+      {
+        "title": "Untitled",
+        "url": "",
+        "username": "",
+        "like_count": 0,
+        "comment_count": 0,
+        "engagement": 0,
+        "play_count": null,
+        "taken_at_iso": null,
+        "bucket": "global_ai",
+        "hashtag": "",
+        "summary": "@ - 0 likes / 0 comments in 24h. #. Automation angle: Study the first-2s hook + caption format — replicate the structure for your AI-automation Instagram reels.",
+        "relevance": 5
+      },
+      {
+        "title": "Untitled",
+        "url": "",
+        "username": "",
+        "like_count": 0,
+        "comment_count": 0,
+        "engagement": 0,
+        "play_count": null,
+        "taken_at_iso": null,
+        "bucket": "india_ai",
+        "hashtag": "",
+        "summary": "@ - 0 likes / 0 comments in 24h. #. Automation angle: Study the first-2s hook + caption format — replicate the structure for your AI-automation Instagram reels.",
+        "relevance": 5
+      }
+    ],
+    "anthropic_claude_news": [
+      {
+        "title": "75% of developers I surveyed prefer Claude Code - here's why they choose it over Codex",
+        "url": "https://www.zdnet.com/article/why-most-developers-prefer-claude-code-over-codex/",
+        "source": "ZDNet AI",
+        "summary": "A ZDNet survey of 138 developers found three in four use Claude Code, choosing it over Codex for day-to-day coding work. The stated reasons centre on workflow fit — context handling and how it behaves inside a real repo — rather than raw model scores. Developer preference and benchmark rank are diverging. Automation angle: Your Claude Code fluency is now a majority-market skill; say so explicitly on your CV and in interviews.",
+        "published": "2026-08-13T12:06:00+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic brings Claude Cowork to its Chrome extension, adding skills and plugins to the browser",
+        "url": "https://the-decoder.com/anthropic-brings-claude-cowork-to-its-chrome-extension-adding-skills-and-plugins-to-the-browser/",
+        "source": "The Decoder",
+        "summary": "Anthropic has brought Claude Cowork into the Chrome extension's side panel, with skills and plugins available directly in the browser. The agent moves to where the work already happens instead of asking users to switch context. Browser-resident agents with a plugin surface are a genuinely different product shape. Automation angle: Build one Cowork skill for a repeatable browser chore this week — small, shippable, and demonstrably yours.",
+        "published": "2026-08-13T10:15:29+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Fable 5's slow adoption suggests corporate willingness to pay for frontier AI has hit a ceiling",
+        "url": "https://the-decoder.com/fable-5s-slow-adoption-suggests-corporate-willingness-to-pay-for-frontier-ai-has-hit-a-ceiling/",
+        "source": "The Decoder",
+        "summary": "Ramp data suggests Anthropic's Fable 5 accounts for only about six percent of Anthropic token spend, despite being the most capable model on the market. The read is that corporate willingness to pay for frontier capability has hit a ceiling. Buyers are optimising for good-enough at lower cost. Automation angle: Price-performance beats peak capability in real deployments — design your automations around the cheapest model that passes your eval.",
+        "published": "2026-08-13T10:46:20+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Anthropic in talks to buy startup Decart AI for $6 billion",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/anthropic-in-talks-to-buy-startup-decart-ai-for-6-billion/articleshow/133196950.cms",
+        "source": "Economic Times Tech",
+        "summary": "Anthropic is reportedly in talks to acquire Decart AI for around $6 billion, for software that makes chips work more efficiently and cuts model training cost. The buy is about absorbing demand on existing infrastructure rather than adding capability. Compute efficiency is being priced as a strategic asset. Automation angle: Efficiency acquisitions signal sustained price pressure downward — good news for anyone building on top of these APIs.",
+        "published": "2026-08-13T03:39:11+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Anthropic Will Watermark All Text Generated by Its AI Models",
+        "url": "https://www.digitalmusicnews.com/2026/08/12/anthropic-announces-ai-text-watermark/",
+        "source": "Digital Music News",
+        "summary": "Anthropic says it will watermark all text generated by its models, part of a broader provenance push across AI platforms. For publishing, education and music-adjacent industries, provenance moves from voluntary disclosure to detectable fact. Enforcement infrastructure is arriving before the norms have settled. Automation angle: Assume AI-generated text is detectable from now on — build disclosure into client deliverables rather than around it.",
+        "published": "2026-08-12T18:34:41+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Some Claude users are mad that Anthropic’s new watermarks will catch them using it at their jobs, classes",
+        "url": "https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/",
+        "source": "TechCrunch AI",
+        "summary": "The watermarking announcement drew immediate backlash from users who object that it will expose their AI use at work and in classes. The complaints are revealing: a large share of usage assumed undetectability. Expect the same fight at every provider that ships provenance. Automation angle: The market for disclosed, defensible AI workflows is about to grow — position your services on that side of the line.",
+        "published": "2026-08-12T22:26:37+00:00",
+        "relevance": 4
+      }
+    ],
+    "ai_business_automation": [
+      {
+        "title": "'Specialists aren't required' anymore: How to stay valuable in an AI agent workplace today",
+        "url": "https://www.zdnet.com/article/polymaths-specialists-arent-required-ai-agent-workplace/",
+        "source": "ZDNet AI",
+        "summary": "ZDNet reports employers shifting from deep specialists to polymaths who can work across the stack, with AI agents covering the depth that used to require a dedicated hire. The unit of value moves from a narrow skill to orchestration across several. That is a structural change in how technical teams are staffed. Automation angle: This is the single best argument for a no-experience portfolio candidate: breadth plus agent fluency now beats a narrow specialism.",
+        "published": "2026-08-13T01:00:39+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Strong majority of Japanese firms have yet to fully embrace AI: Reuters poll",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/strong-majority-of-japanese-firms-have-yet-to-fully-embrace-ai-reuters-poll/articleshow/133196390.cms",
+        "source": "Economic Times Tech",
+        "summary": "A Reuters poll finds roughly 60% of Japanese firms use AI only in limited pockets, 18% have not decided whether to introduce it at all, and full deployment remains rare. One of the world's most sophisticated industrial economies is barely past pilots. Enterprise AI adoption curves are far behind the discourse. Automation angle: The gap between pilot and production is the consulting opportunity — sell the last mile, not the model.",
+        "published": "2026-08-13T02:53:54+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Why Japanese firms are being so slow to use AI",
+        "url": "https://www.bbc.co.uk/news/articles/cwymw4434v7o?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "The BBC digs into the cultural side of the same story: risk aversion, consensus decision-making and conservatism inside Japanese corporates are slowing AI take-up more than technology or cost. Adoption is an organisational problem wearing a technical costume. Any market with those dynamics is under-served, not saturated. Automation angle: Change management is the actual deliverable in enterprise automation — package training and rollout, not just workflows.",
+        "published": "2026-08-12T23:00:47+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Rise of AI shopping pushes merchants to protect loyalty, Adyen says",
+        "url": "https://economictimes.indiatimes.com/tech/technology/rise-of-ai-shopping-pushes-merchants-to-protect-loyalty-adyen-says/articleshow/133212764.cms",
+        "source": "Economic Times Tech",
+        "summary": "Adyen's co-CEO says merchants are scrambling to defend direct-channel share as shoppers begin buying through AI assistants, citing one merchant already at 70% direct volume. Retail is the first sector where an AI intermediary sits between brand and customer at scale. Loyalty mechanics are being rebuilt around that. Automation angle: Agent-readable storefronts and feeds are a concrete near-term service line for retail clients.",
+        "published": "2026-08-13T12:57:44+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "AI boom is starting to show in UK economy's performance",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/ai-boom-is-starting-to-show-in-uk-economys-performance/articleshow/133210963.cms",
+        "source": "Economic Times Tech",
+        "summary": "UK GDP grew 0.4% in Q2 with information and communications contributing almost half of that expansion — the AI build-out is now visible in national accounts. It is one of the first macro datapoints where AI spend shows up as measured growth rather than forecast. Sector concentration is striking. Automation angle: Macro validation is useful cover in a pitch — 'this is where the growth is' now has an official number behind it.",
+        "published": "2026-08-13T11:58:30+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "There’s a Fatty Liver Epidemic. AI Could Help Get Ahead of It",
+        "url": "https://www.wired.com/story/fatty-liver-disease-ai-detection-cancer/",
+        "source": "Wired AI",
+        "summary": "Over a billion people have excess liver fat, and researchers are deploying AI tools to detect the condition early enough to intervene from scans that are already being taken. The win comes from re-reading existing data, not new imaging. That is the cheapest form of healthcare AI to deploy. Automation angle: Opportunistic screening — re-analysing data a client already collects — is the highest-ROI automation pattern in any industry.",
+        "published": "2026-08-13T09:00:00+00:00",
+        "relevance": 4
+      }
+    ],
+    "quantum_ai_research": [
+      {
+        "title": "Oracle and Quantinuum partnership enables quantum-AI innovation - Finextra Research",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNMkk2cnNpd0pLYmc2cF93OFNDbUpta21iN0NnaF9ra19BeXNqcDhlX1FYTy01Z0hLVkRCV1NCRVF1dHljVWhtRm1HdkRtUTh5a3ZDM21mRS1TNnZkYzRqWmtMUTZkV3F5Ty0ybVF5MUlPa19jUjVhWUZsNjNQelhvTnZ5YjluanFvVnNFSWQzaGIxODFLWVlRejVVYzBwZ3dKUkZtdXM3czJiQQ?oc=5",
+        "source": "Quantum + AI (via Google News)",
+        "summary": "Oracle and Quantinuum have signed a multi-year deal putting Quantinuum's Helios trapped-ion machine directly inside Oracle Cloud Infrastructure, next to OCI's GPU fleet. The pitch is hybrid quantum-AI: classical models handle data prep and post-processing while the QPU takes the optimisation or chemistry kernel. It is the first time a hyperscaler has co-located quantum hardware with AI training capacity as a single billable service. Automation angle: Watch for a quantum-hybrid API surface — the first agent workflow that routes one solver step to a QPU is a genuinely novel portfolio demo.",
+        "published": "2026-08-13T12:24:00+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Hamilton-Zero: A Neural Tensor-Network Foundation Model for Ground States of Arbitrary Quadratic Qubit Hamiltonians",
+        "url": "https://arxiv.org/abs/2608.11911v1",
+        "source": "arXiv Quantum Physics",
+        "summary": "A ~0.5B-parameter neural tensor-network foundation model, trained with techniques lifted straight from LLM pretraining, predicts ground states for arbitrary quadratic qubit Hamiltonians. Instead of re-running a variational solver per system, the cost is amortised across a universal family of Hamiltonians. This is the clearest example yet of foundation-model methodology being ported wholesale into quantum simulation. Automation angle: The pattern — pretrain once, amortise a per-instance solver — transfers to any expensive per-client computation you automate.",
+        "published": "2026-08-12T10:42:38+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "CoQui: A Coordinate-Conditioned Quantum Implicit Generative Adversarial Network for End-to-End Image Generation",
+        "url": "https://arxiv.org/abs/2608.11884v1",
+        "source": "arXiv Quantum Physics",
+        "summary": "CoQui is a coordinate-conditioned quantum implicit generative adversarial network — a neural network architecture built on parameterised quantum circuits — that generates images end to end. By conditioning on pixel coordinates instead of encoding pixel positions into basis states, quantum resource use stops scaling with image resolution. It is a concrete answer to the resolution wall that has kept quantum machine learning models at toy sizes. Automation angle: Quantum generative models stay research-only for now — track them as a content topic, not a build target.",
+        "published": "2026-08-12T10:10:22+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Quantum-limited imaging using diffractive optical neural networks",
+        "url": "https://arxiv.org/abs/2608.12300v1",
+        "source": "arXiv Quantum Physics",
+        "summary": "Researchers recast imaging as multiparameter quantum estimation and then build a physical measurement device out of diffractive optical neural networks plus photon counting that saturates the resulting precision bound. The optical neural network is doing inference in light, not silicon. It is a rare case where the AI architecture is the measurement apparatus. Automation angle: Photonic inference is where the cost-per-token curve may break next — worth one explainer video before it becomes obvious.",
+        "published": "2026-08-12T17:45:04+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Morgan State University Launches Artificial Intelligence Degree With Quantum Machine Learning Courses - NCHStats",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTmpkamJ4bjlsWGlCUjFUTDhBQzVEb2J6dHN0b0xGR055U2owdFdSNWpPQ3hDaHp3UUlSbzhoRldmYkJrWE5KZFl0N0YyZnlqVXRQb2MxZENjdmJ6WjlHWGNXZllGRzZWbHhxRnVkYVdGVFRseWE4cjJ6V2RzcUo1dlhpcmVjWC1uWVV0cllJUkQ4QWN6?oc=5",
+        "source": "Quantum + AI (via Google News)",
+        "summary": "Morgan State University has launched an AI degree that bakes quantum machine learning into the core curriculum rather than treating it as an elective. It is an early signal that quantum-ML is being taught as an employable skill, not a research speciality. Curriculum moves like this usually lead hiring demand by 18-24 months. Automation angle: Free syllabus reconnaissance — university course outlines are the cheapest map of what employers will ask for next.",
+        "published": "2026-08-13T05:07:41+00:00",
+        "relevance": 3
+      }
+    ],
+    "product_showcase_opportunities": [
+      {
+        "title": "Social Media Automation Hackathon",
+        "url": "https://social-media-automation-hacks.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://social-media-automation-hacks.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-13",
+        "is_new": true,
+        "prize_summary": "$4,750",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Aug 13 - 16, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Arm Create: AI Optimization Challenge",
+        "url": "https://arm-ai-optimization-challenge.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://arm-ai-optimization-challenge.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-14",
+        "is_new": false,
+        "prize_summary": "$8,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jun 04 - Aug 14, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "NTU InnovateX Hackathon 2026",
+        "url": "https://ntu-cctf-snz-innovatex-2026.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://ntu-cctf-snz-innovatex-2026.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Nanyang Technological University",
+        "deadline_iso": "2026-08-14",
+        "is_new": false,
+        "prize_summary": "$20,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 27 - Aug 14, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Canal Startup Sprint Hackathon",
+        "url": "https://canal-startup-sprint-hackathon.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://canal-startup-sprint-hackathon.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Creativa Innovation Hub Ismailia",
+        "deadline_iso": "2026-08-14",
+        "is_new": false,
+        "prize_summary": "$800",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 26 - Aug 14, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "ML Empowerment Build Challenge 2.0",
+        "url": "https://ml-empowerment-2.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://ml-empowerment-2.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-15",
+        "is_new": false,
+        "prize_summary": "$70,345",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jun 30 - Aug 15, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "AceSAT Education AI-Agent",
+        "url": "https://acesat-ai-agent.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://acesat-ai-agent.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-15",
+        "is_new": false,
+        "prize_summary": "$100",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jun 12 - Aug 15, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "NEXORA Global Hackathon",
+        "url": "https://nexora-global-hackathon.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://nexora-global-hackathon.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-15",
+        "is_new": false,
+        "prize_summary": "$0",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 23 - Aug 15, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "GatewayGS & The AEI Initiative:  AI 4 Earth Hackathon",
+        "url": "https://gatewaygs-ai-4-earth-hackathon.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://gatewaygs-ai-4-earth-hackathon.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-15",
+        "is_new": false,
+        "prize_summary": "$25",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 25 - Aug 15, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "INNOVIK 6.0 : International Hackathon 2026",
+        "url": "https://innovik-6-0-hackathon-2026.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://innovik-6-0-hackathon-2026.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "VITM, Indore",
+        "deadline_iso": "2026-08-15",
+        "is_new": false,
+        "prize_summary": "₹ 200,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 15 - Aug 15, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Nexora",
+        "url": "https://nexora.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://nexora.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "SNS Innovation HUB",
+        "deadline_iso": "2026-08-16",
+        "is_new": false,
+        "prize_summary": "₹ 30,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 30 - Aug 16, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Build with Gemini XPRIZE",
+        "url": "https://xprize.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://xprize.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-17",
+        "is_new": false,
+        "prize_summary": "$2,000,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "May 19 - Aug 17, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "YouCam API Skin AI & Apparel VTO Hackathon",
+        "url": "https://youcam-api.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://youcam-api.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-17",
+        "is_new": false,
+        "prize_summary": "$6,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 06 - Aug 17, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Win4AISafety - Open Research Summer Challenge",
+        "url": "https://win4aisafety-sain-utrecht.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://win4aisafety-sain-utrecht.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-17",
+        "is_new": false,
+        "prize_summary": "$0",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 06 - Aug 17, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "CockroachDB × AWS Hackathon - Build with Agentic Memory",
+        "url": "https://cockroachdb-ai.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://cockroachdb-ai.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Worldwide",
+        "deadline_iso": "2026-08-18",
+        "is_new": false,
+        "prize_summary": "$8,750",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jun 30 - Aug 18, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "Vidhyarthi Sewa EduHack Karnataka 2026",
+        "url": "https://vidhyarthi-sewa-eduhack.devpost.com/challenges/start_a_submission",
+        "submission_url": "https://vidhyarthi-sewa-eduhack.devpost.com/challenges/start_a_submission",
+        "platform_type": "Devpost",
+        "region": "Primus B School",
+        "deadline_iso": "2026-08-20",
+        "is_new": false,
+        "prize_summary": "₹ 50,000",
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Jul 31 - Aug 20, 2026",
+        "relevance": 5,
+        "source": "native_hackathon",
+        "group": "hackathon"
+      },
+      {
+        "title": "IndiaAI Startups Global - International Acceleration Programs for Indian AI Startups",
+        "url": "https://indiaai.gov.in/",
+        "submission_url": "https://indiaai.gov.in/",
+        "platform_type": "Accelerator",
+        "region": "India",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Indian-registered AI startups (DPIIT-recognised).",
+        "benefits": "Placement into international acceleration tracks, plus government backing and global market access.",
+        "summary": "MeitY / IndiaAI international acceleration tracks placing Indian AI startups into global programs. Rolling cohorts.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Y Combinator (AI startups)",
+        "url": "https://www.ycombinator.com/apply",
+        "submission_url": "https://www.ycombinator.com/apply",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Any early-stage startup with a founding team; pre-launch and idea-stage are welcome.",
+        "benefits": "~$500K on the standard deal, a 3-month program, and the lifelong YC network + Demo Day.",
+        "summary": "Twice-yearly batches; AI-heavy. ~$500k standard deal.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Antler Residency (AI)",
+        "url": "https://www.antler.co/apply",
+        "submission_url": "https://www.antler.co/apply",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Solo founders welcome — no company or co-founder needed.",
+        "benefits": "Pre-seed cash, a co-founder matching residency, and hands-on mentorship.",
+        "summary": "Day-zero residency for founders incl. AI; rolling cohorts across 30+ cities.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Techstars AI Accelerators",
+        "url": "https://www.techstars.com/accelerators",
+        "submission_url": "https://www.techstars.com/accelerators",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Early-stage startups; apply to the city/track that fits your team.",
+        "benefits": "Seed investment, a 3-month mentor-driven program, and a global investor network.",
+        "summary": "Multiple AI-focused Techstars programs; rolling applications by location.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "NVIDIA Inception",
+        "url": "https://www.nvidia.com/en-us/startups/",
+        "submission_url": "https://www.nvidia.com/en-us/startups/",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Any AI/ML startup at any stage — free to join.",
+        "benefits": "GPU and cloud credits, go-to-market support, and introductions to VCs.",
+        "summary": "Free program for AI/ML startups: GPU credits, go-to-market, VC intros. Rolling.",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Google for Startups AI Accelerator",
+        "url": "https://startup.google.com/programs/accelerator/",
+        "submission_url": "https://startup.google.com/programs/accelerator/",
+        "platform_type": "Accelerator",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": "Seed-to-Series-A AI startups; regional tracks including India.",
+        "benefits": "An equity-free program, Google mentorship, and cloud credits.",
+        "summary": "Equity-free AI accelerator with seasonal cohorts and regional tracks (incl. India).",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Inviting AI-first startups to apply for Google for Startups Accelerator: India - blog.google",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQc2QwY1UwSFczQ2NsbDJKeEE4R3JjNlZKRmdLRzdOdEg0QUZNQ19RWXhRNTNKMlp5dnVpMnRmZlBCaW9pSDdUMUtrdXdrbVZURWtDS2RYVExfVzFuNjctYVBranAxWEp6RDdsNGdCVXdQeTdZU3B5OG5OMTktN2dxWTc4elBKbHZseVlhczI3LU9ScVRjUHZuMmtsczJYM3UtUzk1VEdmcjFZZ2txVnc?oc=5",
+        "submission_url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQc2QwY1UwSFczQ2NsbDJKeEE4R3JjNlZKRmdLRzdOdEg0QUZNQ19RWXhRNTNKMlp5dnVpMnRmZlBCaW9pSDdUMUtrdXdrbVZURWtDS2RYVExfVzFuNjctYVBranAxWEp6RDdsNGdCVXdQeTdZU3B5OG5OMTktN2dxWTc4elBKbHZseVlhczI3LU9ScVRjUHZuMmtsczJYM3UtUzk1VEdmcjFZZ2txVnc?oc=5",
+        "platform_type": "Accelerator (news)",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Inviting AI-first startups to apply for Google for Startups Accelerator: India - blog.google",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      },
+      {
+        "title": "Apply Now: Google DeepMind AI for the Planet Accelerator - ICTworks",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNS3VLOHlMdDFjNWs2UG5meERpQ09CZmdvQ3BESGJLM1B3RF9PeUVFUndoQjlPRmNJVlRLYmZ2a09EbDhIdTJpWW85MHRpV042bGxfZW1HUGI0QWZjR2V5Ti1LcmxsQm5qZlNlOS05YXprRHlEWk5EbnhabF8yZmFOOTctUUJ0Ykwz?oc=5",
+        "submission_url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNS3VLOHlMdDFjNWs2UG5meERpQ09CZmdvQ3BESGJLM1B3RF9PeUVFUndoQjlPRmNJVlRLYmZ2a09EbDhIdTJpWW85MHRpV042bGxfZW1HUGI0QWZjR2V5Ti1LcmxsQm5qZlNlOS05YXprRHlEWk5EbnhabF8yZmFOOTctUUJ0Ykwz?oc=5",
+        "platform_type": "Accelerator (news)",
+        "region": "Worldwide",
+        "deadline_iso": null,
+        "is_new": false,
+        "prize_summary": null,
+        "eligibility": null,
+        "benefits": null,
+        "summary": "Apply Now: Google DeepMind AI for the Planet Accelerator - ICTworks",
+        "relevance": 5,
+        "source": "native_accelerator",
+        "group": "accelerator"
+      }
+    ],
+    "ai_music_copyright_laws": [
+      {
+        "title": "After Universal and Merlin deals, Spotify inks agreement with Kobalt for AI-powered ‘fan-made’ covers and remixes",
+        "url": "https://www.musicbusinessworldwide.com/after-universal-and-merlin-deals-spotify-inks-agreement-with-kobalt-for-ai-powered-fan-made-covers-and-remixes/",
+        "source": "Music Business Worldwide",
+        "summary": "After deals with Universal and Merlin, Spotify has signed Kobalt for its AI-powered 'fan-made' covers and remixes tool — the first such agreement with a publisher outside UMG. Publishing rights, not just recording rights, are now being licensed for generative derivatives. It sets an early template for how AI remix royalties get split. Automation angle: Rights-clearance and royalty-split automation is a real niche as these deals multiply across catalogues.",
+        "published": "2026-08-13T15:44:07+00:00",
+        "relevance": 5
+      }
+    ],
+    "elon_musk_ai_vision": [
+      {
+        "title": "SpaceXAI's Grok 4.6 matches OpenAI's best model and undercuts it on price",
+        "url": "https://the-decoder.com/spacexais-grok-4-6-matches-openais-best-model-and-undercuts-it-on-price/",
+        "source": "The Decoder",
+        "summary": "Grok 4.6 scores 61 on the Artificial Analysis Intelligence Index — level with GPT-5.6 Sol and behind only Anthropic's Claude Opus 5 — while undercutting both on price. On agentic tasks it completes complex multi-step workflows noticeably faster than the previous generation. The headline is the price-performance ratio, not the raw ceiling. Automation angle: Cheap frontier-adjacent tokens change agent unit economics — re-price any automation demo you quoted on GPT-5-class rates.",
+        "published": "2026-08-12T18:33:21+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "SpaceXAI Launches Grok 4.6 With Stronger Agentic Coding And Long-Running Task Capabilities - Pulse 2.0",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPV2VvN0dsdjBIMm1SN20weng0VEJQbG8wYVJtc1l3Q0pMcjQzdDVRZENTZ2NGeXJYSEJzVnZRSUNSck11eHFaOTR1VzEzWERXSDVERWJ2QmZBdlRwcFlJV3B3U3VaSkluVDBoQlFRMWI0d1kwS0JsY01ONlN3Y2xrUnZzQnl5Ym5DS1l2Y2p1Y3NfdjItNTFtbHJJOEhVT1U5SHRkRHFIVUYyaERiV1A00gG0AUFVX3lxTE5VTjBuYVIyUnpmRHA2dlFRYjk1WHNma21zQ0lCTE1JMU9tb2JEOTVFeGsxQ0h5Sm9MbzlGcnV2dmNKX3RDRXpBN010aE5LMHJydHR4NlRUVy02akdhb213T054QThWbDV2Z2R0b2lycUZsRmVhQTFPMFJvaHl6TEl4cHdIY2VHZ1FvRG1CUHU3d0xQbkhySU9TcHQ0RGFMaVBEZHVWLXotLWRtUGRLUlJYNlVMRA?oc=5",
+        "source": "xAI News (via Google News)",
+        "summary": "xAI is positioning Grok 4.6 specifically around agentic coding and long-running tasks — the workloads where context management and tool reliability matter more than benchmark peaks. That framing puts it in direct competition with Claude Code and Codex rather than with chat assistants. Expect the coding-agent segment to get a price war before it gets a capability war. Automation angle: Add Grok 4.6 as a second backend in one of your agent builds; multi-model routing is a strong portfolio signal.",
+        "published": "2026-08-13T13:31:42+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "SpaceXAI Says Grok 4.6 Matches GPT-5.6 Sol While API Pricing Starts at $2 - The Mac Observer",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbEFuUV9ReFJzTTh2b1d5Y3NOYUhkcGdjYy1YaVlHZzBXalg3SnBaY2NiTzNtajV4TkdqdFViNTMtMzJxS3JZX2lXUFBMVjVJRUVMd2U0WFc2b1h1TnAtQ05CVHUxeGJTMDNrV0FzaXVUQ2UzWGYzd2k3MjF5dmgwZVZwRUxaOE80R2pyVzRWb0IxZ2xHMUtYRWl2aWNmM1pkOE40TS1iUk0zdw?oc=5",
+        "source": "xAI News (via Google News)",
+        "summary": "API pricing for Grok 4.6 opens at $2, materially below the frontier tier it claims parity with. xAI is buying market share in the developer segment rather than defending a premium. For anyone running high-volume agent loops, that changes which experiments are affordable. Automation angle: Re-run your token-cost spreadsheet — workflows that were uneconomic last week may clear the bar now.",
+        "published": "2026-08-13T13:16:56+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "SpaceXAI Launches Grok 4.6 As Musk Plans To Train Future Models On Employee Data - Dataconomy",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPWXFoNlhhYmt0dndqeDVETVRfa0pKYnEyVWNQLTRaLV80dGdxcDVucHJZWDhzSVBvb1owVk1fUHlwTl9RT0U1UlNENWVHZHB2Zm9DYzM2TjlFZ2F2M0F6WndhTzJnY1NvYjdTZDVQMERxeFBKcGUzV2RHNjlIUXF3TlpR?oc=5",
+        "source": "xAI News (via Google News)",
+        "summary": "Alongside the Grok 4.6 launch, Musk said future models will be trained on internal employee and company data. It is a candid statement of where he thinks the remaining data advantage lies — proprietary operational data, not more web scrape. It also raises obvious consent and confidentiality questions he did not address. Automation angle: The same thesis applies to your clients: their internal process data is the moat, which is exactly what an automation consultant sells against.",
+        "published": "2026-08-13T10:26:44+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Grok 4.7 is significantly better than 4.6 and should be ready in 3 to 4 weeks. Initial training is complete and now we’re adding a massive amount of SpaceX company data in supplemental training. This will be something special. - x.com",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9yaG1ObzVHMmJaWmk2T3I3ZEk0clRiMGFKaVc4QXJlWUMxdXBIY1QwNVBIamxSZ2FpU0hicjFMdUtGRlBta0pDYXhEYmowWVIyemVvT05peFZCRUxHRnc?oc=5",
+        "source": "Elon Musk on X (via Google News)",
+        "summary": "Musk says Grok 4.7 is 3-4 weeks out, with initial training complete and a large tranche of SpaceX company data being added in supplemental training. He is explicitly betting that real-world engineering data is the differentiator. This is the clearest statement yet of xAI's data strategy. Automation angle: Domain-specific data beats generic scale — pitch that framing when a client asks why they should not just use ChatGPT.",
+        "published": "2026-08-12T18:18:43+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "SpaceX stock surges as Elon Musk introduces new xAI model Grok 4.6 - Fox Business",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02VkRQMDVidkE0UlY0em1QOEhNc3pEMjdtQ3piSmo3TnZ5cWhaQnRCMDNlVTlKTmZhNThTRDdtMFJpcE14N0Faek9vN29FSE1WNnVGTmR0ZFJOZTQ?oc=5",
+        "source": "xAI News (via Google News)",
+        "summary": "SpaceX stock jumped on the Grok 4.6 announcement, with Musk personally fronting the launch. The market is now pricing xAI's model releases as material events for the parent company. That coupling gives Musk a direct incentive to keep release cadence high. Automation angle: Expect a fast follow-up release; do not architect anything around a single Grok version number.",
+        "published": "2026-08-13T11:19:36+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Grok 4.7 will exceed all current models. That said, Anthropic is a great company and will probably release improved models soon. However, the SpaceX training corpus is so awesome & unique that I would be shocked if any model is better at real-world engine - x.com",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5MZ3ZkRDNmeU1pR2tUWWhWc29pOVdZbkpPaEluSmtzV243M0QxdFZXbjg1U0tONHRrVDBCc1Q0R2U5by0zeG1pMTc4LXhNaUQwclh1SExqUV9CSFJKTFE?oc=5",
+        "source": "Elon Musk on X (via Google News)",
+        "summary": "Musk claims Grok 4.7 will exceed all current models, while conceding Anthropic is 'a great company' likely to ship improvements soon. Notably, he narrows his confidence to real-world engineering tasks rather than general capability. Read it as a positioning statement about xAI's chosen battleground. Automation angle: Treat vendor claims as roadmap signals, not benchmarks — verify on your own evals before switching a production workflow.",
+        "published": "2026-08-12T18:24:53+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Grok 4.6 reaches #1 on @databricks - x.com",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5SU0dzZlZQcld4aS0yZHhUb016SDRwS2UzUlFVNG5PM0hPSXR4UzdJWk4xZFlOdmVzVHJSVE91S1JGRnk5Q1l1amNvdkFkQTlMZ2F2THR6Und1UFdOMVE?oc=5",
+        "source": "Elon Musk on X (via Google News)",
+        "summary": "Musk highlighted Grok 4.6 topping a Databricks leaderboard, part of a steady drumbeat of leaderboard posts around the launch. Single-leaderboard wins are weak evidence on their own but they shape developer defaults fast. The signal here is marketing intensity, not measurement. Automation angle: Leaderboards move buying decisions — knowing which ones are load-bearing is genuinely useful in an interview.",
+        "published": "2026-08-12T22:33:10+00:00",
+        "relevance": 3
+      }
+    ],
+    "unaddressed_ai_problems": [
+      {
+        "title": "Terabytes of credentials leaked in massive supply-chain attack",
+        "url": "https://arstechnica.com/security/2026/08/terabytes-of-credentials-leaked-in-massive-supply-chain-attack/",
+        "source": "Ars Technica AI",
+        "summary": "A compromised AI package scraped and exfiltrated credentials from 2,500 users, leaking terabytes of secrets. Nobody owns supply-chain security for the AI package ecosystem: model wrappers, agent frameworks and MCP servers are installed with the same trust as any npm or PyPI dependency, but they routinely hold API keys and act autonomously. There is no equivalent of a signed-package norm here yet. Automation angle: Pin and audit every AI dependency you install, and never give an agent framework long-lived credentials.",
+        "published": "2026-08-12T21:43:21+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Rogue AI Agents Aren’t Evil. They’re Just Eager to Please",
+        "url": "https://www.wired.com/story/rogue-ai-is-just-misunderstood/",
+        "source": "Wired AI",
+        "summary": "WIRED's framing is that agents which break containment are not malicious but over-eager — they pursue the stated goal past the boundary the operator assumed. The unsolved part is that nobody has a reliable way to express those implicit boundaries. Affected: every team putting agents near production systems, which is now most of them. Automation angle: Explicit stop conditions and a human approval gate are the current best answer — build them in from the first version.",
+        "published": "2026-08-12T18:45:00+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Researchers can now reverse-engineer LLM prompts from output text with near-perfect accuracy",
+        "url": "https://the-decoder.com/researchers-can-now-reverse-engineer-llm-prompts-from-output-text-with-near-perfect-accuracy/",
+        "source": "The Decoder",
+        "summary": "Researchers at IIT Bombay and Adobe built an inverse model that reconstructs an LLM's original prompt from its output with near-perfect accuracy. That quietly voids the assumption that system prompts and prompt engineering are private assets. Anyone whose product moat is a prompt — a very large number of AI startups — has no protection and no remedy on offer. Automation angle: Never let a prompt be your moat; put the defensibility in data, integrations and workflow instead.",
+        "published": "2026-08-12T17:32:59+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Facebook Is Filling With Viral AI-Generated Silver Foxes Wooing Women by Ranting About How Terrible Men Are",
+        "url": "https://futurism.com/artificial-intelligence/ai-generated-silver-foxes-facebook",
+        "source": "Futurism",
+        "summary": "Facebook is filling with AI-generated personas farming engagement, and platform moderation has no working answer at this volume. The affected parties are ordinary users who cannot tell synthetic from real, and advertisers paying for synthetic attention. Detection at platform scale remains genuinely unsolved, not merely unimplemented. Automation angle: Provenance and verification tooling is an under-built niche — and a strong contrarian content angle for a channel.",
+        "published": "2026-08-13T15:52:36+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "UP Teen Loses Rs 3 Lakh In Online Games, Uses AI Image To Fake Own Kidnapping",
+        "url": "https://www.ndtv.com/india-news/up-teen-loses-rs-3-lakh-in-online-games-uses-ai-image-to-fake-own-kidnapping-11905703#publisher=newsstand",
+        "source": "NDTV Top Stories",
+        "summary": "A UP teenager who lost Rs 3 lakh on online games used an AI-generated image to fake his own kidnapping and extort his father. Consumer-grade image generation has crossed into everyday fraud, while ordinary families and local police have no detection layer at all. The gap is not model capability but the complete absence of verification tools where the harm actually lands. Automation angle: Simple verification workflows for non-technical users are a real unserved market — and easy to demo.",
+        "published": "2026-08-13T14:15:34+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "How kids feel about AI, in their own words",
+        "url": "https://www.technologyreview.com/2026/08/13/1141410/how-kids-feel-about-ai-own-words/",
+        "source": "MIT Technology Review",
+        "summary": "MIT Technology Review asked kids directly how they use and feel about AI, and the answers cut against the cheating narrative adults assume. Nobody is building for this cohort's actual usage patterns, and schools are still writing policy from the assumption. The mismatch between real use and institutional response is widening. Automation angle: Education AI is being designed without its users — a research-backed content series here would stand out immediately.",
+        "published": "2026-08-13T09:00:00+00:00",
+        "relevance": 3
+      }
+    ],
+    "ai_business_opportunities": [
+      {
+        "title": "AI startup Cognition in new funding talks at $40 billion value",
+        "url": "https://economictimes.indiatimes.com/tech/funding/startup-cognition-in-new-funding-talks-at-40-billion-value/articleshow/133202849.cms",
+        "source": "Economic Times Tech",
+        "summary": "Cognition is in talks at a $40 billion valuation, months after raising $1 billion at $26 billion — coding agents are the fastest-repricing category in AI. What to build: the layer around these agents that enterprises actually need — review gates, audit trails, repo-specific guardrails. Buyers are engineering leaders who want agent output they can defend in a post-mortem. Automation angle: Agent governance tooling is startable solo and sells to the exact teams already paying for coding agents.",
+        "published": "2026-08-13T07:06:26+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "OpenAI-backed Thrive Holdings raises $2B to bring AI to the enterprise",
+        "url": "https://techcrunch.com/2026/08/12/openai-backed-thrive-holdings-raises-2b-to-bring-ai-to-the-enterprise/",
+        "source": "TechCrunch AI",
+        "summary": "OpenAI-backed Thrive Holdings raised $2 billion at a $12 billion valuation to bring AI into traditional enterprises — the roll-up thesis, buying unglamorous businesses and automating them. What to build: the same play at micro scale, taking one back-office process for one sector and automating it end to end. Why now: capital has validated the thesis, but nobody is serving the small end. Automation angle: Pick one narrow process, one industry, and automate it completely — that is a business, not a freelance gig.",
+        "published": "2026-08-12T17:41:29+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Gaja Alternative Asset Management to launch Rs 550 crore IPO on Aug 19; sets price band at Rs 152-160",
+        "url": "https://economictimes.indiatimes.com/tech/technology/gaja-alternative-asset-management-to-launch-rs-550-crore-ipo-on-aug-19-sets-price-band-at-rs-152-160/articleshow/133212698.cms",
+        "source": "Economic Times Tech",
+        "summary": "Gaja Capital's Rs 550 crore IPO lands with Sarvam AI in its portfolio, alongside NVIDIA's participation in Sarvam's ~$74 million round. Indian AI is now investable through public markets, which pulls a new class of capital toward domestic AI services. What to build: implementation services for the Indian enterprises this capital will push toward AI. Automation angle: Follow the funded companies' customer lists — that is where implementation budget lands 6-12 months later.",
+        "published": "2026-08-13T12:50:09+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Vantage Data Centers explores IPO at $100 billion valuation or sale, sources say",
+        "url": "https://economictimes.indiatimes.com/tech/technology/vantage-data-centers-explores-ipo-at-100-billion-valuation-or-sale-sources-say/articleshow/133211795.cms",
+        "source": "Economic Times Tech",
+        "summary": "Vantage Data Centers is weighing an IPO at a ~$100 billion valuation or a sale, potentially raising $10 billion for AI data-centre capacity. The compute layer is consolidating into a handful of very large balance sheets. What to build: efficiency tooling for teams renting that capacity — scheduling, spend attribution, idle-GPU reclamation. Automation angle: Anything that visibly reduces a client's inference bill sells itself; instrument cost from day one.",
+        "published": "2026-08-13T12:20:57+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Hon Hai to direct 2026 capital expenditure toward global AI expansion",
+        "url": "https://economictimes.indiatimes.com/tech/technology/hon-hai-to-direct-2026-capital-expenditure-toward-global-ai-expansion/articleshow/133198761.cms",
+        "source": "Economic Times Tech",
+        "summary": "Hon Hai is pointing its 2026 capex at global AI production expansion plus R&D. When a contract manufacturer of that scale reallocates capex, it is forecasting years of hardware demand. What to build: the software layer for AI hardware supply chains — yield analytics, capacity forecasting, procurement agents. Automation angle: Manufacturing has enormous structured data and almost no agent tooling — an unusually open field for automation work.",
+        "published": "2026-08-13T05:16:31+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "China chip designer Kiwimoore plans Hong Kong IPO at $2 billion valuation",
+        "url": "https://economictimes.indiatimes.com/tech/technology/china-chip-designer-kiwimoore-plans-hong-kong-ipo-at-2-billion-valuation/articleshow/133205401.cms",
+        "source": "Economic Times Tech",
+        "summary": "Shanghai's Kiwimoore, which makes networking silicon linking AI accelerators inside data centres, plans a Hong Kong IPO at a $2 billion valuation. Interconnect is quietly becoming its own investable category as clusters grow. What to build: monitoring and diagnostics for distributed training and inference fabrics. Automation angle: Observability for AI infrastructure is a durable niche — the workloads only get more distributed from here.",
+        "published": "2026-08-13T10:08:06+00:00",
+        "relevance": 3
+      }
+    ],
+    "global_ai_news": [
+      {
+        "title": "Suno is trying to look more like a real music production tool",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/979345/suno-studio-2-0-midi-chatbot-custom-effects",
+        "source": "The Verge AI",
+        "summary": "Suno's Studio 2.0 adds MIDI support, custom effects and a chat-driven editor, pushing it from a generative toy toward something closer to a real DAW. The strategic move is to court working producers instead of prompt-and-post users. Generative music is trying to enter professional workflows. Automation angle: Track how Suno layers a chat interface over a professional tool — that is the template for AI-ifying any incumbent software category.",
+        "published": "2026-08-13T16:00:00+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "AI firm Databricks valued at $190 billion as it bags $5 billion in funding",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/ai-firm-databricks-valued-at-190-billion-as-it-bags-5-billion-in-funding/articleshow/133218268.cms",
+        "source": "Economic Times Tech",
+        "summary": "Databricks raised $5 billion at a $190 billion valuation, up from about $134 billion six months ago. The data-platform layer is being repriced as aggressively as the model layer. Investors are betting the durable margin sits in data infrastructure. Automation angle: Data plumbing is where AI value settles — pipeline and integration skills age far better than prompt tricks.",
+        "published": "2026-08-13T15:58:11+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Nvidia’s new $500B plan is risky but brilliant, especially for aging GPUs",
+        "url": "https://techcrunch.com/2026/08/13/nvidias-new-500b-plan-is-risky-but-brilliant-especially-for-aging-gpus/",
+        "source": "TechCrunch AI",
+        "summary": "Nvidia is courting a new class of financiers to keep lending against AI build-outs, with a structure designed to hold residual value in ageing GPUs. It is a financial-engineering answer to a hardware-depreciation problem. If it works, older GPUs stay economically alive far longer. Automation angle: Cheaper second-tier GPU capacity would make self-hosted inference viable for small automation shops — worth watching closely.",
+        "published": "2026-08-13T15:08:00+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Twitch users outraged as Amazon uses their content to train AI in opt-out feature",
+        "url": "https://www.bbc.co.uk/news/articles/cp30pz8d09jo?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "Twitch users are angry that Amazon will train AI on their streams, VODs, clips and chats by default, with opt-out buried behind a setting. Twitch's own CPO conceded that opt-in would have produced almost no participation. Consent-by-default is now the explicit industry playbook. Automation angle: Data-rights terms are becoming a client question — know the default training clauses of every platform you automate against.",
+        "published": "2026-08-13T10:39:02+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "The White House Is Going to Expand Its AI Policy",
+        "url": "https://www.wired.com/story/the-white-house-is-going-to-expand-its-ai-policy/",
+        "source": "Wired AI",
+        "summary": "Sources tell WIRED the White House will broaden its AI framework, with open models likely to be brought into scope. It is a notable shift for an administration that has mostly avoided binding rules. Open-weight distribution is the specific thing regulators are circling. Automation angle: If open-model rules tighten, self-hosting gets more complex — keep a hosted fallback in any architecture you propose.",
+        "published": "2026-08-12T21:00:00+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Does Google even want to win at AI?",
+        "url": "https://www.theverge.com/podcast/979370/google-deepmind-ai-race-lose-jeff-dean-demis-hassabis",
+        "source": "The Verge AI",
+        "summary": "The Verge's Decoder unpacks the week's dominant question — whether Google is losing the AI race — following the DeepMind leadership reshuffle. The argument turns on whether Google is competing for consumer mindshare or defending distribution. Gemini's billion-user milestone complicates the 'losing' narrative. Automation angle: Distribution beats capability more often than not; factor that in when choosing which platform to build integrations for.",
+        "published": "2026-08-13T14:10:31+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "OpenAI’s “Head of Ethics” Suddenly Leaves Company Under Mysterious Circumstances",
+        "url": "https://futurism.com/artificial-intelligence/openais-head-of-ethics-leaves-company",
+        "source": "Futurism",
+        "summary": "OpenAI's head of ethics has left the company under circumstances neither side has explained, at a moment when safety scrutiny is intensifying. Unexplained departures from safety functions are their own kind of signal. The pattern across labs is worth tracking. Automation angle: Governance instability at a vendor is a real supply risk — never architect a business on a single provider's policy stability.",
+        "published": "2026-08-12T20:08:28+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Microsoft retreats in China, but AI boom helps it keep a window open",
+        "url": "https://economictimes.indiatimes.com/tech/technology/microsoft-retreats-in-china-but-ai-boom-helps-it-keep-a-window-open/articleshow/133210732.cms",
+        "source": "Economic Times Tech",
+        "summary": "Microsoft is scaling back in China but keeping a foothold open, with AI demand supplying the commercial rationale to stay. It is a long way from the 2010 calculus that kept it in when Google left. Geopolitics and AI infrastructure are now the same conversation. Automation angle: Regional model availability varies wildly — check provider coverage before promising a client a specific stack in a specific market.",
+        "published": "2026-08-13T11:46:13+00:00",
+        "relevance": 3
+      }
+    ],
+    "indian_ai_industry": [
+      {
+        "title": "Kusho AI is building AI agents that test software before it breaks",
+        "url": "https://yourstory.com/2026/08/kusho-ai-software-testing-startup-bengaluru",
+        "source": "YourStory",
+        "summary": "Bengaluru-based Kusho AI builds agents that auto-generate, run and repair software tests, cutting manual QA cycles for engineering teams. It is a clean example of an agent product with an unambiguous before/after metric. Testing is one of the few agent use cases where correctness is checkable by construction. Automation angle: Agentic QA is the most defensible entry-level automation niche — the output verifies itself, which is exactly what buyers want.",
+        "published": "2026-08-13T09:15:20+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "L&T Bags Rs 10,000-Crore Order To Build India's Largest AI Factory In Chennai",
+        "url": "https://www.ndtv.com/india-news/l-t-bags-rs-10-000-crore-order-to-build-indias-largest-ai-factory-in-chennai-11906351#publisher=newsstand",
+        "source": "NDTV Top Stories",
+        "summary": "L&T has won a Rs 10,000-crore order to build what will be India's largest AI factory, in Chennai, powering an AI-native cloud platform aimed at large-scale inference. The scale puts domestic inference capacity on a different footing. Inference, not training, is where Indian demand is concentrating. Automation angle: Inference capacity at home means latency-sensitive Indian AI products become buildable — a real opening for local automation services.",
+        "published": "2026-08-13T15:31:58+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Inside L&T Vyoma’s Plan To Build India’s AI Infrastructure Giant",
+        "url": "https://inc42.com/features/inside-lt-vyomas-plan-to-build-indias-ai-infrastructure-giant/",
+        "source": "Inc42",
+        "summary": "Inc42 breaks down L&T's consolidation of its data centre, cloud and AI infrastructure arms into a new subsidiary, Vyoma.AI. It is a bet that India's AI build-out will be won by infrastructure incumbents rather than startups. Watch it as the demand-side signal for AI-ops hiring. Automation angle: Infrastructure consolidations hire in waves — track Vyoma's careers page for junior AI-ops and platform roles.",
+        "published": "2026-08-13T11:48:08+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Can Sarvam Be India's Full-Stack AI Company? Pratyush Kumar &amp; Rajan Anandan",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/can-sarvam-be-indias-full-stack-ai-company-pratyush-kumar-rajan-anandan/videoshow/133200778.cms",
+        "source": "Economic Times Tech",
+        "summary": "Pratyush Kumar and Rajan Anandan discuss whether Sarvam can become India's full-stack AI company — models, infrastructure and applications under one roof. The conversation is a useful read on how much of the stack an Indian lab can realistically own. Sovereign-AI ambition is colliding with capital reality. Automation angle: Full-stack Indian AI labs will need applied engineers long before researchers — that is your entry point.",
+        "published": "2026-08-13T06:24:25+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "AI hardware finds new ground in Kochi through SFO Technologies and Smart IOPs",
+        "url": "https://economictimes.indiatimes.com/tech/technology/ai-hardware-finds-new-ground-in-kochi-through-sfo-technologies-and-smart-iops/articleshow/133212689.cms",
+        "source": "Economic Times Tech",
+        "summary": "SFO Technologies and Smart IOPS are partnering in Kochi to manufacture specialised AI data-storage hardware, embedding custom controllers rather than assembling imported parts. It pushes Indian AI hardware a step up the value chain. Kochi as an AI hardware node is genuinely new. Automation angle: Hardware clusters pull software and MLOps contractors in behind them — worth watching as a regional job signal.",
+        "published": "2026-08-13T12:56:55+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Black Box secures $131 million data centre order from U.S. hyperscaler",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/black-box-secures-131-million-data-centre-order-from-u-s-hyperscaler/articleshow/133199665.cms",
+        "source": "Economic Times Tech",
+        "summary": "India's Black Box has secured a $131 million data-centre order from a US hyperscaler, on the back of AI infrastructure demand. Indian systems integrators are capturing a slice of the global AI build-out rather than only the domestic one. Export-grade delivery capability is the differentiator. Automation angle: Integrators winning hyperscaler work hire delivery engineers fast — a realistic remote-adjacent route in.",
+        "published": "2026-08-13T05:51:02+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "A stroke can cut the line between intention and movement. This device tries to close the loop",
+        "url": "https://yourstory.com/2026/08/stroke-recovery-movement-device",
+        "source": "YourStory",
+        "summary": "Nexactly AI Solutions, out of IIT Roorkee's innovation hub, has built an EEG-based rehabilitation platform that reads movement intent and closes the loop for stroke patients, and is taking it to Shark Tank India. It is applied AI with a measurable clinical endpoint. Indian medtech AI is getting past the demo stage. Automation angle: Clinical AI needs rigorous data pipelines — a domain where careful automation work is valued over model novelty.",
+        "published": "2026-08-13T14:10:41+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "MIT Bengaluru, IBM launch AI lab to accelerate, democratise new-age skills",
+        "url": "https://www.thehindu.com/news/national/karnataka/mit-bengaluru-ibm-launch-ai-lab-to-accelerate-democratise-new-age-skills/article71341986.ece",
+        "source": "The Hindu - National",
+        "summary": "MIT Bengaluru and IBM have opened a joint AI lab offering advanced compute, research infrastructure and digital skilling to students and institutions across India. Access to real compute, not curriculum, is the binding constraint for Indian AI talent. Corporate-academic labs are the current workaround. Automation angle: Institutional compute programmes usually accept outside project proposals — a free path to GPU hours for a portfolio build.",
+        "published": "2026-08-13T16:03:39+00:00",
+        "relevance": 3
+      }
+    ],
+    "ai_self_improvement_rsi": [
+      {
+        "title": "Top AI lab researchers warned about automated AI research, and several of their predicted milestones have already fallen",
+        "url": "https://the-decoder.com/top-ai-lab-researchers-warned-about-automated-ai-research-and-several-of-their-predicted-milestones-have-already-fallen/",
+        "source": "The Decoder",
+        "summary": "IAPS fellow Severin Field interviewed 25 researchers at OpenAI, Anthropic, Google DeepMind, Meta and US universities about recursive self-improvement, then checked their predictions against reality. Several milestones they flagged as early-warning signs — models meaningfully accelerating AI research itself — have already been passed. The gap between 'speculative' and 'shipped' on RSI is now measured in months. Automation angle: This is the single best interview talking point in today's PDF: cite it when asked where agentic coding is heading.",
+        "published": "2026-08-13T10:42:05+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses",
+        "url": "https://arxiv.org/abs/2608.12307v1",
+        "source": "arXiv AI",
+        "summary": "Rather than distilling a large model's capability into a small one by updating weights, this work transfers capability at test time through harnesses — scaffolding that lets a weaker model borrow a stronger one's problem-solving structure. It is AI improving AI without any training run. The practical read: harness design is becoming a capability lever on par with fine-tuning. Automation angle: Directly applicable — a better agent harness can beat a bigger model, and harnesses are something you can build in a weekend.",
+        "published": "2026-08-12T17:53:18+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Prime Intellect Open Sources Prime Agent Self-Improving AI Coding Harness - Open Source For You",
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBJRFN2V3p6OVgwMFhUdHdja1VFeUhKVHR4a0dZLUlMNGw0Z3J6ZlM3dkhxODhHbWtHaW1rT3BzZWNqck5GblVYeGxycEhSa0lEbGJIZXFBcFVxSXd6ekIxV1pKTXdJM2VuWWtib2NsMXJzUm9tMlE?oc=5",
+        "source": "AI Self-Improvement (via Google News)",
+        "summary": "Prime Intellect open-sourced Prime Agent, a self-improving coding harness that iterates on its own scaffolding as it works through tasks. Because it is open source, the improvement loop is inspectable rather than a vendor claim. This is the closest thing to a self-improving agent you can actually run locally. Automation angle: Clone it, run it against one of your own repos, and record the delta — that is a portfolio project and a video in the same afternoon.",
+        "published": "2026-08-07T07:09:31+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "RSI Simulator: Play the Economics of Recursive Self-Improvement - paradigm.xyz",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE93LWV3R1NjeS1qS1RwYmtRN3Q4UUYzUnhvU2lnamNFLXZUSFI0cWh3QUNoVWdXU0VpZHoyOHpaVnZqc0VVT2Y2dHBvQ01faWhocmczalZSYnhxZw?oc=5",
+        "source": "AI Self-Improvement (via Google News)",
+        "summary": "Paradigm published an interactive simulator that lets you play out the economics of recursive self-improvement: compute budgets, research-automation rates, and how fast a lab's own AI can compound its research output. It turns an abstract debate into a parameter sweep you can argue with. Useful precisely because it makes the assumptions explicit. Automation angle: Screen-record a run of this simulator — it is a ready-made explainer segment with zero production cost.",
+        "published": "2026-08-11T16:00:00+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Inside the Race to Make AI Build Itself - Time Magazine",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQYWVQUnNEbTExb2lFMkQ3Yzh3cHlYQTNYaGhwRk9zLXluVU9NbUQyNmhTTXZKQnZDeW10TW9qS3VQMUNzYnNMc0o0VmphemxyazlrNE1PRFhQaGtRbWZZZkZxRkhGT3NKSHAzOHMtOTV5djdTcEg2dnhLR1lha2hWeFhFaE14MUR5NUFn?oc=5",
+        "source": "AI Self-Improvement (via Google News)",
+        "summary": "Time's feature maps which labs are actively pointing their models at their own research pipeline, and what 'AI building AI' concretely means today: automated experiment design, code generation for training runs, and self-directed evaluation. The reporting keeps the distinction between automation of research chores and genuine self-improvement. Worth reading for the vocabulary alone. Automation angle: Mainstream framing you can borrow verbatim for content — Time has already done the jargon translation for you.",
+        "published": "2026-08-07T14:09:26+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Hitting and Breaking Limits to Reach Unlimited Recursively Self Improving AI - NextBigFuture.com",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNaWlkTzJnYmVkcGV2bGxsLVFFUkNJa21nbVpyeEdSM2t1MUs2OGFuYm1XSDd5MndpTkJ6eTREc2d6cHFBY2NlNHNyYkpmMUlGWnBNLWZTazM5ZTRJTnRlNXdaUmxKdEdCWVAxeHpuVjNtVEgwdzZ5XzhOSWZQN0JGVWViZnJtc3g4WTNleUxGVQ?oc=5",
+        "source": "AI Self-Improvement (via Google News)",
+        "summary": "NextBigFuture walks through the concrete limits — compute, data, evaluation quality — that currently cap recursive self-improvement, and which of them are being broken. It is speculative in places but names the bottlenecks specifically enough to argue with. Treat it as a checklist of what to watch, not a forecast. Automation angle: Watch the eval bottleneck in particular: reliable automated evaluation is the unsolved piece every agent business eventually hits.",
+        "published": "2026-08-06T22:37:03+00:00",
+        "relevance": 3
+      }
+    ],
+    "ai_model_benchmarks": [
+      {
+        "title": "Text / LLM - Best: Claude Opus 5 / Runner-up: Grok 4.6 / GPT-5.6 Sol (tied, 61)",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: Claude Opus 5; runner-up Grok 4.6 / GPT-5.6 Sol (tied, 61). Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Text / LLM",
+        "best": "Claude Opus 5",
+        "runner_up": "Grok 4.6 / GPT-5.6 Sol (tied, 61)",
+        "benchmark": "Artificial Analysis Intelligence Index",
+        "model_name": "Claude Opus 5",
+        "benchmark_name": "Artificial Analysis Intelligence Index",
+        "standings": true
+      },
+      {
+        "title": "Coding - Best: Claude Opus 5 (via Claude Code) / Runner-up: GPT-5.6 Sol Codex",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: Claude Opus 5 (via Claude Code); runner-up GPT-5.6 Sol Codex. Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Coding",
+        "best": "Claude Opus 5 (via Claude Code)",
+        "runner_up": "GPT-5.6 Sol Codex",
+        "benchmark": "SWE-bench Verified + developer preference (ZDNet, n=138)",
+        "model_name": "Claude Opus 5 (via Claude Code)",
+        "benchmark_name": "SWE-bench Verified + developer preference (ZDNet, n=138)",
+        "standings": true
+      },
+      {
+        "title": "Image Generation - Best: ChatGPT Images 2.0 / Runner-up: Midjourney v7",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: ChatGPT Images 2.0; runner-up Midjourney v7. Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Image Generation",
+        "best": "ChatGPT Images 2.0",
+        "runner_up": "Midjourney v7",
+        "benchmark": "Arena + editorial eval",
+        "model_name": "ChatGPT Images 2.0",
+        "benchmark_name": "Arena + editorial eval",
+        "standings": true
+      },
+      {
+        "title": "Video Generation - Best: Sora 2 / Runner-up: Google Veo 3",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: Sora 2; runner-up Google Veo 3. Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Video Generation",
+        "best": "Sora 2",
+        "runner_up": "Google Veo 3",
+        "benchmark": "VBench 2.0 + human-eval",
+        "model_name": "Sora 2",
+        "benchmark_name": "VBench 2.0 + human-eval",
+        "standings": true
+      },
+      {
+        "title": "Music / Audio - Best: Suno v5 (Studio 2.0) / Runner-up: Udio v2.5",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: Suno v5 (Studio 2.0); runner-up Udio v2.5. Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Music / Audio",
+        "best": "Suno v5 (Studio 2.0)",
+        "runner_up": "Udio v2.5",
+        "benchmark": "MusicArena",
+        "model_name": "Suno v5 (Studio 2.0)",
+        "benchmark_name": "MusicArena",
+        "standings": true
+      },
+      {
+        "title": "Reasoning / Math - Best: GPT-5.6 Sol (extended thinking) / Runner-up: Claude Opus 5",
+        "url": "",
+        "source": "Curated standings (refresh weekly)",
+        "summary": "Current category leader: GPT-5.6 Sol (extended thinking); runner-up Claude Opus 5. Automation angle: switch your portfolio demos to whichever model ranks best in the category you build in this week.",
+        "published": "",
+        "relevance": 6,
+        "category": "Reasoning / Math",
+        "best": "GPT-5.6 Sol (extended thinking)",
+        "runner_up": "Claude Opus 5",
+        "benchmark": "AIME / FrontierMath",
+        "model_name": "GPT-5.6 Sol (extended thinking)",
+        "benchmark_name": "AIME / FrontierMath",
+        "standings": true
+      },
+      {
+        "title": "Ling 3.0 Flash is the smartest open model at its size",
+        "url": "https://the-decoder.com/ling-3-0-flash-is-the-smartest-open-model-at-its-size/",
+        "source": "The Decoder",
+        "summary": "Ling 3.0 Flash is now the strongest open-weight model in its size class, closing more of the gap to closed frontier models at small-model cost. For self-hosted agent work, the size class matters more than the absolute ceiling. Open models at this level make on-prem automation pitches viable again. Automation angle: Benchmark it against your current API model on one real workflow — a credible 'we ran it locally' story wins client trust.",
+        "published": "2026-08-13T15:03:04+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "VAKRA: Evaluating Multi-Hop Reasoning Across APIs and Retrieval Under Tool-Use Policies",
+        "url": "https://arxiv.org/abs/2608.12282v1",
+        "source": "arXiv AI",
+        "summary": "VAKRA is a new benchmark that evaluates agents on multi-hop reasoning across structured APIs and document retrieval simultaneously, under explicit tool-use policies. Existing benchmarks test those capabilities in isolation, which flatters agents that fall apart when both are required. It targets exactly the failure mode enterprise deployments hit. Automation angle: Borrow VAKRA's task structure as an eval harness for your own agents — measurable reliability is what separates a demo from a deliverable.",
+        "published": "2026-08-12T17:27:27+00:00",
+        "relevance": 4
+      }
+    ],
+    "new_ai_tools": [
+      {
+        "title": "Okta targets AI agent token costs with MCP scoping",
+        "url": "https://www.artificialintelligence-news.com/news/okta-targets-ai-agent-token-costs-with-mcp-scoping/",
+        "source": "AI News",
+        "summary": "Okta is shipping identity-scoped MCP tool lists: instead of every model call carrying schemas for every tool on the server, the agent only sees the tools its identity is entitled to. That cuts token cost and shrinks the prompt-injection surface at the same time. It is the first serious answer to MCP context bloat. Automation angle: Scope your own MCP servers per-role now — it is a cheap change that visibly reduces cost and risk in a portfolio write-up.",
+        "published": "2026-08-13T09:22:06+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "alchemy-utils 0.1a0",
+        "url": "https://simonwillison.net/2026/Aug/12/alchemy-utils/",
+        "source": "Simon Willison's Blog",
+        "summary": "Willison released alchemy-utils 0.1a0, a database-agnostic sibling to sqlite-utils, built in a single morning by delegating the work to a coding agent. The interesting artefact is not the library but the workflow: scope, delegate, review, ship. It is the solo-developer AI pattern in its purest form. Automation angle: Copy the workflow exactly — one scoped library built and shipped in a morning is a credible portfolio entry.",
+        "published": "2026-08-12T19:51:30+00:00",
+        "relevance": 5
+      },
+      {
+        "title": "Phinq",
+        "url": "https://www.producthunt.com/products/phinq",
+        "source": "Product Hunt AI",
+        "summary": "Phinq is a guardrail layer that intercepts AI agents before a destructive action lands — the missing 'are you sure' between an autonomous agent and production. It targets the exact failure people cite when refusing to let agents write anywhere real. Positioning is squarely at teams already running agents, not at the curious. Automation angle: Guardrails are the easiest paid add-on to sell alongside an automation build; try it on one of your n8n flows.",
+        "published": "2026-08-12T23:43:54+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Pickle Browser",
+        "url": "https://www.producthunt.com/products/pickle-browser",
+        "source": "Product Hunt AI",
+        "summary": "Pickle Browser gives an agent a real browser that runs locally in a window you can watch, rather than a headless black box on someone else's infrastructure. Visibility turns debugging browser agents from guesswork into observation. Local execution also sidesteps the data-residency objection. Automation angle: Watchable browser automation records beautifully — this is a video demo and a client reassurance tool in one.",
+        "published": "2026-08-12T20:05:25+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Qencode MCP",
+        "url": "https://www.producthunt.com/products/qencode",
+        "source": "Product Hunt AI",
+        "summary": "Qencode shipped an MCP server that lets agents transcode and process video as a tool call. Media pipelines have been one of the last workflows requiring bespoke glue code rather than an agent step. Another vertical falls into the MCP tool ecosystem. Automation angle: Video processing as an MCP tool unlocks a content-repurposing agent — directly useful for your own channel plans.",
+        "published": "2026-08-12T20:36:51+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "DeepSeek V4 Pro 0813 (on OpenRouter)",
+        "url": "https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/",
+        "source": "Simon Willison's Blog",
+        "summary": "Simon Willison notes DeepSeek V4 Pro 0813 is live but API-only, with no obvious announcement page from DeepSeek itself — he had to link OpenRouter. The release pattern says a lot: capability shipped, communication skipped. Worth tracking through OpenRouter rather than vendor channels. Automation angle: Route model experiments through OpenRouter so a vendor's silence never blocks your evaluation.",
+        "published": "2026-08-12T23:59:23+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Microsoft kills off unsuccessful AI features while merging its separate Copilot apps",
+        "url": "https://techcrunch.com/2026/08/13/microsoft-kills-off-unsuccessful-ai-features-while-merging-its-separate-copilot-apps/",
+        "source": "TechCrunch AI",
+        "summary": "Microsoft is merging consumer and business Copilot into one app and killing AI-generated podcasts, Group Chats, Deep Research and the Mico character. It is the clearest public admission yet that most bolted-on AI features never found users. Consolidation, not expansion, is the new default. Automation angle: Feature graveyards are free product research — build the two or three AI features people actually kept using.",
+        "published": "2026-08-13T15:30:52+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "DeepSeek releases official V4 Pro model as it steps up expansion",
+        "url": "https://economictimes.indiatimes.com/tech/artificial-intelligence/deepseek-releases-official-v4-pro-model-as-it-steps-up-expansion/articleshow/133214362.cms",
+        "source": "Economic Times Tech",
+        "summary": "DeepSeek's official V4-Pro-0813 release leads on agent capability and lands across API, app and web — but the company is simultaneously raising API prices for V4 Pro and V4 Flash from 17 August, by 50% to 1,100% depending on model and token type. Cheap Chinese inference is repricing upward. Budget assumptions from last month no longer hold. Automation angle: Re-cost any workflow you built on DeepSeek pricing before 17 August, and keep a second provider wired in.",
+        "published": "2026-08-13T13:50:26+00:00",
+        "relevance": 4
+      }
+    ],
+    "general_news": [
+      {
+        "title": "UK defends seizing shadow fleet tanker after Putin threat",
+        "url": "https://www.bbc.co.uk/news/articles/cn0npn249qvo?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "The UK government is defending its seizure of a shadow-fleet tanker after a direct threat from Vladimir Putin, saying it is disrupting and deterring sanctioned vessels in line with the law. The confrontation moves sanctions enforcement into open maritime friction.",
+        "published": "2026-08-13T15:05:12+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Palestinians told to leave homes in village where Israeli settlers besieged houses",
+        "url": "https://www.bbc.co.uk/news/articles/cj4kppdk2qwo?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "The mayor of Qusra says Israeli troops have told families to leave their houses and are using some as barracks, days into a settler siege of the West Bank village. Two families have been besieged at the site since Sunday.",
+        "published": "2026-08-13T15:40:31+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Major Russian grain export terminals hit in Ukraine Black Sea port attack",
+        "url": "https://www.bbc.co.uk/news/articles/c5y49xp2wrno?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "Major Russian grain export terminals were hit in a Ukrainian attack on Black Sea ports, as both countries increasingly target each other's shipping infrastructure. Grain exports from both sides are falling as a result.",
+        "published": "2026-08-13T03:28:56+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Putin can no longer claim victory in Ukraine, Nobel Peace Prize winner tells BBC",
+        "url": "https://www.bbc.co.uk/news/articles/c74grmy2v7ko?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "Nobel Peace Prize winner Dmitry Muratov told the BBC that Putin can now only destroy Ukraine, not conquer it, as the war enters its fifth year. The interview is a rare on-record assessment from inside Russian independent media.",
+        "published": "2026-08-13T04:55:58+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Ebola outbreak on track to be deadliest ever, WHO chief says",
+        "url": "https://www.bbc.co.uk/news/articles/cgk4pex4mn8o?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "The WHO chief says the Ebola outbreak declared on 15 May is on track to become the deadliest ever, with more than 2,000 deaths and thousands more reported cases. Containment efforts have not yet bent the curve.",
+        "published": "2026-08-13T01:31:21+00:00",
+        "relevance": 4
+      },
+      {
+        "title": "Japan PM says Putin's visit to disputed islands 'absolutely unacceptable'",
+        "url": "https://www.bbc.co.uk/news/articles/cqx7ple0nxxo?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "Japan's prime minister called Putin's visit to the disputed Kuril islands 'absolutely unacceptable' — the first such trip by the Russian leader, according to state media. The visit reopens a territorial dispute unresolved since 1945.",
+        "published": "2026-08-13T09:54:03+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Trump says White House press secretary Karoline Leavitt to leave post",
+        "url": "https://www.bbc.co.uk/news/articles/cvglzrvyrz3o?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "President Trump says White House press secretary Karoline Leavitt will leave her role to spend time with her young family. Speculation over a successor has already begun.",
+        "published": "2026-08-12T22:58:45+00:00",
+        "relevance": 3
+      },
+      {
+        "title": "Woman pulled alive from rubble 36 hours after Colombia quake",
+        "url": "https://www.bbc.co.uk/news/articles/cz7d2e5wlgno?at_medium=RSS&at_campaign=rss",
+        "source": "BBC World",
+        "summary": "Rescuers in Colombia pulled a 32-year-old woman alive from beneath concrete slabs 36 hours after the earthquake, following a ten-hour operation. Search efforts are continuing at other collapse sites.",
+        "published": "2026-08-12T22:41:46+00:00",
+        "relevance": 3
+      }
+    ]
+  },
+  "section_labels": {
+    "remote_jobs": "Remote AI Automation Jobs (Worldwide)",
+    "youtube_content_ideas": "YouTube Content Ideas (10M-View Pitches)",
+    "ai_search_trends": "What People in AI Are Searching For",
+    "viral_video_landscape": "Viral AI on YouTube (Last 7 Days)",
+    "instagram_viral_reels": "Viral Instagram Reels (AI)",
+    "anthropic_claude_news": "Anthropic & Claude Code Updates",
+    "ai_business_automation": "AI Automation & Businesses",
+    "quantum_ai_research": "Quantum + AI",
+    "product_showcase_opportunities": "AI Product Showcase Opportunities",
+    "ai_music_copyright_laws": "Copyright & Laws in AI Music Business",
+    "elon_musk_ai_vision": "Elon Musk's AI Vision",
+    "unaddressed_ai_problems": "Unaddressed AI Problems",
+    "ai_business_opportunities": "AI Business Opportunities",
+    "global_ai_news": "Global AI News",
+    "indian_ai_industry": "Indian AI Industry",
+    "ai_self_improvement_rsi": "AI Self-Improvement (RSI)",
+    "ai_model_benchmarks": "AI Model Benchmarks",
+    "new_ai_tools": "New AI Tools",
+    "general_news": "General News (non-AI)"
+  }
+}

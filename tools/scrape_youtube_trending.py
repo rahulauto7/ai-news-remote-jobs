@@ -435,6 +435,25 @@ def scrape_viral_trending(youtube):
     return all_viral
 
 
+def estimate_quota_units():
+    """Analytic estimate of YouTube Data API v3 quota units this run will
+    consume, from the fixed per-call costs (search.list=100, channels/
+    playlistItems list=~1-3, videos.list=1) and the query/channel counts
+    declared above. Not a live counter — the googleapiclient doesn't expose
+    consumed quota — but the per-call costs are fixed by Google's pricing,
+    so this is accurate as long as no call fails before executing.
+    Free daily quota is 10,000 units."""
+    units = 0
+    units += 2  # fetch_chart_trending: Global + India, ~1 unit each
+    units += len(SEARCH_QUERIES) * 100          # search.list
+    units += len(AI_CHANNELS) * 100             # get_channel_videos (search.list-based)
+    units += len(VIRAL_AI_QUERIES) * 100        # search_platform_video, Global
+    units += len(VIRAL_AI_INDIA_QUERIES) * 100  # search_platform_video, India
+    units += len(VIRAL_AI_SHORT_QUERIES) * 2 * 100  # search_viral_shorts, 2 regions
+    units += 2 * 100  # general viral shorts, Global + India
+    return units
+
+
 def scrape_youtube():
     """Run all YouTube searches and save results."""
     if not API_KEY:
@@ -476,6 +495,9 @@ def scrape_youtube():
     # Sort by views (most popular first)
     unique_videos.sort(key=lambda v: v["views"], reverse=True)
 
+    quota_units = estimate_quota_units()
+    quota_units_daily_free = 10000
+
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "scraped_at": datetime.now(timezone.utc).isoformat(),
@@ -483,10 +505,32 @@ def scrape_youtube():
             "total_videos": len(unique_videos),
             "queries_searched": len(SEARCH_QUERIES),
             "channels_checked": len(AI_CHANNELS),
+            "estimated_quota_units": quota_units,
+            "quota_units_daily_free": quota_units_daily_free,
             "videos": unique_videos,
         }, f, indent=2, ensure_ascii=False)
 
-    print(f"\nDone! {len(unique_videos)} unique videos saved to {OUTPUT_FILE}")
+    # Also drop a small standalone telemetry file so run_daily_pipeline.py's
+    # telemetry merge doesn't need to load the full videos array.
+    quota_path = os.path.join(TMP_DIR, "youtube_quota_telemetry.json")
+    with open(quota_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "estimated_quota_units": quota_units,
+            "quota_units_daily_free": quota_units_daily_free,
+            "pct_of_daily_free": round(100 * quota_units / quota_units_daily_free, 1),
+            "note": (
+                "Analytic estimate from fixed per-call costs "
+                "(search.list=100 units) x declared query/channel counts, "
+                "not a live API-reported counter. Does not include "
+                "youtube_viral_verify.py's separate usage."
+            ),
+        }, f, indent=2)
+
+    print(
+        f"\nDone! {len(unique_videos)} unique videos saved to {OUTPUT_FILE} "
+        f"(~{quota_units:,} quota units, {100 * quota_units / quota_units_daily_free:.0f}% "
+        f"of {quota_units_daily_free:,}/day free tier)"
+    )
     return unique_videos
 
 

@@ -124,13 +124,37 @@ You are running the daily AI-news pipeline STAGE 2 (enrichment + delivery only).
    If the initial staleness check passes (exit 0), skip steps a–c and continue normally.
 
 2. Bootstrap: ./bootstrap.sh  (then use .venv/bin/python for every step)
+2.5. Append a checkpoint to .tmp/agent_checkpoints.jsonl: {"t": "<iso now>", "step": "start"}
+   (this is a plain local file write, not a usage reading — see the calibration note below)
 3. AGENT ENRICHMENT on .tmp/analyzed_content.json using .tmp/rss_articles.json — follow the "AGENT ENRICHMENT STEP" in workflows/daily_ai_news_remote.md (rewrite summaries, repopulate quantum/RSI, keep Automation angle on non-exempt sections, write the YouTube section analysis + 3 ideas).
+   After this step, append another checkpoint: {"t": "<iso>", "step": "enrichment"}
+3.5. Estimate run cost: .venv/bin/python tools/estimate_agent_tokens.py --count-tokens
+   (writes .tmp/agent_tokens.json; uses the real Messages API count_tokens endpoint when
+   ANTHROPIC_API_KEY is set, else falls back to the byte heuristic — either way this is free
+   and does NOT touch subscription usage). Append a checkpoint after this too.
+   Also run .venv/bin/python tools/derive_usage_calibration.py (idempotent — writes
+   data/usage_calibration.json once 3 stable manually-logged samples exist in
+   data/usage_log.json, else safely no-ops). Commit both data/ files if either changed.
 4. Regenerate ideas + PDF:
    .venv/bin/python tools/generate_youtube_ideas.py
    .venv/bin/python tools/generate_pdf.py
+   (the PDF's telemetry footer reads .tmp/agent_tokens.json, .tmp/youtube_quota_telemetry.json,
+   and data/usage_calibration.json / usage_log.json automatically — nothing further to wire here)
 5. Deliver: push a daily/<YYYY-MM-DD> branch carrying the PDF — that push triggers `.github/workflows/deliver.yml`, which DMs the actual PDF file to the user on Slack (Actions has egress; the routine sandbox does not).
 6. If ANY step above fails, send the Slack failure message before exiting. Silence = success.
 ```
+
+**Calibration note (claude.ai subscription usage cannot be read by this routine):**
+`/usage` and claude.ai's Settings > Usage page are tied to *your* browser/CLI session, not something
+the cloud routine can query — it runs as a separate, unattended agent with no access to that. So the
+`data/usage_log.json` before/after readings for the 3-day calibration are filled by **you**, manually,
+independent of the routine:
+- Before the routine fires (~04:05 IST) and after the Slack PDF lands, run `/usage` yourself (or check
+  claude.ai > Settings > Usage) and edit `data/usage_log.json` directly, adding/filling that day's
+  `before`/`after` objects (`five_hour_pct`, `weekly_pct`, `read_at`).
+- Do this for 3 days. The routine's own `derive_usage_calibration.py` call (step 3.5) picks up whatever
+  you've logged and writes `data/usage_calibration.json` once 3 stable samples exist — after that, the
+  PDF footer estimates automatically and no more manual reads are needed.
 
 ## Steps (the agent executes these in order)
 
@@ -195,6 +219,7 @@ Order is **RSS → Hackathons → YouTube viral verify → YouTube trending → 
 
    `run_daily_pipeline.py` calls `python tools/generate_youtube_ideas.py` to ensure both files exist (empty placeholders) so the PDF never crashes. The cloud agent overwrites them with real content before the PDF stage. **Because these placeholders already exist (Stage 1 published them to `pipeline-state`, Stage 2 checks them out), the agent's `Write` tool will refuse with "File has not been read yet" — `rm -f .tmp/youtube_content_ideas.json .tmp/youtube_section_analysis.json` immediately before writing, or Read each first, then Write fresh content.**
 
+7.5. **Run cost telemetry (cloud routine only).** `python tools/estimate_agent_tokens.py --count-tokens` before the PDF step — writes `.tmp/agent_tokens.json` (real `count_tokens` API result when `ANTHROPIC_API_KEY` is set, else the byte-count heuristic; free endpoint, does not consume claude.ai subscription usage). `tools/scrape_youtube_trending.py` already writes `.tmp/youtube_quota_telemetry.json` during step 4 above. The PDF's telemetry footer (`generate_pdf.py::build_usage_footer`) reads both plus `data/usage_calibration.json`/`data/usage_log.json` for a claude.ai subscription %-of-weekly-limit estimate — see "USAGE CHECKPOINT" in the Stage 2 routine prompt above for how that calibration gets filled (manual `/usage` reads for the first 3 runs, then `tools/derive_usage_calibration.py` takes over).
 8. Run `python tools/generate_pdf.py` → `.tmp/ai_news_remote_jobs_YYYY-MM-DD.pdf`
 8. **Push to dated GitHub branch** `daily/YYYY-MM-DD`:
    - Copy PDF + `jobs.csv` + `analyzed_content.json` + `pipeline.log` into `daily/`

@@ -1,0 +1,10 @@
+{
+  "_comment": "Written by tools/derive_usage_calibration.py once 3+ stable samples exist in data/usage_log.json. pct_per_token_weekly * est_tokens = estimated % of weekly claude.ai subscription limit consumed by a run. Absent/null fields mean calibration hasn't completed yet.",
+  "calibrated": false,
+  "pct_per_token_weekly": null,
+  "pct_per_token_five_hour": null,
+  "sample_count": 0,
+  "sample_dates": [],
+  "spread_pct": null,
+  "derived_at": "2026-08-16T07:35:19.569701+00:00"
+}

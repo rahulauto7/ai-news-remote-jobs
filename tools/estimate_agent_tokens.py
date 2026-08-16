@@ -35,6 +35,7 @@ This way the cloud agent's own self-report wins; the bytes heuristic is the
 fallback when checkpoints are missing.
 """
 
+import argparse
 import json
 import os
 import sys
@@ -45,12 +46,17 @@ TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 CHECKPOINTS = os.path.join(TMP_DIR, "agent_checkpoints.jsonl")
 OUTPUT = os.path.join(TMP_DIR, "agent_tokens.json")
 
-# Empirical: ~4 chars per token for English+JSON. We use 4.0.
+# Empirical: ~4 chars per token for English+JSON. We use 4.0. Fallback only —
+# use --count-tokens for a real count via the Messages API count_tokens
+# endpoint (free, no subscription usage consumed).
 CHARS_PER_TOKEN = 4.0
 # Routine system prompt + workflow doc + CLAUDE.md the agent has to read once.
 SYSTEM_PROMPT_OVERHEAD_TOKENS = 6000
 # Reasoning overhead per minute the agent runs (rough estimate).
 THINKING_TOKENS_PER_MIN = 1500
+
+# Same file list as _estimate_from_files(), used by --count-tokens too.
+COUNT_TOKENS_MODEL = "claude-opus-5"
 
 
 def _bytes(path):
@@ -109,6 +115,60 @@ def _estimate_from_checkpoints():
     return in_tok, out_tok, cr_tok, cc_tok, n
 
 
+def _declared_input_paths():
+    """Same file list _estimate_from_files() sums by byte size — reused here
+    so --count-tokens measures the exact same declared-input set."""
+    return [
+        os.path.join(TMP_DIR, "jobs.json"),
+        os.path.join(TMP_DIR, "rss_articles.json"),
+        os.path.join(TMP_DIR, "youtube_verified.json"),
+        os.path.join(TMP_DIR, "youtube_trending.json"),
+        os.path.join(PROJECT_ROOT, "CLAUDE.md"),
+        os.path.join(PROJECT_ROOT, "workflows", "daily_ai_news_remote.md"),
+        os.path.join(PROJECT_ROOT, "ROUTINE_PROMPT.md"),
+    ]
+
+
+def _real_token_count():
+    """Call the Messages API count_tokens endpoint on the declared input
+    files for a real tokenizer count. Free endpoint — does NOT consume
+    claude.ai subscription usage (it's a separate API-key-based call).
+
+    Returns (input_tokens, error) — error is None on success, else a string
+    explaining why the real count wasn't available (missing package, missing
+    key, or an API error) so the caller can fall back to the heuristic.
+    """
+    try:
+        import anthropic
+    except ImportError:
+        return None, "anthropic package not installed (pip install anthropic)"
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return None, "ANTHROPIC_API_KEY not set"
+
+    chunks = []
+    for path in _declared_input_paths():
+        try:
+            with open(path, "r", encoding="utf-8", errors="replace") as f:
+                chunks.append(f.read())
+        except OSError:
+            continue
+    if not chunks:
+        return None, "no declared input files found on disk"
+
+    text = "\n\n".join(chunks)
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        resp = client.messages.count_tokens(
+            model=COUNT_TOKENS_MODEL,
+            messages=[{"role": "user", "content": text}],
+        )
+        return resp.input_tokens, None
+    except Exception as e:
+        return None, f"count_tokens call failed: {e}"
+
+
 def _runtime_minutes():
     """Read run_telemetry.json (if present) for total elapsed; else return 5."""
     p = os.path.join(TMP_DIR, "run_telemetry.json")
@@ -123,7 +183,23 @@ def _runtime_minutes():
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--count-tokens", action="store_true",
+        help="Use the real Messages API count_tokens endpoint for the "
+             "declared-input token count instead of the chars/4.0 heuristic. "
+             "Free endpoint, does not touch subscription usage. Falls back "
+             "to the heuristic (with a note) if anthropic isn't installed "
+             "or ANTHROPIC_API_KEY isn't set.",
+    )
+    args = parser.parse_args()
+
     os.makedirs(TMP_DIR, exist_ok=True)
+
+    real_input_tokens = None
+    real_count_error = None
+    if args.count_tokens:
+        real_input_tokens, real_count_error = _real_token_count()
 
     cps = _estimate_from_checkpoints()
     if cps is not None:
@@ -146,12 +222,30 @@ def main():
             f"over {mins:.1f} min runtime. Real billed usage may differ; treat as a sanity number."
         )
 
+    if args.count_tokens:
+        if real_input_tokens is not None:
+            notes += (
+                f" Declared-input tokens replaced with real count_tokens() "
+                f"result ({real_input_tokens:,}, model={COUNT_TOKENS_MODEL}); "
+                f"thinking-overhead/checkpoint portion of input_tokens above "
+                f"is heuristic on top of that."
+            )
+            # Real count covers the declared-input files only; keep whatever
+            # overhead (thinking, system prompt) the estimate above already
+            # added on top, since count_tokens doesn't know about that.
+            heuristic_declared, _ = _estimate_from_files()
+            overhead = max(0, in_tok - heuristic_declared)
+            in_tok = real_input_tokens + overhead
+        else:
+            notes += f" --count-tokens requested but unavailable: {real_count_error}."
+
     payload = {
-        "model": os.environ.get("AGENT_MODEL", "claude-opus-4-7"),
+        "model": os.environ.get("AGENT_MODEL", "claude-opus-5"),
         "input_tokens": in_tok,
         "output_tokens": out_tok,
         "cache_read_tokens": cr_tok,
         "cache_creation_tokens": cc_tok,
+        "real_count_tokens_used": args.count_tokens and real_input_tokens is not None,
         "estimated_at": datetime.now(timezone.utc).isoformat(),
         "notes": notes,
     }

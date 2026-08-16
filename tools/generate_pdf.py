@@ -26,6 +26,7 @@ from fpdf import FPDF
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 TODAY = datetime.now().strftime("%Y-%m-%d")
 DISPLAY_DATE = datetime.now().strftime("%a, %d %B %Y")
 OUTPUT_FILE = os.path.join(TMP_DIR, f"ai_news_remote_jobs_{TODAY}.pdf")
@@ -472,6 +473,103 @@ def build_contents(pdf, sections):
         y = pdf.get_y() + 3.5
         pdf.set_draw_color(228, 228, 228)
         pdf.line(MARGIN, y - 1.5, PAGE_W - MARGIN, y - 1.5)
+
+
+def _load_json_safe(path):
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def build_usage_footer(pdf):
+    """Small telemetry page: token/cost estimate for this run, YouTube quota
+    consumption, and (once calibrated) an estimated % of the claude.ai
+    subscription's weekly limit. See data/usage_log.json / usage_calibration.json
+    and tools/derive_usage_calibration.py — subscription usage has no API, so
+    this is either a manually-read prior-run delta or a calibrated estimate,
+    never a live meter reading for the run in progress."""
+    pdf.add_page()
+    eyebrow(pdf, MARGIN, 20, "RUN TELEMETRY")
+    y = highlight_headline(pdf, MARGIN, 30, "What this run cost.", size=22)
+    y += 6
+
+    lines = []
+
+    tokens = _load_json_safe(os.path.join(TMP_DIR, "agent_tokens.json"))
+    if tokens and tokens.get("input_tokens") is not None:
+        in_tok = tokens.get("input_tokens", 0)
+        out_tok = tokens.get("output_tokens", 0)
+        model = tokens.get("model", "claude-opus-5")
+        real = tokens.get("real_count_tokens_used")
+        cost = (in_tok / 1_000_000 * 5.0) + (out_tok / 1_000_000 * 25.0)
+        lines.append(
+            f"Estimated tokens: {in_tok:,} in / {out_tok:,} out "
+            f"({'count_tokens API' if real else 'heuristic'}, model {model})"
+        )
+        lines.append(f"List-price equivalent: ${cost:,.2f} (Opus 5 rates, $5/$25 per MTok)")
+    else:
+        lines.append("Token estimate: unavailable (no .tmp/agent_tokens.json this run)")
+
+    calib = _load_json_safe(os.path.join(DATA_DIR, "usage_calibration.json"))
+    if calib and calib.get("calibrated") and tokens and tokens.get("input_tokens") is not None:
+        total_tok = (tokens.get("input_tokens", 0) or 0) + (tokens.get("output_tokens", 0) or 0)
+        est_pct = total_tok * calib["pct_per_token_weekly"]
+        lines.append(
+            f"Estimated weekly subscription usage: ~{est_pct:.2f}% "
+            f"(calibrated from {calib.get('sample_count')} runs, "
+            f"spread {calib.get('spread_pct', 0):.0%})"
+        )
+    else:
+        n = (calib or {}).get("sample_count", 0)
+        lines.append(
+            f"Weekly subscription usage: calibrating ({n}/3 samples in "
+            f"data/usage_log.json) — see workflows/daily_ai_news_remote.md"
+        )
+
+    log = _load_json_safe(os.path.join(DATA_DIR, "usage_log.json"))
+    prev = None
+    for run in reversed((log or {}).get("runs", [])):
+        after = run.get("after") or {}
+        if "weekly_pct" in after:
+            prev = run
+            break
+    if prev:
+        before = prev.get("before") or {}
+        after = prev.get("after") or {}
+        delta_weekly = after.get("weekly_pct", 0) - before.get("weekly_pct", 0)
+        delta_5h = after.get("five_hour_pct", 0) - before.get("five_hour_pct", 0)
+        lines.append(
+            f"Previous measured run ({prev.get('date', '?')}): "
+            f"+{delta_weekly:.0f}% weekly, +{delta_5h:.0f}% 5-hour "
+            f"(manually read from /usage)"
+        )
+
+    yt = _load_json_safe(os.path.join(TMP_DIR, "youtube_quota_telemetry.json"))
+    if yt:
+        lines.append(
+            f"YouTube Data API quota: ~{yt.get('estimated_quota_units', 0):,} / "
+            f"{yt.get('quota_units_daily_free', 10000):,} units "
+            f"({yt.get('pct_of_daily_free', 0):.0f}% of free daily tier)"
+        )
+
+    for line in lines:
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, line, F_SANS, "", 9.5, INK, lh=5)
+        y += 3
+
+    y += 4
+    _set(pdf, F_SANS, "", 7.5, MUTED)
+    pdf.set_xy(MARGIN, y)
+    pdf.multi_cell(
+        CONTENT_W, 3.6,
+        "Token counts and $ figures are estimates (list-price, not billed spend "
+        "— this pipeline has no Anthropic API cost, only claude.ai subscription "
+        "usage). Subscription %-of-limit has no API; it is either the last "
+        "manually-read before/after delta or a calibrated estimate from it."
+    )
 
 
 def build_closing(pdf):
@@ -936,6 +1034,7 @@ def generate_pdf():
             builder(pdf, key, stories, idx)
         else:
             build_section(pdf, key, stories, idx)
+    build_usage_footer(pdf)
     build_closing(pdf)
 
     os.makedirs(TMP_DIR, exist_ok=True)

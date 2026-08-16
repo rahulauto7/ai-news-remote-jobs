@@ -1,0 +1,4 @@
+{
+  "_comment": "Per-run claude.ai subscription usage calibration log. During the 3-day calibration period (see workflows/daily_ai_news_remote.md), before/after five_hour_pct and weekly_pct are read manually from /usage (Claude Code) or claude.ai Settings > Usage, and est_tokens is filled automatically by estimate_agent_tokens.py --count-tokens. Once tools/derive_usage_calibration.py writes a stable constant to data/usage_calibration.json, new entries are optional.",
+  "runs": []
+}

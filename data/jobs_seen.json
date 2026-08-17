@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-16T17:16:43.038349",
+  "updated_at": "2026-08-17T17:23:25.450762",
   "seen": {
     "https://stripe.com/jobs/search?gh_jid=7377101": "2026-08-11",
     "https://job-boards.greenhouse.io/anthropic/jobs/5183051008": "2026-08-15",
@@ -19,8 +19,6 @@
     "https://jobicy.com/jobs/147557-data-integrator": "2026-07-20",
     "https://jobicy.com/jobs/148723-sales-development-representative-us-b2b": "2026-08-15",
     "https://jobicy.com/jobs/147807-customer-journey-specialist": "2026-08-01",
-    "https://weworkremotely.com/remote-jobs/zensors-frontend-web-developer-react-typescript-remote": "2026-07-17",
-    "https://weworkremotely.com/remote-jobs/kuna-eit-civil-anchorage-ak": "2026-07-17",
     "https://weworkremotely.com/remote-jobs/kai-partners-technical-solutions-engineer-web-developer": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/unqork-intern-web-application-penetration-tester": "2026-07-20",
     "https://weworkremotely.com/remote-jobs/aliqan-technologies-site-reliability-engineer": "2026-07-20",
@@ -33,10 +31,6 @@
     "https://jobicy.com/jobs/146279-lifecycle-specialist-employee-relations-transitions-latam": "2026-08-16",
     "https://jobicy.com/jobs/146038-technical-reporting-accountant": "2026-08-16",
     "https://weworkremotely.com/remote-jobs/databento-product-marketing-specialist": "2026-07-25",
-    "https://jobicy.com/jobs/146131-customer-experience-analyst": "2026-07-17",
-    "https://jobicy.com/jobs/146757-finnish-tech-linguistic-tester": "2026-07-17",
-    "https://jobicy.com/jobs/146769-application-security-engineer-2": "2026-07-17",
-    "https://jobicy.com/jobs/149397-support-engineer-ii-developer-portal": "2026-07-17",
     "https://weworkremotely.com/remote-jobs/base-com-full-stack-developer-react-aws": "2026-07-26",
     "https://weworkremotely.com/remote-jobs/arize-ai-open-source-design-engineer": "2026-07-26",
     "https://jobicy.com/jobs/146688-technical-product-marketer-k0rdent-ai-remote-in-the-us": "2026-07-18",
@@ -98,8 +92,8 @@
     "https://weworkremotely.com/remote-jobs/steady-vision-web-designer": "2026-08-08",
     "https://weworkremotely.com/remote-jobs/work-and-study-travel-website-builder-wordpress-specialist": "2026-08-08",
     "https://jobicy.com/jobs/149908-electrical-engineer-2": "2026-07-31",
-    "https://jobicy.com/jobs/150065-data-java-engineer-ai-llm-chatbot-customer-service": "2026-08-09",
-    "https://weworkremotely.com/remote-jobs/gusto-inc-business-money-engineering": "2026-08-09",
+    "https://jobicy.com/jobs/150065-data-java-engineer-ai-llm-chatbot-customer-service": "2026-08-17",
+    "https://weworkremotely.com/remote-jobs/gusto-inc-business-money-engineering": "2026-08-17",
     "https://jobicy.com/jobs/148113-accounts-receivable-clerk": "2026-08-01",
     "https://jobicy.com/jobs/150058-digital-channels-specialist-chatbot": "2026-08-01",
     "https://jobicy.com/jobs/149992-graduate-talent-scientist": "2026-08-01",
@@ -128,7 +122,7 @@
     "https://jobicy.com/jobs/150364-software-engineer-python-container-images": "2026-08-09",
     "https://jobicy.com/jobs/150387-mobility-specialist-apac": "2026-08-09",
     "https://jobicy.com/jobs/150371-graduate-hr-generalist-apac": "2026-08-09",
-    "https://jobicy.com/jobs/150392-stingrai-part-time-remote-technical-writer-29693": "2026-08-09",
+    "https://jobicy.com/jobs/150392-stingrai-part-time-remote-technical-writer-29693": "2026-08-17",
     "https://jobicy.com/jobs/149045-instructional-designer-nebius-academy": "2026-08-10",
     "https://jobicy.com/jobs/149059-procurement-analyst-2": "2026-08-10",
     "https://job-boards.greenhouse.io/gleanwork/jobs/4722386005": "2026-08-11",
@@ -149,6 +143,10 @@
     "https://jobicy.com/jobs/150713-account-executive-new-business-mid-market": "2026-08-15",
     "https://jobicy.com/jobs/146231-payroll-specialist-belgium": "2026-08-15",
     "https://www.arbeitnow.co.uk/jobs/companies/faculty/forward-deployed-engineer-london-204108": "2026-08-16",
-    "https://weworkremotely.com/remote-jobs/stripe-fullstack-engineer-privy": "2026-08-16"
+    "https://weworkremotely.com/remote-jobs/stripe-fullstack-engineer-privy": "2026-08-16",
+    "https://jobicy.com/jobs/150902-software-engineer-4": "2026-08-17",
+    "https://jobicy.com/jobs/150896-junior-software-engineer": "2026-08-17",
+    "https://jobicy.com/jobs/150891-growth-marketing-specialist": "2026-08-17",
+    "https://jobicy.com/jobs/150884-accountant": "2026-08-17"
   }
 }

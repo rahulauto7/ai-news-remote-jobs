@@ -827,8 +827,16 @@ def build_youtube_ideas(pdf, section_key, ideas, idx):
                          label="Hook (first 8s)") + 2
         why = idea.get("why_10m") or idea.get("why_it_hits") or idea.get("why")
         if why:
-            y = wrapped(pdf, MARGIN, y, CONTENT_W, "Why it hits 10M: " + str(why),
-                        F_SANS, "", 9, INK) + 1
+            # `why` is a list of bullets in the agent schema. str() on a list
+            # printed a raw Python repr ("['a', 'b']") into the PDF, so render
+            # a list as ticked bullets and only fall back to a line for a string.
+            y = wrapped(pdf, MARGIN, y, CONTENT_W, "Why it hits 10M:",
+                        F_SANS, "B", 9, INK) + 1
+            if isinstance(why, (list, tuple)):
+                y = tick_list(pdf, MARGIN, y, CONTENT_W, [str(b) for b in why])
+            else:
+                y = wrapped(pdf, MARGIN, y, CONTENT_W, str(why),
+                            F_SANS, "", 9, INK) + 1
         if idea.get("thumbnail"):
             y = wrapped(pdf, MARGIN, y, CONTENT_W, "Thumbnail: " + str(idea["thumbnail"]),
                         F_SANS, "", 9, MUTED) + 1
@@ -838,8 +846,40 @@ def build_youtube_ideas(pdf, section_key, ideas, idx):
         y += 5
 
 
+def _load_youtube_analysis():
+    """Agent-written landscape/patterns/gaps/mistakes for the merged YouTube
+    section (workflow Prompt B). Absent or unreadable -> {} so Part B still
+    renders on its own."""
+    path = os.path.join(TMP_DIR, "youtube_section_analysis.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
 def build_viral_video(pdf, section_key, vids, idx):
     y = section_header(pdf, section_key, idx)
+
+    # Part A — agent-written landscape analysis (no URLs by construction).
+    an = _load_youtube_analysis()
+    if an.get("landscape"):
+        y = _ensure_space(pdf, y, 30, section_key, idx)
+        y = card_box(pdf, MARGIN, y, CONTENT_W, an["landscape"],
+                     label="The landscape right now") + 2
+    for label, key in (("What's working", "content_patterns"),
+                       ("What nobody is covering", "gaps"),
+                       ("Common mistakes", "mistakes")):
+        bullets = [str(b) for b in (an.get(key) or []) if str(b).strip()]
+        if not bullets:
+            continue
+        y = _ensure_space(pdf, y, 24, section_key, idx)
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, label, F_SANS, "B", 10, INK) + 1
+        y = tick_list(pdf, MARGIN, y, CONTENT_W, bullets) + 2
+
+    # Part B — the verified viral picks.
     vids = [v for v in (vids or []) if isinstance(v, dict)]
     if not vids:
         _empty_note(pdf, y, "No new viral video cleared the floor this period.")

@@ -65,3 +65,31 @@ def test_pick_top_returns_none_when_all_unverified(monkeypatch):
                                      view_floor=yv.LONG_VIEW_FLOOR, seen=set())
     assert status == "none"
     assert it is None
+
+
+def test_is_ai_video_rejects_generic_description_boilerplate():
+    """2026-08-21: 'Ai Tìm Được MECCHA CHAMELEON…' (Vietnamese for 'whoever
+    finds…') shipped as the Global viral AI pick. The bare 'Ai' matched and the
+    old gate accepted ANY occurrence of a generic cue ('video', 'app', 'code')
+    anywhere in the description — words present in every YouTube description.
+    The cue must now sit within 40 chars of the bare token, and generic words
+    are no longer cues at all."""
+    desc = ("Nếu các bạn xem video thấy hay thì đừng quên ấn Thích và Chia sẻ. "
+            "Facebook: ... TikTok: ... Email: ...")
+    assert not yv.is_ai_video(
+        "Ai Tìm Được MECCHA CHAMELEON Trong Siêu Thị Sẽ Được Mua Đồ Miễn Phí!", desc)
+    assert not yv.is_ai_video("Bikin Kasur Ulang Tahun Ai", "subscribe untuk video lainnya")
+
+
+def test_is_ai_video_no_phantom_phrase_across_title_description_boundary():
+    """A title ending in 'Ai' glued to a description starting with 'video'
+    used to synthesise the phrase 'ai video'. Title and description are now
+    joined with a separator."""
+    assert not yv.is_ai_video("Thùng Hộp bí ẩn của Ai", "video moi nhat, dang ky kenh")
+
+
+def test_is_ai_video_still_accepts_genuine_ai_content():
+    assert yv.is_ai_video("Mom VS AI #shorts", "#shorts #funny #ai #chatgpt #comedy")
+    assert yv.is_ai_video("I built an AI agent with n8n", "full tutorial")
+    assert yv.is_ai_video("Best AI video generator 2026")
+    assert yv.is_ai_video("ML pipeline tutorial", "python walkthrough")

@@ -698,7 +698,17 @@ def build_jobs(pdf, section_key, jobs, idx):
     y = section_header(pdf, section_key, idx)
     jobs = [j for j in (jobs or []) if isinstance(j, dict)]
     if not jobs:
-        _empty_note(pdf, y, "No fresh remote roles surfaced today.")
+        # Distinguish "quiet day" from "the scraper broke": an empty section with
+        # no explanation reads as 'no jobs exist', which is a very different and
+        # much more discouraging message than 'the source failed this run'.
+        note = "No fresh remote roles surfaced today."
+        tel = (_load_json_safe(os.path.join(TMP_DIR, "run_telemetry.json")) or {})
+        step = (tel.get("steps") or {}).get("Scrape Jobs") or {}
+        if step and step.get("ok") is False:
+            err = str(step.get("error") or "unknown error")[:120]
+            note = ("The job scrape failed upstream on this run, so no roles could be "
+                    f"surfaced - this is a pipeline fault, not an empty market. Error: {err}")
+        _empty_note(pdf, y, note)
         return
     # Spotlight = highest-ranked fully-clean role; fall back to jobs[0].
     spot_i = next((i for i, j in enumerate(jobs) if _job_is_clean(j)), 0)
@@ -838,8 +848,31 @@ def build_youtube_ideas(pdf, section_key, ideas, idx):
         y += 5
 
 
+def _viral_analysis_block(pdf, y, section_key, idx, analysis):
+    """Part A of the merged YouTube section: the agent-written landscape,
+    patterns, gaps and mistakes from .tmp/youtube_section_analysis.json."""
+    landscape = (analysis.get("landscape") or "").strip()
+    if landscape:
+        y = _ensure_space(pdf, y, 40, section_key, idx)
+        y = card_box(pdf, MARGIN, y, CONTENT_W, landscape,
+                     label="The landscape right now") + 3
+    for label, key in (("What's working", "content_patterns"),
+                       ("What nobody is covering", "gaps"),
+                       ("Mistakes to avoid", "mistakes")):
+        items = [str(i).strip() for i in (analysis.get(key) or []) if str(i).strip()]
+        if not items:
+            continue
+        y = _ensure_space(pdf, y, 30, section_key, idx)
+        y = wrapped(pdf, MARGIN, y, CONTENT_W, label, F_SANS, "B", 10.5, INK, lh=5) + 1.5
+        y = tick_list(pdf, MARGIN, y, CONTENT_W, items) + 3
+    return y
+
+
 def build_viral_video(pdf, section_key, vids, idx):
     y = section_header(pdf, section_key, idx)
+    analysis = _load_json_safe(os.path.join(TMP_DIR, "youtube_section_analysis.json")) or {}
+    y = _viral_analysis_block(pdf, y, section_key, idx, analysis)
+    explanations = analysis.get("viral_explanations") or {}
     vids = [v for v in (vids or []) if isinstance(v, dict)]
     if not vids:
         _empty_note(pdf, y, "No new viral video cleared the floor this period.")
@@ -853,9 +886,12 @@ def build_viral_video(pdf, section_key, vids, idx):
         if tag:
             y = wrapped(pdf, MARGIN, y, CONTENT_W, "  .  ".join(tag),
                         F_SANS, "", 8, MUTED, lh=4)
-        if v.get("summary"):
-            y = card_box(pdf, MARGIN, y, CONTENT_W, v["summary"],
-                         label="Why it went viral") + 1
+        # The agent's per-video "why it went viral" line wins over the scraped
+        # blurb when one exists for this video_id.
+        body = explanations.get(str(v.get("video_id") or "")) or v.get("summary")
+        if body:
+            label = "Why it went viral" if v.get("video_id") else "Why nothing is shown"
+            y = card_box(pdf, MARGIN, y, CONTENT_W, body, label=label) + 1
         if v.get("url"):
             y = link_line(pdf, MARGIN, y, CONTENT_W, v["url"], v["url"])
         y += 3

@@ -61,12 +61,33 @@ _AI_PHRASES = (
     "ai agent", "ai agents", "agentic", "ai tool", "ai news", "ai model",
     "ai video", "ai image", "a.i.", "ai automation", "llm", "chatbot",
 )
+# Cues that must sit next to a bare "ai"/"ml" token. Deliberately NOT generic
+# words like "video", "app", "code", "tech" or "tool": those appear in the
+# boilerplate of every YouTube description, so they made the gate a no-op. The
+# "ai <generic-word>" combinations that matter are already in _AI_PHRASES.
 _AI_CONTEXT = (
-    "tool", "tools", "model", "models", "news", "agent", "robot", "tech",
-    "prompt", "automation", "coding", "code", "generate", "generated",
-    "generator", "video", "image", "app", "software", "assistant",
+    "model", "models", "agent", "agents", "robot", "prompt", "automation",
+    "coding", "generated", "generator", "assistant", "chatbot", "training",
+    "dataset", "pipeline", "python", "neural", "algorithm",
 )
 _AI_WORD_RE = re.compile(r"(?<![a-z0-9])(ai|ml)(?![a-z0-9])")
+# How close an English AI cue must sit to a bare "ai"/"ml" token to count.
+# Scanning the WHOLE blob for a cue was useless: every YouTube description
+# contains "video"/"app"/"code" somewhere in its boilerplate, so a Vietnamese
+# title starting with "Ai " ("who") passed the gate and a supermarket game-show
+# clip shipped as the Global viral AI pick (2026-08-21 run). The cue now has to
+# be in the same phrase as the token.
+_AI_CONTEXT_WINDOW = 40
+
+
+def _bare_ai_token_in_context(blob):
+    """True if a bare 'ai'/'ml' token has an English AI cue within ±40 chars."""
+    for m in _AI_WORD_RE.finditer(blob):
+        window = blob[max(0, m.start() - _AI_CONTEXT_WINDOW):
+                      m.end() + _AI_CONTEXT_WINDOW]
+        if any(c in window for c in _AI_CONTEXT):
+            return True
+    return False
 
 
 def is_ai_video(title, description=""):
@@ -76,14 +97,14 @@ def is_ai_video(title, description=""):
     bare "ai"/"ml" token passes only with a nearby English AI cue, so foreign
     words that merely spell "ai" no longer leak non-AI videos into the section.
     """
-    blob = f"{title} {description}".lower()
+    # Separator, not a space: a title ending in "Ai" glued to a description
+    # starting with "video" produced a phantom "ai video" phrase match.
+    blob = f"{title} | {description}".lower()
     if any(b in blob for b in _AI_BRANDS):
         return True
     if any(p in blob for p in _AI_PHRASES):
         return True
-    if _AI_WORD_RE.search(blob) and any(c in blob for c in _AI_CONTEXT):
-        return True
-    return False
+    return _bare_ai_token_in_context(blob)
 
 
 def _published_after_iso(days_back=WINDOW_DAYS):

@@ -886,6 +886,45 @@ def is_entry_level(job):
 
 
 # ── Orchestration ─────────────────────────────────────────────────────────────
+# Every source is individually guarded, but the post-scrape passes (dedupe,
+# is_worldwide_remote, is_entry_level, apply_freshness_and_dedup, score) run over
+# the merged list with no guard at all. They all assume string fields, so a
+# single record where an upstream API returned a number (an epoch `date`, a
+# numeric job id used as `url`) raised
+# `'int' object has no attribute 'strip'` AFTER every network call had already
+# completed and killed the whole step — zero jobs, empty PDF section.
+# Normalising once, right after collection, makes that class of failure
+# impossible instead of patching one field at a time.
+_JOB_TEXT_FIELDS = ("title", "company", "url", "posted", "salary", "location",
+                    "source", "summary")
+
+
+def _as_text(value):
+    """Coerce a scraped field to a string. None/missing → ''; numbers →
+    their string form; lists (tags, categories) → space-joined."""
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    if isinstance(value, (list, tuple)):
+        return " ".join(_as_text(v) for v in value).strip()
+    return str(value)
+
+
+def normalize_jobs(jobs):
+    """Return `jobs` with every text field coerced to `str`, dropping records
+    that aren't dicts. Idempotent; run before any post-scrape pass."""
+    out = []
+    for j in jobs:
+        if not isinstance(j, dict):
+            continue
+        for k in _JOB_TEXT_FIELDS:
+            if k in j and not isinstance(j[k], str):
+                j[k] = _as_text(j[k])
+        out.append(j)
+    return out
+
+
 def dedupe(jobs):
     """Dedupe by URL, then by (title+company) lowercase."""
     seen_url = set()
@@ -1091,6 +1130,9 @@ def scrape_all_jobs():
         all_jobs += scrape_ashby()
     except Exception as e:
         print(f"  Ashby fatal: {e}")
+
+    # One weird upstream value must not be able to abort every source's work.
+    all_jobs = normalize_jobs(all_jobs)
 
     deduped = dedupe(all_jobs)
 

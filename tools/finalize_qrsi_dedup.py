@@ -41,10 +41,39 @@ sys.path.insert(0, PROJECT_ROOT)
 from tools import content_history
 
 OUTPUT_FILE = os.path.join(PROJECT_ROOT, ".tmp", "analyzed_content.json")
+# Pre-record snapshot of the "qrsi" seen-set, written by the FIRST call of a run
+# and reused by every later call in the same run. Without it the second call of
+# a run (6.6b then 6.7b, or an agent re-running 6.7b after fixing enrichment)
+# sees the URLs the first call just recorded and wipes both sections.
+SEEN_SNAPSHOT = os.path.join(PROJECT_ROOT, ".tmp", "_qrsi_dedup_seen.json")
 
 QRSI_NS = "qrsi"
 QRSI_DEDUP_DAYS = 7
 DEFERRED_DEDUP_SECTIONS = {"quantum_ai_research", "ai_self_improvement_rsi"}
+
+
+def _seen_set() -> set:
+    """URLs previously shown in quantum/RSI, as of the START of this run.
+
+    Reuses .tmp/_qrsi_dedup_seen.json when present so repeated calls within one
+    run are idempotent; otherwise reads live history and snapshots it.
+    """
+    if os.path.exists(SEEN_SNAPSHOT):
+        try:
+            with open(SEEN_SNAPSHOT, "r", encoding="utf-8") as f:
+                snap = json.load(f)
+            if isinstance(snap, dict) and isinstance(snap.get("seen"), list):
+                return set(snap["seen"])
+        except Exception:
+            pass  # unreadable snapshot — fall through and rebuild it
+    seen = content_history.recently_seen(QRSI_NS, QRSI_DEDUP_DAYS)
+    try:
+        os.makedirs(os.path.dirname(SEEN_SNAPSHOT), exist_ok=True)
+        with open(SEEN_SNAPSHOT, "w", encoding="utf-8") as f:
+            json.dump({"seen": sorted(seen)}, f, indent=2)
+    except Exception:
+        pass  # snapshotting is an optimisation, never fatal
+    return seen
 
 
 def main() -> int:
@@ -59,8 +88,9 @@ def main() -> int:
         print("[finalize_qrsi_dedup] malformed analyzed_content.json — skipping")
         return 0
 
-    # Articles previously shown IN quantum/RSI sections (own namespace, not shared news).
-    seen = content_history.recently_seen(QRSI_NS, QRSI_DEDUP_DAYS)
+    # Articles previously shown IN quantum/RSI sections (own namespace, not shared
+    # news), frozen at the start of this run so repeat calls are idempotent.
+    seen = _seen_set()
 
     dropped = 0
     surfaced: list[str] = []

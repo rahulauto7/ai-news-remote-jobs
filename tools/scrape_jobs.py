@@ -170,7 +170,7 @@ def scrape_linkedin(keywords=KEYWORDS, max_per_keyword=10):
                     "title": title_el.get_text(strip=True),
                     "company": comp_el.get_text(strip=True) if comp_el else "",
                     "url": url,
-                    "posted": time_el.get("datetime", "") if time_el else "",
+                    "posted": normalize_posted(time_el.get("datetime", "") if time_el else ""),
                     "salary": "",
                     "source": "LinkedIn",
                     "summary": f"Search: {kw}",
@@ -283,7 +283,7 @@ def scrape_remotive(keywords=KEYWORDS, max_per_keyword=12):
                     "title": (d.get("title") or "")[:200],
                     "company": d.get("company_name") or "",
                     "url": d.get("url") or "",
-                    "posted": d.get("publication_date") or "",
+                    "posted": normalize_posted(d.get("publication_date")),
                     "salary": d.get("salary") or "",
                     "source": "Remotive",
                     "summary": (d.get("description") or "")[:300],
@@ -316,7 +316,7 @@ def scrape_jobicy(max_total=40):
                     "title": (d.get("jobTitle") or "")[:200],
                     "company": d.get("companyName") or "",
                     "url": d.get("url") or "",
-                    "posted": d.get("pubDate") or "",
+                    "posted": normalize_posted(d.get("pubDate")),
                     "salary": "",
                     "location": d.get("jobGeo") or "",
                     "source": "Jobicy",
@@ -357,7 +357,7 @@ def scrape_arbeitnow(keywords=KEYWORDS, max_total=40):
                 "title": (d.get("title") or "")[:200],
                 "company": d.get("company_name") or "",
                 "url": d.get("url") or "",
-                "posted": posted,
+                "posted": normalize_posted(posted),
                 "salary": "",
                 "location": d.get("location") or "",
                 "source": "Arbeitnow",
@@ -402,7 +402,7 @@ def scrape_weworkremotely(keywords=KEYWORDS, max_total=40):
                 "title": title[:200],
                 "company": company,
                 "url": link,
-                "posted": pub,
+                "posted": normalize_posted(pub),
                 "salary": "",
                 "source": "We Work Remotely",
                 "summary": desc[:300],
@@ -443,7 +443,7 @@ def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=10):
                     "title": title[:200],
                     "company": company,
                     "url": href,
-                    "posted": d.get("pubDate") or d.get("publishedAt") or "",
+                    "posted": normalize_posted(d.get("pubDate") or d.get("publishedAt")),
                     "salary": (
                         f"${d.get('minSalary')}-${d.get('maxSalary')}"
                         if d.get("minSalary") else ""
@@ -530,7 +530,7 @@ def scrape_remoteok(keywords=KEYWORDS, max_total=70):
                 "title": title[:200],
                 "company": (d.get("company") or "").strip(),
                 "url": d.get("url") or d.get("apply_url") or "",
-                "posted": d.get("date") or "",
+                "posted": normalize_posted(d.get("date")),
                 "salary": (
                     f"${d.get('salary_min')}-${d.get('salary_max')}"
                     if d.get("salary_min") else ""
@@ -595,7 +595,7 @@ def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=15):
                     "title": title[:200],
                     "company": slug.title(),
                     "url": j.get("absolute_url", ""),
-                    "posted": j.get("updated_at") or "",
+                    "posted": normalize_posted(j.get("updated_at")),
                     "salary": "",
                     "source": f"Greenhouse:{slug}",
                     "location": loc,
@@ -720,7 +720,7 @@ def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=15):
                     "title": title[:200],
                     "company": slug.title(),
                     "url": j.get("jobUrl") or j.get("applyUrl") or "",
-                    "posted": j.get("publishedAt") or "",
+                    "posted": normalize_posted(j.get("publishedAt")),
                     "salary": "",
                     "source": f"Ashby:{slug}",
                     "location": loc,
@@ -789,7 +789,7 @@ def scrape_hn_hiring(keywords=KEYWORDS, max_total=35):
                 "title": title,
                 "company": company,
                 "url": f"https://news.ycombinator.com/item?id={h.get('objectID')}",
-                "posted": h.get("created_at", ""),
+                "posted": normalize_posted(h.get("created_at")),
                 "salary": "",
                 "source": "HN Who is hiring",
                 "summary": clean[:300],
@@ -906,17 +906,67 @@ def dedupe(jobs):
     return out
 
 
+def _epoch_dt(value):
+    """Aware datetime from a Unix epoch in seconds or milliseconds, else None.
+
+    Himalayas returns `pubDate` as an epoch integer; HN returns `created_at_i`.
+    Values past ~1e11 are milliseconds (year 5138 in seconds — never a real
+    posting date), so they're scaled down before conversion.
+    """
+    try:
+        ts = float(value)
+    except (TypeError, ValueError):
+        return None
+    if ts <= 0:
+        return None
+    if ts > 1e11:
+        ts /= 1000.0
+    try:
+        return datetime.fromtimestamp(ts, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
+
+
+def normalize_posted(value):
+    """Coerce any scraper's `posted` value to an ISO-8601 string (or "").
+
+    Job APIs are inconsistent: Greenhouse/Ashby/Remotive give ISO strings, WWR
+    gives RFC 822, and Himalayas gives an epoch *integer*. Non-string values
+    used to reach `_posted_dt`, where `(value or "").strip()` raised
+    ``'int' object has no attribute 'strip'`` and killed the whole jobs step
+    (2026-08-24 run: 0 remote jobs in the PDF). Normalize at the source so
+    every downstream consumer sees a string.
+    """
+    if value is None or value == "":
+        return ""
+    if isinstance(value, bool):
+        return ""
+    if isinstance(value, (int, float)):
+        dt = _epoch_dt(value)
+        return dt.isoformat() if dt else ""
+    s = str(value).strip()
+    if s.isdigit():  # epoch delivered as a string
+        dt = _epoch_dt(s)
+        return dt.isoformat() if dt else s
+    return s
+
+
 def _posted_dt(job):
     """Best-effort parse of a job's `posted` field to an aware datetime.
 
     Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
-    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
-    field is empty or unparseable (Lever omits it) — callers treat None as
-    'undated, keep it'.
+    trailing 'Z'), RFC 822 (We Work Remotely pubDate) and epoch ints/strings
+    (Himalayas). Returns None when the field is empty or unparseable (Lever
+    omits it) — callers treat None as 'undated, keep it'.
     """
-    s = (job.get("posted") or "").strip()
+    raw = job.get("posted")
+    if isinstance(raw, (int, float)) and not isinstance(raw, bool):
+        return _epoch_dt(raw)
+    s = (raw or "").strip() if isinstance(raw, str) else str(raw or "").strip()
     if not s:
         return None
+    if s.isdigit():
+        return _epoch_dt(s)
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

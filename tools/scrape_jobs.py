@@ -435,7 +435,7 @@ def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=10):
             rows = data.get("jobs") or data.get("results") or []
             count = 0
             for d in rows:
-                title = (d.get("title") or "").strip()
+                title = _as_text(d.get("title"))
                 slug = d.get("slug") or ""
                 company = (d.get("companyName") or (d.get("company") or {}).get("name") or "")
                 href = d.get("applicationLink") or (f"https://himalayas.app/companies/{(d.get('company') or {}).get('slug','')}/jobs/{slug}" if slug else "")
@@ -521,14 +521,14 @@ def scrape_remoteok(keywords=KEYWORDS, max_total=70):
         rows = [d for d in data if isinstance(d, dict) and d.get("position")]
         kw_lower = [k.lower() for k in keywords] + ["ai", "llm", "automation", "agent", "n8n"]
         for d in rows:
-            title = (d.get("position") or "").strip()
+            title = _as_text(d.get("position"))
             tags = " ".join(d.get("tags") or []).lower()
             blob = f"{title} {tags} {(d.get('description') or '')[:200]}".lower()
             if not any(k in blob for k in kw_lower):
                 continue
             jobs.append({
                 "title": title[:200],
-                "company": (d.get("company") or "").strip(),
+                "company": _as_text(d.get("company")),
                 "url": d.get("url") or d.get("apply_url") or "",
                 "posted": d.get("date") or "",
                 "salary": (
@@ -581,7 +581,7 @@ def scrape_greenhouse(boards=GREENHOUSE_BOARDS, max_per_board=15):
             data = r.json()
             count = 0
             for j in data.get("jobs", []):
-                title = (j.get("title") or "").strip()
+                title = _as_text(j.get("title"))
                 tlow = title.lower()
                 if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
                     continue
@@ -636,7 +636,7 @@ def scrape_lever(boards=LEVER_BOARDS, max_per_board=15):
             data = r.json() or []
             count = 0
             for j in data:
-                title = (j.get("text") or "").strip()
+                title = _as_text(j.get("text"))
                 tlow = title.lower()
                 if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
                     continue
@@ -701,14 +701,14 @@ def scrape_ashby(boards=ASHBY_BOARDS, max_per_board=15):
             data = r.json() or {}
             count = 0
             for j in data.get("jobs", []):
-                title = (j.get("title") or "").strip()
+                title = _as_text(j.get("title"))
                 tlow = title.lower()
                 if not any(k in tlow for k in GREENHOUSE_KEYWORDS):
                     continue
                 if not j.get("isListed", True):
                     continue
                 # Worldwide-remote only — drop US-only & region-locked listings.
-                loc = (j.get("location") or "").strip()
+                loc = _as_text(j.get("location"))
                 workplace = (j.get("workplaceType") or "").lower()
                 blob_l = f"{loc} {workplace}".lower()
                 is_remote = bool(j.get("isRemote")) or any(tok in blob_l for tok in _WORLDWIDE_TOKENS)
@@ -886,14 +886,31 @@ def is_entry_level(job):
 
 
 # ── Orchestration ─────────────────────────────────────────────────────────────
+def _as_text(value):
+    """Coerce an arbitrary board-API value to a stripped string.
+
+    Job boards are not type-stable: RemoteOK has shipped numeric `date`/epoch
+    values, Ashby has shipped numeric ids where a string was expected, and a
+    null-ish 0 is not the same as "". Every one of those used to reach a bare
+    `.strip()` and abort the whole jobs step with
+    "'int' object has no attribute 'strip'" (Stage 1, 2026-08-26), which loses
+    the entire Remote AI Jobs section rather than one bad row.
+    """
+    if value is None or isinstance(value, (list, dict, bool)):
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    return str(value).strip()
+
+
 def dedupe(jobs):
     """Dedupe by URL, then by (title+company) lowercase."""
     seen_url = set()
     seen_pair = set()
     out = []
     for j in jobs:
-        u = (j.get("url") or "").strip()
-        pair = ((j.get("title", "") or "").lower().strip(), (j.get("company", "") or "").lower().strip())
+        u = _as_text(j.get("url"))
+        pair = (_as_text(j.get("title")).lower(), _as_text(j.get("company")).lower())
         if u and u in seen_url:
             continue
         if pair[0] and pair in seen_pair:
@@ -913,10 +930,24 @@ def _posted_dt(job):
     trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
     field is empty or unparseable (Lever omits it) — callers treat None as
     'undated, keep it'.
+
+    A bare Unix epoch (seconds or milliseconds, str or int — RemoteOK ships
+    these) is parsed as UTC rather than discarded.
     """
-    s = (job.get("posted") or "").strip()
+    s = _as_text(job.get("posted"))
     if not s:
         return None
+    if s.isdigit():
+        try:
+            ts = int(s)
+            if ts == 0:
+                return None          # 0 means "no date", not 1970
+            # Millisecond epochs are ~1e12; second epochs ~1e9.
+            if ts > 10_000_000_000:
+                ts /= 1000
+            return datetime.fromtimestamp(ts, tz=timezone.utc)
+        except (ValueError, OverflowError, OSError):
+            return None
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

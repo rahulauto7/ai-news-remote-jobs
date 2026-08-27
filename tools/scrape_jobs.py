@@ -910,13 +910,29 @@ def _posted_dt(job):
     """Best-effort parse of a job's `posted` field to an aware datetime.
 
     Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
-    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
-    field is empty or unparseable (Lever omits it) — callers treat None as
-    'undated, keep it'.
+    trailing 'Z'), RFC 822 (We Work Remotely pubDate) and Unix epoch seconds
+    (Arbeitnow `created_at`, which the API returns as a bare int). Returns None
+    when the field is empty or unparseable (Lever omits it) — callers treat
+    None as 'undated, keep it'.
     """
-    s = (job.get("posted") or "").strip()
+    raw = job.get("posted")
+    # Never assume `posted` is a str: Arbeitnow hands back an int epoch, and a
+    # bare `(raw or "").strip()` raised AttributeError there, aborting the whole
+    # jobs scrape after filtering had already produced a full pool (2026-08-27).
+    if isinstance(raw, (int, float)) and not isinstance(raw, bool):
+        try:
+            return datetime.fromtimestamp(float(raw), tz=timezone.utc)
+        except (OverflowError, OSError, ValueError):
+            return None
+    s = str(raw or "").strip()
     if not s:
         return None
+    # Epoch seconds can also arrive as a numeric string.
+    if s.isdigit() and len(s) >= 9:
+        try:
+            return datetime.fromtimestamp(int(s), tz=timezone.utc)
+        except (OverflowError, OSError, ValueError):
+            return None
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

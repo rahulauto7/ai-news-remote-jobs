@@ -40,6 +40,30 @@ from bs4 import BeautifulSoup
 
 INCLUDE_FRAGILE = os.environ.get("JOBS_FRAGILE_SOURCES", "0").strip() == "1"
 
+
+def _iso_posted(value) -> str:
+    """Normalise a board's posted-date field to an ISO 8601 string.
+
+    Boards are inconsistent: most send ISO strings, but Himalayas sends
+    `pubDate` as a Unix epoch **int** (seconds or milliseconds). Leaving the
+    int in place crashed the 2026-08-28 scrape at `_posted_dt`'s `.strip()`
+    and would also break `job_match._recency_key`'s sort on mixed types, so
+    every source normalises through here. Unparseable input -> "".
+    """
+    if value is None or isinstance(value, bool):
+        return ""
+    if isinstance(value, (int, float)):
+        if not value:
+            return ""
+        ts = float(value)
+        if ts > 1e11:          # milliseconds
+            ts /= 1000.0
+        try:
+            return datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
+        except (OverflowError, OSError, ValueError):
+            return ""
+    return str(value).strip()
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP_DIR = os.path.join(PROJECT_ROOT, ".tmp")
 JOBS_JSON = os.path.join(TMP_DIR, "jobs.json")
@@ -443,7 +467,9 @@ def scrape_himalayas(keywords=KEYWORDS, max_per_keyword=10):
                     "title": title[:200],
                     "company": company,
                     "url": href,
-                    "posted": d.get("pubDate") or d.get("publishedAt") or "",
+                    # Himalayas sends pubDate as an int epoch — normalise here so
+                    # every downstream consumer sees the same ISO string shape.
+                    "posted": _iso_posted(d.get("pubDate") or d.get("publishedAt")),
                     "salary": (
                         f"${d.get('minSalary')}-${d.get('maxSalary')}"
                         if d.get("minSalary") else ""
@@ -909,14 +935,33 @@ def dedupe(jobs):
 def _posted_dt(job):
     """Best-effort parse of a job's `posted` field to an aware datetime.
 
-    Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
-    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
-    field is empty or unparseable (Lever omits it) — callers treat None as
-    'undated, keep it'.
+    Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN, incl. trailing
+    'Z'), RFC 822 (We Work Remotely pubDate), and NUMERIC Unix epochs in
+    seconds or milliseconds (Himalayas returns `pubDate` as an int). Returns
+    None when the field is empty or unparseable (Lever omits it) — callers
+    treat None as 'undated, keep it'.
     """
-    s = (job.get("posted") or "").strip()
+    raw = job.get("posted")
+    # Himalayas' `pubDate` is an int epoch, not a string. Before this branch
+    # existed the int flowed straight into .strip() and aborted the whole
+    # scrape with "'int' object has no attribute 'strip'" (2026-08-28 run).
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        if not raw:
+            return None
+        ts = float(raw)
+        if ts > 1e11:          # milliseconds
+            ts /= 1000.0
+        try:
+            return datetime.fromtimestamp(ts, tz=timezone.utc)
+        except (OverflowError, OSError, ValueError):
+            return None
+    s = (raw or "").strip() if isinstance(raw, str) else ""
     if not s:
         return None
+    if s.isdigit():            # epoch delivered as a string
+        return _posted_dt({"posted": int(s)})
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

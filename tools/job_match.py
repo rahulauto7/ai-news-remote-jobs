@@ -206,8 +206,12 @@ def score_job(job: dict, profile: dict) -> dict:
 
 
 def _recency_key(j: dict) -> str:
-    """Sort key: most recent first. Posted strings are best-effort."""
-    return (j.get("posted") or "")
+    """Sort key: most recent first. Posted strings are best-effort.
+
+    Coerced to str because some boards (Himalayas) hand back a numeric epoch —
+    a mixed int/str key raises TypeError mid-sort and takes the ranking down.
+    """
+    return str(j.get("posted") or "")
 
 
 def rank_jobs(jobs: list[dict], profile: dict, top_n: int = TOP_N) -> list[dict]:

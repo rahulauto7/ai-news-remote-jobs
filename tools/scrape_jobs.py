@@ -906,17 +906,46 @@ def dedupe(jobs):
     return out
 
 
+def _epoch_dt(value):
+    """Epoch seconds or milliseconds -> aware datetime, or None if implausible."""
+    try:
+        ts = float(value)
+    except (TypeError, ValueError):
+        return None
+    if ts <= 0:
+        return None
+    if ts > 1e11:  # milliseconds (anything past ~5138 AD in seconds)
+        ts /= 1000.0
+    try:
+        return datetime.fromtimestamp(ts, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
+
+
 def _posted_dt(job):
     """Best-effort parse of a job's `posted` field to an aware datetime.
 
     Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
-    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
-    field is empty or unparseable (Lever omits it) — callers treat None as
-    'undated, keep it'.
+    trailing 'Z'), RFC 822 (We Work Remotely pubDate) and numeric epochs in
+    seconds or milliseconds (some boards return `publishedAt`/`pubDate` as a
+    number, not a string). Returns None when the field is empty or unparseable
+    (Lever omits it) — callers treat None as 'undated, keep it'.
     """
-    s = (job.get("posted") or "").strip()
+    raw = job.get("posted")
+    if raw is None or raw == "":
+        return None
+    # A board handing back a number here used to raise
+    # AttributeError: 'int' object has no attribute 'strip' and abort the whole
+    # jobs scrape (2026-08-29 run: zero jobs, empty section 1).
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        return _epoch_dt(raw)
+    s = str(raw).strip()
     if not s:
         return None
+    if s.isdigit():
+        return _epoch_dt(int(s))
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

@@ -892,8 +892,10 @@ def dedupe(jobs):
     seen_pair = set()
     out = []
     for j in jobs:
-        u = (j.get("url") or "").strip()
-        pair = ((j.get("title", "") or "").lower().strip(), (j.get("company", "") or "").lower().strip())
+        # str() because a board can return a JSON number for any of these.
+        u = str(j.get("url") or "").strip()
+        pair = (str(j.get("title") or "").lower().strip(),
+                str(j.get("company") or "").lower().strip())
         if u and u in seen_url:
             continue
         if pair[0] and pair in seen_pair:
@@ -906,17 +908,47 @@ def dedupe(jobs):
     return out
 
 
+def _epoch_dt(value):
+    """Unix epoch (seconds or milliseconds) -> aware UTC datetime, or None."""
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return None
+    if v <= 0:
+        return None
+    if v > 1e11:  # milliseconds
+        v /= 1000.0
+    try:
+        return datetime.fromtimestamp(v, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
+
+
 def _posted_dt(job):
     """Best-effort parse of a job's `posted` field to an aware datetime.
 
     Handles ISO 8601 (Greenhouse/Ashby/Remotive/RemoteOK/HN/Himalayas, incl.
-    trailing 'Z') and RFC 822 (We Work Remotely pubDate). Returns None when the
-    field is empty or unparseable (Lever omits it) — callers treat None as
-    'undated, keep it'.
+    trailing 'Z'), RFC 822 (We Work Remotely pubDate) and Unix epochs in
+    seconds or milliseconds. Returns None when the field is empty or
+    unparseable (Lever omits it) — callers treat None as 'undated, keep it'.
+
+    Epoch handling exists because some boards (Himalayas `pubDate`) return a
+    JSON *number*, not a string. Calling .strip() on that raised
+    "'int' object has no attribute 'strip'" and aborted the whole jobs scrape,
+    which shipped a PDF with an empty Remote AI Jobs section (2026-08-30).
     """
-    s = (job.get("posted") or "").strip()
+    raw = job.get("posted")
+    if raw is None or raw == "":
+        return None
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        return _epoch_dt(raw)
+    s = str(raw).strip()
     if not s:
         return None
+    if s.isdigit():
+        return _epoch_dt(int(s))
     try:
         dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

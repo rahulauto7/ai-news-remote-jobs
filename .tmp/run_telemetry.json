@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-09-04T19:14:56.055527+00:00",
+  "finished_at": "2026-09-04T19:17:56.747083+00:00",
+  "total_elapsed_s": 180.69,
+  "steps": {
+    "Scrape RSS Feeds": {
+      "ok": true,
+      "elapsed_s": 40.27,
+      "items": 692
+    },
+    "Scrape Hackathons": {
+      "ok": true,
+      "elapsed_s": 21.01,
+      "items": 78
+    },
+    "YouTube Viral Verify": {
+      "ok": true,
+      "elapsed_s": 10.62,
+      "items": 3
+    },
+    "Scrape YouTube Trending": {
+      "ok": true,
+      "elapsed_s": 30.91,
+      "items": 352
+    },
+    "Scrape Instagram Reels": {
+      "ok": true,
+      "elapsed_s": 0.12,
+      "items": 0
+    },
+    "Instagram Viral Verify": {
+      "ok": true,
+      "elapsed_s": 0.0,
+      "items": 2
+    },
+    "Scrape AI Trends": {
+      "ok": true,
+      "elapsed_s": 28.96,
+      "items": 20
+    },
+    "Scrape Jobs": {
+      "ok": false,
+      "elapsed_s": 47.82,
+      "error": "'int' object has no attribute 'strip'"
+    },
+    "Rank Jobs (profile-aware)": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Agent Self-Analysis": {
+      "ok": true,
+      "elapsed_s": 0.06
+    },
+    "Merge Native Hackathons": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Dedup + Backfill Sections": {
+      "ok": true,
+      "elapsed_s": 0.01
+    },
+    "Finalize Quantum/RSI Dedup": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Re-sanitize (strict 24h)": {
+      "ok": true,
+      "elapsed_s": 0.0
+    },
+    "Generate YouTube Ideas (fallback)": {
+      "ok": true,
+      "elapsed_s": 0.0
+    }
+  },
+  "agent_tokens": {
+    "available": true,
+    "provider": "agent_self",
+    "model": "claude-agent-direct",
+    "calls": 1,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "estimated_cost_usd": 0.0,
+    "elapsed_s": 0.05,
+    "note": "Agent self-analysis: 95 items classified in 0.1s"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "estimated_quota_units": 8802,
+  "quota_units_daily_free": 10000,
+  "pct_of_daily_free": 88.0,
+  "note": "Analytic estimate from fixed per-call costs (search.list=100 units) x declared query/channel counts, not a live API-reported counter. Does not include youtube_viral_verify.py's separate usage."
+}

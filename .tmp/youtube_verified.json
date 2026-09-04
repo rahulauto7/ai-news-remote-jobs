@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-09-04T19:16:08.209618+00:00",
+  "window_days": 7,
+  "thresholds": {
+    "long_views": 100000,
+    "short_views": 500000
+  },
+  "videos": [
+    {
+      "video_id": "37EYutgh2bc",
+      "url": "https://www.youtube.com/watch?v=37EYutgh2bc",
+      "title": "Stop fishing for answers | Find them with Gemini in Chrome",
+      "channel": "Google Chrome",
+      "description": "Drowning in info? Get to the bottom of it with Gemini in Chrome. Learn more: https://goo.gle/4i5EZTp",
+      "published": "2026-08-31T19:29:16Z",
+      "views": 2271088,
+      "duration_sec": 31,
+      "format": "video",
+      "bucket": "global_automation",
+      "url_verified": true
+    },
+    {
+      "video_id": "MZAmGIuICjU",
+      "url": "https://www.youtube.com/watch?v=MZAmGIuICjU",
+      "title": "Allah never alone there banday #prayer #shortvideo #ytshorts #ai #shorts",
+      "channel": "Magic Soul",
+      "description": "",
+      "published": "2026-08-30T01:00:31Z",
+      "views": 948190,
+      "duration_sec": 24,
+      "format": "short",
+      "bucket": "global_short",
+      "url_verified": true
+    },
+    {
+      "bucket": "india_automation",
+      "no_fresh": true,
+      "reason": "only already-shown videos qualified",
+      "format": "video",
+      "view_floor": 100000
+    }
+  ]
+}

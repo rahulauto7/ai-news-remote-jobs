@@ -1,0 +1,344 @@
+{
+  "generated_at": "2026-09-04T19:16:39.861161+00:00",
+  "finished_at": "2026-09-04T19:17:08.825488+00:00",
+  "raw_signal_count": 264,
+  "topic_count": 20,
+  "topics": [
+    {
+      "topic": "chatgpt 6 astra",
+      "norm_key": "chatgpt astra",
+      "score": 32.35,
+      "sources": [
+        "google_trends_rising",
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=chatgpt+6+astra&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=chatgpt+astra&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=chatgpt+astra&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 5
+    },
+    {
+      "topic": "what are ai agents",
+      "norm_key": "agents",
+      "score": 24.85,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=agents+in+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=best+ai+agents&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=what+are+ai+agents&date=now+1-d"
+      ],
+      "signal_count": 6
+    },
+    {
+      "topic": "what is claude",
+      "norm_key": "claude",
+      "score": 22.27,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=claude+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=what+is+claude&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=claude+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 6
+    },
+    {
+      "topic": "gpt 6 astra",
+      "norm_key": "gpt astra",
+      "score": 13.83,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=gpt+6+astra&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=gpt+astra&date=now+1-d"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "chatgpt prompt",
+      "norm_key": "chatgpt prompt",
+      "score": 12.51,
+      "sources": [
+        "google_trends_rising",
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=chatgpt+prompt&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=chatgpt+prompt&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 3
+    },
+    {
+      "topic": "open ai astra",
+      "norm_key": "open astra",
+      "score": 12.41,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=open+ai+astra&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=open+ai+astra&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "ai photo",
+      "norm_key": "photo",
+      "score": 11.88,
+      "sources": [
+        "google_trends_rising",
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+photo&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=ai+photo&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 3
+    },
+    {
+      "topic": "astra ai",
+      "norm_key": "astra",
+      "score": 10.96,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=astra+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=astra+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "Discovery of a new OpenAI agent message board",
+      "norm_key": "discovery openai agent message board",
+      "score": 9.48,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://collusion.wiki/",
+        "https://collusion.wiki/index.html"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "ai gemini",
+      "norm_key": "gemini",
+      "score": 9.23,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+gemini&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=gemini+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "ai photo editor",
+      "norm_key": "photo editor",
+      "score": 8.44,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+photo+editor&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=ai+photo+editor&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "gemini ai photo",
+      "norm_key": "gemini photo",
+      "score": 8.22,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=gemini+ai+photo&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=gemini+ai+photo&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "chatgpt free",
+      "norm_key": "chatgpt free",
+      "score": 8.17,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=chatgpt+free&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=chatgpt+free&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "ai automation jobs",
+      "norm_key": "automation jobs",
+      "score": 7.85,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+automation+jobs&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=ai+automation+jobs&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "google generative ai",
+      "norm_key": "google generative",
+      "score": 7.35,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=google+generative+ai&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=google+generative+ai&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "ai video",
+      "norm_key": "video",
+      "score": 6.89,
+      "sources": [
+        "google_trends_top"
+      ],
+      "geos": [
+        "global",
+        "india"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=ai+video&date=now+1-d",
+        "https://trends.google.com/trends/explore?q=ai+video&date=now+1-d&geo=IN"
+      ],
+      "signal_count": 2
+    },
+    {
+      "topic": "sam altman chatgpt water usage",
+      "norm_key": "sam altman chatgpt water usage",
+      "score": 6.4,
+      "sources": [
+        "google_trends_rising"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://trends.google.com/trends/explore?q=sam+altman+chatgpt+water+usage&date=now+1-d"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Google AI Mode shows same products 21.6% more expensive than traditional search",
+      "norm_key": "google mode shows same products more expensive than",
+      "score": 5.85,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://productrise.app/blog/google-ai-mode-prefers-more-expensive-products"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "Which tools do Claude, Codex and Cursor choose? We measured 17k runs to find out",
+      "norm_key": "tools do claude codex cursor choose measured runs",
+      "score": 5.79,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://armature.tech/blog/which-tools-coding-agents-install"
+      ],
+      "signal_count": 1
+    },
+    {
+      "topic": "OpenAI's GPT-6 Astra on ARC-AGI-3",
+      "norm_key": "openai gpt-6 astra arc-agi-3",
+      "score": 5.61,
+      "sources": [
+        "hn"
+      ],
+      "geos": [
+        "global"
+      ],
+      "sample_urls": [
+        "https://arcprize.org/blog/astra"
+      ],
+      "signal_count": 1
+    }
+  ]
+}
